@@ -38,7 +38,7 @@ public class WorldGeneration {
 //        world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
         world.setTime(6000);
 //        world.setGameRule(GameRule.DO_MOB_SPAWNING, false);
-        world.setSpawnLocation(0, 1, 0);
+        world.setSpawnLocation(0, 2, 0);
         return world;
     }
 }

@@ -2,7 +2,6 @@ package gg.steve.anthem.disband;
 
 import gg.steve.anthem.AnthemFactions;
 import gg.steve.anthem.core.Faction;
-import gg.steve.anthem.utils.LogUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -16,8 +15,8 @@ public class FactionDeletion {
         }
         String worldName = "plugins" + File.separator + AnthemFactions.get().getDataFolder().getName() + File.separator + "worlds" + File.separator + faction.getName();
         Bukkit.getServer().unloadWorld(worldName, false);
-        File directory = new File(worldName);
-        deleteFile(directory);
+        deleteFile(new File(worldName));
+        faction.getData().delete();
     }
 
     private static void deleteFile(File file) {

@@ -1,0 +1,4 @@
+faction-world-generation:
+  plot-size: 128 # this is 128 * 128 big
+  faction-area: 64 # this is 64 * 64
+  seed: 0

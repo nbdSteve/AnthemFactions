@@ -1,0 +1,12 @@
+name: AnthemFactions
+version: ${project.version}
+main: gg.steve.anthem.AnthemFactions
+api-version: 1.13
+prefix: Factions
+authors: [stevegoodhill]
+description: Core factions plugin for AnthemFactions Minecraft server.
+commands:
+  f:
+    usage: /<command>
+    description: Base command for AnthemFaction, custom factions plugin developed by nbdSteve.
+    aliases: [faction, factions, anthemfactions]

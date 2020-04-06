@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="AnthemFac">
+    <output-path>$PROJECT_DIR$/../../../test-server/spigot-server - Copy/plugins</output-path>
+    <root id="archive" name="AnthemFac.jar">
+      <element id="module-output" name="AnthemFactions" />
+    </root>
+  </artifact>
+</component>

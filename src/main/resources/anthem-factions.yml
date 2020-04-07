@@ -2,3 +2,21 @@ faction-world-generation:
   plot-size: 128 # this is 128 * 128 big
   faction-area: 64 # this is 64 * 64
   seed: 0
+  spawn: 0:2:0 # spawn location in this format x:y:z
+  world-border:
+    enabled: true
+    center: 0.0:0.0
+    warning-distance: 0 # setting this to 0 will remove the red glow (recommended)
+    size: 258 # to make this as big as the plot do plot-size*2+2
+  set-time:
+    enabled: true
+    time: 6000 # time in ticks (this is midday)
+  gamerules:
+    - doDaylightCycle:false
+  spawn-limits: # does not affect mob spawners - recommend setting these to 0
+    monster: 0
+    ambient: 0
+    animal: 0
+    water: 0
+
+main-world-name: world # players will be teleported to this worlds spawn when they disband their faction

@@ -1,0 +1,24 @@
+permission-debug:
+  - '&5&lFactions &f• &7You do not have permission (&6{permission-node}&7) to use that.'
+
+command-debug:
+  - '&5&lFactions &f• &7There was a problem with the command you entered, please read the reason.'
+  - '&5&lReason &f• &6{reason}&7.'
+
+help:
+  - '&5&lFactions &f• &7Please dm nbdSteve#0583 on discord for help with this plugin.'
+
+reload:
+  - '&5&lFactions &f• &7You have successfully reloaded all files and maps.'
+
+create-faction:
+  - '&5&lFactions &f• &7You have created the faction, &6{faction-name}&7, and have been teleported to its world, use &6/f home &7to get here.'
+
+disband-faction:
+  - '&5&lFactions &f• &7Your faction, &6{faction-name}&7, has been disbanded and you have been teleported to spawn, the world has been deleted.'
+
+home-teleport:
+  - '&5&lFactions &f• &7You have been teleported to your factions home.'
+
+set-home:
+  - '&5&lFactions &f• &7Your factions home has been successfully updated, teleport to it using &6/f home&7.'

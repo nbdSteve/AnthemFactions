@@ -1,6 +1,7 @@
 package gg.steve.anthem.utils;
 
 import gg.steve.anthem.managers.FileManager;
+import gg.steve.anthem.player.FPlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -151,9 +152,21 @@ public class MessageUtil {
         }
     }
 
+    public static void permissionDebug(FPlayer fPlayer, String node) {
+        for (String line : FileManager.get("lang").getStringList("permission-debug")) {
+            fPlayer.message(ColorUtil.colorize(line).replace("{permission-node}", node));
+        }
+    }
+
     public static void commandDebug(CommandSender sender, String reason) {
         for (String line : FileManager.get("lang").getStringList("command-debug")) {
             sender.sendMessage(ColorUtil.colorize(line).replace("{reason}", reason));
+        }
+    }
+
+    public static void commandDebug(FPlayer fPlayer, String reason) {
+        for (String line : FileManager.get("lang").getStringList("command-debug")) {
+            fPlayer.message(ColorUtil.colorize(line).replace("{reason}", reason));
         }
     }
 

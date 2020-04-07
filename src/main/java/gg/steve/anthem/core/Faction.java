@@ -1,61 +1,86 @@
 package gg.steve.anthem.core;
 
-import gg.steve.anthem.create.WorldGeneration;
 import gg.steve.anthem.disband.FactionDeletion;
+import gg.steve.anthem.exception.PlayerAlreadyMemberException;
 import gg.steve.anthem.exception.PlayerAlreadyModeratorException;
-import gg.steve.anthem.exception.PlayerAlreadyRecruitException;
+import gg.steve.anthem.exception.PlayerNotMemberException;
 import gg.steve.anthem.exception.PlayerNotModeratorException;
-import gg.steve.anthem.exception.PlayerNotRecruitException;
+import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.role.Role;
+import gg.steve.anthem.world.FWorld;
+import gg.steve.anthem.world.FWorldGeneration;
 import org.bukkit.Bukkit;
-import org.bukkit.World;
-import org.bukkit.entity.Player;
+import org.bukkit.Location;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 public class Faction {
     private UUID owner;
     private List<UUID> moderators;
-    private List<UUID> recruits;
+    private List<UUID> members;
     private String name;
-    private World world;
+    private FWorld fWorld;
     private FactionDataFileUtil data;
+    private Location home;
 
     public Faction(UUID owner, String name) {
         this.owner = owner;
         this.name = name;
-        this.world = WorldGeneration.generate(name);
-        this.data = new FactionDataFileUtil(name, owner);
+        if (name.equalsIgnoreCase("wilderness")) {
+            this.fWorld = new FWorld(Bukkit.getWorld("world"));
+        } else {
+            this.fWorld = new FWorld(FWorldGeneration.generate(name));
+        }
+        this.data = new FactionDataFileUtil(name);
+        this.data.get().set("owner-uuid", owner.toString());
+        this.data.save();
+        this.home = fWorld.getSpawnLocation();
+        moderators = new ArrayList<>();
+        members = new ArrayList<>();
     }
 
     public Faction(String name) {
         this.name = name;
-        this.world = Bukkit.getWorld(name);
-        this.data = new FactionDataFileUtil(name, null);
+        if (name.equalsIgnoreCase("wilderness")) {
+            this.fWorld = new FWorld(Bukkit.getWorld("world"));
+        } else {
+            this.fWorld = new FWorld(Bukkit.getWorld("plugins" + File.separator + "AnthemFactions" + File.separator + "faction-worlds" + File.separator + name));
+        }
+        this.data = new FactionDataFileUtil(name);
         this.owner = UUID.fromString(data.get().getString("owner-uuid"));
         loadModerators();
-        loadRecruits();
+        loadMembers();
+        this.home = fWorld.getBlockAt(data.get().getInt("home-location.x"), data.get().getInt("home-location.y"), data.get().getInt("home-location.z")).getLocation();
     }
 
-    public boolean isMember(Player player) {
-        UUID uuid = player.getUniqueId();
-        if (uuid == this.owner) return true;
+    public boolean isMember(FPlayer fPlayer) {
+        UUID uuid = fPlayer.getUUID();
+        if (uuid.equals(owner)) return true;
         if (this.moderators.contains(uuid)) return true;
-        if (this.recruits.contains(uuid)) return true;
-        return false;
+        return this.members.contains(uuid);
     }
 
-    public Role getRole(Player player) {
-        UUID uuid = player.getUniqueId();
-        if (uuid == this.owner) return Role.OWNER;
+    public Role getRole(FPlayer fPlayer) {
+        UUID uuid = fPlayer.getUUID();
+        if (uuid.equals(this.owner)) return Role.OWNER;
         if (this.moderators.contains(uuid)) return Role.MODERATOR;
-        if (this.recruits.contains(uuid)) return Role.RECRUIT;
+        if (this.members.contains(uuid)) return Role.MEMBER;
         return Role.WILDERNESS;
     }
 
     public void disband() {
         FactionDeletion.disband(this);
+    }
+
+    public List<UUID> getPlayers() {
+        List<UUID> players = new ArrayList<>();
+        players.add(owner);
+        players.addAll(moderators);
+        players.addAll(members);
+        return players;
     }
 
     public UUID getOwner() {
@@ -71,6 +96,7 @@ public class Faction {
     }
 
     public void loadModerators() {
+        moderators = new ArrayList<>();
         for (String moderator : data.get().getStringList("moderators")) {
             this.moderators.add(UUID.fromString(moderator));
         }
@@ -92,30 +118,31 @@ public class Faction {
         this.moderators.remove(moderator);
     }
 
-    public List<UUID> getRecruits() {
-        return this.recruits;
+    public List<UUID> getMembers() {
+        return this.members;
     }
 
-    public void loadRecruits() {
-        for (String recruit : this.data.get().getStringList("recruits")) {
-            this.recruits.add(UUID.fromString(recruit));
+    public void loadMembers() {
+        members = new ArrayList<>();
+        for (String member : this.data.get().getStringList("members")) {
+            this.members.add(UUID.fromString(member));
         }
     }
 
-    public void addRecruit(UUID recruit) throws PlayerAlreadyRecruitException {
-        if (this.data.get().getStringList("moderators").contains(recruit.toString()))
-            throw new PlayerAlreadyRecruitException();
-        this.data.get().getStringList("moderators").add(recruit.toString());
+    public void addMember(UUID member) throws PlayerAlreadyMemberException {
+        if (this.data.get().getStringList("members").contains(member.toString()))
+            throw new PlayerAlreadyMemberException();
+        this.data.get().getStringList("members").add(member.toString());
         this.data.save();
-        this.recruits.add(recruit);
+        this.members.add(member);
     }
 
-    public void removeRecruit(UUID recruit) throws PlayerNotRecruitException {
-        if (!this.data.get().getStringList("moderators").contains(recruit.toString()))
-            throw new PlayerNotRecruitException();
-        this.data.get().getStringList("moderators").remove(recruit.toString());
+    public void removeMember(UUID member) throws PlayerNotMemberException {
+        if (!this.data.get().getStringList("members").contains(member.toString()))
+            throw new PlayerNotMemberException();
+        this.data.get().getStringList("members").remove(member.toString());
         this.data.save();
-        this.recruits.remove(recruit);
+        this.members.remove(member);
     }
 
     public String getName() {
@@ -126,15 +153,27 @@ public class Faction {
         this.name = name;
     }
 
-    public World getWorld() {
-        return this.world;
+    public FWorld getFWorld() {
+        return this.fWorld;
     }
 
-    public void setWorld(World world) {
-        this.world = world;
+    public void setFFWorld(FWorld fWorld) {
+        this.fWorld = fWorld;
     }
 
     public FactionDataFileUtil getData() {
         return data;
+    }
+
+    public Location getHome() {
+        return home;
+    }
+
+    public void setHome(Location home) {
+        data.get().set("location.x", home.getX());
+        data.get().set("location.y", home.getY());
+        data.get().set("location.z", home.getZ());
+        data.save();
+        this.home = home;
     }
 }

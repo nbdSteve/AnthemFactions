@@ -7,7 +7,7 @@ public class FactionCreation {
 
     public static Faction create(String name, Player owner) {
         Faction faction = new Faction(owner.getUniqueId(), name);
-        owner.teleport(faction.getWorld().getSpawnLocation());
+        owner.teleport(faction.getFWorld().getSpawnLocation());
         return faction;
     }
 }

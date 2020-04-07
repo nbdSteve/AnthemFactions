@@ -13,7 +13,7 @@ public final class AnthemFactions extends JavaPlugin {
         instance = this;
         SetupManager.setupFiles(new FileManager(instance));
         SetupManager.registerCommands(instance);
-
+        SetupManager.registerEvents(instance);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package gg.steve.anthem.core;
 
 import gg.steve.anthem.AnthemFactions;
+import gg.steve.anthem.managers.FileManager;
 import gg.steve.anthem.utils.LogUtil;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -10,7 +11,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 /**
- * Class that handles creating and loading player files
+ * Class that handles creating and loading faction data files
  */
 public class FactionDataFileUtil {
     //Store the file name string
@@ -20,7 +21,7 @@ public class FactionDataFileUtil {
     //Store the yaml config
     private YamlConfiguration config;
 
-    public FactionDataFileUtil(String fileName, UUID owner) {
+    public FactionDataFileUtil(String fileName) {
         //Set instance variable
         this.fileName = fileName;
         //Get the player file
@@ -29,33 +30,27 @@ public class FactionDataFileUtil {
         config = YamlConfiguration.loadConfiguration(file);
         //If the file doesn't exist then set the defaults
         if (!file.exists()) {
-            setupPlayerFileDefaults(config, fileName, owner);
+            setupFactionFileDefaults(config, fileName);
         }
+        LogUtil.info(config.getString("owner-uuid"));
         save();
     }
 
-    private void setupPlayerFileDefaults(YamlConfiguration config, String name, UUID owner) {
+    private void setupFactionFileDefaults(YamlConfiguration config, String name) {
         //Set defaults for the information about the players tiers and currency
         config.set("name", name);
-        config.set("owner-uuid", owner.toString());
+        config.set("owner-uuid", "");
         config.createSection("moderators");
-        config.createSection("recruits");
+        config.createSection("members");
         config.set("wealth", 0);
+        config.createSection("home-location");
+        String[] fWorldSpawn = FileManager.get("config").getString("faction-world-generation.spawn").split(":");
+        config.set("home-location.x", Integer.parseInt(fWorldSpawn[0]));
+        config.set("home-location.y", Integer.parseInt(fWorldSpawn[1]));
+        config.set("home-location.z", Integer.parseInt(fWorldSpawn[2]));
         //Send a nice message
         LogUtil.info("Successfully created a new faction data file: " + fileName + ", actively creating / setting defaults.");
     }
-//
-//    private void setupChallengeWeeks() {
-//        for (ChallengeWeek challengeWeek : WeeklyChallengeManager.weeks.values()) {
-//            if (challengeWeek.isUnlocked()) {
-//                for (Challenge challenge : challengeWeek.challenges) {
-//                    if (config.get("pass-challenges.week-" + challengeWeek.getWeek() + "." + challenge.getId()) == null) {
-//                        config.set("pass-challenges.week-" + challengeWeek.getWeek() + "." + challenge.getId(), 0.0);
-//                    }
-//                }
-//            }
-//        }
-//    }
 
     public void save() {
         try {

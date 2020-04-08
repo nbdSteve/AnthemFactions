@@ -70,3 +70,7 @@ demotion:
 
 demotion-alert:
   - '&5&lFactions &f• &6{demoted} &7has have been demoted to &6{role} &7by &6{demoter}&7.'
+
+list:
+  - '&5&lFactions'
+  - ' &f• &7Total factions: &6{total-factions}'

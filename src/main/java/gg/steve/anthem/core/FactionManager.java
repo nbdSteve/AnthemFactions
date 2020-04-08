@@ -80,4 +80,8 @@ public class FactionManager {
         }
         return wilderness.getId();
     }
+
+    public static int getTotalFactions() {
+        return factions.size() - 1;
+    }
 }

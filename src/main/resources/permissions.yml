@@ -9,6 +9,8 @@ player:
   leave: factions.player.leave
   promote: factions.player.promote
   demote: factions.player.demote
+  list: factions.player.list
+  who: factions.player.who
 
 admin:
   id-cmd: factions.admin.id

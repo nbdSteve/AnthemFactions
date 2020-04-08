@@ -23,6 +23,10 @@ faction-world-generation:
 
 main-world-name: world # players will be teleported to this worlds spawn when they disband their faction
 
+max-allies: 3
+
+minimum-tag-length: 1
+
 default-faction-permissions:
   owner:
     - factions.player.disband
@@ -35,9 +39,11 @@ default-faction-permissions:
     - factions.player.invite
   member:
     - factions.player.home
+    - factions.player.who
+    - factions.player.list
   wilderness:
     - factions.player.create
     - factions.player.accept
+    - factions.player.leave
     - factions.player.who
     - factions.player.list
-    - factions.player.leave

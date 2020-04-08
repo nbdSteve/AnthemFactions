@@ -2,6 +2,7 @@ package gg.steve.anthem.cmd;
 
 import gg.steve.anthem.cmd.admin.IdCmd;
 import gg.steve.anthem.cmd.sub.*;
+import gg.steve.anthem.cmd.unfinished.ListCmd;
 import gg.steve.anthem.utils.MessageUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -44,6 +45,9 @@ public class FactionsCmd implements CommandExecutor {
                 case "ally":
                     break;
                 case "who":
+                    break;
+                case "list":
+                    ListCmd.list(sender);
                     break;
                 case "invite":
                     InviteCmd.invite(sender, args);

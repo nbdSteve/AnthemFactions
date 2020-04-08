@@ -1,12 +1,13 @@
 
-lsquid:S4042"IUse "java.nio.Files#delete" here for better messages on error conditions.(²Œ­ûÿÿÿÿ8òÌóÿ”.
-lsquid:S4042&"IUse "java.nio.Files#delete" here for better messages on error conditions.(²Œ­ûÿÿÿÿ8òÌóÿ”.
-fsquid:UselessImportCheck";Remove this unused import 'gg.steve.anthem.AnthemFactions'.(¤º„Å8Óä„˜•.
-Xsquid:S1118":Add a private constructor to hide the implicit public one.(ÿÑ”Ô8¯ïóÿ”.
-lsquid:S4042""IUse "java.nio.Files#delete" here for better messages on error conditions.(²Œ­ûÿÿÿÿ8òÌóÿ”.
 ]
-squid:S899&";Do something with the "boolean" value returned by "delete".(²Œ­ûÿÿÿÿ8òÌóÿ”.
+squid:S899";Do something with the "boolean" value returned by "delete".(²Œ­ûÿÿÿÿ8òÌóÿ”.
 ]
-squid:S899"";Do something with the "boolean" value returned by "delete".(²Œ­ûÿÿÿÿ8òÌóÿ”.
+squid:S899%";Do something with the "boolean" value returned by "delete".(²Œ­ûÿÿÿÿ8òÌóÿ”.
+lsquid:S4042%"IUse "java.nio.Files#delete" here for better messages on error conditions.(²Œ­ûÿÿÿÿ8òÌóÿ”.
+dsquid:UselessImportCheck";Remove this unused import 'gg.steve.anthem.AnthemFactions'.(¤º„Å8Óä„˜•.
 ]
-squid:S899";Do something with the "boolean" value returned by "delete".(²Œ­ûÿÿÿÿ8òÌóÿ”.
+squid:S899!";Do something with the "boolean" value returned by "delete".(²Œ­ûÿÿÿÿ8òÌóÿ”.
+Xsquid:S1118
+":Add a private constructor to hide the implicit public one.(ÿÑ”Ô8¯ïóÿ”.
+lsquid:S4042!"IUse "java.nio.Files#delete" here for better messages on error conditions.(²Œ­ûÿÿÿÿ8òÌóÿ”.
+lsquid:S4042"IUse "java.nio.Files#delete" here for better messages on error conditions.(²Œ­ûÿÿÿÿ8òÌóÿ”.

@@ -1,5 +1,6 @@
 
+esquid:S11928"GDefine a constant instead of duplicating this literal "config" 6 times.(ÒõÚ°8©ë‡Ê•.
 ]
-squid:S899R";Do something with the "boolean" value returned by "delete".(²Œ­ûÿÿÿÿ8öû¤»•.
-[squid:UselessImportCheck"+Remove this unused import 'java.util.UUID'.(ÀãÄ£úÿÿÿÿ8µüÓ™•.
-lsquid:S4042R"IUse "java.nio.Files#delete" here for better messages on error conditions.(²Œ­ûÿÿÿÿ8öû¤»•.
+squid:S899j";Do something with the "boolean" value returned by "delete".(²Œ­ûÿÿÿÿ8öû¤»•.
+lsquid:S4042j"IUse "java.nio.Files#delete" here for better messages on error conditions.(²Œ­ûÿÿÿÿ8öû¤»•.
+[squid:UselessImportCheck"+Remove this unused import 'java.util.UUID'.(ÀãÄ£úÿÿÿÿ8µüÓ™•.

@@ -1,5 +1,6 @@
 package gg.steve.anthem.utils;
 
+import gg.steve.anthem.core.FactionManager;
 import gg.steve.anthem.managers.FileManager;
 import gg.steve.anthem.player.FPlayer;
 import org.bukkit.command.CommandSender;
@@ -195,6 +196,12 @@ public class MessageUtil {
     public static void reloadMessage(CommandSender sender) {
         for (String line : FileManager.get("lang").getStringList("reload")) {
             sender.sendMessage(ColorUtil.colorize(line));
+        }
+    }
+
+    public static void listMessage(FPlayer fPlayer) {
+        for (String line : FileManager.get("lang").getStringList("list")) {
+            fPlayer.message(ColorUtil.colorize(line).replace("{total-factions}", String.valueOf(FactionManager.getTotalFactions())));
         }
     }
 }

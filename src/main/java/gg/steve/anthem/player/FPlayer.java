@@ -51,6 +51,14 @@ public class FPlayer {
     public boolean canBuild(Location location) {
         return false;
     }
+
+    public boolean hasFaction() {
+        return !role.equals(Role.WILDERNESS);
+    }
+
+    public boolean hasFactionPermission(String node) {
+        return this.faction.roleHasPermission(this.role, node);
+    }
 }
 
 //    @Override

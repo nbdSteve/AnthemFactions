@@ -27,6 +27,7 @@ public class SetupManager {
         fileManager.add("config", "anthem-factions.yml");
         fileManager.add("lang", "lang.yml");
         fileManager.add("permissions", "permissions.yml");
+        fileManager.add("cooldowns", "cooldowns.yml");
         // load all of the factions for the server
         FactionManager.init();
         FPlayerManager.init();

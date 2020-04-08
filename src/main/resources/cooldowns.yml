@@ -1,0 +1,8 @@
+#All cooldowns / timeouts in seconds
+
+#Timeouts
+INVITE: 60
+DISBAND: 10
+
+#Cooldowns
+CREATE: 3600

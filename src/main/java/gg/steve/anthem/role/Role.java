@@ -13,11 +13,18 @@ public enum Role {
         this.weight = weight;
     }
 
-    private int getWeight() {
+    public int getWeight() {
         return this.weight;
     }
 
     public static boolean higherRole(Role role1, Role role2) {
-        return role1.getWeight() > role2.getWeight();
+        return role1.getWeight() >= role2.getWeight();
+    }
+
+    public static Role getRoleByWeight(int weight) {
+        for (Role role : Role.values()) {
+            if (role.getWeight() == weight) return role;
+        }
+        return WILDERNESS;
     }
 }

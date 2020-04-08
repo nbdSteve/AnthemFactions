@@ -12,15 +12,15 @@ public class Cooldown {
     private Long end;
     private Faction faction;
 
-    public Cooldown(CooldownType type, int duration) {
+    public Cooldown(CooldownType type) {
         this.type = type;
-        this.duration = duration;
+        this.duration = type.getDuration();
         this.end = System.currentTimeMillis() + (duration * 1000);
     }
 
-    public Cooldown(CooldownType type, int duration, Faction faction) {
+    public Cooldown(CooldownType type, Faction faction) {
         this.type = type;
-        this.duration = duration;
+        this.duration = type.getDuration();
         this.end = System.currentTimeMillis() + (duration * 1000);
         this.faction = faction;
     }

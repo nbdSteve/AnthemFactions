@@ -22,3 +22,22 @@ faction-world-generation:
     water: 0
 
 main-world-name: world # players will be teleported to this worlds spawn when they disband their faction
+
+default-faction-permissions:
+  owner:
+    - factions.player.disband
+  co_owner:
+    - factions.player.sethome
+    - factions.player.promote
+    - factions.player.demote
+  moderator:
+    - factions.player.kick
+    - factions.player.invite
+  member:
+    - factions.player.home
+  wilderness:
+    - factions.player.create
+    - factions.player.accept
+    - factions.player.who
+    - factions.player.list
+    - factions.player.leave

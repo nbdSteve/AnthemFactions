@@ -6,6 +6,9 @@ player:
   invite: factions.player.invite
   accept: factions.player.accept
   kick: factions.player.kick
+  leave: factions.player.leave
+  promote: factions.player.promote
+  demote: factions.player.demote
 
 admin:
   id-cmd: factions.admin.id

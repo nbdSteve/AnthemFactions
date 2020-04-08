@@ -20,6 +20,9 @@ create-faction:
 disband-faction:
   - '&5&lFactions &f• &7Your faction, &6{faction-name}&7, has been disbanded and you have been teleported to spawn, the world has been deleted.'
 
+disband-confirmation:
+  - '&5&lFactions &f• &c&lWARNING! &7You are about to disband your faction, type &6/f disband &7again within the next 10 seconds to confirm this action.'
+
 home-teleport:
   - '&5&lFactions &f• &7You have been teleported to your factions home.'
 
@@ -49,3 +52,21 @@ join:
 
 cooldown:
   - '&5&lFactions &f• &7Error, that is on cooldown with &6{seconds-remaining} &7seconds remaining.'
+
+leave:
+  - '&5&lFactions &f• &7You have left the faction, &6{faction-name}&7.'
+
+leave-alert:
+  - '&5&lFactions &f• &6{leaver} &7has left the faction.'
+
+promotion:
+  - '&5&lFactions &f• &7You have have been promoted to &6{role} &7by &6{promoter}&7.'
+
+promotion-alert:
+  - '&5&lFactions &f• &6{promoted} &7has have been promoted to &6{role} &7by &6{promoter}&7.'
+
+demotion:
+  - '&5&lFactions &f• &7You have have been demoted to &6{role} &7by &6{demoter}&7.'
+
+demotion-alert:
+  - '&5&lFactions &f• &6{demoted} &7has have been demoted to &6{role} &7by &6{demoter}&7.'

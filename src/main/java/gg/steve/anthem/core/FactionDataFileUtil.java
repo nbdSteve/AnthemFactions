@@ -8,6 +8,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -56,6 +57,29 @@ public class FactionDataFileUtil {
         config.set("home-location.x", Integer.parseInt(fWorldSpawn[0]));
         config.set("home-location.y", Integer.parseInt(fWorldSpawn[1]));
         config.set("home-location.z", Integer.parseInt(fWorldSpawn[2]));
+        if (factionName.equalsIgnoreCase("wilderness")) {
+            //load wilderness permissions
+            config.createSection("permissions.wilderness");
+            List<String> nodes = FileManager.get("config").getStringList("default-faction-permissions.wilderness");
+            config.set("permissions.wilderness", nodes);
+        } else {
+            //load owner permissions
+            config.createSection("permissions.owner");
+            List<String> owner = FileManager.get("config").getStringList("default-faction-permissions.owner");
+            config.set("permissions.owner", owner);
+            //load co_owner permissions
+            config.createSection("permissions.co_owner");
+            List<String> coOwner = FileManager.get("config").getStringList("default-faction-permissions.co_owner");
+            config.set("permissions.co_owner", coOwner);
+            //load moderator permissions
+            config.createSection("permissions.moderator");
+            List<String> moderator = FileManager.get("config").getStringList("default-faction-permissions.moderator");
+            config.set("permissions.moderator", moderator);
+            //load member permissions
+            config.createSection("permissions.member");
+            List<String> member = FileManager.get("config").getStringList("default-faction-permissions.member");
+            config.set("permissions.member", member);
+        }
         config.set("wealth", 0);
         //Send a nice message
         LogUtil.info("Successfully created a new faction data file: " + fileName + ", actively creating / setting defaults.");

@@ -63,6 +63,13 @@ public class FactionManager {
         return null;
     }
 
+    public static boolean factionAlreadyExists(String name) {
+        for (Faction faction : factions.values()) {
+            if (faction.getName().equalsIgnoreCase(name)) return true;
+        }
+        return false;
+    }
+
     public static Wilderness getWilderness() {
         return wilderness;
     }

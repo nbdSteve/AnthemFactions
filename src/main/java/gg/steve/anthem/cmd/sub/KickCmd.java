@@ -17,10 +17,10 @@ import java.util.UUID;
 public class KickCmd {
 
     public static void kick(CommandSender sender, String[] args) {
-        if (!PermissionQueryUtil.hasPermission(sender, "player.kick")) {
-            MessageUtil.permissionDebug(sender, PermissionQueryUtil.getNode("player.kick"));
-            return;
-        }
+//        if (!PermissionQueryUtil.hasPermission(sender, "player.kick")) {
+//            MessageUtil.permissionDebug(sender, PermissionQueryUtil.getNode("player.kick"));
+//            return;
+//        }
         if (!(sender instanceof Player)) {
             MessageUtil.commandDebug(sender, "Error, only players can kick others from the factions");
             return;
@@ -30,20 +30,24 @@ public class KickCmd {
             return;
         }
         Player player = (Player) sender;
-        Player target = Bukkit.getPlayer(args[1]);
         FPlayer fPlayer = FPlayerManager.getFPlayer(player.getUniqueId());
-        Faction faction = fPlayer.getFaction();
-        FPlayer tPlayer = FPlayerManager.getFPlayer(target.getUniqueId());
         if (fPlayer.getFaction().getId().equals(FactionManager.getWildernessId())) {
             MessageUtil.commandDebug(sender, "Error, you must create a faction using /f create {name} first");
             return;
         }
-        if (target.getUniqueId().equals(player.getUniqueId())) {
-            MessageUtil.commandDebug(sender, "Error, you cannot kick yourself");
+        if (!fPlayer.hasFactionPermission("factions.player.kick")) {
+            MessageUtil.message("lang", "insufficient-role-permission", player);
             return;
         }
-        if (fPlayer.getRole().equals(Role.MEMBER)) {
-            MessageUtil.message("lang", "insufficient-role-permission", player);
+        Player target = Bukkit.getPlayer(args[1]);
+        if (target == null) {
+            MessageUtil.commandDebug(sender, "Error, the player you are kicking must be online");
+            return;
+        }
+        Faction faction = fPlayer.getFaction();
+        FPlayer tPlayer = FPlayerManager.getFPlayer(target.getUniqueId());
+        if (target.getUniqueId().equals(player.getUniqueId())) {
+            MessageUtil.commandDebug(sender, "Error, you cannot kick yourself");
             return;
         }
         if (!faction.isMember(tPlayer)) {

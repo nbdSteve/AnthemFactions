@@ -36,8 +36,10 @@ public class FactionsCmd implements CommandExecutor {
                     DisbandCmd.disband(sender);
                     break;
                 case "promote":
+                    PromoteCmd.promote(sender, args);
                     break;
                 case "demote":
+                    DemoteCmd.demote(sender, args);
                     break;
                 case "ally":
                     break;
@@ -47,10 +49,13 @@ public class FactionsCmd implements CommandExecutor {
                     InviteCmd.invite(sender, args);
                     break;
                 case "accept":
-                    InviteCmd.accept(sender);
+                    AcceptCmd.accept(sender);
                     break;
                 case "kick":
                     KickCmd.kick(sender, args);
+                    break;
+                case "leave":
+                    LeaveCmd.leave(sender);
                     break;
                 case "getid":
                     IdCmd.getId(sender, args);

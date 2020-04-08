@@ -1,5 +1,5 @@
 
-lsquid:S4042I"IUse "java.nio.Files#delete" here for better messages on error conditions.(²Œ­ûÿÿÿÿ8ò­Ë†•.
 ]
-squid:S899I";Do something with the "boolean" value returned by "delete".(²Œ­ûÿÿÿÿ8ò­Ë†•.
+squid:S899R";Do something with the "boolean" value returned by "delete".(²Œ­ûÿÿÿÿ8öû¤»•.
 [squid:UselessImportCheck"+Remove this unused import 'java.util.UUID'.(ÀãÄ£úÿÿÿÿ8µüÓ™•.
+lsquid:S4042R"IUse "java.nio.Files#delete" here for better messages on error conditions.(²Œ­ûÿÿÿÿ8öû¤»•.

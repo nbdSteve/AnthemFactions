@@ -1,31 +1,23 @@
 package gg.steve.anthem.cmd.sub;
 
-import gg.steve.anthem.cooldown.Cooldown;
-import gg.steve.anthem.cooldown.CooldownManager;
-import gg.steve.anthem.cooldown.CooldownType;
 import gg.steve.anthem.core.FactionManager;
-import gg.steve.anthem.exception.CooldownActiveException;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
+import gg.steve.anthem.role.Role;
 import gg.steve.anthem.utils.MessageUtil;
-import gg.steve.anthem.utils.PermissionQueryUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.UUID;
 
-public class InviteCmd {
+public class DemoteCmd {
 
-    public static void invite(CommandSender sender, String[] args) {
+    public static void demote(CommandSender sender, String[] args) {
         if (!(sender instanceof Player)) {
             MessageUtil.commandDebug(sender, "Error, only players can invite others to factions");
             return;
         }
-//        if (!PermissionQueryUtil.hasPermission(sender, "player.invite")) {
-//            MessageUtil.permissionDebug(sender, PermissionQueryUtil.getNode("player.invite"));
-//            return;
-//        }
         if (args.length != 2) {
             MessageUtil.commandDebug(sender, "Invalid number of arguments");
             return;
@@ -36,34 +28,39 @@ public class InviteCmd {
             MessageUtil.commandDebug(sender, "Error, you must create a faction using /f create {name} first");
             return;
         }
-        if (!fPlayer.hasFactionPermission("factions.player.invite")) {
+        if (!fPlayer.hasFactionPermission("factions.player.demote")) {
             MessageUtil.message("lang", "insufficient-role-permission", player);
             return;
         }
         Player target = Bukkit.getPlayer(args[1]);
         if (target == null) {
-            MessageUtil.commandDebug(sender, "Error, the player you are inviting must be online");
+            MessageUtil.commandDebug(sender, "Error, the player you are demoting must be online");
             return;
         }
         FPlayer tPlayer = FPlayerManager.getFPlayer(target.getUniqueId());
         if (target.getUniqueId().equals(player.getUniqueId())) {
-            MessageUtil.commandDebug(sender, "Error, you cannot invite yourself");
+            MessageUtil.commandDebug(sender, "Error, you cannot demote yourself");
             return;
         }
-        if (fPlayer.getFaction().equals(tPlayer.getFaction())) {
-            MessageUtil.commandDebug(sender, "Error, that player is already a member of your faction");
+        if (!fPlayer.getFaction().equals(tPlayer.getFaction())) {
+            MessageUtil.commandDebug(sender, "Error, you cannot demote someone who is not in your faction");
             return;
         }
-        try {
-            CooldownManager.addCooldown(target.getUniqueId(), new Cooldown(CooldownType.INVITE, fPlayer.getFaction()));
-        } catch (CooldownActiveException e) {
-            MessageUtil.commandDebug(sender, "Error, that player has already a pending invite");
+        if (Role.higherRole(tPlayer.getRole(), fPlayer.getRole())) {
+            MessageUtil.commandDebug(sender, "Error, you cannot demote someone who is a higher, or the same rank as you");
             return;
         }
-        MessageUtil.message("lang", "faction-invite-receiver", target, "{inviter}", player.getName(), "{faction-name}", fPlayer.getFaction().getName());
+        if (tPlayer.getRole().equals(Role.MEMBER)) {
+            MessageUtil.commandDebug(sender, "Error, that player is already a the rank MEMBER and cannot be demoted further. Use /f kick {name} to remove them from the faction");
+            return;
+        }
+        fPlayer.getFaction().demote(tPlayer.getUUID());
         for (UUID uuid : fPlayer.getFaction().getPlayers()) {
             Player member = Bukkit.getPlayer(uuid);
-            MessageUtil.message("lang", "faction-invite-inviter", member, "{inviter}", player.getName(), "{invited}", target.getName());
+            MessageUtil.message("lang", "demotion-alert", member, "{demoter}", player.getName(), "{demoted}", target.getName(), "{role}", Role.getRoleByWeight(tPlayer.getRole().getWeight() - 1).toString());
         }
+        FPlayerManager.updateFPlayer(tPlayer.getUUID());
+        tPlayer = FPlayerManager.getFPlayer(tPlayer.getUUID());
+        MessageUtil.message("lang", "demotion", tPlayer.getPlayer(), "{demoter}", player.getName(), "{role}", tPlayer.getRole().toString());
     }
 }

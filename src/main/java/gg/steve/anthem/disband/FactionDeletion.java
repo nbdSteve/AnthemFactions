@@ -1,6 +1,5 @@
 package gg.steve.anthem.disband;
 
-import gg.steve.anthem.AnthemFactions;
 import gg.steve.anthem.core.Faction;
 import gg.steve.anthem.managers.FileManager;
 import org.bukkit.Bukkit;

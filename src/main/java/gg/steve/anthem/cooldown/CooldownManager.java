@@ -1,6 +1,7 @@
 package gg.steve.anthem.cooldown;
 
 import gg.steve.anthem.exception.CooldownActiveException;
+import gg.steve.anthem.exception.NotOnCooldownException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +31,10 @@ public class CooldownManager {
     }
 
     public static boolean isOnCooldown(UUID uuid, CooldownType type) {
+        if (!cooldowns.containsKey(uuid)) {
+            cooldowns.put(uuid, new ArrayList<>());
+            return false;
+        }
         for (Cooldown cooldown : cooldowns.get(uuid)) {
             if (cooldown.getType().equals(type)) {
                 if (cooldown.isActive()) {
@@ -43,7 +48,8 @@ public class CooldownManager {
         return false;
     }
 
-    public static void message(UUID uuid, CooldownType type) {
+    public static void message(UUID uuid, CooldownType type) throws NotOnCooldownException {
+        if (!isOnCooldown(uuid, type)) throw new NotOnCooldownException();
         for (Cooldown cooldown : cooldowns.get(uuid)) {
             if (cooldown.getType().equals(type)) {
                 cooldown.message(uuid);
@@ -52,17 +58,16 @@ public class CooldownManager {
         }
     }
 
-    public static Cooldown getCooldown(UUID uuid, CooldownType type) {
+    public static Cooldown getCooldown(UUID uuid, CooldownType type) throws NotOnCooldownException {
+        if (!isOnCooldown(uuid, type)) throw new NotOnCooldownException();
         for (Cooldown cooldown : cooldowns.get(uuid)) {
             if (cooldown.getType().equals(type)) return cooldown;
         }
         return null;
     }
 
-    public static void removeCooldown(UUID uuid, CooldownType type) {
-        for (Cooldown cooldown : cooldowns.get(uuid)) {
-            if (cooldown.getType().equals(type)) cooldowns.get(uuid).remove(cooldown);
-            return;
-        }
+    public static void removeCooldown(UUID uuid, CooldownType type) throws NotOnCooldownException {
+        if (!isOnCooldown(uuid, type)) throw new NotOnCooldownException();
+        cooldowns.get(uuid).removeIf(cooldown -> cooldown.getType().equals(type));
     }
 }

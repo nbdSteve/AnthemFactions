@@ -41,6 +41,7 @@ default-faction-permissions:
     - factions.player.home
     - factions.player.who
     - factions.player.list
+    - factions.player.build
   wilderness:
     - factions.player.create
     - factions.player.accept

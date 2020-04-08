@@ -20,10 +20,10 @@ public class FWorldGeneration {
         YamlConfiguration config = FileManager.get("config");
         String section = "faction-world-generation.";
         worldCreator.seed(config.getInt(section + "seed"));
-        //create a new FactionWorld variable
-        FWorld fWorld = new FWorld(worldCreator.createWorld());
         int plotSize = config.getInt(section + "plot-size");
         int factionArea = config.getInt(section + "faction-area");
+        //create a new FactionWorld variable
+        FWorld fWorld = new FWorld(worldCreator.createWorld(), plotSize, factionArea);
         for (int x = -(plotSize + 1); x <= plotSize; x++) {
             for (int z = -(plotSize + 1); z <= plotSize; z++) {
                 fWorld.getBlockAt(x, 1, z).setType(Material.BEDROCK);

@@ -5,6 +5,7 @@ import gg.steve.anthem.cmd.FactionsCmd;
 import gg.steve.anthem.cooldown.CooldownManager;
 import gg.steve.anthem.core.FactionManager;
 import gg.steve.anthem.player.FPlayerManager;
+import gg.steve.anthem.player.PlayerEventListener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 
@@ -46,5 +47,6 @@ public class SetupManager {
     public static void registerEvents(Plugin instance) {
         PluginManager pm = instance.getServer().getPluginManager();
         pm.registerEvents(new FPlayerManager(), instance);
+        pm.registerEvents(new PlayerEventListener(), instance);
     }
 }

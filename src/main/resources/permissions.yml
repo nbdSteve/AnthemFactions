@@ -11,6 +11,7 @@ player:
   demote: factions.player.demote
   list: factions.player.list
   who: factions.player.who
+  build: factions.player.build
 
 admin:
   id-cmd: factions.admin.id

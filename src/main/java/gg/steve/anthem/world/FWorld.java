@@ -23,9 +23,23 @@ import java.util.function.Predicate;
 
 public class FWorld implements World {
     private World world;
+    private int plotSize;
+    private int factionArea;
 
-    public FWorld(World world) {
+
+    public FWorld(World world, int plotSize, int factionArea) {
         this.world = world;
+        this.plotSize = plotSize;
+        this.factionArea = factionArea;
+    }
+
+    public boolean inFactionLand(Location location) {
+        if (!location.getWorld().equals(world)) {
+            return false;
+        }
+        int x = location.getBlockX();
+        int z = location.getBlockZ();
+        return x >= -(factionArea + 1) && x <= factionArea && z >= -(factionArea + 1) && z <= factionArea;
     }
 
     @Override

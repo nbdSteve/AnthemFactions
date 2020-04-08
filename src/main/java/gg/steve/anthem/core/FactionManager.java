@@ -6,6 +6,7 @@ import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.utils.LogUtil;
 import gg.steve.anthem.utils.MessageUtil;
+import gg.steve.anthem.world.FWorld;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -56,6 +57,10 @@ public class FactionManager {
         return getWilderness();
     }
 
+    public static Faction getFaction(UUID factionUUID) {
+        return factions.get(factionUUID);
+    }
+
     public static UUID getId(String name) {
         for (Faction faction : factions.values()) {
             if (faction.getName().equalsIgnoreCase(name)) return faction.getId();
@@ -83,5 +88,9 @@ public class FactionManager {
 
     public static int getTotalFactions() {
         return factions.size() - 1;
+    }
+
+    public static FWorld getFWorld(UUID factionUUID) {
+        return factions.get(factionUUID).getFWorld();
     }
 }

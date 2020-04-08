@@ -74,3 +74,12 @@ demotion-alert:
 list:
   - '&5&lFactions'
   - ' &f• &7Total factions: &6{total-factions}'
+
+build-blocked-faction:
+  - '&5&lFactions &f• &7You are unable to build in &6{faction-name}&7s territory&7.'
+
+build-blocked-raid:
+  - '&5&lFactions &f• &7You are unable to edit terrain in the &craiding zone&7.'
+
+teleport-blocked-faction:
+  - '&5&lFactions &f• &7You are unable to teleport into &6{faction-name}&7s territory&7.'

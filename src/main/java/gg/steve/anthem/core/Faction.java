@@ -11,7 +11,6 @@ import gg.steve.anthem.world.FWorldGeneration;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.WorldCreator;
-import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.util.*;
@@ -29,9 +28,9 @@ public class Faction {
         this.id = id;
         this.name = name;
         if (id.equals(FactionManager.getWildernessId())) {
-            this.fWorld = new FWorld(Bukkit.createWorld(new WorldCreator(FileManager.get("config").getString("main-world-name"))));
+            this.fWorld = new FWorld(Bukkit.createWorld(new WorldCreator(FileManager.get("config").getString("main-world-name"))), 0, 0);
         } else {
-            this.fWorld = new FWorld(FWorldGeneration.generate(String.valueOf(id)));
+            this.fWorld = new FWorld(FWorldGeneration.generate(String.valueOf(id)), 128, 64);
         }
         this.data = new FactionDataFileUtil(String.valueOf(id), name);
         addPlayer(owner, Role.OWNER);
@@ -42,9 +41,9 @@ public class Faction {
     public Faction(UUID id) {
         this.id = id;
         if (id.equals(FactionManager.getWildernessId())) {
-            this.fWorld = new FWorld(Bukkit.createWorld(new WorldCreator(FileManager.get("config").getString("main-world-name"))));
+            this.fWorld = new FWorld(Bukkit.createWorld(new WorldCreator(FileManager.get("config").getString("main-world-name"))), 0, 0);
         } else {
-            this.fWorld = new FWorld(Bukkit.createWorld(new WorldCreator("plugins" + File.separator + "AnthemFactions" + File.separator + "faction-worlds" + File.separator + id.toString())));
+            this.fWorld = new FWorld(Bukkit.createWorld(new WorldCreator("plugins" + File.separator + "AnthemFactions" + File.separator + "faction-worlds" + File.separator + id.toString())), 128, 64);
             LogUtil.info("plugins" + File.separator + "AnthemFactions" + File.separator + "faction-worlds" + File.separator + id);
         }
         this.data = new FactionDataFileUtil(String.valueOf(id));
@@ -153,17 +152,17 @@ public class Faction {
             member.add(node);
         }
         rolePermissionMap.put(Role.MEMBER, member);
-        List<String> moderator =  new ArrayList<>(member);
+        List<String> moderator = new ArrayList<>(member);
         for (String node : this.data.get().getStringList("permissions.moderator")) {
             moderator.add(node);
         }
         rolePermissionMap.put(Role.MODERATOR, moderator);
-        List<String> coOwner =  new ArrayList<>(moderator);
+        List<String> coOwner = new ArrayList<>(moderator);
         for (String node : this.data.get().getStringList("permissions.co_owner")) {
             coOwner.add(node);
         }
         rolePermissionMap.put(Role.CO_OWNER, coOwner);
-        List<String> owner =  new ArrayList<>(coOwner);
+        List<String> owner = new ArrayList<>(coOwner);
         for (String node : this.data.get().getStringList("permissions.owner")) {
             owner.add(node);
         }

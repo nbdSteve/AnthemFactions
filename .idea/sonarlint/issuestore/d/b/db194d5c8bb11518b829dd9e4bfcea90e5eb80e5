@@ -1,0 +1,5 @@
+
+\squid:S3516"9Refactor this method to not always return the same value.(¼ß…ıüÿÿÿÿ8óÃÇ›•.
+Ysquid:UselessImportCheck	".Remove this unused import 'org.bukkit.Bukkit'.(Ø­æ8Â«œ•.
+Ssquid:S1191"5Use classes from the Java API instead of Sun classes.( ¨àÅ8¨»´œ•.
+Šsquid:UselessImportCheck"_Remove this unused import 'com.sun.prism.shader.FillPgram_LinearGradient_PAD_AlphaTest_Loader'.( ¨àÅ8¨»´œ•.

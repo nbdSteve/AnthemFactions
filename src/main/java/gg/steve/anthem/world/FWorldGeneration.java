@@ -24,10 +24,10 @@ public class FWorldGeneration {
         FWorld fWorld = new FWorld(worldCreator.createWorld());
         int plotSize = config.getInt(section + "plot-size");
         int factionArea = config.getInt(section + "faction-area");
-        for (int x = -(plotSize - 1); x <= plotSize; x++) {
-            for (int z = -(plotSize - 1); z <= plotSize; z++) {
+        for (int x = -(plotSize + 1); x <= plotSize; x++) {
+            for (int z = -(plotSize + 1); z <= plotSize; z++) {
                 fWorld.getBlockAt(x, 1, z).setType(Material.BEDROCK);
-                if (x >= -(factionArea - 1) && x <= factionArea && z >= -(factionArea - 1) && z <= factionArea) {
+                if (x >= -(factionArea + 1) && x <= factionArea && z >= -(factionArea + 1) && z <= factionArea) {
                     fWorld.getBlockAt(x, 2, z).setType(Material.STONE);
                 }
             }

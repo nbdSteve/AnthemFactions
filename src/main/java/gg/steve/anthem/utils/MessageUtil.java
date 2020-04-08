@@ -38,6 +38,12 @@ public class MessageUtil {
         }
     }
 
+    public static void message(String directory, String path, CommandSender player, String placeholder, String replacement) {
+        for (String line : FileManager.get(directory).getStringList(path)) {
+            player.sendMessage(ColorUtil.colorize(line).replace(placeholder, replacement));
+        }
+    }
+
     /**
      * Send a message to the player which contains 2 placeholders
      *
@@ -50,6 +56,16 @@ public class MessageUtil {
      * @param replacement_2 String, the second replacement
      */
     public static void message(String directory, String path, Player player,
+                               String placeholder, String replacement,
+                               String placeholder_2, String replacement_2) {
+        for (String line : FileManager.get(directory).getStringList(path)) {
+            player.sendMessage(ColorUtil.colorize(line)
+                    .replace(placeholder, replacement)
+                    .replace(placeholder_2, replacement_2));
+        }
+    }
+
+    public static void message(String directory, String path, CommandSender player,
                                String placeholder, String replacement,
                                String placeholder_2, String replacement_2) {
         for (String line : FileManager.get(directory).getStringList(path)) {

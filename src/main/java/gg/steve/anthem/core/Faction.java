@@ -1,73 +1,60 @@
 package gg.steve.anthem.core;
 
 import gg.steve.anthem.disband.FactionDeletion;
-import gg.steve.anthem.exception.PlayerAlreadyMemberException;
-import gg.steve.anthem.exception.PlayerAlreadyModeratorException;
-import gg.steve.anthem.exception.PlayerNotMemberException;
-import gg.steve.anthem.exception.PlayerNotModeratorException;
+import gg.steve.anthem.managers.FileManager;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.role.Role;
+import gg.steve.anthem.utils.LogUtil;
 import gg.steve.anthem.world.FWorld;
 import gg.steve.anthem.world.FWorldGeneration;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.WorldCreator;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class Faction {
-    private UUID owner;
-    private List<UUID> moderators;
-    private List<UUID> members;
+    private UUID id;
     private String name;
     private FWorld fWorld;
     private FactionDataFileUtil data;
     private Location home;
+    private Map<UUID, Role> playerMap;
 
-    public Faction(UUID owner, String name) {
-        this.owner = owner;
+    public Faction(UUID owner, String name, UUID id) {
+        this.id = id;
         this.name = name;
-        if (name.equalsIgnoreCase("wilderness")) {
-            this.fWorld = new FWorld(Bukkit.getWorld("world"));
+        if (id.equals(FactionManager.getWildernessId())) {
+            this.fWorld = new FWorld(Bukkit.createWorld(new WorldCreator(FileManager.get("config").getString("main-world-name"))));
         } else {
-            this.fWorld = new FWorld(FWorldGeneration.generate(name));
+            this.fWorld = new FWorld(FWorldGeneration.generate(String.valueOf(id)));
         }
-        this.data = new FactionDataFileUtil(name);
-        this.data.get().set("owner-uuid", owner.toString());
-        this.data.save();
+        this.data = new FactionDataFileUtil(String.valueOf(id), name);
+        addPlayer(owner, Role.OWNER);
         this.home = fWorld.getSpawnLocation();
-        moderators = new ArrayList<>();
-        members = new ArrayList<>();
     }
 
-    public Faction(String name) {
-        this.name = name;
-        if (name.equalsIgnoreCase("wilderness")) {
-            this.fWorld = new FWorld(Bukkit.getWorld("world"));
+    public Faction(UUID id) {
+        this.id = id;
+        if (id.equals(FactionManager.getWildernessId())) {
+            this.fWorld = new FWorld(Bukkit.createWorld(new WorldCreator(FileManager.get("config").getString("main-world-name"))));
         } else {
-            this.fWorld = new FWorld(Bukkit.getWorld("plugins" + File.separator + "AnthemFactions" + File.separator + "faction-worlds" + File.separator + name));
+            this.fWorld = new FWorld(Bukkit.createWorld(new WorldCreator("plugins" + File.separator + "AnthemFactions" + File.separator + "faction-worlds" + File.separator + id.toString())));
+            LogUtil.info("plugins" + File.separator + "AnthemFactions" + File.separator + "faction-worlds" + File.separator + id);
         }
-        this.data = new FactionDataFileUtil(name);
-        this.owner = UUID.fromString(data.get().getString("owner-uuid"));
-        loadModerators();
-        loadMembers();
+        this.data = new FactionDataFileUtil(String.valueOf(id));
+        this.name = this.data.get().getString("name");
+        loadPlayerMap();
         this.home = fWorld.getBlockAt(data.get().getInt("home-location.x"), data.get().getInt("home-location.y"), data.get().getInt("home-location.z")).getLocation();
     }
 
     public boolean isMember(FPlayer fPlayer) {
-        UUID uuid = fPlayer.getUUID();
-        if (uuid.equals(owner)) return true;
-        if (this.moderators.contains(uuid)) return true;
-        return this.members.contains(uuid);
+        return playerMap.containsKey(fPlayer.getUUID());
     }
 
     public Role getRole(FPlayer fPlayer) {
-        UUID uuid = fPlayer.getUUID();
-        if (uuid.equals(this.owner)) return Role.OWNER;
-        if (this.moderators.contains(uuid)) return Role.MODERATOR;
-        if (this.members.contains(uuid)) return Role.MEMBER;
+        if (playerMap.containsKey(fPlayer.getUUID())) return playerMap.get(fPlayer.getUUID());
         return Role.WILDERNESS;
     }
 
@@ -75,74 +62,118 @@ public class Faction {
         FactionDeletion.disband(this);
     }
 
-    public List<UUID> getPlayers() {
-        List<UUID> players = new ArrayList<>();
-        players.add(owner);
-        players.addAll(moderators);
-        players.addAll(members);
-        return players;
+    public Set<UUID> getPlayers() {
+        return playerMap.keySet();
+    }
+
+    public void loadPlayerMap() {
+        if (playerMap == null) playerMap = new HashMap<>();
+        for (String uuid : this.data.get().getConfigurationSection("faction-members").getKeys(true)) {
+            LogUtil.info(uuid);
+            this.playerMap.put(UUID.fromString(uuid), Role.valueOf(this.data.get().getString("faction-members." + uuid)));
+        }
+    }
+
+    public boolean addPlayer(UUID uuid, Role role) {
+        if (playerMap == null) playerMap = new HashMap<>();
+        if (playerMap.containsKey(uuid)) return false;
+        this.data.get().set("faction-members." + uuid, role.toString());
+        this.data.save();
+        playerMap.put(uuid, role);
+        return true;
+    }
+
+    public boolean removePlayer(UUID uuid) {
+        if (!playerMap.containsKey(uuid)) return false;
+        this.data.get().set("faction-members." + uuid, null);
+        this.data.save();
+        playerMap.remove(uuid);
+        return true;
+    }
+
+    public boolean promote(UUID uuid) {
+        Role role = playerMap.get(uuid);
+        if (role.equals(Role.OWNER)) return false;
+        if (role.equals(Role.CO_OWNER)) {
+            UUID previousOwner = getOwner();
+            this.data.get().set("faction-members." + uuid, Role.OWNER);
+            this.data.get().set("faction-members." + previousOwner, Role.CO_OWNER);
+            this.data.save();
+            playerMap.remove(uuid);
+            playerMap.remove(getOwner());
+            playerMap.put(uuid, Role.OWNER);
+            playerMap.put(previousOwner, Role.CO_OWNER);
+        }
+        if (role.equals(Role.MODERATOR)) {
+            this.data.get().set("faction-members." + uuid, Role.CO_OWNER);
+            this.data.save();
+            playerMap.remove(uuid);
+            playerMap.put(uuid, Role.CO_OWNER);
+            return true;
+        }
+        if (role.equals(Role.MEMBER)) {
+            this.data.get().set("faction-members." + uuid, Role.MODERATOR);
+            this.data.save();
+            playerMap.remove(uuid);
+            playerMap.put(uuid, Role.MODERATOR);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean demote(UUID uuid) {
+        Role role = playerMap.get(uuid);
+        if (role.equals(Role.OWNER) || role.equals(Role.MEMBER)) return false;
+        if (role.equals(Role.CO_OWNER)) {
+            this.data.get().set("faction-members." + uuid, Role.MODERATOR);
+            this.data.save();
+            playerMap.remove(uuid);
+            playerMap.put(uuid, Role.MODERATOR);
+            return true;
+        }
+        if (role.equals(Role.MODERATOR)) {
+            this.data.get().set("faction-members." + uuid, Role.MEMBER);
+            this.data.save();
+            playerMap.remove(uuid);
+            playerMap.put(uuid, Role.MEMBER);
+            return true;
+        }
+        return false;
     }
 
     public UUID getOwner() {
-        return this.owner;
+        for (Map.Entry player : playerMap.entrySet()) {
+            if (player.getValue().equals(Role.OWNER)) return (UUID) player.getKey();
+        }
+        return null;
     }
 
-    public void setOwner(UUID owner) {
-        this.owner = owner;
+    public List<UUID> getCoOwners() {
+        List<UUID> coOwners = new ArrayList<>();
+        for (Map.Entry player : playerMap.entrySet()) {
+            if (player.getValue().equals(Role.CO_OWNER)) coOwners.add((UUID) player.getKey());
+        }
+        return coOwners;
     }
 
     public List<UUID> getModerators() {
-        return this.moderators;
-    }
-
-    public void loadModerators() {
-        moderators = new ArrayList<>();
-        for (String moderator : data.get().getStringList("moderators")) {
-            this.moderators.add(UUID.fromString(moderator));
+        List<UUID> moderators = new ArrayList<>();
+        for (Map.Entry player : playerMap.entrySet()) {
+            if (player.getValue().equals(Role.MODERATOR)) moderators.add((UUID) player.getKey());
         }
-    }
-
-    public void addModerator(UUID moderator) throws PlayerAlreadyModeratorException {
-        if (this.data.get().getStringList("moderators").contains(moderator.toString()))
-            throw new PlayerAlreadyModeratorException();
-        this.data.get().getStringList("moderators").add(moderator.toString());
-        this.data.save();
-        this.moderators.add(moderator);
-    }
-
-    public void removeModerator(UUID moderator) throws PlayerNotModeratorException {
-        if (!this.data.get().getStringList("moderators").contains(moderator.toString()))
-            throw new PlayerNotModeratorException();
-        this.data.get().getStringList("moderators").remove(moderator.toString());
-        this.data.save();
-        this.moderators.remove(moderator);
+        return moderators;
     }
 
     public List<UUID> getMembers() {
-        return this.members;
-    }
-
-    public void loadMembers() {
-        members = new ArrayList<>();
-        for (String member : this.data.get().getStringList("members")) {
-            this.members.add(UUID.fromString(member));
+        List<UUID> members = new ArrayList<>();
+        for (Map.Entry player : playerMap.entrySet()) {
+            if (player.getValue().equals(Role.MEMBER)) members.add((UUID) player.getKey());
         }
+        return members;
     }
 
-    public void addMember(UUID member) throws PlayerAlreadyMemberException {
-        if (this.data.get().getStringList("members").contains(member.toString()))
-            throw new PlayerAlreadyMemberException();
-        this.data.get().getStringList("members").add(member.toString());
-        this.data.save();
-        this.members.add(member);
-    }
-
-    public void removeMember(UUID member) throws PlayerNotMemberException {
-        if (!this.data.get().getStringList("members").contains(member.toString()))
-            throw new PlayerNotMemberException();
-        this.data.get().getStringList("members").remove(member.toString());
-        this.data.save();
-        this.members.remove(member);
+    public UUID getId() {
+        return id;
     }
 
     public String getName() {
@@ -157,10 +188,6 @@ public class Faction {
         return this.fWorld;
     }
 
-    public void setFFWorld(FWorld fWorld) {
-        this.fWorld = fWorld;
-    }
-
     public FactionDataFileUtil getData() {
         return data;
     }
@@ -170,9 +197,9 @@ public class Faction {
     }
 
     public void setHome(Location home) {
-        data.get().set("location.x", home.getX());
-        data.get().set("location.y", home.getY());
-        data.get().set("location.z", home.getZ());
+        data.get().set("home-location.x", home.getX());
+        data.get().set("home-location.y", home.getY());
+        data.get().set("home-location.z", home.getZ());
         data.save();
         this.home = home;
     }

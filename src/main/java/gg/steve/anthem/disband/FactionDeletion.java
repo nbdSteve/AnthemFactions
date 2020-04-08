@@ -14,7 +14,7 @@ public class FactionDeletion {
         for (Player player : faction.getFWorld().getPlayers()) {
             player.teleport(Bukkit.getServer().getWorld(FileManager.get("config").getString("main-world-name")).getSpawnLocation());
         }
-        String worldName = "plugins" + File.separator + "AnthemFactions" + File.separator + "faction-worlds" + File.separator + faction.getName();
+        String worldName = "plugins" + File.separator + "AnthemFactions" + File.separator + "faction-worlds" + File.separator + faction.getId();
         Bukkit.getServer().unloadWorld(worldName, false);
         deleteFile(new File(worldName));
         faction.getData().delete();

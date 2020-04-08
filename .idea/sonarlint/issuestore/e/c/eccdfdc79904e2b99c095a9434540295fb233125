@@ -1,5 +1,5 @@
 
-nsquid:CommentedOutCodeLine0"<This block of commented-out lines of code should be removed.(î–êðþÿÿÿÿ8ÏÁß„•.
-lsquid:S4042N"IUse "java.nio.Files#delete" here for better messages on error conditions.(²Œ­ûÿÿÿÿ8ò­Ë†•.
+lsquid:S4042I"IUse "java.nio.Files#delete" here for better messages on error conditions.(²Œ­ûÿÿÿÿ8ò­Ë†•.
 ]
-squid:S899N";Do something with the "boolean" value returned by "delete".(²Œ­ûÿÿÿÿ8ò­Ë†•.
+squid:S899I";Do something with the "boolean" value returned by "delete".(²Œ­ûÿÿÿÿ8ò­Ë†•.
+[squid:UselessImportCheck"+Remove this unused import 'java.util.UUID'.(ÀãÄ£úÿÿÿÿ8µüÓ™•.

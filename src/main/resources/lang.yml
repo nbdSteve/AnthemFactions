@@ -11,6 +11,9 @@ help:
 reload:
   - '&5&lFactions &f• &7You have successfully reloaded all files and maps.'
 
+faction-id:
+  - '&5&lFactions &f• &7The UUID for that faction is: &6{uuid}&7.'
+
 create-faction:
   - '&5&lFactions &f• &7You have created the faction, &6{faction-name}&7, and have been teleported to its world, use &6/f home &7to get here.'
 
@@ -22,3 +25,27 @@ home-teleport:
 
 set-home:
   - '&5&lFactions &f• &7Your factions home has been successfully updated, teleport to it using &6/f home&7.'
+
+insufficient-role-permission:
+  - '&5&lFactions &f• &7Your faction role does not have permission to use that command&7.'
+
+faction-invite-receiver:
+  - '&5&lFactions &f• &7You have been invited to join the faction, &6{faction-name}&7, by &6{inviter}&7. To accept type &6/f accept&7.'
+
+faction-invite-inviter:
+  - '&5&lFactions &f• &6{inviter} &7has invited &6{invited} &7to join your faction, they have 60 seconds to accept.'
+
+new-member-join:
+  - '&5&lFactions &f• &6{member} &7has joined the faction.'
+
+faction-kick-receiver:
+  - '&5&lFactions &f• &7You have been kicked from &6{faction-name} &7by &6{kicker}&7.'
+
+faction-kick-kicker:
+  - '&5&lFactions &f• &6{kicker} &7has kicked &6{kicked} &7from the faction.'
+
+join:
+  - '&5&lFactions &f• &7You have joined &6{faction-name}&7.'
+
+cooldown:
+  - '&5&lFactions &f• &7Error, that is on cooldown with &6{seconds-remaining} &7seconds remaining.'

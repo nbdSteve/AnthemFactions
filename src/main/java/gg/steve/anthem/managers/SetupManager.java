@@ -2,6 +2,7 @@ package gg.steve.anthem.managers;
 
 import gg.steve.anthem.AnthemFactions;
 import gg.steve.anthem.cmd.FactionsCmd;
+import gg.steve.anthem.cooldown.CooldownManager;
 import gg.steve.anthem.core.FactionManager;
 import gg.steve.anthem.player.FPlayerManager;
 import org.bukkit.plugin.Plugin;
@@ -25,9 +26,11 @@ public class SetupManager {
         // general files
         fileManager.add("config", "anthem-factions.yml");
         fileManager.add("lang", "lang.yml");
+        fileManager.add("permissions", "permissions.yml");
         // load all of the factions for the server
         FactionManager.init();
         FPlayerManager.init();
+        CooldownManager.init();
     }
 
     public static void registerCommands(AnthemFactions instance) {

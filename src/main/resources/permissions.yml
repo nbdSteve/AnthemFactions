@@ -1,0 +1,11 @@
+player:
+  create: factions.player.create
+  disband: factions.player.disband
+  home: faction.player.home
+  sethome: factions.player.sethome
+  invite: factions.player.invite
+  accept: factions.player.accept
+  kick: factions.player.kick
+
+admin:
+  id-cmd: factions.admin.id

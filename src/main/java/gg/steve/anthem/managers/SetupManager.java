@@ -4,6 +4,7 @@ import gg.steve.anthem.AnthemFactions;
 import gg.steve.anthem.cmd.FactionsCmd;
 import gg.steve.anthem.cooldown.CooldownManager;
 import gg.steve.anthem.core.FactionManager;
+import gg.steve.anthem.delay.DelayManager;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.player.PlayerEventListener;
 import org.bukkit.plugin.Plugin;
@@ -33,6 +34,7 @@ public class SetupManager {
         FactionManager.init();
         FPlayerManager.init();
         CooldownManager.init();
+        DelayManager.init();
     }
 
     public static void registerCommands(AnthemFactions instance) {

@@ -1,16 +1,19 @@
 package gg.steve.anthem.core;
 
+import com.sun.istack.internal.Nullable;
 import gg.steve.anthem.disband.FactionDeletion;
 import gg.steve.anthem.managers.FileManager;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.relation.RelationManager;
 import gg.steve.anthem.role.Role;
+import gg.steve.anthem.utils.MessageUtil;
 import gg.steve.anthem.world.FWorld;
 import gg.steve.anthem.world.FWorldGeneration;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.WorldCreator;
+import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.util.*;
@@ -148,6 +151,14 @@ public class Faction {
         return false;
     }
 
+    public void messageAllOnlinePlayers(String directory, String path, String... placeholers) {
+        for (UUID uuid : getPlayers()) {
+            Player player = Bukkit.getPlayer(uuid);
+            if (player == null) continue;
+            MessageUtil.message(directory, path, player, placeholers);
+        }
+    }
+
     public void loadRolePermissionMap() {
         if (rolePermissionMap == null) rolePermissionMap = new HashMap<>();
         List<String> member = new ArrayList<>();
@@ -174,6 +185,14 @@ public class Faction {
 
     public boolean roleHasPermission(Role role, String node) {
         return rolePermissionMap.get(role).contains(node);
+    }
+
+    public boolean hasRelation(Faction faction) {
+        return relationManager.hasRelation(faction);
+    }
+
+    public RelationManager getRelationManager() {
+        return relationManager;
     }
 
     public UUID getOwner() {

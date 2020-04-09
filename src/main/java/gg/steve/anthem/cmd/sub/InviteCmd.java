@@ -8,12 +8,9 @@ import gg.steve.anthem.exception.CooldownActiveException;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.utils.MessageUtil;
-import gg.steve.anthem.utils.PermissionQueryUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import java.util.UUID;
 
 public class InviteCmd {
 
@@ -61,9 +58,6 @@ public class InviteCmd {
             return;
         }
         MessageUtil.message("lang", "faction-invite-receiver", target, "{inviter}", player.getName(), "{faction-name}", fPlayer.getFaction().getName());
-        for (UUID uuid : fPlayer.getFaction().getPlayers()) {
-            Player member = Bukkit.getPlayer(uuid);
-            MessageUtil.message("lang", "faction-invite-inviter", member, "{inviter}", player.getName(), "{invited}", target.getName());
-        }
+        fPlayer.getFaction().messageAllOnlinePlayers("lang", "faction-invite-inviter", "{inviter}", player.getName(), "{invited}", target.getName());
     }
 }

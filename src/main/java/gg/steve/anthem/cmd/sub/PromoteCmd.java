@@ -1,14 +1,11 @@
 package gg.steve.anthem.cmd.sub;
 
-import com.sun.prism.shader.FillPgram_LinearGradient_PAD_AlphaTest_Loader;
 import gg.steve.anthem.core.FactionManager;
-import gg.steve.anthem.managers.FileManager;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.role.Role;
 import gg.steve.anthem.utils.MessageUtil;
 import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -57,14 +54,8 @@ public class PromoteCmd {
             MessageUtil.commandDebug(sender, "Error, you cannot promote someone who is a higher, or the same rank as you");
             return;
         }
-        for (UUID uuid : fPlayer.getFaction().getPlayers()) {
-            Player member = Bukkit.getPlayer(uuid);
-            if (member.getUniqueId().equals(tPlayer.getUUID())) continue;
-            MessageUtil.message("lang", "promotion-alert", member, "{promoter}", player.getName(), "{promoted}", target.getName(), "{role}", Role.getRoleByWeight(tPlayer.getRole().getWeight() + 1).toString());
-        }
+        fPlayer.getFaction().messageAllOnlinePlayers("lang", "promotion-alert", "{promoter}", player.getName(), "{promoted}", target.getName(), "{role}", Role.getRoleByWeight(tPlayer.getRole().getWeight() + 1).toString());
         fPlayer.getFaction().promote(tPlayer.getUUID());
         FPlayerManager.updateFPlayer(tPlayer.getUUID());
-        tPlayer = FPlayerManager.getFPlayer(tPlayer.getUUID());
-        MessageUtil.message("lang", "promotion", tPlayer.getPlayer(), "{promoter}", player.getName(), "{role}", tPlayer.getRole().toString());
     }
 }

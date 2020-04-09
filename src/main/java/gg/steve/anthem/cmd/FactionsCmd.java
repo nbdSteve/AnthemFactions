@@ -2,6 +2,7 @@ package gg.steve.anthem.cmd;
 
 import gg.steve.anthem.cmd.admin.IdCmd;
 import gg.steve.anthem.cmd.sub.*;
+import gg.steve.anthem.cmd.unfinished.AllyCmd;
 import gg.steve.anthem.cmd.unfinished.ListCmd;
 import gg.steve.anthem.utils.MessageUtil;
 import org.bukkit.command.Command;
@@ -43,6 +44,7 @@ public class FactionsCmd implements CommandExecutor {
                     DemoteCmd.demote(sender, args);
                     break;
                 case "ally":
+                    AllyCmd.ally(sender, args);
                     break;
                 case "who":
                     break;

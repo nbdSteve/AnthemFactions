@@ -55,12 +55,7 @@ public class DemoteCmd {
             return;
         }
         fPlayer.getFaction().demote(tPlayer.getUUID());
-        for (UUID uuid : fPlayer.getFaction().getPlayers()) {
-            Player member = Bukkit.getPlayer(uuid);
-            MessageUtil.message("lang", "demotion-alert", member, "{demoter}", player.getName(), "{demoted}", target.getName(), "{role}", Role.getRoleByWeight(tPlayer.getRole().getWeight() - 1).toString());
-        }
+        fPlayer.getFaction().messageAllOnlinePlayers("lang", "demotion-alert", "{demoter}", player.getName(), "{demoted}", target.getName(), "{role}", Role.getRoleByWeight(tPlayer.getRole().getWeight() - 1).toString());
         FPlayerManager.updateFPlayer(tPlayer.getUUID());
-        tPlayer = FPlayerManager.getFPlayer(tPlayer.getUUID());
-        MessageUtil.message("lang", "demotion", tPlayer.getPlayer(), "{demoter}", player.getName(), "{role}", tPlayer.getRole().toString());
     }
 }

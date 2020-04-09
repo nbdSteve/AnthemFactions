@@ -38,9 +38,6 @@ public class LeaveCmd {
         fPlayer.getFaction().removePlayer(fPlayer.getUUID());
         FPlayerManager.updateFPlayer(fPlayer.getUUID());
         MessageUtil.message("lang", "leave", fPlayer.getPlayer(), "{faction-name}", fPlayer.getFaction().getName());
-        for (UUID uuid : fPlayer.getFaction().getPlayers()) {
-            Player member = Bukkit.getPlayer(uuid);
-            MessageUtil.message("lang", "leave-alert", member, "{leaver}", fPlayer.getPlayer().getName());
-        }
+        fPlayer.getFaction().messageAllOnlinePlayers("lang", "leave-alert", "{leaver}", fPlayer.getPlayer().getName());
     }
 }

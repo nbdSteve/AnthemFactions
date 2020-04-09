@@ -26,6 +26,6 @@ wealth: 0
 relations:
   ally:
     - uuid
-  neutral:
+  enemy:
     - uuid
-  enemy: uuid
+  outgoing-ally-requests:

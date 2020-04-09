@@ -12,6 +12,9 @@ player:
   list: factions.player.list
   who: factions.player.who
   build: factions.player.build
+  ally: factions.player.ally
+  enemy: factions.player.enemy
+  neutral: factions.player.neutral
 
 admin:
   id-cmd: factions.admin.id

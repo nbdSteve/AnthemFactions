@@ -98,3 +98,12 @@ delay:
 
 faction-tag-change:
   - '&5&lFactions &f• &7Your factions tag has been updated to &6{new-name} &7by &6{changer}&7.'
+
+ally-request-send:
+  - '&5&lFactions &f• &6{player} &7has requested to ally the faction &6{ally}&7.'
+
+ally-request-receive:
+  - '&5&lFactions &f• &6{player} &7has requested to ally your faction.'
+
+new-ally-alert:
+  - '&5&lFactions &f• &6{ally} &7is now your ally.'

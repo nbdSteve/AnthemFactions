@@ -103,8 +103,6 @@ e
 5src/main/java/gg/steve/anthem/cmd/sub/PromoteCmd.java,0\0\00685ce57072c1a3d41a796357fb9857c2a5f34d
 d
 4src/main/java/gg/steve/anthem/cmd/sub/DemoteCmd.java,e\5\e5bc08124a048793dc51eee4cf08445e396180c1
-h
-8src/main/java/gg/steve/anthem/cmd/unfinished/TagCmd.java,8\f\8f589f2a323a5af7f0262425821e3faf0f6ad991
 l
 <src/main/java/gg/steve/anthem/cmd/unfinished/NeutralCmd.java,b\0\b03c311a62c9c491e800f5c21a40fcfa5f37adfe
 i
@@ -131,3 +129,13 @@ p
 @src/main/java/gg/steve/anthem/exception/NotOnDelayException.java,8\a\8a14daf48eab0d52a88ffda144ca04399771d2e2
 x
 Hsrc/main/java/gg/steve/anthem/exception/DelayAlreadyActiveException.java,7\9\7923d37af000eaf1e051d5c2dad635c2fe5b03df
+a
+1src/main/java/gg/steve/anthem/cmd/sub/TagCmd.java,4\b\4bec176924788d4984e5b0241997e99ebdcf2dea
+j
+:src/main/java/gg/steve/anthem/cmd/unfinished/EnemyCmd.java,4\6\4653300523dbfcaef5aef09a1c1d2bdc6c782ee4
+h
+8src/main/java/gg/steve/anthem/relation/RelationType.java,e\f\ef8eda1c0099f3f2394cf67f1c2e1756b5a40b15
+d
+4src/main/java/gg/steve/anthem/relation/Relation.java,a\8\a895ec170729afd6e26451d41d51a7b6371ae22b
+k
+;src/main/java/gg/steve/anthem/relation/RelationManager.java,0\a\0a7c552da25a1659dcf8cefda99687b1e3ee6e46

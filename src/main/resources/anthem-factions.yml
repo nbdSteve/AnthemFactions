@@ -36,6 +36,9 @@ default-faction-permissions:
     - factions.player.promote
     - factions.player.demote
     - factions.player.raid
+    - factions.player.ally
+    - factions.player.enemy
+    - factions.player.neutral
   moderator:
     - factions.player.kick
     - factions.player.invite

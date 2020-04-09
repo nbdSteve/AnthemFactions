@@ -40,14 +40,10 @@ public class FactionManager {
     }
 
     public static void disbandFaction(Faction faction) {
-        Set<UUID> factionMembers = faction.getPlayers();
-        String name = faction.getName();
         factions.remove(faction.getId());
+        faction.messageAllOnlinePlayers("lang", "disband-faction", "{faction-name}", faction.getName());
+        //remove all relations with other factions
         faction.disband();
-        for (UUID uuid : factionMembers) {
-            FPlayerManager.updateFPlayer(uuid);
-            MessageUtil.message("lang", "disband-faction", Bukkit.getPlayer(uuid), "{faction-name}", name);
-        }
     }
 
     public static Faction getFaction(FPlayer fPlayer) {

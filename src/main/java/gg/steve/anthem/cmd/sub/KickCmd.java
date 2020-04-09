@@ -6,13 +6,9 @@ import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.role.Role;
 import gg.steve.anthem.utils.MessageUtil;
-import gg.steve.anthem.utils.PermissionQueryUtil;
 import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import java.util.UUID;
 
 public class KickCmd {
 
@@ -61,9 +57,6 @@ public class KickCmd {
         faction.removePlayer(tPlayer.getUUID());
         FPlayerManager.updateFPlayer(tPlayer.getUUID());
         MessageUtil.message("lang", "faction-kick-receiver", target, "{kicker}", player.getName(), "{faction-name}", fPlayer.getFaction().getName());
-        for (UUID uuid : fPlayer.getFaction().getPlayers()) {
-            Player member = Bukkit.getPlayer(uuid);
-            MessageUtil.message("lang", "faction-kick-kicker", member, "{kicker}", player.getName(), "{kicked}", target.getName());
-        }
+        fPlayer.getFaction().messageAllOnlinePlayers("lang", "faction-kick-kicker", "{kicker}", player.getName(), "{kicked}", target.getName());
     }
 }

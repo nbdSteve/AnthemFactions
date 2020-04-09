@@ -1,2 +1,6 @@
 
-Xsquid:S1118":Add a private constructor to hide the implicit public one.(àæú»8«âÓï”.
+|
+java:S1488"_Immediately return this expression instead of assigning it to the temporary variable "faction".(Ã°ş¨8‘şĞå•.
+W
+java:S1118":Add a private constructor to hide the implicit public one.(àæú»8ûÖĞå•.
+X	java:S125"<This block of commented-out lines of code should be removed.(­“Ä8‘şĞå•.

@@ -5,11 +5,8 @@ import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.utils.MessageUtil;
 import gg.steve.anthem.utils.PermissionQueryUtil;
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import java.util.UUID;
 
 public class TagCmd {
 
@@ -35,9 +32,6 @@ public class TagCmd {
             MessageUtil.commandDebug(sender, "Error, a faction with that name already exists");
             return;
         }
-        for (UUID uuid : fPlayer.getFaction().getPlayers()) {
-            Player member = Bukkit.getPlayer(uuid);
-            MessageUtil.message("lang", "faction-tag-change", member, "{changer}", fPlayer.getPlayer().getName(), "{new-name}", fPlayer.getFaction().getName());
-        }
+        fPlayer.getFaction().messageAllOnlinePlayers("lang", "faction-tag-change", "{changer}", fPlayer.getPlayer().getName(), "{new-name}", fPlayer.getFaction().getName());
     }
 }

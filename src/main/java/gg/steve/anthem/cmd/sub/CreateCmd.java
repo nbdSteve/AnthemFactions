@@ -4,8 +4,12 @@ import gg.steve.anthem.cooldown.Cooldown;
 import gg.steve.anthem.cooldown.CooldownManager;
 import gg.steve.anthem.cooldown.CooldownType;
 import gg.steve.anthem.core.FactionManager;
+import gg.steve.anthem.delay.Delay;
+import gg.steve.anthem.delay.DelayManager;
 import gg.steve.anthem.exception.CooldownActiveException;
+import gg.steve.anthem.exception.DelayAlreadyActiveException;
 import gg.steve.anthem.exception.NotOnCooldownException;
+import gg.steve.anthem.exception.NotOnDelayException;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.utils.MessageUtil;
@@ -23,9 +27,17 @@ public class CreateCmd {
             return;
         }
         FPlayer fPlayer = FPlayerManager.getFPlayer(((Player) sender).getUniqueId());
+        UUID uuid = fPlayer.getUUID();
         if (!fPlayer.hasFactionPermission("factions.player.create")) {
             MessageUtil.permissionDebug(sender, PermissionQueryUtil.getNode("player.create"));
             return;
+        }
+        if (DelayManager.onDelay(uuid, CooldownType.CREATE_TELEPORT)) {
+            try {
+                DelayManager.getDelay(uuid, CooldownType.CREATE_TELEPORT).messageCountdown(uuid);
+            } catch (NotOnDelayException e) {
+                e.printStackTrace();
+            }
         }
         if (args.length != 2) {
             MessageUtil.commandDebug(sender, "Invalid number of arguments");
@@ -35,7 +47,6 @@ public class CreateCmd {
             MessageUtil.commandDebug(sender, "Error, you must leave or disband your current faction first");
             return;
         }
-        UUID uuid = ((Player) sender).getUniqueId();
         if (CooldownManager.isOnCooldown(uuid, CooldownType.CREATE)) {
             try {
                 CooldownManager.getCooldown(uuid, CooldownType.CREATE).message(uuid);
@@ -54,5 +65,12 @@ public class CreateCmd {
             e.printStackTrace();
         }
         FactionManager.createFaction(args[1], (Player) sender, UUID.randomUUID());
+        FPlayerManager.updateFPlayer(fPlayer.getUUID());
+        fPlayer = FPlayerManager.getFPlayer(fPlayer.getUUID());
+        try {
+            DelayManager.addDelay(uuid, CooldownType.CREATE_TELEPORT, FactionManager.getFWorld(fPlayer.getFaction().getId()).getSpawnLocation());
+        } catch (DelayAlreadyActiveException e) {
+            e.printStackTrace();
+        }
     }
 }

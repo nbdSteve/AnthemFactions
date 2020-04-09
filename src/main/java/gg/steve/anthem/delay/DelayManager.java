@@ -4,6 +4,7 @@ import gg.steve.anthem.cooldown.CooldownType;
 import gg.steve.anthem.exception.DelayAlreadyActiveException;
 import gg.steve.anthem.exception.InvalidDelayTypeException;
 import gg.steve.anthem.exception.NotOnDelayException;
+import gg.steve.anthem.utils.MessageUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
@@ -47,12 +48,34 @@ public class DelayManager implements Listener {
         return false;
     }
 
+    public static void message(UUID uuid, CooldownType type) throws NotOnDelayException {
+        if (!onDelay(uuid, type)) throw new NotOnDelayException();
+        for (Delay delay : delays.get(uuid)) {
+            if (delay.getType().equals(type)) {
+                delay.messageCountdown(uuid);
+                return;
+            }
+        }
+    }
+
     @EventHandler
     public void completionEvent(DelayCompletionEvent event) {
         delays.remove(event.getDelay().getUUID());
-        if (!event.isCancelled()) return;
+        if (event.isCancelled()) return;
+        if (!isSamePosition(Bukkit.getPlayer(event.getDelay().getUUID()).getLocation(), event.getDelay().getStarting())) {
+            MessageUtil.message("lang", "teleport-failed", Bukkit.getPlayer(event.getDelay().getUUID()));
+            return;
+        }
         Bukkit.getPlayer(event.getDelay().getUUID()).teleport(event.getDelay().getDestination());
+        MessageUtil.message("lang", "teleport", Bukkit.getPlayer(event.getDelay().getUUID()), "{command-type}", event.getDelay().getType().toString().split("_")[0]);
         event.getDelay().setComplete(true);
         event.getDelay().getTask().cancel();
+    }
+
+    public boolean isSamePosition(Location loc1, Location loc2) {
+        if (loc1.getX() == loc2.getX()
+                && loc1.getY() == loc2.getY()
+                && loc1.getZ() == loc2.getZ()) return true;
+        return false;
     }
 }

@@ -57,6 +57,13 @@ public class FactionManager {
         return getWilderness();
     }
 
+    public static Faction getFaction(String name) {
+        for (Faction faction : factions.values()) {
+            if (faction.getName().equalsIgnoreCase(name)) return faction;
+        }
+        return null;
+    }
+
     public static Faction getFaction(UUID factionUUID) {
         return factions.get(factionUUID);
     }
@@ -66,6 +73,12 @@ public class FactionManager {
             if (faction.getName().equalsIgnoreCase(name)) return faction.getId();
         }
         return null;
+    }
+
+    public static boolean changeTag(Faction faction, String newName) {
+        if (factionAlreadyExists(newName)) return false;
+        faction.setName(newName);
+        return true;
     }
 
     public static boolean factionAlreadyExists(String name) {

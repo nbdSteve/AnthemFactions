@@ -58,6 +58,9 @@ public class FactionsCmd implements CommandExecutor {
                 case "kick":
                     KickCmd.kick(sender, args);
                     break;
+                case "tag":
+                    TagCmd.tag(sender, args);
+                    break;
                 case "leave":
                     LeaveCmd.leave(sender);
                     break;

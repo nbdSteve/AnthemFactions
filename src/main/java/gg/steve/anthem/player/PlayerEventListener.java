@@ -6,7 +6,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.player.PlayerTeleportEvent;
 
 public class PlayerEventListener implements Listener {
 
@@ -42,6 +41,7 @@ public class PlayerEventListener implements Listener {
 
     @EventHandler
     public void igniteBlock(BlockIgniteEvent event) {
+        if (event.getPlayer() == null) return;
         FPlayer fPlayer = FPlayerManager.getFPlayer(event.getPlayer().getUniqueId());
         if (!fPlayer.inFactionWorld()) return;
         if (fPlayer.isInHomeWorld() && !fPlayer.canBuild(event.getBlock().getLocation())) {

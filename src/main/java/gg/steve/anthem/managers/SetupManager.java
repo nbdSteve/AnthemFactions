@@ -50,5 +50,6 @@ public class SetupManager {
         PluginManager pm = instance.getServer().getPluginManager();
         pm.registerEvents(new FPlayerManager(), instance);
         pm.registerEvents(new PlayerEventListener(), instance);
+        pm.registerEvents(new DelayManager(), instance);
     }
 }

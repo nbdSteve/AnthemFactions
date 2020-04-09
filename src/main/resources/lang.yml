@@ -15,7 +15,7 @@ faction-id:
   - '&5&lFactions &f• &7The UUID for that faction is: &6{uuid}&7.'
 
 create-faction:
-  - '&5&lFactions &f• &7You have created the faction, &6{faction-name}&7, and have been teleported to its world, use &6/f home &7to get here.'
+  - '&5&lFactions &f• &7You have created the faction, &6{faction-name}&7. You will be teleported to the world in &65 &7seconds, do not move! use &6/f home &7to get there otherwise.'
 
 disband-faction:
   - '&5&lFactions &f• &7Your faction, &6{faction-name}&7, has been disbanded and you have been teleported to spawn, the world has been deleted.'
@@ -83,3 +83,18 @@ build-blocked-raid:
 
 teleport-blocked-faction:
   - '&5&lFactions &f• &7You are unable to teleport into &6{faction-name}&7s territory&7.'
+
+teleport:
+  - '&5&lFactions &f• &7You have been teleported from the &6{command-type} &7command.'
+
+delay-countdown:
+  - '&5&lFactions &f• &7That action will be completed in &6{seconds-remaining} &7seconds, do not move.'
+
+teleport-failed:
+  - '&5&lFactions &f• &7Your teleportation has failed because you moved.'
+
+delay:
+  - '&5&lFactions &f• &7Error, you already have a delay pending with &6{seconds-remaining} &7seconds remaining.'
+
+faction-tag-change:
+  - '&5&lFactions &f• &7Your factions tag has been updated to &6{new-name} &7by &6{changer}&7.'

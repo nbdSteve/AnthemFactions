@@ -30,10 +30,12 @@ minimum-tag-length: 1
 default-faction-permissions:
   owner:
     - factions.player.disband
+    - factions.player.tag
   co_owner:
     - factions.player.sethome
     - factions.player.promote
     - factions.player.demote
+    - factions.player.raid
   moderator:
     - factions.player.kick
     - factions.player.invite
@@ -42,6 +44,7 @@ default-faction-permissions:
     - factions.player.who
     - factions.player.list
     - factions.player.build
+    - factions.player.raid.join
   wilderness:
     - factions.player.create
     - factions.player.accept

@@ -10,7 +10,7 @@ import java.io.File;
 
 public class FWorldGeneration {
 
-    public static FWorld generate(String name) {
+    public static void generate(String name) {
         //create the world creator
         WorldCreator worldCreator = new WorldCreator("plugins" + File.separator + "AnthemFactions" + File.separator + "faction-worlds" + File.separator + name);
         worldCreator.type(WorldType.FLAT);
@@ -39,7 +39,6 @@ public class FWorldGeneration {
         if (config.getBoolean(section + "set-time.enabled")) {
             fWorld.setTime(config.getInt(section + "set-time.time"));
         }
-        return fWorld;
     }
 
     private static void setupWorldBorder(YamlConfiguration config, String section, FWorld fWorld) {

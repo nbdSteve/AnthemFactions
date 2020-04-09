@@ -80,6 +80,9 @@ public class FactionDataFileUtil {
             List<String> member = FileManager.get("config").getStringList("default-faction-permissions.member");
             config.set("permissions.member", member);
         }
+        config.createSection("relations.ally");
+        config.createSection("relations.neutral");
+        config.createSection("relations.enemy");
         config.set("wealth", 0);
         //Send a nice message
         LogUtil.info("Successfully created a new faction data file: " + fileName + ", actively creating / setting defaults.");

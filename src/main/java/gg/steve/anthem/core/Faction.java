@@ -4,8 +4,8 @@ import gg.steve.anthem.disband.FactionDeletion;
 import gg.steve.anthem.managers.FileManager;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
+import gg.steve.anthem.relation.RelationManager;
 import gg.steve.anthem.role.Role;
-import gg.steve.anthem.utils.LogUtil;
 import gg.steve.anthem.world.FWorld;
 import gg.steve.anthem.world.FWorldGeneration;
 import org.bukkit.Bukkit;
@@ -23,6 +23,7 @@ public class Faction {
     private Location home;
     private Map<UUID, Role> playerMap;
     private Map<Role, List<String>> rolePermissionMap;
+    private RelationManager relationManager;
 
     public Faction(UUID owner, String name, UUID id) {
         this.id = id;
@@ -30,12 +31,14 @@ public class Faction {
         if (id.equals(FactionManager.getWildernessId())) {
             this.fWorld = new FWorld(Bukkit.createWorld(new WorldCreator(FileManager.get("config").getString("main-world-name"))), 0, 0);
         } else {
-            this.fWorld = new FWorld(FWorldGeneration.generate(String.valueOf(id)), 128, 64);
+            FWorldGeneration.generate(String.valueOf(id));
+            this.fWorld = new FWorld(Bukkit.createWorld(new WorldCreator("plugins" + File.separator + "AnthemFactions" + File.separator + "faction-worlds" + File.separator + id.toString())), 128, 64);
         }
         this.data = new FactionDataFileUtil(String.valueOf(id), name);
         addPlayer(owner, Role.OWNER);
         loadRolePermissionMap();
         this.home = fWorld.getSpawnLocation();
+        this.relationManager = new RelationManager(this);
     }
 
     public Faction(UUID id) {
@@ -44,13 +47,13 @@ public class Faction {
             this.fWorld = new FWorld(Bukkit.createWorld(new WorldCreator(FileManager.get("config").getString("main-world-name"))), 0, 0);
         } else {
             this.fWorld = new FWorld(Bukkit.createWorld(new WorldCreator("plugins" + File.separator + "AnthemFactions" + File.separator + "faction-worlds" + File.separator + id.toString())), 128, 64);
-            LogUtil.info("plugins" + File.separator + "AnthemFactions" + File.separator + "faction-worlds" + File.separator + id);
         }
         this.data = new FactionDataFileUtil(String.valueOf(id));
         this.name = this.data.get().getString("name");
         loadPlayerMap();
         loadRolePermissionMap();
         this.home = fWorld.getBlockAt(data.get().getInt("home-location.x"), data.get().getInt("home-location.y"), data.get().getInt("home-location.z")).getLocation();
+        this.relationManager = new RelationManager(this);
     }
 
     public boolean isMember(FPlayer fPlayer) {
@@ -214,6 +217,11 @@ public class Faction {
 
     public void setName(String name) {
         this.name = name;
+        this.getData().get().set("name", name);
+        this.getData().save();
+        for (UUID uuid : getPlayers()) {
+            FPlayerManager.updateFPlayer(uuid);
+        }
     }
 
     public FWorld getFWorld() {

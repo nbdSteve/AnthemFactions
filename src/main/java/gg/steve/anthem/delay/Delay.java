@@ -3,6 +3,7 @@ package gg.steve.anthem.delay;
 import gg.steve.anthem.AnthemFactions;
 import gg.steve.anthem.cooldown.CooldownType;
 import gg.steve.anthem.exception.InvalidDelayTypeException;
+import gg.steve.anthem.utils.MessageUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.scheduler.BukkitTask;
@@ -12,10 +13,11 @@ import java.util.UUID;
 public class Delay {
     private UUID uuid;
     private CooldownType type;
-    private Long finish;
+    private int remaining;
     private BukkitTask task;
     private boolean complete;
     private Location destination;
+    private Location starting;
 
     public Delay(UUID uuid, CooldownType type, Location destination) throws InvalidDelayTypeException {
         this.uuid = uuid;
@@ -23,17 +25,35 @@ public class Delay {
             throw new InvalidDelayTypeException();
         }
         this.type = type;
-        this.finish = System.currentTimeMillis() + (type.getDuration() * 1000);
+        this.remaining = type.getDuration();
         this.complete = false;
         this.destination = destination;
+        this.starting = Bukkit.getPlayer(uuid).getLocation();
         start();
     }
 
     public void start() {
         this.task = Bukkit.getScheduler().runTaskTimer(AnthemFactions.get(), () -> {
-            if (finish <= System.currentTimeMillis()) return;
+            if (this.remaining > 0) {
+                messageCountdown(uuid);
+                this.remaining--;
+                return;
+            }
             Bukkit.getPluginManager().callEvent(new DelayCompletionEvent(this));
+            this.task.cancel();
         }, 0L, 20L);
+    }
+
+    public int getRemaining() {
+        return this.remaining;
+    }
+
+    public void messageCountdown(UUID uuid) {
+        MessageUtil.message("lang", "delay-countdown", Bukkit.getPlayer(uuid), "{seconds-remaining}", String.valueOf(getRemaining()));
+    }
+
+    public void messageComplete(UUID uuid) {
+        MessageUtil.message("lang", "delay", Bukkit.getPlayer(uuid), "{seconds-remaining}", String.valueOf(getRemaining()));
     }
 
     public BukkitTask getTask() {
@@ -50,6 +70,10 @@ public class Delay {
 
     public CooldownType getType() {
         return type;
+    }
+
+    public Location getStarting() {
+        return starting;
     }
 
     public void setComplete(boolean complete) {

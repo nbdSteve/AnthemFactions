@@ -1,6 +1,10 @@
 package gg.steve.anthem.cmd.sub;
 
+import gg.steve.anthem.cooldown.CooldownType;
 import gg.steve.anthem.core.FactionManager;
+import gg.steve.anthem.delay.DelayManager;
+import gg.steve.anthem.exception.DelayAlreadyActiveException;
+import gg.steve.anthem.exception.NotOnDelayException;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.role.Role;
@@ -21,7 +25,7 @@ public class HomeCmd {
             return;
         }
         Player player = (Player) sender;
-        FPlayer fPlayer = FPlayerManager.getFPlayer(player.getUniqueId());
+        FPlayer fPlayer = FPlayerManager.getFPlayer(((Player) sender).getUniqueId());
         if (fPlayer.getFaction().equals(FactionManager.getWilderness())) {
             MessageUtil.commandDebug(fPlayer, "You are not a member of any faction");
             return;
@@ -30,8 +34,20 @@ public class HomeCmd {
             MessageUtil.message("lang", "insufficient-role-permission", player);
             return;
         }
-        fPlayer.teleportHome();
-        MessageUtil.message("lang", "home-teleport", fPlayer.getPlayer());
+        if (DelayManager.onDelay(fPlayer.getUUID(), CooldownType.CREATE_TELEPORT)) {
+            try {
+                DelayManager.getDelay(fPlayer.getUUID(), CooldownType.CREATE_TELEPORT).messageCountdown(fPlayer.getUUID());
+            } catch (NotOnDelayException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            DelayManager.addDelay(fPlayer.getUUID(), CooldownType.HOME_TELEPORT, fPlayer.getFaction().getHome());
+        } catch (DelayAlreadyActiveException e) {
+            e.printStackTrace();
+        }
+//        fPlayer.teleportHome();
+//        MessageUtil.message("lang", "home-teleport", fPlayer.getPlayer());
     }
 
     public static void setHome(CommandSender sender) {

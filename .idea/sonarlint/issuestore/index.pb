@@ -123,3 +123,11 @@ e
 5src/main/java/gg/steve/anthem/delay/DelayManager.java,5\6\561882df88717d320072b4d0a120ad5fa6399020
 ^
 .src/main/java/gg/steve/anthem/delay/Delay.java,e\f\ef3ee98c236e8edbc54ab5278e2625f64dada234
+m
+=src/main/java/gg/steve/anthem/delay/DelayCompletionEvent.java,7\6\763f5035d9084aa4faf03b9d7a60f6abeaab1c95
+v
+Fsrc/main/java/gg/steve/anthem/exception/InvalidDelayTypeException.java,4\b\4bdf161260ecc885d31410c20d0dcf82ebe83c36
+p
+@src/main/java/gg/steve/anthem/exception/NotOnDelayException.java,8\a\8a14daf48eab0d52a88ffda144ca04399771d2e2
+x
+Hsrc/main/java/gg/steve/anthem/exception/DelayAlreadyActiveException.java,7\9\7923d37af000eaf1e051d5c2dad635c2fe5b03df

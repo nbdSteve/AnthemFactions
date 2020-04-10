@@ -6,13 +6,15 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.io.File;
+import java.util.UUID;
 
 public class FactionDeletion {
 
     public static void disband(Faction faction) {
-        for (Player player : faction.getFWorld().getPlayers()) {
-            player.teleport(Bukkit.getServer().getWorld(FileManager.get("config").getString("main-world-name")).getSpawnLocation());
+        for (UUID uuid : faction.getOnlinePlayers()) {
+            Bukkit.getPlayer(uuid).teleport(Bukkit.getServer().getWorld(FileManager.get("config").getString("main-world-name")).getSpawnLocation());
         }
+        
         String worldName = "plugins" + File.separator + "AnthemFactions" + File.separator + "faction-worlds" + File.separator + faction.getId();
         Bukkit.getServer().unloadWorld(worldName, false);
         deleteFile(new File(worldName));

@@ -1,15 +1,15 @@
-package gg.steve.anthem.cmd.sub;
+package gg.steve.anthem.cmd.faction;
 
+import gg.steve.anthem.cmd.MessageType;
 import gg.steve.anthem.core.FactionManager;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.role.Role;
 import gg.steve.anthem.utils.MessageUtil;
+import gg.steve.anthem.utils.PermissionQueryUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import java.util.UUID;
 
 public class DemoteCmd {
 
@@ -28,8 +28,8 @@ public class DemoteCmd {
             MessageUtil.commandDebug(sender, "Error, you must create a faction using /f create {name} first");
             return;
         }
-        if (!fPlayer.hasFactionPermission("factions.player.demote")) {
-            MessageUtil.message("lang", "insufficient-role-permission", player);
+        if (!fPlayer.hasFactionPermission(PermissionQueryUtil.getNode("player.demote"))) {
+            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionQueryUtil.getNode("player.demote"));
             return;
         }
         Player target = Bukkit.getPlayer(args[1]);
@@ -55,7 +55,7 @@ public class DemoteCmd {
             return;
         }
         fPlayer.getFaction().demote(tPlayer.getUUID());
-        fPlayer.getFaction().messageAllOnlinePlayers("lang", "demotion-alert", "{demoter}", player.getName(), "{demoted}", target.getName(), "{role}", Role.getRoleByWeight(tPlayer.getRole().getWeight() - 1).toString());
+        fPlayer.getFaction().messageAllOnlinePlayers(MessageType.DEMOTION, player.getName(), target.getName(), Role.getRoleByWeight(tPlayer.getRole().getWeight() - 1).toString());
         FPlayerManager.updateFPlayer(tPlayer.getUUID());
     }
 }

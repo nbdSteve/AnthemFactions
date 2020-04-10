@@ -3,6 +3,7 @@
 #Timeouts
 INVITE: 60
 DISBAND: 10
+UN_ALLY: 10
 
 #Cooldowns
 CREATE: 3600

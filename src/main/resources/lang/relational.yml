@@ -1,0 +1,32 @@
+neutral-alert-sender:
+  - '&5&lFactions &f• &7You are now &eneutral &7with &6{faction}&7.'
+
+neutral-alert-receiver:
+  - '&5&lFactions &f• &6{player} &7from &6{faction} &7has set their relation with you to &eneutral&7.'
+
+ally-request-send:
+  - '&5&lFactions &f• &6{player} &7has requested to &bally &7the faction &6{faction}&7.'
+
+ally-request-receive:
+  - '&5&lFactions &f• &6{player} &7from the faction &6{faction} &7has requested to &bally &7your faction.'
+
+ally-alert:
+  - '&5&lFactions &f• &6{faction} &7is now your &bally&7.'
+
+ally-declined:
+  - '&5&lFactions &f• &7You are unable to &bally &7the faction &6{faction} &7because you or that faction already has the maximum number of allies.'
+
+un-ally-confirmation:
+  - '&5&lFactions &f• &c&lWARNING! &7You are about to remove your &bally &7relation with &6{faction}&7, type &6/f unally {name} &7again within the next 10 seconds to confirm this action.'
+
+un-ally-alert-sender:
+  - '&5&lFactions &f• &7You are no longer &ballies &7with the faction &6{faction}&7.'
+
+un-ally-alert-receiver:
+  - '&5&lFactions &f• &6{faction} &7has removed you as an &bally&7.'
+
+enemy-alert-sender:
+  - '&5&lFactions &f• &7You are now &cenemies &7with &6{faction}&7.'
+
+enemy-alert-receiver:
+  - '&5&lFactions &f• &6{player} &7from &6{faction} &7has set their relation with you to &cenemy&7.'

@@ -21,9 +21,9 @@ public class RelationManager {
         for (String uuid : faction.getData().get().getStringList("relations.ally")) {
             this.relations.put(UUID.fromString(uuid), RelationType.ALLY);
         }
-        for (String uuid : faction.getData().get().getStringList("relations.neutral")) {
-            this.relations.put(UUID.fromString(uuid), RelationType.NEUTRAL);
-        }
+//        for (String uuid : faction.getData().get().getStringList("relations.neutral")) {
+//            this.relations.put(UUID.fromString(uuid), RelationType.NEUTRAL);
+//        }
         for (String uuid : faction.getData().get().getStringList("relations.enemy")) {
             this.relations.put(UUID.fromString(uuid), RelationType.ENEMY);
         }
@@ -56,6 +56,10 @@ public class RelationManager {
         return relations.get(relation.getId()) != null;
     }
 
+    public boolean areEnemied(Faction relation) {
+        return relation.getRelationManager().isEnemy(faction) || isEnemy(relation);
+    }
+
     public void updateRelation(Faction relation, RelationType type) {
         if (faction.hasRelation(relation)) {
             List<String> currentRelation = this.faction.getData().get().getStringList("relations." + this.relations.get(relation.getId()).toString().toLowerCase());
@@ -65,6 +69,7 @@ public class RelationManager {
             this.relations.remove(relation.getId());
             if (type.equals(RelationType.NEUTRAL)) return;
         }
+        if (type.equals(RelationType.NEUTRAL)) return;
         if (type.equals(RelationType.ALLY)) removeAllyRequestIfExists(relation);
         List<String> newRelation = this.faction.getData().get().getStringList("relations." + type.toString().toLowerCase());
         newRelation.add(relation.getId().toString());
@@ -92,7 +97,23 @@ public class RelationManager {
     }
 
     public boolean isNeutral(Faction relation) {
-        if (!hasRelation(relation)) return false;
-        return this.relations.get(relation.getId()).equals(RelationType.NEUTRAL);
+        if (!hasRelation(relation)) return true;
+        return false;
+    }
+
+    public int getRelationCount(RelationType type) {
+        int count = 0;
+        for (Map.Entry relation : relations.entrySet()) {
+            if (relation.getValue().equals(type)) count++;
+        }
+        return count;
+    }
+
+    public List<UUID> getRelations(RelationType type) {
+        List<UUID> factions = new ArrayList<>();
+        for (UUID uuid : relations.keySet()) {
+            if (relations.get(uuid).equals(type)) factions.add(uuid);
+        }
+        return factions;
     }
 }

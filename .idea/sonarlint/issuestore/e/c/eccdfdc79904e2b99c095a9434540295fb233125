@@ -1,8 +1,8 @@
 
+\	java:S899m";Do something with the "boolean" value returned by "delete".(²Œ­ûÿÿÿÿ8ó‚ï•.
 d
 java:S11928"GDefine a constant instead of duplicating this literal "config" 6 times.(ÒõÚ°8ó‚ï•.
-k
-java:S4042l"IUse "java.nio.Files#delete" here for better messages on error conditions.(²Œ­ûÿÿÿÿ8ó‚ï•.
-\	java:S899l";Do something with the "boolean" value returned by "delete".(²Œ­ûÿÿÿÿ8ó‚ï•.
 M
 java:S1128"+Remove this unused import 'java.util.UUID'.(ÀãÄ£úÿÿÿÿ8ó‚ï•.
+k
+java:S4042m"IUse "java.nio.Files#delete" here for better messages on error conditions.(²Œ­ûÿÿÿÿ8ó‚ï•.

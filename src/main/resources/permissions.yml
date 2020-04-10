@@ -1,8 +1,8 @@
 player:
   create: factions.player.create
   disband: factions.player.disband
-  home: faction.player.home
-  sethome: factions.player.sethome
+  home: factions.player.home
+  set-home: factions.player.set-home
   invite: factions.player.invite
   accept: factions.player.accept
   kick: factions.player.kick
@@ -13,6 +13,7 @@ player:
   who: factions.player.who
   build: factions.player.build
   ally: factions.player.ally
+  un-ally: factions.player.un-ally
   enemy: factions.player.enemy
   neutral: factions.player.neutral
 

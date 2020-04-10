@@ -1,15 +1,15 @@
-package gg.steve.anthem.cmd.sub;
+package gg.steve.anthem.cmd.faction;
 
+import gg.steve.anthem.cmd.MessageType;
 import gg.steve.anthem.core.FactionManager;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.role.Role;
 import gg.steve.anthem.utils.MessageUtil;
+import gg.steve.anthem.utils.PermissionQueryUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import java.util.UUID;
 
 public class PromoteCmd {
 
@@ -18,10 +18,6 @@ public class PromoteCmd {
             MessageUtil.commandDebug(sender, "Error, only players can invite others to factions");
             return;
         }
-//        if (!PermissionQueryUtil.hasPermission(sender, "player.invite")) {
-//            MessageUtil.permissionDebug(sender, PermissionQueryUtil.getNode("player.invite"));
-//            return;
-//        }
         if (args.length != 2) {
             MessageUtil.commandDebug(sender, "Invalid number of arguments");
             return;
@@ -32,8 +28,8 @@ public class PromoteCmd {
             MessageUtil.commandDebug(sender, "Error, you must create a faction using /f create {name} first");
             return;
         }
-        if (!fPlayer.hasFactionPermission("factions.player.promote")) {
-            MessageUtil.message("lang", "insufficient-role-permission", player);
+        if (!fPlayer.hasFactionPermission(PermissionQueryUtil.getNode("player.promote"))) {
+            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionQueryUtil.getNode("player.promote"));
             return;
         }
         Player target = Bukkit.getPlayer(args[1]);
@@ -54,7 +50,7 @@ public class PromoteCmd {
             MessageUtil.commandDebug(sender, "Error, you cannot promote someone who is a higher, or the same rank as you");
             return;
         }
-        fPlayer.getFaction().messageAllOnlinePlayers("lang", "promotion-alert", "{promoter}", player.getName(), "{promoted}", target.getName(), "{role}", Role.getRoleByWeight(tPlayer.getRole().getWeight() + 1).toString());
+        fPlayer.getFaction().messageAllOnlinePlayers(MessageType.PROMOTION, player.getName(), target.getName(), Role.getRoleByWeight(tPlayer.getRole().getWeight() + 1).toString());
         fPlayer.getFaction().promote(tPlayer.getUUID());
         FPlayerManager.updateFPlayer(tPlayer.getUUID());
     }

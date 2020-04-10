@@ -25,6 +25,8 @@ main-world-name: world # players will be teleported to this worlds spawn when th
 
 max-allies: 3
 
+max-enemies: 100
+
 minimum-tag-length: 1
 
 default-faction-permissions:
@@ -32,13 +34,14 @@ default-faction-permissions:
     - factions.player.disband
     - factions.player.tag
   co_owner:
-    - factions.player.sethome
+    - factions.player.set-home
     - factions.player.promote
     - factions.player.demote
     - factions.player.raid
     - factions.player.ally
     - factions.player.enemy
     - factions.player.neutral
+    - factions.player.un-ally
   moderator:
     - factions.player.kick
     - factions.player.invite

@@ -1,30 +1,24 @@
-package gg.steve.anthem.cmd.sub;
+package gg.steve.anthem.cmd.faction;
 
+import gg.steve.anthem.cmd.MessageType;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.role.Role;
 import gg.steve.anthem.utils.MessageUtil;
 import gg.steve.anthem.utils.PermissionQueryUtil;
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import java.util.UUID;
 
 public class LeaveCmd {
 
     public static void leave(CommandSender sender) {
-//        if (!PermissionQueryUtil.hasPermission(sender, "player.leave")) {
-//            MessageUtil.permissionDebug(sender, PermissionQueryUtil.getNode("player.leave"));
-//            return;
-//        }
         if (!(sender instanceof Player)) {
             MessageUtil.commandDebug(sender, "Error, only players can leave factions");
             return;
         }
         FPlayer fPlayer = FPlayerManager.getFPlayer(((Player) sender).getUniqueId());
-        if (!fPlayer.hasFactionPermission("factions.player.leave")) {
-            MessageUtil.permissionDebug(sender, PermissionQueryUtil.getNode("player.leave"));
+        if (!fPlayer.hasFactionPermission(PermissionQueryUtil.getNode("player.leave"))) {
+            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionQueryUtil.getNode("player.leave"));
             return;
         }
         if (!fPlayer.hasFaction()) {
@@ -37,7 +31,7 @@ public class LeaveCmd {
         }
         fPlayer.getFaction().removePlayer(fPlayer.getUUID());
         FPlayerManager.updateFPlayer(fPlayer.getUUID());
-        MessageUtil.message("lang", "leave", fPlayer.getPlayer(), "{faction-name}", fPlayer.getFaction().getName());
-        fPlayer.getFaction().messageAllOnlinePlayers("lang", "leave-alert", "{leaver}", fPlayer.getPlayer().getName());
+        MessageType.LEAVE.message(fPlayer, fPlayer.getFaction().getName());
+        fPlayer.getFaction().messageAllOnlinePlayers(MessageType.LEAVE_ALERT, fPlayer.getPlayer().getName());
     }
 }

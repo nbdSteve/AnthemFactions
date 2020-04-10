@@ -1,5 +1,6 @@
-package gg.steve.anthem.cmd.sub;
+package gg.steve.anthem.cmd.faction;
 
+import gg.steve.anthem.cmd.MessageType;
 import gg.steve.anthem.cooldown.Cooldown;
 import gg.steve.anthem.cooldown.CooldownManager;
 import gg.steve.anthem.cooldown.CooldownType;
@@ -8,6 +9,7 @@ import gg.steve.anthem.exception.CooldownActiveException;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.utils.MessageUtil;
+import gg.steve.anthem.utils.PermissionQueryUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -19,10 +21,6 @@ public class InviteCmd {
             MessageUtil.commandDebug(sender, "Error, only players can invite others to factions");
             return;
         }
-//        if (!PermissionQueryUtil.hasPermission(sender, "player.invite")) {
-//            MessageUtil.permissionDebug(sender, PermissionQueryUtil.getNode("player.invite"));
-//            return;
-//        }
         if (args.length != 2) {
             MessageUtil.commandDebug(sender, "Invalid number of arguments");
             return;
@@ -33,8 +31,8 @@ public class InviteCmd {
             MessageUtil.commandDebug(sender, "Error, you must create a faction using /f create {name} first");
             return;
         }
-        if (!fPlayer.hasFactionPermission("factions.player.invite")) {
-            MessageUtil.message("lang", "insufficient-role-permission", player);
+        if (!fPlayer.hasFactionPermission(PermissionQueryUtil.getNode("player.invite"))) {
+            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionQueryUtil.getNode("player.invite"));
             return;
         }
         Player target = Bukkit.getPlayer(args[1]);
@@ -57,7 +55,7 @@ public class InviteCmd {
             MessageUtil.commandDebug(sender, "Error, that player has already a pending invite");
             return;
         }
-        MessageUtil.message("lang", "faction-invite-receiver", target, "{inviter}", player.getName(), "{faction-name}", fPlayer.getFaction().getName());
-        fPlayer.getFaction().messageAllOnlinePlayers("lang", "faction-invite-inviter", "{inviter}", player.getName(), "{invited}", target.getName());
+        MessageType.INVITE_RECEIVER.message(tPlayer, fPlayer.getFaction().getName(), player.getName());
+        fPlayer.getFaction().messageAllOnlinePlayers(MessageType.INVITE_SENDER, player.getName(), target.getName());
     }
 }

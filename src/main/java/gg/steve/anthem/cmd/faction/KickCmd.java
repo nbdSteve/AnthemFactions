@@ -1,11 +1,13 @@
-package gg.steve.anthem.cmd.sub;
+package gg.steve.anthem.cmd.faction;
 
+import gg.steve.anthem.cmd.MessageType;
 import gg.steve.anthem.core.Faction;
 import gg.steve.anthem.core.FactionManager;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.role.Role;
 import gg.steve.anthem.utils.MessageUtil;
+import gg.steve.anthem.utils.PermissionQueryUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -13,10 +15,6 @@ import org.bukkit.entity.Player;
 public class KickCmd {
 
     public static void kick(CommandSender sender, String[] args) {
-//        if (!PermissionQueryUtil.hasPermission(sender, "player.kick")) {
-//            MessageUtil.permissionDebug(sender, PermissionQueryUtil.getNode("player.kick"));
-//            return;
-//        }
         if (!(sender instanceof Player)) {
             MessageUtil.commandDebug(sender, "Error, only players can kick others from the factions");
             return;
@@ -31,8 +29,8 @@ public class KickCmd {
             MessageUtil.commandDebug(sender, "Error, you must create a faction using /f create {name} first");
             return;
         }
-        if (!fPlayer.hasFactionPermission("factions.player.kick")) {
-            MessageUtil.message("lang", "insufficient-role-permission", player);
+        if (!fPlayer.hasFactionPermission(PermissionQueryUtil.getNode("player.kick"))) {
+            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionQueryUtil.getNode("player.kick"));
             return;
         }
         Player target = Bukkit.getPlayer(args[1]);
@@ -56,7 +54,7 @@ public class KickCmd {
         }
         faction.removePlayer(tPlayer.getUUID());
         FPlayerManager.updateFPlayer(tPlayer.getUUID());
-        MessageUtil.message("lang", "faction-kick-receiver", target, "{kicker}", player.getName(), "{faction-name}", fPlayer.getFaction().getName());
-        fPlayer.getFaction().messageAllOnlinePlayers("lang", "faction-kick-kicker", "{kicker}", player.getName(), "{kicked}", target.getName());
+        MessageType.KICK_RECEIVER.message(target, fPlayer.getFaction().getName(), player.getName());
+        fPlayer.getFaction().messageAllOnlinePlayers(MessageType.KICK_KICKER, player.getName(), target.getName());
     }
 }

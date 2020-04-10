@@ -1,5 +1,6 @@
-package gg.steve.anthem.cmd.sub;
+package gg.steve.anthem.cmd.faction;
 
+import gg.steve.anthem.cmd.MessageType;
 import gg.steve.anthem.cooldown.Cooldown;
 import gg.steve.anthem.cooldown.CooldownManager;
 import gg.steve.anthem.cooldown.CooldownType;
@@ -15,10 +16,6 @@ import org.bukkit.entity.Player;
 public class DisbandCmd {
 
     public static void disband(CommandSender sender) {
-//        if (!PermissionQueryUtil.hasPermission(sender, "player.disband")) {
-//            MessageUtil.permissionDebug(sender, PermissionQueryUtil.getNode("player.disband"));
-//            return;
-//        }
         if (!(sender instanceof Player)) {
             MessageUtil.commandDebug(sender, "Error, only players can disband factions");
             return;
@@ -28,8 +25,8 @@ public class DisbandCmd {
             MessageUtil.commandDebug(sender, "Error, you are not in a faction");
             return;
         }
-        if (!fPlayer.hasFactionPermission("factions.player.disband")) {
-            MessageUtil.message("lang", "insufficient-role-permission", fPlayer.getPlayer());
+        if (!fPlayer.hasFactionPermission(PermissionQueryUtil.getNode("player.disband"))) {
+            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionQueryUtil.getNode("player.disband"));
             return;
         }
         if (!CooldownManager.isOnCooldown(fPlayer.getUUID(), CooldownType.DISBAND)) {
@@ -38,7 +35,7 @@ public class DisbandCmd {
             } catch (CooldownActiveException e) {
                 e.printStackTrace();
             }
-            MessageUtil.message("lang", "disband-confirmation", fPlayer.getPlayer());
+            MessageType.DISBAND_CONFIRMATION.message(fPlayer.getPlayer());
             return;
         }
         FactionManager.disbandFaction(FactionManager.getFaction(fPlayer));

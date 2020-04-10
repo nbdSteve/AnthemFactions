@@ -8,6 +8,7 @@ public enum CooldownType {
     // timeouts
     INVITE(FileManager.get("cooldowns").getInt("INVITE")),
     DISBAND(FileManager.get("cooldowns").getInt("DISBAND")),
+    UN_ALLY(FileManager.get("cooldowns").getInt("UN_ALLY")),
     // delays
     HOME_TELEPORT(FileManager.get("cooldowns").getInt("HOME_TELEPORT")),
     CREATE_TELEPORT(FileManager.get("cooldowns").getInt("CREATE_TELEPORT")),

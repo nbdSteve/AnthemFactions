@@ -1,9 +1,12 @@
 package gg.steve.anthem.cmd;
 
 import gg.steve.anthem.cmd.admin.IdCmd;
-import gg.steve.anthem.cmd.sub.*;
-import gg.steve.anthem.cmd.unfinished.AllyCmd;
-import gg.steve.anthem.cmd.unfinished.ListCmd;
+import gg.steve.anthem.cmd.faction.*;
+import gg.steve.anthem.cmd.relational.AllyCmd;
+import gg.steve.anthem.cmd.misc.ListCmd;
+import gg.steve.anthem.cmd.relational.EnemyCmd;
+import gg.steve.anthem.cmd.relational.NeutralCmd;
+import gg.steve.anthem.cmd.relational.UnAllyCmd;
 import gg.steve.anthem.utils.MessageUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -46,6 +49,14 @@ public class FactionsCmd implements CommandExecutor {
                 case "ally":
                     AllyCmd.ally(sender, args);
                     break;
+                case "unally":
+                    UnAllyCmd.unAlly(sender, args);
+                    break;
+                case "enemy":
+                    EnemyCmd.enemy(sender, args);
+                    break;
+                case "neutral":
+                    NeutralCmd.neutral(sender, args);
                 case "who":
                     break;
                 case "list":

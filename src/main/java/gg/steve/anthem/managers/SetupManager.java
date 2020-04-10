@@ -10,6 +10,8 @@ import gg.steve.anthem.player.PlayerEventListener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 
+import java.io.File;
+
 /**
  * Class that handles setting up the plugin on start
  */
@@ -30,6 +32,9 @@ public class SetupManager {
         fileManager.add("lang", "lang.yml");
         fileManager.add("permissions", "permissions.yml");
         fileManager.add("cooldowns", "cooldowns.yml");
+        // load lang files
+        fileManager.add("relational", "lang" + File.separator + "relational.yml");
+        fileManager.add("faction", "lang" + File.separator + "faction.yml");
         // load all of the factions for the server
         FactionManager.init();
         FPlayerManager.init();

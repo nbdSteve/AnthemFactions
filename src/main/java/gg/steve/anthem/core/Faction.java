@@ -1,6 +1,6 @@
 package gg.steve.anthem.core;
 
-import com.sun.istack.internal.Nullable;
+import gg.steve.anthem.cmd.MessageType;
 import gg.steve.anthem.disband.FactionDeletion;
 import gg.steve.anthem.managers.FileManager;
 import gg.steve.anthem.player.FPlayer;
@@ -159,6 +159,14 @@ public class Faction {
         }
     }
 
+    public void messageAllOnlinePlayers(MessageType type, String... replacements) {
+        for (UUID uuid : getPlayers()) {
+            Player player = Bukkit.getPlayer(uuid);
+            if (player == null) continue;
+            type.message(player, replacements);
+        }
+    }
+
     public void loadRolePermissionMap() {
         if (rolePermissionMap == null) rolePermissionMap = new HashMap<>();
         List<String> member = new ArrayList<>();
@@ -224,6 +232,14 @@ public class Faction {
             if (player.getValue().equals(Role.MEMBER)) members.add((UUID) player.getKey());
         }
         return members;
+    }
+
+    public List<UUID> getOnlinePlayers() {
+        List<UUID> onlinePlayers = new ArrayList<>();
+        for (UUID uuid : getPlayers()) {
+            if (Bukkit.getPlayer(uuid) != null) onlinePlayers.add(uuid);
+        }
+        return onlinePlayers;
     }
 
     public UUID getId() {

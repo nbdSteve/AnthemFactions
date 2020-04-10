@@ -1,0 +1,47 @@
+tag-change:
+  - '&5&lFactions &f• &7Your factions tag has been updated to &6{new-name} &7by &6{player}&7.'
+
+leave:
+  - '&5&lFactions &f• &7You have left &6{faction}&7.'
+
+leave-alert:
+  - '&5&lFactions &f• &6{player} &7has left the faction.'
+
+promotion:
+  - '&5&lFactions &f• &6{promoted} &7has have been promoted to &6{role} &7by &6{player}&7.'
+
+demotion:
+  - '&5&lFactions &f• &6{demoted} &7has have been demoted to &6{role} &7by &6{player}&7.'
+
+set-home:
+  - '&5&lFactions &f• &7Your factions home has been successfully updated, teleport to it using &6/f home&7.'
+
+insufficient-role-permission:
+  - '&5&lFactions &f• &7Your faction role does not have permission node (&6{node}&7) which is required to use that command&7.'
+
+invite-receiver:
+  - '&5&lFactions &f• &7You have been invited to join the faction, &6{faction}&7, by &6{player}&7. To accept type &6/f accept&7.'
+
+invite-inviter:
+  - '&5&lFactions &f• &6{player} &7has invited &6{invited} &7to join your faction, they have 60 seconds to accept.'
+
+member-join-alert:
+  - '&5&lFactions &f• &6{player} &7has joined the faction.'
+
+kick-receiver:
+  - '&5&lFactions &f• &7You have been kicked from &6{faction} &7by &6{player}&7.'
+
+kick-kicker:
+  - '&5&lFactions &f• &6{player} &7has kicked &6{kicked} &7from the faction.'
+
+join:
+  - '&5&lFactions &f• &7You have joined &6{faction}&7.'
+
+create:
+  - '&5&lFactions &f• &7You have created the faction, &6{faction}&7. You will be teleported to the world in &65 &7seconds, do not move! Use &6/f home &7to get there otherwise.'
+
+disband:
+  - '&5&lFactions &f• &7Your faction, &6{faction}&7, has been disbanded and you have been teleported to spawn, the world has been deleted.'
+
+disband-confirmation:
+  - '&5&lFactions &f• &c&lWARNING! &7You are about to disband your faction, type &6/f disband &7again within the next 10 seconds to confirm this action.'

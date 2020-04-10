@@ -1,9 +1,9 @@
-package gg.steve.anthem.cmd.unfinished;
+package gg.steve.anthem.cmd.misc;
 
+import gg.steve.anthem.cmd.MessageType;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.utils.MessageUtil;
-import gg.steve.anthem.utils.PermissionQueryUtil;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -16,7 +16,7 @@ public class ListCmd {
         }
         FPlayer fPlayer = FPlayerManager.getFPlayer(((Player) sender).getUniqueId());
         if (!fPlayer.hasFactionPermission("factions.player.list")) {
-            MessageUtil.permissionDebug(sender, PermissionQueryUtil.getNode("player.list"));
+            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, "factions.player.list");
             return;
         }
         MessageUtil.listMessage(fPlayer);

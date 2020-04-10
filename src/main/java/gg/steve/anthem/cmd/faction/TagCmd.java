@@ -1,5 +1,6 @@
-package gg.steve.anthem.cmd.sub;
+package gg.steve.anthem.cmd.faction;
 
+import gg.steve.anthem.cmd.MessageType;
 import gg.steve.anthem.core.FactionManager;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
@@ -32,6 +33,6 @@ public class TagCmd {
             MessageUtil.commandDebug(sender, "Error, a faction with that name already exists");
             return;
         }
-        fPlayer.getFaction().messageAllOnlinePlayers("lang", "faction-tag-change", "{changer}", fPlayer.getPlayer().getName(), "{new-name}", fPlayer.getFaction().getName());
+        fPlayer.getFaction().messageAllOnlinePlayers(MessageType.TAG_CHANGE, fPlayer.getFaction().getName(), fPlayer.getPlayer().getName());
     }
 }

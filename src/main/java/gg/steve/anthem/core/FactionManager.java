@@ -1,19 +1,18 @@
 package gg.steve.anthem.core;
 
+import gg.steve.anthem.cmd.MessageType;
 import gg.steve.anthem.create.FactionCreation;
 import gg.steve.anthem.managers.FileManager;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.utils.LogUtil;
-import gg.steve.anthem.utils.MessageUtil;
 import gg.steve.anthem.world.FWorld;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 
 public class FactionManager {
@@ -36,14 +35,18 @@ public class FactionManager {
     public static void createFaction(String name, Player owner, UUID id) {
         factions.put(id, FactionCreation.create(name, owner, id));
         FPlayerManager.updateFPlayer(owner.getUniqueId());
-        MessageUtil.message("lang", "create-faction", owner, "{faction-name}", name);
+        MessageType.CREATE.message(owner, name);
     }
 
     public static void disbandFaction(Faction faction) {
         factions.remove(faction.getId());
-        faction.messageAllOnlinePlayers("lang", "disband-faction", "{faction-name}", faction.getName());
+        faction.messageAllOnlinePlayers(MessageType.DISBAND, faction.getName());
+        List<UUID> onlinePlayers = faction.getOnlinePlayers();
         //remove all relations with other factions
         faction.disband();
+        for (UUID uuid : onlinePlayers) {
+            FPlayerManager.updateFPlayer(uuid);
+        }
     }
 
     public static Faction getFaction(FPlayer fPlayer) {

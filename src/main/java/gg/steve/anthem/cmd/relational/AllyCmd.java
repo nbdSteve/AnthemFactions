@@ -1,11 +1,13 @@
-package gg.steve.anthem.cmd.unfinished;
+package gg.steve.anthem.cmd.relational;
 
+import gg.steve.anthem.cmd.MessageType;
 import gg.steve.anthem.core.Faction;
 import gg.steve.anthem.core.FactionManager;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.relation.RelationType;
 import gg.steve.anthem.utils.MessageUtil;
+import gg.steve.anthem.utils.PermissionQueryUtil;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -21,8 +23,8 @@ public class AllyCmd {
             MessageUtil.commandDebug(sender, "Error, you are not in a faction");
             return;
         }
-        if (!fPlayer.hasFactionPermission("factions.player.ally")) {
-            MessageUtil.message("lang", "insufficient-role-permission", fPlayer.getPlayer());
+        if (!fPlayer.hasFactionPermission(PermissionQueryUtil.getNode("player.ally"))) {
+            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionQueryUtil.getNode("player.ally"));
             return;
         }
         if (args.length != 2) {
@@ -35,6 +37,10 @@ public class AllyCmd {
         }
         Faction faction = fPlayer.getFaction();
         Faction ally = FactionManager.getFaction(args[1]);
+        if (faction.getId().equals(ally.getId())) {
+            // cannot ally self
+            return;
+        }
         if (faction.getRelationManager().isAlly(ally)) {
             MessageUtil.commandDebug(sender, "Error, you are already allies with that faction");
             return;
@@ -44,14 +50,24 @@ public class AllyCmd {
             return;
         }
         if (faction.getRelationManager().hasIncomingAllyRequest(ally)) {
+            if (faction.getRelationManager().getRelationCount(RelationType.ALLY) == RelationType.ALLY.getMaxAmount()
+            || ally.getRelationManager().getRelationCount(RelationType.ALLY) == RelationType.ALLY.getMaxAmount()) {
+                faction.messageAllOnlinePlayers(MessageType.ALLY_DECLINED, ally.getName());
+                ally.messageAllOnlinePlayers(MessageType.ALLY_DECLINED, faction.getName());
+                return;
+            }
             faction.getRelationManager().updateRelation(ally, RelationType.ALLY);
-            faction.messageAllOnlinePlayers("lang", "new-ally-alert", "{ally}", ally.getName());
+            faction.messageAllOnlinePlayers(MessageType.ALLY_ALERT, ally.getName());
             ally.getRelationManager().updateRelation(faction, RelationType.ALLY);
-            ally.messageAllOnlinePlayers("lang", "new-ally-alert", "{ally}", faction.getName());
+            ally.messageAllOnlinePlayers(MessageType.ALLY_ALERT, faction.getName());
+            return;
+        }
+        if (faction.getRelationManager().getRelationCount(RelationType.ALLY) == RelationType.ALLY.getMaxAmount()) {
+            faction.messageAllOnlinePlayers(MessageType.ALLY_DECLINED, ally.getName());
             return;
         }
         faction.getRelationManager().setAllyRequest(ally);
-        faction.messageAllOnlinePlayers("lang", "ally-request-send", "{player}", fPlayer.getPlayer().getName(), "{ally}", ally.getName());
-        ally.messageAllOnlinePlayers("lang", "ally-request-receive", "{player}", fPlayer.getPlayer().getName());
+        faction.messageAllOnlinePlayers(MessageType.ALLY_REQUEST_SEND, ally.getName(), fPlayer.getPlayer().getName());
+        ally.messageAllOnlinePlayers(MessageType.ALLY_REQUEST_RECEIVE, faction.getName(), fPlayer.getPlayer().getName());
     }
 }

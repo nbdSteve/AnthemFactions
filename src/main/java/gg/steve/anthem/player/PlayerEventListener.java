@@ -61,7 +61,7 @@ public class PlayerEventListener implements Listener {
 //        if (fPlayer.isInHomeWorld()) return;
 //        if (!fPlayer.canBuild(event.getPlayer().getLocation())) {
 //            event.setCancelled(true);
-//            MessageUtil.message("lang", "teleport-blocked-faction", event.getPlayer(), "{faction-name}", fPlayer.getFactionForCurrentFWorld().getName());
+//            MessageType.message("lang", "teleport-blocked-faction", event.getPlayer(), "{faction-name}", fPlayer.getFactionForCurrentFWorld().getName());
 //        }
 //    }
 }

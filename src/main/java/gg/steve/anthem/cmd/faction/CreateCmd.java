@@ -1,10 +1,10 @@
-package gg.steve.anthem.cmd.sub;
+package gg.steve.anthem.cmd.faction;
 
+import gg.steve.anthem.cmd.MessageType;
 import gg.steve.anthem.cooldown.Cooldown;
 import gg.steve.anthem.cooldown.CooldownManager;
 import gg.steve.anthem.cooldown.CooldownType;
 import gg.steve.anthem.core.FactionManager;
-import gg.steve.anthem.delay.Delay;
 import gg.steve.anthem.delay.DelayManager;
 import gg.steve.anthem.exception.CooldownActiveException;
 import gg.steve.anthem.exception.DelayAlreadyActiveException;
@@ -28,8 +28,8 @@ public class CreateCmd {
         }
         FPlayer fPlayer = FPlayerManager.getFPlayer(((Player) sender).getUniqueId());
         UUID uuid = fPlayer.getUUID();
-        if (!fPlayer.hasFactionPermission("factions.player.create")) {
-            MessageUtil.permissionDebug(sender, PermissionQueryUtil.getNode("player.create"));
+        if (!fPlayer.hasFactionPermission(PermissionQueryUtil.getNode("player.create"))) {
+            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionQueryUtil.getNode("player.create"));
             return;
         }
         if (DelayManager.onDelay(uuid, CooldownType.CREATE_TELEPORT)) {

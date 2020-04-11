@@ -81,3 +81,6 @@ un-ally-required:
 
 not-allies:
   - '&5&lFactions &4(&c&lERROR&4) &f• &7You are not allies with that faction.'
+
+set-home-not-in-territory:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7You must be in your faction land to set the faction home.'

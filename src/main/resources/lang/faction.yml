@@ -48,3 +48,15 @@ disband-confirmation:
 
 change-channel:
   - '&5&lFactions &f• &7You are now talking in &6{channel} &7chat.'
+
+build-blocked-faction:
+  - '&5&lFactions &f• &7Since you are not a member of &6{faction} &7you can not build in their territory.'
+
+build-blocked-raid:
+  - '&5&lFactions &f• &7You are unable to edit terrain in the &craiding zone&7.'
+
+command-blocked-faction-territory:
+  - '&5&lFactions &f• &7Since you are not a member of &6{faction} &7you can not run that command in their territory.'
+
+command-blocked-raid:
+  - '&5&lFactions &f• &7You are unable to run that command in the &craiding zone&7.'

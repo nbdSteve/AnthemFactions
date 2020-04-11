@@ -82,3 +82,16 @@ default-faction-permissions:
     - factions.player.who
     - factions.player.list
     - factions.chat.public
+
+blocked-commands:
+  other-faction-territory:
+    - 'tpa'
+    - 'home'
+    - 'spawn'
+    - 'sethome'
+  raid-territory:
+    - 'tpa'
+    - 'tpahere'
+    - 'home'
+    - 'spawn'
+    - 'sethome'

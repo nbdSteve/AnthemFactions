@@ -58,7 +58,11 @@ public class HomeCmd {
             MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionQueryUtil.getNode("player.set-home"));
             return;
         }
-        fPlayer.getFaction().setHome(fPlayer.getPlayer().getLocation());
-        MessageType.SET_HOME.message(fPlayer);
+        if (fPlayer.isInHomeWorld() && fPlayer.canBuild(fPlayer.getPlayer().getLocation())) {
+            fPlayer.getFaction().setHome(fPlayer.getPlayer().getLocation());
+            MessageType.SET_HOME.message(fPlayer);
+        } else {
+            CommandDebug.SET_HOME_NOT_IN_TERRITORY.message(fPlayer);
+        }
     }
 }

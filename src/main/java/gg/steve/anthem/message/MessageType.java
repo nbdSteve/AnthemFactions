@@ -44,6 +44,10 @@ public enum MessageType {
     CREATE("faction", "create", "{faction}"),
     DISBAND("faction", "disband", "{faction}"),
     DISBAND_CONFIRMATION("faction", "disband-confirmation"),
+    BUILD_BLOCKED_FACTION("faction", "build-blocked-faction", "{faction}"),
+    BUILD_BLOCKED_RAID("faction", "build-blocked-raid"),
+    COMMAND_BLOCKED_FACTION_TERRITORY("faction", "command-blocked-faction-territory", "{faction}"),
+    COMMAND_BLOCKED_RAID("faction", "command-blocked-raid"),
     CHANGE_CHANNEL("faction", "change-channel", "{channel}");
 
     // raid

@@ -39,7 +39,8 @@ public enum CommandDebug {
     RELATION_ALREADY_SET("relation-already-set"),
     PENDING_ALLY_REQUEST("pending-ally-request"),
     UN_ALLY_REQUIRED("un-ally-required"),
-    NOT_ALLIES("not-allies");
+    NOT_ALLIES("not-allies"),
+    SET_HOME_NOT_IN_TERRITORY("set-home-not-in-territory");
 
     private final String path;
     private List<String> placeholders;

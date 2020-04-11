@@ -111,10 +111,6 @@ d
 4src/main/java/gg/steve/anthem/relation/Relation.java,a\8\a895ec170729afd6e26451d41d51a7b6371ae22b
 k
 ;src/main/java/gg/steve/anthem/relation/RelationManager.java,0\a\0a7c552da25a1659dcf8cefda99687b1e3ee6e46
-b
-2src/main/java/gg/steve/anthem/cmd/misc/WhoCmd.java,2\d\2dd64b8a5245424f82399e76c1e369a4f71ccad2
-b
-2src/main/java/gg/steve/anthem/cmd/misc/TopCmd.java,d\1\d1c2b8ed80d979e54d776fbf5703a7e81f4ec0dc
 c
 3src/main/java/gg/steve/anthem/cmd/misc/ListCmd.java,8\6\8660c2eee4371a414aadeaa3039f1276597be58f
 i
@@ -145,10 +141,6 @@ i
 9src/main/java/gg/steve/anthem/cmd/faction/DisbandCmd.java,b\c\bc3b64d74c7e7d3552aad7b68ba5492cff1eadcb
 h
 8src/main/java/gg/steve/anthem/cmd/faction/AcceptCmd.java,a\e\aeb1fa726d350217603683704fb05deabea57a08
-i
-9src/main/java/gg/steve/anthem/cmd/unfinished/ChatCmd.java,4\c\4c8a696c7c8d8378068d377dfbf782eb11894ecd
-b
-2src/main/java/gg/steve/anthem/cmd/MessageType.java,2\b\2b29959a803910c1ae241e2b0692e307f826c940
 j
 :src/main/java/gg/steve/anthem/chat/PlayerChatListener.java,e\e\eef5e0b5115643e2cdfbc44bd61cb95c78240c46
 h

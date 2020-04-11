@@ -100,7 +100,11 @@ public class FPlayer {
     }
 
     public boolean isInHomeWorld() {
-        return getFWorldUUID().equals(faction.getId());
+        try {
+            return getFWorldUUID().equals(faction.getId());
+        } catch (NullPointerException e) {
+            return false;
+        }
     }
 
     public FWorld getFWorld() {

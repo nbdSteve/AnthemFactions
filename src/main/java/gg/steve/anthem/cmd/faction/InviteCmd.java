@@ -1,5 +1,6 @@
 package gg.steve.anthem.cmd.faction;
 
+import gg.steve.anthem.message.CommandDebug;
 import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.cooldown.Cooldown;
 import gg.steve.anthem.cooldown.CooldownManager;
@@ -18,17 +19,16 @@ public class InviteCmd {
 
     public static void invite(CommandSender sender, String[] args) {
         if (!(sender instanceof Player)) {
-            MessageUtil.commandDebug(sender, "Error, only players can invite others to factions");
+            CommandDebug.ONLY_PLAYERS_CAN_RUN_COMMAND.message(sender);
             return;
         }
+        FPlayer fPlayer = FPlayerManager.getFPlayer(((Player) sender).getUniqueId());
         if (args.length != 2) {
-            MessageUtil.commandDebug(sender, "Invalid number of arguments");
+            CommandDebug.INCORRECT_ARGUMENTS.message(fPlayer);
             return;
         }
-        Player player = (Player) sender;
-        FPlayer fPlayer = FPlayerManager.getFPlayer(player.getUniqueId());
         if (fPlayer.getFaction().getId().equals(FactionManager.getWildernessId())) {
-            MessageUtil.commandDebug(sender, "Error, you must create a faction using /f create {name} first");
+            CommandDebug.PLAYER_NOT_FACTION_MEMBER.message(fPlayer);
             return;
         }
         if (!fPlayer.hasFactionPermission(PermissionQueryUtil.getNode("player.invite"))) {
@@ -37,25 +37,25 @@ public class InviteCmd {
         }
         Player target = Bukkit.getPlayer(args[1]);
         if (target == null) {
-            MessageUtil.commandDebug(sender, "Error, the player you are inviting must be online");
+            CommandDebug.TARGET_NOT_ONLINE.message(fPlayer);
             return;
         }
         FPlayer tPlayer = FPlayerManager.getFPlayer(target.getUniqueId());
-        if (target.getUniqueId().equals(player.getUniqueId())) {
-            MessageUtil.commandDebug(sender, "Error, you cannot invite yourself");
+        if (target.getUniqueId().equals(fPlayer.getUUID())) {
+            CommandDebug.TARGET_CAN_NOT_BE_SELF.message(fPlayer);
             return;
         }
         if (fPlayer.getFaction().equals(tPlayer.getFaction())) {
-            MessageUtil.commandDebug(sender, "Error, that player is already a member of your faction");
+            CommandDebug.TARGET_ALREADY_MEMBER.message(fPlayer);
             return;
         }
         try {
             CooldownManager.addCooldown(target.getUniqueId(), new Cooldown(CooldownType.INVITE, fPlayer.getFaction()));
         } catch (CooldownActiveException e) {
-            MessageUtil.commandDebug(sender, "Error, that player has already a pending invite");
+            CommandDebug.INVITE_ALREADY_PENDING.message(fPlayer);
             return;
         }
-        MessageType.INVITE_RECEIVER.message(tPlayer, fPlayer.getFaction().getName(), player.getName());
-        fPlayer.getFaction().messageAllOnlinePlayers(MessageType.INVITE_SENDER, player.getName(), target.getName());
+        MessageType.INVITE_RECEIVER.message(tPlayer, fPlayer.getFaction().getName(), fPlayer.getName());
+        fPlayer.getFaction().messageAllOnlinePlayers(MessageType.INVITE_SENDER, fPlayer.getName(), target.getName());
     }
 }

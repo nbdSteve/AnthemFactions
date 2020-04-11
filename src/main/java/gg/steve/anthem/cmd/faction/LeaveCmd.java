@@ -1,10 +1,10 @@
 package gg.steve.anthem.cmd.faction;
 
+import gg.steve.anthem.message.CommandDebug;
 import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.role.Role;
-import gg.steve.anthem.utils.MessageUtil;
 import gg.steve.anthem.utils.PermissionQueryUtil;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -13,7 +13,7 @@ public class LeaveCmd {
 
     public static void leave(CommandSender sender) {
         if (!(sender instanceof Player)) {
-            MessageUtil.commandDebug(sender, "Error, only players can leave factions");
+            CommandDebug.ONLY_PLAYERS_CAN_RUN_COMMAND.message(sender);
             return;
         }
         FPlayer fPlayer = FPlayerManager.getFPlayer(((Player) sender).getUniqueId());
@@ -22,11 +22,11 @@ public class LeaveCmd {
             return;
         }
         if (!fPlayer.hasFaction()) {
-            MessageUtil.commandDebug(sender, "Error, you are not a member of a faction");
+            CommandDebug.PLAYER_NOT_FACTION_MEMBER.message(fPlayer);
             return;
         }
         if (fPlayer.getRole().equals(Role.OWNER)) {
-            MessageUtil.commandDebug(sender, "Error, you cannot leave the faction since you are the owner - try /f disband");
+            CommandDebug.OWNER_LEAVE.message(fPlayer);
             return;
         }
         fPlayer.getFaction().removePlayer(fPlayer.getUUID());

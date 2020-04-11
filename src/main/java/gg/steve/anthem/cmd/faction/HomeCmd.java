@@ -1,14 +1,14 @@
 package gg.steve.anthem.cmd.faction;
 
-import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.cooldown.CooldownType;
 import gg.steve.anthem.core.FactionManager;
 import gg.steve.anthem.delay.DelayManager;
 import gg.steve.anthem.exception.DelayAlreadyActiveException;
 import gg.steve.anthem.exception.NotOnDelayException;
+import gg.steve.anthem.message.CommandDebug;
+import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
-import gg.steve.anthem.utils.MessageUtil;
 import gg.steve.anthem.utils.PermissionQueryUtil;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -17,12 +17,12 @@ public class HomeCmd {
 
     public static void teleportHome(CommandSender sender) {
         if (!(sender instanceof Player)) {
-            MessageUtil.commandDebug(sender, "Error, only players can teleport to their faction home");
+            CommandDebug.ONLY_PLAYERS_CAN_RUN_COMMAND.message(sender);
             return;
         }
         FPlayer fPlayer = FPlayerManager.getFPlayer(((Player) sender).getUniqueId());
         if (fPlayer.getFaction().equals(FactionManager.getWilderness())) {
-            MessageUtil.commandDebug(fPlayer, "You are not a member of any faction");
+            CommandDebug.PLAYER_NOT_FACTION_MEMBER.message(fPlayer);
             return;
         }
         if (!fPlayer.hasFactionPermission(PermissionQueryUtil.getNode("player.home"))) {
@@ -45,13 +45,13 @@ public class HomeCmd {
 
     public static void setHome(CommandSender sender) {
         if (!(sender instanceof Player)) {
-            MessageUtil.commandDebug(sender, "Error, only players can set their faction home");
+            CommandDebug.ONLY_PLAYERS_CAN_RUN_COMMAND.message(sender);
             return;
         }
         Player player = (Player) sender;
         FPlayer fPlayer = FPlayerManager.getFPlayer(player.getUniqueId());
         if (FactionManager.getFaction(fPlayer).equals(FactionManager.getWilderness())) {
-            MessageUtil.commandDebug(fPlayer, "You are not a member of any faction");
+            CommandDebug.PLAYER_NOT_FACTION_MEMBER.message(fPlayer);
             return;
         }
         if (!fPlayer.hasFactionPermission(PermissionQueryUtil.getNode("player.set-home"))) {

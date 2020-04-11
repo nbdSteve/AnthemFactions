@@ -1,12 +1,12 @@
 package gg.steve.anthem.cmd.relational;
 
-import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.core.Faction;
 import gg.steve.anthem.core.FactionManager;
+import gg.steve.anthem.message.CommandDebug;
+import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.relation.RelationType;
-import gg.steve.anthem.utils.MessageUtil;
 import gg.steve.anthem.utils.PermissionQueryUtil;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -15,12 +15,12 @@ public class AllyCmd {
 
     public static void ally(CommandSender sender, String[] args) {
         if (!(sender instanceof Player)) {
-            MessageUtil.commandDebug(sender, "Error, only players can ally factions");
+            CommandDebug.ONLY_PLAYERS_CAN_RUN_COMMAND.message(sender);
             return;
         }
         FPlayer fPlayer = FPlayerManager.getFPlayer(((Player) sender).getUniqueId());
         if (!fPlayer.hasFaction()) {
-            MessageUtil.commandDebug(sender, "Error, you are not in a faction");
+            CommandDebug.PLAYER_NOT_FACTION_MEMBER.message(fPlayer);
             return;
         }
         if (!fPlayer.hasFactionPermission(PermissionQueryUtil.getNode("player.ally"))) {
@@ -28,34 +28,34 @@ public class AllyCmd {
             return;
         }
         if (args.length != 2) {
-            MessageUtil.commandDebug(sender, "Invalid number of arguments");
+            CommandDebug.INCORRECT_ARGUMENTS.message(fPlayer);
             return;
         }
         if (!FactionManager.factionAlreadyExists(args[1])) {
-            MessageUtil.commandDebug(sender, "Error, the faction you tried to ally does not exist");
+            CommandDebug.FACTION_DOES_NOT_EXIST.message(fPlayer);
             return;
         }
         Faction faction = fPlayer.getFaction();
         Faction ally = FactionManager.getFaction(args[1]);
         if (faction.getId().equals(ally.getId())) {
-            MessageUtil.commandDebug(sender, "Error, you cannot ally yourself");
+            CommandDebug.RELATION_TARGET_CAN_NOT_BE_SELF.message(fPlayer);
             return;
         }
         if (ally.getId().equals(FactionManager.getWildernessId())) {
-            MessageUtil.commandDebug(sender, "Error, you cannot ally wilderness");
+            CommandDebug.RELATION_TARGET_WILDERNESS.message(fPlayer);
             return;
         }
         if (faction.getRelationManager().isAlly(ally)) {
-            MessageUtil.commandDebug(sender, "Error, you are already allies with that faction");
+            CommandDebug.RELATION_ALREADY_SET.message(fPlayer);
             return;
         }
         if (faction.getRelationManager().hasOutgoingAllyRequest(ally)) {
-            MessageUtil.commandDebug(sender, "Error, you have already requested to ally that faction");
+            CommandDebug.PENDING_ALLY_REQUEST.message(fPlayer);
             return;
         }
         if (faction.getRelationManager().hasIncomingAllyRequest(ally)) {
             if (faction.getRelationManager().getRelationCount(RelationType.ALLY) == RelationType.ALLY.getMaxAmount()
-            || ally.getRelationManager().getRelationCount(RelationType.ALLY) == RelationType.ALLY.getMaxAmount()) {
+                    || ally.getRelationManager().getRelationCount(RelationType.ALLY) == RelationType.ALLY.getMaxAmount()) {
                 faction.messageAllOnlinePlayers(MessageType.ALLY_DECLINED, ally.getName());
                 ally.messageAllOnlinePlayers(MessageType.ALLY_DECLINED, faction.getName());
                 return;

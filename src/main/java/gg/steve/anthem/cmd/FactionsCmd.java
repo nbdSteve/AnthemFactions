@@ -1,6 +1,7 @@
 package gg.steve.anthem.cmd;
 
 import gg.steve.anthem.cmd.admin.IdCmd;
+import gg.steve.anthem.cmd.admin.ReloadCmd;
 import gg.steve.anthem.cmd.faction.*;
 import gg.steve.anthem.cmd.relational.AllyCmd;
 import gg.steve.anthem.cmd.misc.ListCmd;
@@ -26,7 +27,7 @@ public class FactionsCmd implements CommandExecutor {
                 case "create":
                     CreateCmd.create(sender, args);
                     break;
-                case "home":
+                case "home": case "h":
                     HomeCmd.teleportHome(sender);
                     break;
                 case "sethome":
@@ -63,7 +64,7 @@ public class FactionsCmd implements CommandExecutor {
                 case "list":
                     ListCmd.list(sender);
                     break;
-                case "invite":
+                case "invite": case "i":
                     InviteCmd.invite(sender, args);
                     break;
                 case "accept":
@@ -75,14 +76,17 @@ public class FactionsCmd implements CommandExecutor {
                 case "tag":
                     TagCmd.tag(sender, args);
                     break;
-                case "leave":
+                case "leave": case "l":
                     LeaveCmd.leave(sender);
                     break;
                 case "getid":
                     IdCmd.getId(sender, args);
                     break;
-                case "chat":
+                case "chat": case "c":
                     ChatCmd.chat(sender, args);
+                    break;
+                case "reload": case "r":
+                    ReloadCmd.reload(sender);
                     break;
                 default:
                     MessageUtil.commandDebug(sender, "Invalid initial argument, please check /f help");

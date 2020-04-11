@@ -1,11 +1,11 @@
+only-players-can-run-command:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7Only players in game can run that command.'
+
 incorrect-arguments:
   - '&5&lFactions &4(&c&lERROR&4) &f• &7Incorrect number of command arguments.'
 
 faction-does-not-exist:
   - '&5&lFactions &4(&c&lERROR&4) &f• &7That faction does not exist.'
-
-only-players-can-invite:
-  - '&5&lFactions &4(&c&lERROR&4) &f• &7Only players can invite others to factions.'
 
 can-not-accept-invite:
   - '&5&lFactions &4(&c&lERROR&4) &f• &7You must leave your current faction using &6/f leave &7first.'
@@ -13,17 +13,11 @@ can-not-accept-invite:
 no-invite-pending:
   - '&5&lFactions &4(&c&lERROR&4) &f• &7You do not have a pending faction invite.'
 
-only-players-can-chat:
-  - '&5&lFactions &4(&c&lERROR&4) &f• &7Only players can use other chat channels.'
-
 invalid-chat-channel:
   - '&5&lFactions &4(&c&lERROR&4) &f• &7That is not a valid chat channel.'
 
 chat-no-faction:
   - '&5&lFactions &4(&c&lERROR&4) &f• &7You must be in a faction to change chat channels.'
-
-only-players-can-create:
-  - '&5&lFactions &4(&c&lERROR&4) &f• &7Only players can create factions.'
 
 create-already-in-faction:
   - '&5&lFactions &4(&c&lERROR&4) &f• &7You must leave or disband your current faction first.'
@@ -37,9 +31,6 @@ minimum-tag-length:
 maximum-tag-length:
   - '&5&lFactions &4(&c&lERROR&4) &f• &7Your faction tag can not be longer than &6{length} &7characters.'
 
-only-players-can-demote:
-  - '&5&lFactions &4(&c&lERROR&4) &f• &7Only players can demote faction members.'
-
 player-not-faction-member:
   - '&5&lFactions &4(&c&lERROR&4) &f• &7You must create a faction using &6/f create <name> &7first.'
 
@@ -49,7 +40,44 @@ target-not-online:
 target-can-not-be-self:
   - '&5&lFactions &4(&c&lERROR&4) &f• &7The target player can not be yourself.'
 
-demoted-not-faction-member:
-  - '&5&lFactions &4(&c&lERROR&4) &f• &7You can not demote someone who is not a member of your faction.'
+target-not-faction-member:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7Unable to complete action because the target is not a member of your faction.'
 
 demoted-same-or-higher-rank:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7You can not demote someone who is the same or higher rank than you.'
+
+demoted-already-member:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7You can not demote that player because they are already a &6MEMBER&7. Use &6/f kick <name> &7to remove them from the faction.'
+
+target-already-member:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7That player is already a member of your faction.'
+
+invite-already-pending:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7You can not invite that player because they already have a pending invite.'
+
+kick-same-or-higher-rank:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7You can not kick someone who is the same or higher rank than you.'
+
+owner-leave:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7You can not leave the faction since you are the owner, disband your faction using &6/f disband&7.'
+
+promote-same-or-higher-rank:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7You can not promote someone who is the same or higher rank than you.'
+
+relation-target-can-not-be-self:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7You can not set that relation with your own faction.'
+
+relation-target-wilderness:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7You can not set that relation with wilderness.'
+
+relation-already-set:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7You already have that relation set with that faction.'
+
+pending-ally-request:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7You have already requested to ally that faction, please wait for them to accept or decline.'
+
+un-ally-required:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7You must un-ally this faction before you can update your relation to them.'
+
+not-allies:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7You are not allies with that faction.'

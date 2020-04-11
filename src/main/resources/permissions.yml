@@ -22,3 +22,4 @@ player:
 
 admin:
   id-cmd: factions.admin.id
+  reload: factions.admin.reload

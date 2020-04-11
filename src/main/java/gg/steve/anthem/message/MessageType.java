@@ -11,6 +11,8 @@ import java.util.List;
 
 public enum MessageType {
     // misc
+    PERMISSION_DEBUG("misc", "permission-debug", "{node}"),
+    RELOAD("misc", "reload"),
 
     // relational
     NEUTRAL_ALERT_SENDER("relational", "neutral-alert-sender", "{faction}"),

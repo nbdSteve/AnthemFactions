@@ -1,16 +1,16 @@
 package gg.steve.anthem.cmd.relational;
 
-import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.cooldown.Cooldown;
 import gg.steve.anthem.cooldown.CooldownManager;
 import gg.steve.anthem.cooldown.CooldownType;
 import gg.steve.anthem.core.Faction;
 import gg.steve.anthem.core.FactionManager;
 import gg.steve.anthem.exception.CooldownActiveException;
+import gg.steve.anthem.message.CommandDebug;
+import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.relation.RelationType;
-import gg.steve.anthem.utils.MessageUtil;
 import gg.steve.anthem.utils.PermissionQueryUtil;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -19,12 +19,12 @@ public class UnAllyCmd {
 
     public static void unAlly(CommandSender sender, String[] args) {
         if (!(sender instanceof Player)) {
-            MessageUtil.commandDebug(sender, "Error, only players can un-ally factions");
+            CommandDebug.ONLY_PLAYERS_CAN_RUN_COMMAND.message(sender);
             return;
         }
         FPlayer fPlayer = FPlayerManager.getFPlayer(((Player) sender).getUniqueId());
         if (!fPlayer.hasFaction()) {
-            MessageUtil.commandDebug(sender, "Error, you are not in a faction");
+            CommandDebug.PLAYER_NOT_FACTION_MEMBER.message(fPlayer);
             return;
         }
         if (!fPlayer.hasFactionPermission(PermissionQueryUtil.getNode("player.un-ally"))) {
@@ -32,17 +32,17 @@ public class UnAllyCmd {
             return;
         }
         if (args.length != 2) {
-            MessageUtil.commandDebug(sender, "Invalid number of arguments");
+            CommandDebug.INCORRECT_ARGUMENTS.message(fPlayer);
             return;
         }
         if (!FactionManager.factionAlreadyExists(args[1])) {
-            MessageUtil.commandDebug(sender, "Error, the faction you tried to un-ally does not exist");
+            CommandDebug.FACTION_DOES_NOT_EXIST.message(fPlayer);
             return;
         }
         Faction faction = fPlayer.getFaction();
         Faction ally = FactionManager.getFaction(args[1]);
         if (!faction.getRelationManager().isAlly(ally)) {
-            MessageUtil.commandDebug(sender, "Error, you are not allies with that faction");
+            CommandDebug.NOT_ALLIES.message(fPlayer);
             return;
         }
         if (!CooldownManager.isOnCooldown(fPlayer.getUUID(), CooldownType.UN_ALLY)) {

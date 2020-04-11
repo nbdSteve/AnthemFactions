@@ -10,10 +10,7 @@ import gg.steve.anthem.world.FWorld;
 import org.bukkit.entity.Player;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class FactionManager {
     private static Map<UUID, Faction> factions;
@@ -96,6 +93,10 @@ public class FactionManager {
             return UUID.fromString(FileManager.get("config").getString("wilderness-uuid"));
         }
         return wilderness.getId();
+    }
+
+    public static Set<UUID> getFactions() {
+        return factions.keySet();
     }
 
     public static int getTotalFactions() {

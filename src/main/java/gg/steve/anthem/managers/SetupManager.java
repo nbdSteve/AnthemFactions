@@ -36,6 +36,8 @@ public class SetupManager {
         // load lang files
         fileManager.add("relational", "lang" + File.separator + "relational.yml");
         fileManager.add("faction", "lang" + File.separator + "faction.yml");
+        fileManager.add("debug", "lang" + File.separator + "command-debug.yml");
+        fileManager.add("misc", "lang" + File.separator + "misc.yml");
         // load all of the factions for the server
         FactionManager.init();
         FPlayerManager.init();

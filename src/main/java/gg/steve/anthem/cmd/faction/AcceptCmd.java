@@ -20,7 +20,7 @@ public class AcceptCmd {
 
     public static void accept(CommandSender sender) {
         if (!(sender instanceof Player)) {
-            CommandDebug.ONLY_PLAYERS_CAN_INVITE.message(sender);
+            CommandDebug.ONLY_PLAYERS_CAN_RUN_COMMAND.message(sender);
             return;
         }
         Player player = (Player) sender;

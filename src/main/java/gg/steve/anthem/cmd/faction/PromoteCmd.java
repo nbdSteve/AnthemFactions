@@ -1,11 +1,11 @@
 package gg.steve.anthem.cmd.faction;
 
-import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.core.FactionManager;
+import gg.steve.anthem.message.CommandDebug;
+import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.role.Role;
-import gg.steve.anthem.utils.MessageUtil;
 import gg.steve.anthem.utils.PermissionQueryUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -15,17 +15,16 @@ public class PromoteCmd {
 
     public static void promote(CommandSender sender, String[] args) {
         if (!(sender instanceof Player)) {
-            MessageUtil.commandDebug(sender, "Error, only players can invite others to factions");
+            CommandDebug.ONLY_PLAYERS_CAN_RUN_COMMAND.message(sender);
             return;
         }
+        FPlayer fPlayer = FPlayerManager.getFPlayer(((Player) sender).getUniqueId());
         if (args.length != 2) {
-            MessageUtil.commandDebug(sender, "Invalid number of arguments");
+            CommandDebug.INCORRECT_ARGUMENTS.message(fPlayer);
             return;
         }
-        Player player = (Player) sender;
-        FPlayer fPlayer = FPlayerManager.getFPlayer(player.getUniqueId());
         if (fPlayer.getFaction().getId().equals(FactionManager.getWildernessId())) {
-            MessageUtil.commandDebug(sender, "Error, you must create a faction using /f create {name} first");
+            CommandDebug.PLAYER_NOT_FACTION_MEMBER.message(fPlayer);
             return;
         }
         if (!fPlayer.hasFactionPermission(PermissionQueryUtil.getNode("player.promote"))) {
@@ -34,23 +33,23 @@ public class PromoteCmd {
         }
         Player target = Bukkit.getPlayer(args[1]);
         if (target == null) {
-            MessageUtil.commandDebug(sender, "Error, the player you are promoting must be online");
+            CommandDebug.TARGET_NOT_ONLINE.message(fPlayer);
             return;
         }
         FPlayer tPlayer = FPlayerManager.getFPlayer(target.getUniqueId());
-        if (target.getUniqueId().equals(player.getUniqueId())) {
-            MessageUtil.commandDebug(sender, "Error, you cannot promote yourself");
+        if (target.getUniqueId().equals(fPlayer.getUUID())) {
+            CommandDebug.TARGET_CAN_NOT_BE_SELF.message(fPlayer);
             return;
         }
         if (!fPlayer.getFaction().equals(tPlayer.getFaction())) {
-            MessageUtil.commandDebug(sender, "Error, you cannot promote someone who is not in your faction");
+            CommandDebug.TARGET_NOT_FACTION_MEMBER.message(fPlayer);
             return;
         }
         if (Role.higherRole(tPlayer.getRole(), fPlayer.getRole())) {
-            MessageUtil.commandDebug(sender, "Error, you cannot promote someone who is a higher, or the same rank as you");
+            CommandDebug.PROMOTE_SAME_OR_HIGHER_RANK.message(fPlayer);
             return;
         }
-        fPlayer.getFaction().messageAllOnlinePlayers(MessageType.PROMOTION, player.getName(), target.getName(), Role.getRoleByWeight(tPlayer.getRole().getWeight() + 1).toString());
+        fPlayer.getFaction().messageAllOnlinePlayers(MessageType.PROMOTION, fPlayer.getName(), target.getName(), Role.getRoleByWeight(tPlayer.getRole().getWeight() + 1).toString());
         fPlayer.getFaction().promote(tPlayer.getUUID());
         FPlayerManager.updateFPlayer(tPlayer.getUUID());
     }

@@ -24,7 +24,7 @@ public class CreateCmd {
 
     public static void create(CommandSender sender, String[] args) {
         if (!(sender instanceof Player)) {
-            CommandDebug.ONLY_PLAYERS_CAN_CREATE.message(sender);
+            CommandDebug.ONLY_PLAYERS_CAN_RUN_COMMAND.message(sender);
             return;
         }
         FPlayer fPlayer = FPlayerManager.getFPlayer(((Player) sender).getUniqueId());

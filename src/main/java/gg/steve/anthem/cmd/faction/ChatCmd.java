@@ -13,7 +13,7 @@ public class ChatCmd {
 
     public static void chat(CommandSender sender, String[] args) {
         if (!(sender instanceof Player)) {
-            CommandDebug.ONLY_PLAYERS_CAN_CHAT.message(sender);
+            CommandDebug.ONLY_PLAYERS_CAN_RUN_COMMAND.message(sender);
             return;
         }
         FPlayer fPlayer = FPlayerManager.getFPlayer(((Player) sender).getUniqueId());

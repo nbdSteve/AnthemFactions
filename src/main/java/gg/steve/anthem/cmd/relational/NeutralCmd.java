@@ -1,12 +1,12 @@
 package gg.steve.anthem.cmd.relational;
 
-import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.core.Faction;
 import gg.steve.anthem.core.FactionManager;
+import gg.steve.anthem.message.CommandDebug;
+import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.relation.RelationType;
-import gg.steve.anthem.utils.MessageUtil;
 import gg.steve.anthem.utils.PermissionQueryUtil;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -15,12 +15,12 @@ public class NeutralCmd {
 
     public static void neutral(CommandSender sender, String[] args) {
         if (!(sender instanceof Player)) {
-            MessageUtil.commandDebug(sender, "Error, only players can neutral factions");
+            CommandDebug.ONLY_PLAYERS_CAN_RUN_COMMAND.message(sender);
             return;
         }
         FPlayer fPlayer = FPlayerManager.getFPlayer(((Player) sender).getUniqueId());
         if (!fPlayer.hasFaction()) {
-            MessageUtil.commandDebug(sender, "Error, you are not in a faction");
+            CommandDebug.PLAYER_NOT_FACTION_MEMBER.message(fPlayer);
             return;
         }
         if (!fPlayer.hasFactionPermission(PermissionQueryUtil.getNode("player.neutral"))) {
@@ -28,29 +28,29 @@ public class NeutralCmd {
             return;
         }
         if (args.length != 2) {
-            MessageUtil.commandDebug(sender, "Invalid number of arguments");
+            CommandDebug.INCORRECT_ARGUMENTS.message(fPlayer);
             return;
         }
         if (!FactionManager.factionAlreadyExists(args[1])) {
-            MessageUtil.commandDebug(sender, "Error, the faction you tried to neutral does not exist");
+            CommandDebug.FACTION_DOES_NOT_EXIST.message(fPlayer);
             return;
         }
         Faction faction = fPlayer.getFaction();
         Faction neutral = FactionManager.getFaction(args[1]);
         if (faction.getId().equals(neutral.getId())) {
-            MessageUtil.commandDebug(sender, "Error, you cannot neutral yourself");
+            CommandDebug.RELATION_TARGET_CAN_NOT_BE_SELF.message(fPlayer);
             return;
         }
         if (neutral.getId().equals(FactionManager.getWildernessId())) {
-            MessageUtil.commandDebug(sender, "Error, you cannot neutral wilderness");
+            CommandDebug.RELATION_TARGET_WILDERNESS.message(fPlayer);
             return;
         }
         if (faction.getRelationManager().isAlly(neutral)) {
-            MessageUtil.commandDebug(sender, "Error, you are must un-ally this faction in order to neutral them");
+            CommandDebug.UN_ALLY_REQUIRED.message(fPlayer);
             return;
         }
         if (faction.getRelationManager().isNeutral(neutral)) {
-            MessageUtil.commandDebug(sender, "Error, you are already neutral with that faction");
+            CommandDebug.RELATION_ALREADY_SET.message(fPlayer);
             return;
         }
         faction.getRelationManager().updateRelation(neutral, RelationType.NEUTRAL);

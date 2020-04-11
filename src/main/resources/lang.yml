@@ -8,9 +8,6 @@ command-debug:
 help:
   - '&5&lFactions &f• &7Please dm nbdSteve#0583 on discord for help with this plugin.'
 
-reload:
-  - '&5&lFactions &f• &7You have successfully reloaded all files and maps.'
-
 faction-id:
   - '&5&lFactions &f• &7The UUID for that faction is: &6{uuid}&7.'
 

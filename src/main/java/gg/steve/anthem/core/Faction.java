@@ -151,13 +151,13 @@ public class Faction {
         return false;
     }
 
-    public void messageAllOnlinePlayers(String directory, String path, String... placeholers) {
-        for (UUID uuid : getPlayers()) {
-            Player player = Bukkit.getPlayer(uuid);
-            if (player == null) continue;
-            MessageUtil.message(directory, path, player, placeholers);
-        }
-    }
+//    public void messageAllOnlinePlayers(String directory, String path, String... placeholers) {
+//        for (UUID uuid : getPlayers()) {
+//            Player player = Bukkit.getPlayer(uuid);
+//            if (player == null) continue;
+//            MessageUtil.message(directory, path, player, placeholers);
+//        }
+//    }
 
     public void messageAllOnlinePlayers(MessageType type, String... replacements) {
         for (UUID uuid : getPlayers()) {

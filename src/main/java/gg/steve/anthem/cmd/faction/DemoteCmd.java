@@ -1,12 +1,11 @@
 package gg.steve.anthem.cmd.faction;
 
+import gg.steve.anthem.core.FactionManager;
 import gg.steve.anthem.message.CommandDebug;
 import gg.steve.anthem.message.MessageType;
-import gg.steve.anthem.core.FactionManager;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.role.Role;
-import gg.steve.anthem.utils.MessageUtil;
 import gg.steve.anthem.utils.PermissionQueryUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -16,7 +15,7 @@ public class DemoteCmd {
 
     public static void demote(CommandSender sender, String[] args) {
         if (!(sender instanceof Player)) {
-            CommandDebug.ONLY_PLAYERS_CAN_DEMOTE.message(sender);
+            CommandDebug.ONLY_PLAYERS_CAN_RUN_COMMAND.message(sender);
             return;
         }
         if (args.length != 2) {
@@ -44,15 +43,15 @@ public class DemoteCmd {
             return;
         }
         if (!fPlayer.getFaction().equals(tPlayer.getFaction())) {
-            CommandDebug.DEMOTED_NOT_FACTION_MEMBER.message(fPlayer);
+            CommandDebug.TARGET_NOT_FACTION_MEMBER.message(fPlayer);
             return;
         }
         if (Role.higherRole(tPlayer.getRole(), fPlayer.getRole())) {
-            MessageUtil.commandDebug(sender, "Error, you cannot demote someone who is a higher, or the same rank as you");
+            CommandDebug.DEMOTED_SAME_OR_HIGHER_RANK.message(fPlayer);
             return;
         }
         if (tPlayer.getRole().equals(Role.MEMBER)) {
-            MessageUtil.commandDebug(sender, "Error, that player is already a the rank MEMBER and cannot be demoted further. Use /f kick {name} to remove them from the faction");
+            CommandDebug.DEMOTED_ALREADY_MEMBER.message(fPlayer);
             return;
         }
         fPlayer.getFaction().demote(tPlayer.getUUID());

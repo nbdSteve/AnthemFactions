@@ -95,6 +95,10 @@ public class FPlayer {
         }
     }
 
+    public String getName() {
+        return player.getName();
+    }
+
     public boolean isInHomeWorld() {
         return getFWorldUUID().equals(faction.getId());
     }

@@ -1,0 +1,5 @@
+permission-debug:
+  - '&5&lFactions &f• &7You do not have permission (&6{node}&7) to use that.'
+
+reload:
+  - '&5&lFactions &f• &7You have successfully reloaded all files and maps.'

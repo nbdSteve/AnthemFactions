@@ -1,6 +1,7 @@
 package gg.steve.anthem.relation;
 
 import gg.steve.anthem.core.Faction;
+import gg.steve.anthem.core.FactionManager;
 
 import java.util.*;
 
@@ -21,9 +22,6 @@ public class RelationManager {
         for (String uuid : faction.getData().get().getStringList("relations.ally")) {
             this.relations.put(UUID.fromString(uuid), RelationType.ALLY);
         }
-//        for (String uuid : faction.getData().get().getStringList("relations.neutral")) {
-//            this.relations.put(UUID.fromString(uuid), RelationType.NEUTRAL);
-//        }
         for (String uuid : faction.getData().get().getStringList("relations.enemy")) {
             this.relations.put(UUID.fromString(uuid), RelationType.ENEMY);
         }
@@ -115,5 +113,12 @@ public class RelationManager {
             if (relations.get(uuid).equals(type)) factions.add(uuid);
         }
         return factions;
+    }
+
+    public RelationType getRelationType(Faction relation) {
+        if (relation.getId().equals(FactionManager.getWildernessId())) return RelationType.WILDERNESS;
+        if (relation.getId().equals(faction.getId())) return RelationType.FACTION;
+        if (!hasRelation(relation)) return RelationType.NEUTRAL;
+        return this.relations.get(relation.getId());
     }
 }

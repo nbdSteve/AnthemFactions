@@ -7,6 +7,7 @@ import gg.steve.anthem.cmd.misc.ListCmd;
 import gg.steve.anthem.cmd.relational.EnemyCmd;
 import gg.steve.anthem.cmd.relational.NeutralCmd;
 import gg.steve.anthem.cmd.relational.UnAllyCmd;
+import gg.steve.anthem.cmd.faction.ChatCmd;
 import gg.steve.anthem.utils.MessageUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -79,6 +80,9 @@ public class FactionsCmd implements CommandExecutor {
                     break;
                 case "getid":
                     IdCmd.getId(sender, args);
+                    break;
+                case "chat":
+                    ChatCmd.chat(sender, args);
                     break;
                 default:
                     MessageUtil.commandDebug(sender, "Invalid initial argument, please check /f help");

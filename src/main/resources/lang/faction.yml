@@ -45,3 +45,6 @@ disband:
 
 disband-confirmation:
   - '&5&lFactions &f• &c&lWARNING! &7You are about to disband your faction, type &6/f disband &7again within the next 10 seconds to confirm this action.'
+
+change-channel:
+  - '&5&lFactions &f• &7You are now talking in &6{channel} &7chat.'

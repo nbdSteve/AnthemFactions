@@ -1,16 +1,24 @@
 package gg.steve.anthem.role;
 
+import gg.steve.anthem.managers.FileManager;
+
 public enum Role {
-    OWNER(5),
-    CO_OWNER(4),
-    MODERATOR(3),
-    MEMBER(2),
-    WILDERNESS(1);
+    OWNER(5, FileManager.get("config").getString("role-prefix.owner")),
+    CO_OWNER(4, FileManager.get("config").getString("role-prefix.co-owner")),
+    MODERATOR(3, FileManager.get("config").getString("role-prefix.moderator")),
+    MEMBER(2, FileManager.get("config").getString("role-prefix.member")),
+    WILDERNESS(1, "");
 
     private final int weight;
+    private final String prefix;
 
-    Role(int weight) {
+    Role(int weight, String prefix) {
         this.weight = weight;
+        this.prefix = prefix;
+    }
+
+    public String getPrefix() {
+        return prefix;
     }
 
     public int getWeight() {

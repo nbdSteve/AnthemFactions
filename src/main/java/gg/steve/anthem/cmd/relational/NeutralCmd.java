@@ -1,6 +1,6 @@
 package gg.steve.anthem.cmd.relational;
 
-import gg.steve.anthem.cmd.MessageType;
+import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.core.Faction;
 import gg.steve.anthem.core.FactionManager;
 import gg.steve.anthem.player.FPlayer;
@@ -37,6 +37,14 @@ public class NeutralCmd {
         }
         Faction faction = fPlayer.getFaction();
         Faction neutral = FactionManager.getFaction(args[1]);
+        if (faction.getId().equals(neutral.getId())) {
+            MessageUtil.commandDebug(sender, "Error, you cannot neutral yourself");
+            return;
+        }
+        if (neutral.getId().equals(FactionManager.getWildernessId())) {
+            MessageUtil.commandDebug(sender, "Error, you cannot neutral wilderness");
+            return;
+        }
         if (faction.getRelationManager().isAlly(neutral)) {
             MessageUtil.commandDebug(sender, "Error, you are must un-ally this faction in order to neutral them");
             return;

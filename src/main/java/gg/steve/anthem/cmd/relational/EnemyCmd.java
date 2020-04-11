@@ -1,6 +1,6 @@
 package gg.steve.anthem.cmd.relational;
 
-import gg.steve.anthem.cmd.MessageType;
+import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.core.Faction;
 import gg.steve.anthem.core.FactionManager;
 import gg.steve.anthem.player.FPlayer;
@@ -37,6 +37,14 @@ public class EnemyCmd {
         }
         Faction faction = fPlayer.getFaction();
         Faction enemy = FactionManager.getFaction(args[1]);
+        if (faction.getId().equals(enemy.getId())) {
+            MessageUtil.commandDebug(sender, "Error, you cannot enemy yourself");
+            return;
+        }
+        if (enemy.getId().equals(FactionManager.getWildernessId())) {
+            MessageUtil.commandDebug(sender, "Error, you cannot enemy wilderness");
+            return;
+        }
         if (faction.getRelationManager().isAlly(enemy)) {
             MessageUtil.commandDebug(sender, "Error, you are must un-ally this faction before you can enemy them");
             return;

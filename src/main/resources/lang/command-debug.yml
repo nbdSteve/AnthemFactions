@@ -1,0 +1,55 @@
+incorrect-arguments:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7Incorrect number of command arguments.'
+
+faction-does-not-exist:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7That faction does not exist.'
+
+only-players-can-invite:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7Only players can invite others to factions.'
+
+can-not-accept-invite:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7You must leave your current faction using &6/f leave &7first.'
+
+no-invite-pending:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7You do not have a pending faction invite.'
+
+only-players-can-chat:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7Only players can use other chat channels.'
+
+invalid-chat-channel:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7That is not a valid chat channel.'
+
+chat-no-faction:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7You must be in a faction to change chat channels.'
+
+only-players-can-create:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7Only players can create factions.'
+
+create-already-in-faction:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7You must leave or disband your current faction first.'
+
+faction-already-exists:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7A faction with that name already exists.'
+
+minimum-tag-length:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7Your faction tag can not be shorter than &6{length} &7characters.'
+
+maximum-tag-length:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7Your faction tag can not be longer than &6{length} &7characters.'
+
+only-players-can-demote:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7Only players can demote faction members.'
+
+player-not-faction-member:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7You must create a faction using &6/f create <name> &7first.'
+
+target-not-online:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7The target player must be online in order to complete that action.'
+
+target-can-not-be-self:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7The target player can not be yourself.'
+
+demoted-not-faction-member:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7You can not demote someone who is not a member of your faction.'
+
+demoted-same-or-higher-rank:

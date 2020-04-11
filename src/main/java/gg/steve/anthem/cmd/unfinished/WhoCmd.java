@@ -1,4 +1,4 @@
 package gg.steve.anthem.cmd.unfinished;
 
-public class ChatCmd {
+public class WhoCmd {
 }

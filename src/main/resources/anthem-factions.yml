@@ -29,6 +29,26 @@ max-enemies: 100
 
 minimum-tag-length: 1
 
+maximum-tag-length: 10
+
+relation-color:
+  faction: '&a'
+  ally: '&b'
+  neutral: '&e'
+  enemy: '&c'
+  wilderness: '&7'
+
+role-prefix:
+  owner: '***' # '★★★'
+  co-owner: '**' # '★★'
+  moderator: '*' # '★'
+  member: ''
+
+chat-prefix:
+  public: '{relation-color}{role}{faction}&r {player}&7| '
+  ally: '&3&l[&b&lAC&3&l] &b{role}{faction}&r {player}&7| &f'
+  faction: '&2&l[&a&lFC&2&l] &a{role}&r{player}&7| &f'
+
 default-faction-permissions:
   owner:
     - factions.player.disband
@@ -51,9 +71,14 @@ default-faction-permissions:
     - factions.player.list
     - factions.player.build
     - factions.player.raid.join
+    - factions.chat.faction
+    - factions.chat.ally
+    - factions.chat.public
+    - factions.player.leave
   wilderness:
     - factions.player.create
     - factions.player.accept
     - factions.player.leave
     - factions.player.who
     - factions.player.list
+    - factions.chat.public

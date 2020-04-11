@@ -1,6 +1,6 @@
 package gg.steve.anthem.cmd.faction;
 
-import gg.steve.anthem.cmd.MessageType;
+import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.cooldown.CooldownType;
 import gg.steve.anthem.core.FactionManager;
 import gg.steve.anthem.delay.DelayManager;

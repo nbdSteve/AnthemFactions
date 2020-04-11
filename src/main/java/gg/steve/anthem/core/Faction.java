@@ -1,6 +1,6 @@
 package gg.steve.anthem.core;
 
-import gg.steve.anthem.cmd.MessageType;
+import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.disband.FactionDeletion;
 import gg.steve.anthem.managers.FileManager;
 import gg.steve.anthem.player.FPlayer;
@@ -164,6 +164,14 @@ public class Faction {
             Player player = Bukkit.getPlayer(uuid);
             if (player == null) continue;
             type.message(player, replacements);
+        }
+    }
+
+    public void messageAllOnlinePlayers(String message) {
+        for (UUID uuid : getPlayers()) {
+            Player player = Bukkit.getPlayer(uuid);
+            if (player == null) continue;
+            player.sendMessage(message);
         }
     }
 

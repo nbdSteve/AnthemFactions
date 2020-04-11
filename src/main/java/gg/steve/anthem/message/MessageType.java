@@ -1,4 +1,4 @@
-package gg.steve.anthem.cmd;
+package gg.steve.anthem.message;
 
 import gg.steve.anthem.managers.FileManager;
 import gg.steve.anthem.player.FPlayer;
@@ -41,7 +41,8 @@ public enum MessageType {
     JOIN("faction", "join", "{faction}"),
     CREATE("faction", "create", "{faction}"),
     DISBAND("faction", "disband", "{faction}"),
-    DISBAND_CONFIRMATION("faction", "disband-confirmation");
+    DISBAND_CONFIRMATION("faction", "disband-confirmation"),
+    CHANGE_CHANNEL("faction", "change-channel", "{channel}");
 
     // raid
 

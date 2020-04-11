@@ -1,6 +1,5 @@
 package gg.steve.anthem.cmd.faction;
 
-import gg.steve.anthem.cmd.MessageType;
 import gg.steve.anthem.cooldown.Cooldown;
 import gg.steve.anthem.cooldown.CooldownManager;
 import gg.steve.anthem.cooldown.CooldownType;
@@ -10,9 +9,11 @@ import gg.steve.anthem.exception.CooldownActiveException;
 import gg.steve.anthem.exception.DelayAlreadyActiveException;
 import gg.steve.anthem.exception.NotOnCooldownException;
 import gg.steve.anthem.exception.NotOnDelayException;
+import gg.steve.anthem.managers.FileManager;
+import gg.steve.anthem.message.CommandDebug;
+import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
-import gg.steve.anthem.utils.MessageUtil;
 import gg.steve.anthem.utils.PermissionQueryUtil;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -23,7 +24,7 @@ public class CreateCmd {
 
     public static void create(CommandSender sender, String[] args) {
         if (!(sender instanceof Player)) {
-            MessageUtil.commandDebug(sender, "Error, only players can invite others to factions");
+            CommandDebug.ONLY_PLAYERS_CAN_CREATE.message(sender);
             return;
         }
         FPlayer fPlayer = FPlayerManager.getFPlayer(((Player) sender).getUniqueId());
@@ -40,11 +41,11 @@ public class CreateCmd {
             }
         }
         if (args.length != 2) {
-            MessageUtil.commandDebug(sender, "Invalid number of arguments");
+            CommandDebug.INCORRECT_ARGUMENTS.message(fPlayer);
             return;
         }
         if (fPlayer.hasFaction()) {
-            MessageUtil.commandDebug(sender, "Error, you must leave or disband your current faction first");
+            CommandDebug.CREATE_ALREADY_IN_FACTION.message(fPlayer);
             return;
         }
         if (CooldownManager.isOnCooldown(uuid, CooldownType.CREATE)) {
@@ -56,7 +57,15 @@ public class CreateCmd {
             return;
         }
         if (FactionManager.factionAlreadyExists(args[1])) {
-            MessageUtil.commandDebug(sender, "Error, a faction with that name already exists");
+            CommandDebug.FACTION_ALREADY_EXISTS.message(fPlayer);
+            return;
+        }
+        if (args[1].length() < FileManager.get("config").getInt("minimum-tag-length")) {
+            CommandDebug.MINIMUM_TAG_LENGTH.message(fPlayer, String.valueOf(FileManager.get("config").getInt("minimum-tag-length")));
+            return;
+        }
+        if (args[1].length() > FileManager.get("config").getInt("maximum-tag-length")) {
+            CommandDebug.MAXIMUM_TAG_LENGTH.message(fPlayer, String.valueOf(FileManager.get("config").getInt("maximum-tag-length")));
             return;
         }
         try {

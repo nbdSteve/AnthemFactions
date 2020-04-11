@@ -1,5 +1,6 @@
 package gg.steve.anthem.player;
 
+import gg.steve.anthem.chat.ChatType;
 import gg.steve.anthem.core.Faction;
 import gg.steve.anthem.core.FactionManager;
 import gg.steve.anthem.role.Role;
@@ -17,12 +18,14 @@ public class FPlayer {
     private Player player;
     private Role role;
     private boolean bypassed;
+    private ChatType channel;
 
     public FPlayer(UUID uuid) {
         this.player = Bukkit.getPlayer(uuid);
         this.faction = FactionManager.getFaction(this);
         this.role = faction.getRole(this);
         this.bypassed = false;
+        this.channel = ChatType.PUBLIC;
     }
 
     public Role getRole() {
@@ -69,6 +72,14 @@ public class FPlayer {
 
     public boolean hasFactionPermission(String node) {
         return this.faction.roleHasPermission(this.role, node);
+    }
+
+    public ChatType getChatChannel() {
+        return channel;
+    }
+
+    public void setChatChannel(ChatType channel) {
+        this.channel = channel;
     }
 
     public boolean inFactionWorld() {

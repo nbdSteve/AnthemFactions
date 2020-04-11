@@ -1,15 +1,15 @@
 package gg.steve.anthem.cmd.faction;
 
-import gg.steve.anthem.cmd.MessageType;
 import gg.steve.anthem.cooldown.CooldownManager;
 import gg.steve.anthem.cooldown.CooldownType;
 import gg.steve.anthem.core.Faction;
 import gg.steve.anthem.core.FactionManager;
 import gg.steve.anthem.exception.NotOnCooldownException;
+import gg.steve.anthem.message.CommandDebug;
+import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.role.Role;
-import gg.steve.anthem.utils.MessageUtil;
 import gg.steve.anthem.utils.PermissionQueryUtil;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -20,14 +20,14 @@ public class AcceptCmd {
 
     public static void accept(CommandSender sender) {
         if (!(sender instanceof Player)) {
-            MessageUtil.commandDebug(sender, "Error, only players can invite others to factions");
+            CommandDebug.ONLY_PLAYERS_CAN_INVITE.message(sender);
             return;
         }
         Player player = (Player) sender;
         UUID uuid = player.getUniqueId();
         FPlayer fPlayer = FPlayerManager.getFPlayer(uuid);
         if (!fPlayer.getFaction().getId().equals(FactionManager.getWildernessId())) {
-            MessageUtil.commandDebug(sender, "Error, you must leave you current faction using /f leave first");
+            CommandDebug.CAN_NOT_ACCEPT_INVITE.message(fPlayer);
             return;
         }
         if (!fPlayer.hasFactionPermission(PermissionQueryUtil.getNode("player.accept"))) {
@@ -35,7 +35,7 @@ public class AcceptCmd {
             return;
         }
         if (!CooldownManager.isOnCooldown(uuid, CooldownType.INVITE)) {
-            MessageUtil.commandDebug(sender, "Error, you do not have a pending faction invite");
+            CommandDebug.NO_INVITE_PENDING.message(fPlayer);
             return;
         }
         Faction faction = null;

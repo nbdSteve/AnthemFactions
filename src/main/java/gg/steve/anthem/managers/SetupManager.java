@@ -1,6 +1,7 @@
 package gg.steve.anthem.managers;
 
 import gg.steve.anthem.AnthemFactions;
+import gg.steve.anthem.chat.PlayerChatListener;
 import gg.steve.anthem.cmd.FactionsCmd;
 import gg.steve.anthem.cooldown.CooldownManager;
 import gg.steve.anthem.core.FactionManager;
@@ -56,5 +57,6 @@ public class SetupManager {
         pm.registerEvents(new FPlayerManager(), instance);
         pm.registerEvents(new PlayerEventListener(), instance);
         pm.registerEvents(new DelayManager(), instance);
+        pm.registerEvents(new PlayerChatListener(), instance);
     }
 }

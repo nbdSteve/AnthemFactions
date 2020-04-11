@@ -1,6 +1,6 @@
 package gg.steve.anthem.cmd.relational;
 
-import gg.steve.anthem.cmd.MessageType;
+import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.cooldown.Cooldown;
 import gg.steve.anthem.cooldown.CooldownManager;
 import gg.steve.anthem.cooldown.CooldownType;

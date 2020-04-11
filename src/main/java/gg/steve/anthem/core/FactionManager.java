@@ -1,6 +1,6 @@
 package gg.steve.anthem.core;
 
-import gg.steve.anthem.cmd.MessageType;
+import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.create.FactionCreation;
 import gg.steve.anthem.managers.FileManager;
 import gg.steve.anthem.player.FPlayer;

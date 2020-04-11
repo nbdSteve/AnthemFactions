@@ -16,6 +16,9 @@ player:
   un-ally: factions.player.un-ally
   enemy: factions.player.enemy
   neutral: factions.player.neutral
+  chat-ally: factions.chat.ally
+  chat-faction: factions.chat.faction
+  chat-public: factions.chat.public
 
 admin:
   id-cmd: factions.admin.id

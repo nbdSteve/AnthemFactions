@@ -1,6 +1,7 @@
 package gg.steve.anthem.cmd.faction;
 
-import gg.steve.anthem.cmd.MessageType;
+import gg.steve.anthem.message.CommandDebug;
+import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.core.FactionManager;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
@@ -15,17 +16,17 @@ public class DemoteCmd {
 
     public static void demote(CommandSender sender, String[] args) {
         if (!(sender instanceof Player)) {
-            MessageUtil.commandDebug(sender, "Error, only players can invite others to factions");
+            CommandDebug.ONLY_PLAYERS_CAN_DEMOTE.message(sender);
             return;
         }
         if (args.length != 2) {
-            MessageUtil.commandDebug(sender, "Invalid number of arguments");
+            CommandDebug.INCORRECT_ARGUMENTS.message(sender);
             return;
         }
         Player player = (Player) sender;
         FPlayer fPlayer = FPlayerManager.getFPlayer(player.getUniqueId());
         if (fPlayer.getFaction().getId().equals(FactionManager.getWildernessId())) {
-            MessageUtil.commandDebug(sender, "Error, you must create a faction using /f create {name} first");
+            CommandDebug.PLAYER_NOT_FACTION_MEMBER.message(fPlayer);
             return;
         }
         if (!fPlayer.hasFactionPermission(PermissionQueryUtil.getNode("player.demote"))) {
@@ -34,16 +35,16 @@ public class DemoteCmd {
         }
         Player target = Bukkit.getPlayer(args[1]);
         if (target == null) {
-            MessageUtil.commandDebug(sender, "Error, the player you are demoting must be online");
+            CommandDebug.TARGET_NOT_ONLINE.message(fPlayer);
             return;
         }
         FPlayer tPlayer = FPlayerManager.getFPlayer(target.getUniqueId());
         if (target.getUniqueId().equals(player.getUniqueId())) {
-            MessageUtil.commandDebug(sender, "Error, you cannot demote yourself");
+            CommandDebug.TARGET_CAN_NOT_BE_SELF.message(fPlayer);
             return;
         }
         if (!fPlayer.getFaction().equals(tPlayer.getFaction())) {
-            MessageUtil.commandDebug(sender, "Error, you cannot demote someone who is not in your faction");
+            CommandDebug.DEMOTED_NOT_FACTION_MEMBER.message(fPlayer);
             return;
         }
         if (Role.higherRole(tPlayer.getRole(), fPlayer.getRole())) {

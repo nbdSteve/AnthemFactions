@@ -3,3 +3,9 @@ permission-debug:
 
 reload:
   - '&5&lFactions &f• &7You have successfully reloaded all files and maps.'
+
+help:
+  - '&5&lFactions &f• &7Please dm &6nbdSteve#0583 &7on discord for help with this plugin.'
+
+teleport:
+  - '&5&lFactions &f• &7You have been teleported from the &6{command-type} &7command.'

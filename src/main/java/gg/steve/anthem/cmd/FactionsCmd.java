@@ -9,6 +9,8 @@ import gg.steve.anthem.cmd.relational.EnemyCmd;
 import gg.steve.anthem.cmd.relational.NeutralCmd;
 import gg.steve.anthem.cmd.relational.UnAllyCmd;
 import gg.steve.anthem.cmd.faction.ChatCmd;
+import gg.steve.anthem.message.CommandDebug;
+import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.utils.MessageUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -20,7 +22,7 @@ public class FactionsCmd implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("f")) {
             if (args.length == 0) {
-                MessageUtil.helpMessage(sender);
+                MessageType.HELP.message(sender);
                 return true;
             }
             switch (args[0].toLowerCase()) {
@@ -89,7 +91,7 @@ public class FactionsCmd implements CommandExecutor {
                     ReloadCmd.reload(sender);
                     break;
                 default:
-                    MessageUtil.commandDebug(sender, "Invalid initial argument, please check /f help");
+                    CommandDebug.INCORRECT_ARGUMENTS.message(sender);
             }
         }
         return true;

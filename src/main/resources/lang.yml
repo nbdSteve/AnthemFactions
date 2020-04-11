@@ -1,16 +1,3 @@
-permission-debug:
-  - '&5&lFactions &f• &7You do not have permission (&6{permission-node}&7) to use that.'
-
-command-debug:
-  - '&5&lFactions &f• &7There was a problem with the command you entered, please read the reason.'
-  - '&5&lReason &f• &6{reason}&7.'
-
-help:
-  - '&5&lFactions &f• &7Please dm nbdSteve#0583 on discord for help with this plugin.'
-
-faction-id:
-  - '&5&lFactions &f• &7The UUID for that faction is: &6{uuid}&7.'
-
 cooldown:
   - '&5&lFactions &f• &7Error, that is on cooldown with &6{seconds-remaining} &7seconds remaining.'
 
@@ -20,9 +7,6 @@ list:
 
 teleport-blocked-faction:
   - '&5&lFactions &f• &7You are unable to teleport into &6{faction-name}&7s territory&7.'
-
-teleport:
-  - '&5&lFactions &f• &7You have been teleported from the &6{command-type} &7command.'
 
 delay-countdown:
   - '&5&lFactions &f• &7That action will be completed in &6{seconds-remaining} &7seconds, do not move.'

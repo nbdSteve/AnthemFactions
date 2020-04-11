@@ -13,6 +13,8 @@ public enum MessageType {
     // misc
     PERMISSION_DEBUG("misc", "permission-debug", "{node}"),
     RELOAD("misc", "reload"),
+    HELP("misc", "help"),
+    TELEPORT("misc", "teleport", "{command-type}"),
 
     // relational
     NEUTRAL_ALERT_SENDER("relational", "neutral-alert-sender", "{faction}"),
@@ -48,7 +50,8 @@ public enum MessageType {
     BUILD_BLOCKED_RAID("faction", "build-blocked-raid"),
     COMMAND_BLOCKED_FACTION_TERRITORY("faction", "command-blocked-faction-territory", "{faction}"),
     COMMAND_BLOCKED_RAID("faction", "command-blocked-raid"),
-    CHANGE_CHANNEL("faction", "change-channel", "{channel}");
+    CHANGE_CHANNEL("faction", "change-channel", "{channel}"),
+    FACTION_ID("faction", "faction-id", "{uuid}");
 
     // raid
 

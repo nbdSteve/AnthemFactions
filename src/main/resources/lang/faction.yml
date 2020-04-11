@@ -60,3 +60,6 @@ command-blocked-faction-territory:
 
 command-blocked-raid:
   - '&5&lFactions &f• &7You are unable to run that command in the &craiding zone&7.'
+
+faction-id:
+  - '&5&lFactions &f• &7The UUID for that faction is: &6{uuid}&7.'

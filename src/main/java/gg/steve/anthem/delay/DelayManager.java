@@ -4,6 +4,7 @@ import gg.steve.anthem.cooldown.CooldownType;
 import gg.steve.anthem.exception.DelayAlreadyActiveException;
 import gg.steve.anthem.exception.InvalidDelayTypeException;
 import gg.steve.anthem.exception.NotOnDelayException;
+import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.utils.MessageUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -67,7 +68,7 @@ public class DelayManager implements Listener {
             return;
         }
         Bukkit.getPlayer(event.getDelay().getUUID()).teleport(event.getDelay().getDestination());
-        MessageUtil.message("lang", "teleport", Bukkit.getPlayer(event.getDelay().getUUID()), "{command-type}", event.getDelay().getType().toString().split("_")[0]);
+        MessageType.TELEPORT.message(Bukkit.getPlayer(event.getDelay().getUUID()), event.getDelay().getType().toString().split("_")[0]);
         event.getDelay().setComplete(true);
         event.getDelay().getTask().cancel();
     }

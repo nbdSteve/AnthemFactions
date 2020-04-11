@@ -44,30 +44,6 @@ public class MessageUtil {
         }
     }
 
-    public static void permissionDebug(CommandSender sender, String node) {
-        for (String line : FileManager.get("lang").getStringList("permission-debug")) {
-            sender.sendMessage(ColorUtil.colorize(line).replace("{permission-node}", node));
-        }
-    }
-
-    public static void commandDebug(CommandSender sender, String reason) {
-        for (String line : FileManager.get("lang").getStringList("command-debug")) {
-            sender.sendMessage(ColorUtil.colorize(line).replace("{reason}", reason));
-        }
-    }
-
-    public static void helpMessage(CommandSender sender) {
-        for (String line : FileManager.get("lang").getStringList("help")) {
-            sender.sendMessage(ColorUtil.colorize(line));
-        }
-    }
-
-    public static void reloadMessage(CommandSender sender) {
-        for (String line : FileManager.get("lang").getStringList("reload")) {
-            sender.sendMessage(ColorUtil.colorize(line));
-        }
-    }
-
     public static void listMessage(FPlayer fPlayer) {
         for (String line : FileManager.get("lang").getStringList("list")) {
             fPlayer.message(ColorUtil.colorize(line).replace("{total-factions}", String.valueOf(FactionManager.getTotalFactions())));

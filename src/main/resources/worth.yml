@@ -1,0 +1,41 @@
+diamond_block:
+  data: 0
+  value: 100.0
+
+emerald_block:
+  data: 0
+  value: 500.0
+
+mob_spawner:
+  data: 50
+  value: 10000.0
+
+# spawner-ids
+  # mob_spawner:50 = Creeper
+  # mob_spawner:51 = Skeleton
+  # mob_spawner:52= Spider
+  # mob_spawner:53= Giant
+  # mob_spawner:54= Zombie
+  # mob_spawner:55= Slime
+  # mob_spawner:56= Ghast
+  # mob_spawner:57= PigZombie
+  # mob_spawner:58= Enderman
+  # mob_spawner:59 = CaveSpider
+  # mob_spawner:60= Silverfish
+  # mob_spawner:61= Blaze
+  # mob_spawner:62= Lavaslime (magma cube)
+  # mob_spawner:63= EnderDragon
+  # mob_spawner:64= WitherBoss
+  # mob_spawner:65= Bat
+  # mob_spawner:66= Witch
+  # mob_spawner:90 = Pig
+  # mob_spawner:91= Sheep
+  # mob_spawner:92= Cow
+  # mob_spawner:93= Chicken
+  # mob_spawner:94= Squid
+  # mob_spawner:95= Wolf
+  # mob_spawner:96= MushroomCow
+  # mob_spawner:97= SnowMan
+  # mob_spawner:98= Ozelot
+  # mob_spawner:99 = VillagerGolem
+  # mob_spawner:100 = Horse

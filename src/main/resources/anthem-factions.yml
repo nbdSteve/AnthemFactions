@@ -62,6 +62,7 @@ default-faction-permissions:
     - factions.player.enemy
     - factions.player.neutral
     - factions.player.un-ally
+    - factions.player.withdraw
   moderator:
     - factions.player.kick
     - factions.player.invite
@@ -76,6 +77,7 @@ default-faction-permissions:
     - factions.chat.public
     - factions.player.leave
     - factions.player.top
+    - factions.player.deposit
   wilderness:
     - factions.player.create
     - factions.player.accept

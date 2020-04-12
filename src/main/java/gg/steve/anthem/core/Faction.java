@@ -29,6 +29,7 @@ public class Faction {
     private RelationManager relationManager;
     private String founded;
     private double wealth;
+    private double xp;
 
     public Faction(UUID owner, String name, UUID id) {
         this.id = id;
@@ -46,6 +47,7 @@ public class Faction {
         this.relationManager = new RelationManager(this);
         this.founded = this.data.get().getString("founded");
         this.wealth = this.data.get().getDouble("wealth");
+        this.xp = this.data.get().getDouble("xp-bank");
     }
 
     public Faction(UUID id) {
@@ -156,14 +158,6 @@ public class Faction {
         }
         return false;
     }
-
-//    public void messageAllOnlinePlayers(String directory, String path, String... placeholers) {
-//        for (UUID uuid : getPlayers()) {
-//            Player player = Bukkit.getPlayer(uuid);
-//            if (player == null) continue;
-//            MessageUtil.message(directory, path, player, placeholers);
-//        }
-//    }
 
     public void messageAllOnlinePlayers(MessageType type, String... replacements) {
         for (UUID uuid : getPlayers()) {
@@ -357,5 +351,21 @@ public class Faction {
         this.data.get().set("wealth", wealth);
         this.data.save();
         this.wealth = wealth;
+    }
+
+    public double getXp() {
+        return this.xp;
+    }
+
+    public void depositXp(double amount) {
+        this.data.get().set("xp-bank", this.xp + amount);
+        this.data.save();
+        this.xp += amount;
+    }
+
+    public void withdrawXp(double amount) {
+        this.data.get().set("xp-bank", this.xp - amount);
+        this.data.save();
+        this.xp -= amount;
     }
 }

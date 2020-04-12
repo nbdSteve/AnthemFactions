@@ -96,6 +96,9 @@ public class FactionsCmd implements CommandExecutor {
                 case "top": case "t":
                     TopCmd.top(sender, args);
                     break;
+                case "deposit": case "d":
+                    DepositCmd.deposit(sender, args);
+                    break;
                 default:
                     CommandDebug.INCORRECT_ARGUMENTS.message(sender);
             }

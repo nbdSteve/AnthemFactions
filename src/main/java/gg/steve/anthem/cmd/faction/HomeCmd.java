@@ -21,7 +21,7 @@ public class HomeCmd {
             return;
         }
         FPlayer fPlayer = FPlayerManager.getFPlayer(((Player) sender).getUniqueId());
-        if (fPlayer.getFaction().equals(FactionManager.getWilderness())) {
+        if (!fPlayer.hasFaction()) {
             CommandDebug.PLAYER_NOT_FACTION_MEMBER.message(fPlayer);
             return;
         }

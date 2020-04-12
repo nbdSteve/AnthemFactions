@@ -87,6 +87,7 @@ public class FactionDataFileUtil {
         config.createSection("relations.enemy");
         config.createSection("relations.outgoing-ally-requests");
         config.set("wealth", 0.0);
+        config.set("xp-bank", 0.0);
         //Send a nice message
         LogUtil.info("Successfully created a new faction data file: " + fileName + ", actively creating / setting defaults.");
     }

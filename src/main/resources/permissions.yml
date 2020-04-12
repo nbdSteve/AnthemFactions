@@ -20,6 +20,8 @@ player:
   chat-faction: factions.chat.faction
   chat-public: factions.chat.public
   top: factions.player.top
+  deposit: factions.player.deposit
+  withdraw: factions.player.withdraw
 
 admin:
   id-cmd: factions.admin.id

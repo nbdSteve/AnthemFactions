@@ -9,3 +9,31 @@ help:
 
 teleport:
   - '&5&lFactions &f• &7You have been teleported from the &6{command-type} &7command.'
+
+faction-who:
+  - '&7&m<----------------&r &5&l{faction} &7&m---------------->'
+  - '&fFounded: &7{founded}'
+  - '&fRelation: {relation-color}{relation}'
+  - '&fAllies &7(&e{allies-number}&7/&e{max-allies}&7)&f: {allies}'
+  - '&fValue: &6${worth}'
+  - '&fRaid Status: &6{time}' # If there is a raid active this will change to raid active
+  - '&fOnline &7(&e{online-number}&7/&e{total-members}&7)&f: &6{online}'
+  - '&fOffline &7(&e{offline-number}&7/&e{total-members}&7)&f: &6{offline}'
+
+faction-top:
+  header:
+    - '&7&m------------------------------------------'
+    - '&5&lAnthems Top Factions &7#{page}'
+  entry:
+    - '&d#{rank} &b{relation-color}{faction}&7: &6${wealth}'
+  footer:
+    - '&7&m------------------------------------------'
+
+faction-list:
+  header:
+    - '&7&m------------------------------------------'
+    - '&5&lAnthems Factions &7#{page}'
+  entry:
+    - ' &f&m-&r &b{relation-color}{faction}&7| (&fOnline: &e{online-number}&7/&e{total-members}&7) &7(&fOwner: &e{owner}&7) &7(&fRelation: {relation-color}{relation}&7)'
+  footer:
+    - '&7&m------------------------------------------'

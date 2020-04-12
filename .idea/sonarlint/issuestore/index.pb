@@ -143,10 +143,6 @@ h
 8src/main/java/gg/steve/anthem/cmd/faction/AcceptCmd.java,a\e\aeb1fa726d350217603683704fb05deabea57a08
 j
 :src/main/java/gg/steve/anthem/chat/PlayerChatListener.java,e\e\eef5e0b5115643e2cdfbc44bd61cb95c78240c46
-h
-8src/main/java/gg/steve/anthem/cmd/unfinished/WhoCmd.java,e\0\e022c905b3c255b5daedf041d3a8f0f03f3f8bb6
-h
-8src/main/java/gg/steve/anthem/cmd/unfinished/TopCmd.java,5\6\5698f57d4fe8709b5443c730e75d1e4e41f6f843
 `
 0src/main/java/gg/steve/anthem/chat/ChatType.java,0\a\0a66a752413b9236ec7cd73a6a492d26f5e303cc
 f

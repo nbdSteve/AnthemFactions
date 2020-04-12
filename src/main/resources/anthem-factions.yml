@@ -75,6 +75,7 @@ default-faction-permissions:
     - factions.chat.ally
     - factions.chat.public
     - factions.player.leave
+    - factions.player.top
   wilderness:
     - factions.player.create
     - factions.player.accept
@@ -82,6 +83,21 @@ default-faction-permissions:
     - factions.player.who
     - factions.player.list
     - factions.chat.public
+    - factions.player.top
+
+who-cmd:
+  allies-format:
+    name-color: '&6'
+    separator: '&e, '
+  online-format:
+    name-color: '&6'
+    separator: '&e, '
+  offline-format:
+    name-color: '&6'
+    separator: '&e, '
+  founded-format: "'&6'dd'&e'/'&6'MM'&e'/'&6'yyyy '&7at' '&6'HH'&e':'&6'mm'&e':'&6'ss '&7'z" # This will get set in the faction data file so do not change this once you have released the server
+
+wealth-calculation-delay: 60 # In seconds
 
 blocked-commands:
   other-faction-territory:

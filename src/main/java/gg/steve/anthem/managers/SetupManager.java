@@ -6,8 +6,10 @@ import gg.steve.anthem.cmd.FactionsCmd;
 import gg.steve.anthem.cooldown.CooldownManager;
 import gg.steve.anthem.core.FactionManager;
 import gg.steve.anthem.delay.DelayManager;
+import gg.steve.anthem.player.DamageListener;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.player.PlayerEventListener;
+import gg.steve.anthem.wealth.AsyncWealthCalculation;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 
@@ -33,6 +35,7 @@ public class SetupManager {
         fileManager.add("lang", "lang.yml");
         fileManager.add("permissions", "permissions.yml");
         fileManager.add("cooldowns", "cooldowns.yml");
+        fileManager.add("worth", "worth.yml");
         // load lang files
         fileManager.add("relational", "lang" + File.separator + "relational.yml");
         fileManager.add("faction", "lang" + File.separator + "faction.yml");
@@ -43,6 +46,7 @@ public class SetupManager {
         FPlayerManager.init();
         CooldownManager.init();
         DelayManager.init();
+        AsyncWealthCalculation.init();
     }
 
     public static void registerCommands(AnthemFactions instance) {
@@ -60,5 +64,6 @@ public class SetupManager {
         pm.registerEvents(new PlayerEventListener(), instance);
         pm.registerEvents(new DelayManager(), instance);
         pm.registerEvents(new PlayerChatListener(), instance);
+        pm.registerEvents(new DamageListener(), instance);
     }
 }

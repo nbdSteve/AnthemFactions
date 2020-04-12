@@ -1,17 +1,17 @@
 package gg.steve.anthem.core;
 
-import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.disband.FactionDeletion;
 import gg.steve.anthem.managers.FileManager;
+import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.relation.RelationManager;
 import gg.steve.anthem.role.Role;
-import gg.steve.anthem.utils.MessageUtil;
 import gg.steve.anthem.world.FWorld;
 import gg.steve.anthem.world.FWorldGeneration;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.WorldCreator;
 import org.bukkit.entity.Player;
 
@@ -27,6 +27,8 @@ public class Faction {
     private Map<UUID, Role> playerMap;
     private Map<Role, List<String>> rolePermissionMap;
     private RelationManager relationManager;
+    private String founded;
+    private double wealth;
 
     public Faction(UUID owner, String name, UUID id) {
         this.id = id;
@@ -42,6 +44,8 @@ public class Faction {
         loadRolePermissionMap();
         this.home = fWorld.getSpawnLocation();
         this.relationManager = new RelationManager(this);
+        this.founded = this.data.get().getString("founded");
+        this.wealth = this.data.get().getDouble("wealth");
     }
 
     public Faction(UUID id) {
@@ -57,6 +61,8 @@ public class Faction {
         loadRolePermissionMap();
         this.home = fWorld.getBlockAt(data.get().getInt("home-location.x"), data.get().getInt("home-location.y"), data.get().getInt("home-location.z")).getLocation();
         this.relationManager = new RelationManager(this);
+        this.founded = this.data.get().getString("founded");
+        this.wealth = this.data.get().getDouble("wealth");
     }
 
     public boolean isMember(FPlayer fPlayer) {
@@ -218,6 +224,10 @@ public class Faction {
         return null;
     }
 
+    public OfflinePlayer getOwnerAsPlayer() {
+        return Bukkit.getOfflinePlayer(getOwner());
+    }
+
     public List<UUID> getCoOwners() {
         List<UUID> coOwners = new ArrayList<>();
         for (Map.Entry player : playerMap.entrySet()) {
@@ -248,6 +258,14 @@ public class Faction {
             if (Bukkit.getPlayer(uuid) != null) onlinePlayers.add(uuid);
         }
         return onlinePlayers;
+    }
+
+    public List<UUID> getOfflinePlayers() {
+        List<UUID> offlinePlayers = new ArrayList<>();
+        for (UUID uuid : getPlayers()) {
+            if (Bukkit.getPlayer(uuid) == null) offlinePlayers.add(uuid);
+        }
+        return offlinePlayers;
     }
 
     public UUID getId() {
@@ -285,5 +303,59 @@ public class Faction {
         data.get().set("home-location.z", home.getZ());
         data.save();
         this.home = home;
+    }
+
+    public String getFounded() {
+        return founded;
+    }
+
+    public String getNumberOnline() {
+        return String.valueOf(getOnlinePlayers().size());
+    }
+
+    public String getOnlinePlayersAsString() {
+        List<UUID> players = getOnlinePlayers();
+        String online = "";
+        int count = 0;
+        for (UUID uuid : players) {
+            online += (FileManager.get("config").getString("who-cmd.online-format.name-color") + getRole(FPlayerManager.getFPlayer(uuid)).getPrefix() + Bukkit.getPlayer(uuid).getName());
+            if (count != players.size() - 1) {
+                online += FileManager.get("config").getString("who-cmd.online-format.separator");
+            }
+            count++;
+        }
+        return online;
+    }
+
+    public String getNumberOffline() {
+        return String.valueOf(getOfflinePlayers().size());
+    }
+
+    public String getOfflinePlayersAsString() {
+        List<UUID> players = getOfflinePlayers();
+        String online = "";
+        int count = 0;
+        for (UUID uuid : players) {
+            online += (FileManager.get("config").getString("who-cmd.offline-format.name-color") + getRole(FPlayerManager.getFPlayer(uuid)).getPrefix() + Bukkit.getOfflinePlayer(uuid).getName());
+            if (count != players.size() - 1) {
+                online += FileManager.get("config").getString("who-cmd.offline-format.separator");
+            }
+            count++;
+        }
+        return online;
+    }
+
+    public String getTotalPlayers() {
+        return String.valueOf(getPlayers().size());
+    }
+
+    public double getWealth() {
+        return this.wealth;
+    }
+
+    public void setWealth(double wealth) {
+        this.data.get().set("wealth", wealth);
+        this.data.save();
+        this.wealth = wealth;
     }
 }

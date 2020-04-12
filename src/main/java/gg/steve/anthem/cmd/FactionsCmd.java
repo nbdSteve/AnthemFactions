@@ -9,9 +9,10 @@ import gg.steve.anthem.cmd.relational.EnemyCmd;
 import gg.steve.anthem.cmd.relational.NeutralCmd;
 import gg.steve.anthem.cmd.relational.UnAllyCmd;
 import gg.steve.anthem.cmd.faction.ChatCmd;
+import gg.steve.anthem.cmd.misc.WhoCmd;
+import gg.steve.anthem.cmd.misc.TopCmd;
 import gg.steve.anthem.message.CommandDebug;
 import gg.steve.anthem.message.MessageType;
-import gg.steve.anthem.utils.MessageUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -61,10 +62,12 @@ public class FactionsCmd implements CommandExecutor {
                     break;
                 case "neutral":
                     NeutralCmd.neutral(sender, args);
+                    break;
                 case "who":
+                    WhoCmd.who(sender, args);
                     break;
                 case "list":
-                    ListCmd.list(sender);
+                    ListCmd.list(sender, args);
                     break;
                 case "invite": case "i":
                     InviteCmd.invite(sender, args);
@@ -81,7 +84,7 @@ public class FactionsCmd implements CommandExecutor {
                 case "leave": case "l":
                     LeaveCmd.leave(sender);
                     break;
-                case "getid":
+                case "getid": case "id":
                     IdCmd.getId(sender, args);
                     break;
                 case "chat": case "c":
@@ -89,6 +92,9 @@ public class FactionsCmd implements CommandExecutor {
                     break;
                 case "reload": case "r":
                     ReloadCmd.reload(sender);
+                    break;
+                case "top": case "t":
+                    TopCmd.top(sender, args);
                     break;
                 default:
                     CommandDebug.INCORRECT_ARGUMENTS.message(sender);

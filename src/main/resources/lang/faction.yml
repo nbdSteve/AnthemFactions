@@ -63,3 +63,9 @@ command-blocked-raid:
 
 faction-id:
   - '&5&lFactions &f• &7The UUID for that faction is: &6{uuid}&7.'
+
+can-not-hurt-faction-member:
+  - '&5&lFactions &4(&cERROR&4) &f• &7You can not hurt &6{player} &7because they are a member of your faction&7.'
+
+can-not-hurt-ally-faction-member:
+  - '&5&lFactions &4(&cERROR&4) &f• &7You can not hurt &6{player} &7because they are a member the &ballied &7faction &6{faction}&7.'

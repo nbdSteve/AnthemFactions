@@ -2,6 +2,7 @@ package gg.steve.anthem.relation;
 
 import gg.steve.anthem.core.Faction;
 import gg.steve.anthem.core.FactionManager;
+import gg.steve.anthem.managers.FileManager;
 
 import java.util.*;
 
@@ -113,6 +114,21 @@ public class RelationManager {
             if (relations.get(uuid).equals(type)) factions.add(uuid);
         }
         return factions;
+    }
+
+    public String getAlliesAsString() {
+        List<UUID> factions = getRelations(RelationType.ALLY);
+        String allies = "";
+        int count = 0;
+        for (UUID uuid : factions) {
+            Faction faction = FactionManager.getFaction(uuid);
+            allies += (FileManager.get("config").getString("who-cmd.allies-format.name-color") + faction.getName());
+            if (count != factions.size() - 1) {
+                allies += FileManager.get("config").getString("who-cmd.allies-format.separator");
+            }
+            count++;
+        }
+        return allies;
     }
 
     public RelationType getRelationType(Faction relation) {

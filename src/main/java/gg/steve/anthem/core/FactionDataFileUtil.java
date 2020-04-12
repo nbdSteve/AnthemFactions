@@ -8,6 +8,8 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -51,6 +53,7 @@ public class FactionDataFileUtil {
         //Set defaults for the information about the players tiers and currency
         config.set("id", id);
         config.set("name", factionName);
+        config.set("founded", new SimpleDateFormat(FileManager.get("config").getString("who-cmd.founded-format")).format(new Date(System.currentTimeMillis())));
         config.createSection("faction-members");
         config.createSection("home-location");
         String[] fWorldSpawn = FileManager.get("config").getString("faction-world-generation.spawn").split(":");
@@ -83,7 +86,7 @@ public class FactionDataFileUtil {
         config.createSection("relations.ally");
         config.createSection("relations.enemy");
         config.createSection("relations.outgoing-ally-requests");
-        config.set("wealth", 0);
+        config.set("wealth", 0.0);
         //Send a nice message
         LogUtil.info("Successfully created a new faction data file: " + fileName + ", actively creating / setting defaults.");
     }

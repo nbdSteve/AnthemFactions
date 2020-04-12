@@ -42,6 +42,19 @@ public class FWorld implements World {
         return x >= -(factionArea + 1) && x <= factionArea && z >= -(factionArea + 1) && z <= factionArea;
     }
 
+    public List<Block> getFactionArea() {
+        List<Block> blocks = new ArrayList<>();
+        for (int x = -(factionArea + 1); x <= factionArea; x++) {
+            for (int z = -(factionArea + 1); z <= factionArea; z++) {
+                for (int y = 1; y <= 256; y++) {
+                    if (world.getBlockAt(x,y,z).getType().equals(Material.AIR)) continue;
+                    blocks.add(world.getBlockAt(x, y, z));
+                }
+            }
+        }
+        return blocks;
+    }
+
     @Override
     public Block getBlockAt(int x, int y, int z) {
         return this.world.getBlockAt(x, y, z);

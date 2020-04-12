@@ -15,6 +15,15 @@ public enum MessageType {
     RELOAD("misc", "reload"),
     HELP("misc", "help"),
     TELEPORT("misc", "teleport", "{command-type}"),
+    WHO("misc", "faction-who", "{faction}", "{founded}", "{allies-number}", "{max-allies}",
+            "{allies}", "{online-number}", "{online}", "{offline-number}", "{offline}", "{total-members}",
+            "{relation-color}", "{relation}", "{worth}"),
+    TOP_HEADER("misc", "faction-top.header", "{page}"),
+    TOP_ENTRY("misc", "faction-top.entry","{faction}", "{relation-color}", "{rank}", "{wealth}"),
+    TOP_FOOTER("misc", "faction-top.footer"),
+    LIST_HEADER("misc", "faction-list.header", "{page}"),
+    LIST_ENTRY("misc", "faction-list.entry","{faction}", "{relation-color}", "{relation}", "{online-number}", "{total-members}", "{owner}"),
+    LIST_FOOTER("misc", "faction-list.footer"),
 
     // relational
     NEUTRAL_ALERT_SENDER("relational", "neutral-alert-sender", "{faction}"),
@@ -51,7 +60,9 @@ public enum MessageType {
     COMMAND_BLOCKED_FACTION_TERRITORY("faction", "command-blocked-faction-territory", "{faction}"),
     COMMAND_BLOCKED_RAID("faction", "command-blocked-raid"),
     CHANGE_CHANNEL("faction", "change-channel", "{channel}"),
-    FACTION_ID("faction", "faction-id", "{uuid}");
+    FACTION_ID("faction", "faction-id", "{uuid}"),
+    CAN_NOT_HURT_FACTION_MEMBER("faction", "can-not-hurt-faction-member", "{player}"),
+    CAN_NOT_HURT_ALLY_FACTION_MEMBER("faction", "can-not-hurt-ally-faction-member", "{faction}", "{player}");
 
     // raid
 

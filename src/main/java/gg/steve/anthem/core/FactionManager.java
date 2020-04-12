@@ -99,6 +99,14 @@ public class FactionManager {
         return factions.keySet();
     }
 
+    public static List<Faction> getFactionsAsList() {
+        List<Faction> facs = new ArrayList<>();
+        for (UUID uuid : getFactions()) {
+            facs.add(FactionManager.getFaction(uuid));
+        }
+        return facs;
+    }
+
     public static int getTotalFactions() {
         return factions.size() - 1;
     }

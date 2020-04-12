@@ -19,6 +19,7 @@ player:
   chat-ally: factions.chat.ally
   chat-faction: factions.chat.faction
   chat-public: factions.chat.public
+  top: factions.player.top
 
 admin:
   id-cmd: factions.admin.id

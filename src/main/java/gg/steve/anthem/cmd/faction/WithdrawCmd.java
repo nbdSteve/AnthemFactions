@@ -10,9 +10,9 @@ import gg.steve.anthem.utils.XpUtil;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class DepositCmd {
+public class WithdrawCmd {
 
-    public static void deposit(CommandSender sender, String[] args) {
+    public static void withdraw(CommandSender sender, String[] args) {
         if (!(sender instanceof Player)) {
             CommandDebug.ONLY_PLAYERS_CAN_RUN_COMMAND.message(sender);
             return;
@@ -22,16 +22,16 @@ public class DepositCmd {
             CommandDebug.PLAYER_NOT_FACTION_MEMBER.message(fPlayer);
             return;
         }
-        if (!fPlayer.hasFactionPermission(PermissionQueryUtil.getNode("player.deposit"))) {
-            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionQueryUtil.getNode("player.deposit"));
+        if (!fPlayer.hasFactionPermission(PermissionQueryUtil.getNode("player.withdraw"))) {
+            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionQueryUtil.getNode("player.withdraw"));
             return;
         }
-        int deposit;
+        int withdraw;
         if (args.length == 1) {
-            deposit = XpUtil.getTotalExperience(fPlayer);
+            withdraw = fPlayer.getFaction().getXp();
         } else if (args.length == 2) {
             try {
-                deposit = XpUtil.getTotalExperience(Integer.parseInt(args[1]));
+                withdraw = XpUtil.getTotalExperience(Integer.parseInt(args[1]));
             } catch (Exception e) {
                 CommandDebug.INCORRECT_ARGUMENTS.message(fPlayer);
                 return;
@@ -40,12 +40,12 @@ public class DepositCmd {
             CommandDebug.INCORRECT_ARGUMENTS.message(fPlayer);
             return;
         }
-        if (deposit > XpUtil.getTotalExperience(fPlayer)) {
+        if (withdraw > fPlayer.getFaction().getXp()) {
             CommandDebug.INSUFFICIENT_XP.message(fPlayer);
             return;
         }
-        XpUtil.setTotalExperience(fPlayer, XpUtil.getTotalExperience(fPlayer) - deposit);
-        fPlayer.getFaction().depositXp(deposit);
-        MessageType.XP_DEPOSIT_SUCCESSFUL.message(fPlayer, AnthemFactions.getNumberFormat().format(deposit));
+        XpUtil.setTotalExperience(fPlayer, XpUtil.getTotalExperience(fPlayer) + withdraw);
+        fPlayer.getFaction().withdrawXp(withdraw);
+        MessageType.XP_WITHDRAWAL_SUCCESSFUL.message(fPlayer, AnthemFactions.getNumberFormat().format(withdraw));
     }
 }

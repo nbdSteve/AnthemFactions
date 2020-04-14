@@ -84,3 +84,6 @@ not-allies:
 
 set-home-not-in-territory:
   - '&5&lFactions &4(&c&lERROR&4) &f• &7You must be in your faction land to set the faction home.'
+
+insufficient-xp:
+  - '&5&lFactions &4(&cERROR&4) &f• &7You or your faction does not have sufficient xp to complete that action.'

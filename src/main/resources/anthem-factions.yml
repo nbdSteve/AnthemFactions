@@ -66,6 +66,7 @@ default-faction-permissions:
   moderator:
     - factions.player.kick
     - factions.player.invite
+    - factions.player.chest
   member:
     - factions.player.home
     - factions.player.who
@@ -78,6 +79,8 @@ default-faction-permissions:
     - factions.player.leave
     - factions.player.top
     - factions.player.deposit
+    - factions.player.xp-query
+    - factions.player.upgrade
   wilderness:
     - factions.player.create
     - factions.player.accept
@@ -99,7 +102,7 @@ who-cmd:
     separator: '&e, '
   founded-format: "'&6'dd'&e'/'&6'MM'&e'/'&6'yyyy '&7at' '&6'HH'&e':'&6'mm'&e':'&6'ss '&7'z" # This will get set in the faction data file so do not change this once you have released the server
 
-wealth-calculation-delay: 60 # In seconds
+wealth-calculation-delay: 600 # In seconds
 
 blocked-commands:
   other-faction-territory:

@@ -1,5 +1,6 @@
 package gg.steve.anthem.utils;
 
+import gg.steve.anthem.managers.FileManager;
 import gg.steve.anthem.nbt.NBTItem;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -23,6 +24,7 @@ public class ItemBuilderUtil {
     private Map<Enchantment, Integer> enchantments = new HashMap<>();
     private Set<ItemFlag> flags = new HashSet<>();
     private NBTItem nbtItem;
+    private List<String> placeholders = new ArrayList<>();
 
     public ItemBuilderUtil(ItemStack item) {
         this.item = item;
@@ -51,19 +53,20 @@ public class ItemBuilderUtil {
         item.setItemMeta(itemMeta);
     }
 
-    public void addLore(List<String> lore) {
+    public void addLore(List<String> lore, String... replacement) {
+        List<String> replacements = Arrays.asList(replacement);
         for (String line : lore) {
+            for (int i = 0; i < this.placeholders.size(); i++) {
+                line = line.replace(this.placeholders.get(i), replacements.get(i));
+            }
             this.lore.add(ColorUtil.colorize(line));
         }
         itemMeta.setLore(this.lore);
         item.setItemMeta(itemMeta);
     }
 
-    public void replaceLorePlaceholder(String placeholder, String replacement) {
-        for (int i = 0; i < this.lore.size(); i++) {
-            this.lore.set(i, lore.get(i).replace(placeholder, replacement));
-        }
-        this.itemMeta.setLore(this.lore);
+    public void setPlaceholders(String... placeholder) {
+         this.placeholders = Arrays.asList(placeholder);
     }
 
     public void addEnchantments(List<String> enchants) {

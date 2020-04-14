@@ -22,6 +22,9 @@ player:
   top: factions.player.top
   deposit: factions.player.deposit
   withdraw: factions.player.withdraw
+  xp-query: factions.player.xp-query
+  upgrade: factions.player.upgrade
+  chest: factions.player.chest
 
 admin:
   id-cmd: factions.admin.id

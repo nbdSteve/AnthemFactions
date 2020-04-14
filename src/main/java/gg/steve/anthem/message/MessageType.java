@@ -62,7 +62,13 @@ public enum MessageType {
     CHANGE_CHANNEL("faction", "change-channel", "{channel}"),
     FACTION_ID("faction", "faction-id", "{uuid}"),
     CAN_NOT_HURT_FACTION_MEMBER("faction", "can-not-hurt-faction-member", "{player}"),
-    CAN_NOT_HURT_ALLY_FACTION_MEMBER("faction", "can-not-hurt-ally-faction-member", "{faction}", "{player}");
+    CAN_NOT_HURT_ALLY_FACTION_MEMBER("faction", "can-not-hurt-ally-faction-member", "{faction}", "{player}"),
+    XP_DEPOSIT_SUCCESSFUL("faction", "xp-deposit-successful", "{amount}"),
+    XP_WITHDRAWAL_SUCCESSFUL("faction", "xp-withdrawal-successful", "{amount}"),
+    XP_QUERY("faction", "xp-query", "{xp}"),
+    UPGRADE_ALREADY_MAX("faction", "upgrade-already-max"),
+    UPGRADE_SUCCESS("faction", "upgrade-success", "{type}", "{level}", "{max-level}", "{player}")
+    ;
 
     // raid
 

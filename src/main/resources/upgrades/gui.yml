@@ -1,0 +1,74 @@
+name: '&5&lAnthem Faction Upgrades'
+type: HOPPER # set this to null if you want to use the size variable
+size: 5
+1:
+  slot: 0
+  name: '&d&lRaiding'
+  upgrade: RAIDING
+  item: tnt
+  data: 0
+  lore:
+    - '&7'
+    - '&7&o((left click to upgrade raiding))'
+    - '&7'
+    - '&7You faction is level &e{current-level}&7/&e{max-level}&7.'
+    - '&7'
+    - '&7Upgrade &6{next-level} &7costs &e{cost} xp &7(Your faction needs &e{xp-to-level} &7more xp)'
+    - '&7'
+    - '{next-level-desc}'
+  enchantments:
+    - lure:1
+  item-flags:
+    - hide_enchants
+2:
+  slot: 1
+  name: '&d&lFarming'
+  upgrade: FARMING
+  item: wheat
+  data: 0
+  lore:
+    - '&7'
+    - '&7&o((left click to upgrade farming))'
+    - '&7'
+    - '&7Your faction is level &e{current-level}&7/&e{max-level}&7.'
+    - '&7'
+    - '&7Upgrade &6{next-level} &7costs &e{cost} xp &7(Your faction needs &e{xp-to-level} &7more xp)'
+    - '&7'
+    - '{next-level-desc}'
+  enchantments:
+    - lure:1
+  item-flags:
+    - hide_enchants
+3:
+  slot: 2
+  name: '&d&lWorld'
+  upgrade: WORLD
+  item: feather
+  data: 0
+  lore:
+    - '&7'
+    - '&7&o((left click to upgrade world))'
+    - '&7'
+    - '&7Your faction is level &e{current-level}&7/&e{max-level}&7.'
+    - '&7'
+    - '&7Upgrade &6{next-level} &7costs &e{cost} xp &7(Your faction needs &e{xp-to-level} &7more xp)'
+    - '&7'
+    - '{next-level-desc}'
+  enchantments:
+    - lure:1
+  item-flags:
+    - hide_enchants
+4:
+  slot: 4
+  name: '&c&lExit'
+  upgrade: NONE
+  item: barrier
+  data: 0
+  lore:
+    - '&7'
+    - '&7&o((left click to close this gui))'
+    - '&7'
+  enchantments:
+  item-flags:
+    - hide_attributes
+  close: true

@@ -6,6 +6,7 @@ import gg.steve.anthem.cmd.FactionsCmd;
 import gg.steve.anthem.cooldown.CooldownManager;
 import gg.steve.anthem.core.FactionManager;
 import gg.steve.anthem.delay.DelayManager;
+import gg.steve.anthem.gui.GuiClickListener;
 import gg.steve.anthem.player.DamageListener;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.player.PlayerEventListener;
@@ -41,6 +42,9 @@ public class SetupManager {
         fileManager.add("faction", "lang" + File.separator + "faction.yml");
         fileManager.add("debug", "lang" + File.separator + "command-debug.yml");
         fileManager.add("misc", "lang" + File.separator + "misc.yml");
+        // load upgrade files
+        fileManager.add("upgrade-config", "upgrades" + File.separator + "config.yml");
+        fileManager.add("upgrade-gui", "upgrades" + File.separator + "gui.yml");
         // load all of the factions for the server
         FactionManager.init();
         FPlayerManager.init();
@@ -65,5 +69,6 @@ public class SetupManager {
         pm.registerEvents(new DelayManager(), instance);
         pm.registerEvents(new PlayerChatListener(), instance);
         pm.registerEvents(new DamageListener(), instance);
+        pm.registerEvents(new GuiClickListener(), instance);
     }
 }

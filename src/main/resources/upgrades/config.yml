@@ -1,0 +1,37 @@
+# all of the costs are in actual (sorry bit aids) here is a calculator though: http://pernsteiner.org/minecraft/levelcalc.html
+raiding:
+  max-level: 3
+  level-1:
+    cost: 13515 # level 75
+    desc: '&fLevel 1: &7Unlock ability to raid.'
+  level-2:
+    cost: 29315 # level 100
+    desc: '&fLevel 2: &7Unlock access to /f chest.'
+  level-3:
+    cost: 51365 # level 125
+    desc: '&fLevel 3: &7Receive permanent resistance while you are raiding.'
+  max-level-desc: '&c&lYOUR FACTION IS MAX LEVEL RAIDING'
+#
+farming:
+  max-level: 3
+  level-1:
+    cost: 13515
+    desc: '&fLevel 1: &7Double crop growth speed.'
+  level-2:
+    cost: 29315
+    desc: '&fLevel 2: &7Double drops from crops.'
+  level-3:
+    cost: 51365
+    desc: '&fLevel 3: &7Receive xp for breaking crops.'
+  max-level-desc: '&c&lYOUR FACTION IS MAX LEVEL FARMING'
+#
+world:
+  max-level: 1
+  level-1:
+    cost: 13515
+    desc: '&fLevel 1: &7Unlock access to /f fly.'
+  max-level-desc: '&c&lYOUR FACTION IS MAX LEVEL WORLD'
+
+f-chest:
+  name: "&5&l{faction}'s Chest"
+  size: 27

@@ -40,7 +40,8 @@ public enum CommandDebug {
     PENDING_ALLY_REQUEST("pending-ally-request"),
     UN_ALLY_REQUIRED("un-ally-required"),
     NOT_ALLIES("not-allies"),
-    SET_HOME_NOT_IN_TERRITORY("set-home-not-in-territory");
+    SET_HOME_NOT_IN_TERRITORY("set-home-not-in-territory"),
+    INSUFFICIENT_XP("insufficient-xp");
 
     private final String path;
     private List<String> placeholders;

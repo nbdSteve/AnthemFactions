@@ -36,6 +36,7 @@ public class AsyncWealthCalculation {
     public static List<Faction> getFactionsInWealthOrder() {
         List<Faction> wealth = new ArrayList<>();
         for (UUID uuid : FactionManager.getFactions()) {
+            if (uuid.equals(FactionManager.getWildernessId())) continue;
             wealth.add(FactionManager.getFaction(uuid));
         }
         wealth.sort(new WealthComparator());

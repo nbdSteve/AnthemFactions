@@ -69,3 +69,18 @@ can-not-hurt-faction-member:
 
 can-not-hurt-ally-faction-member:
   - '&5&lFactions &4(&cERROR&4) &f• &7You can not hurt &6{player} &7because they are a member the &ballied &7faction &6{faction}&7.'
+
+xp-deposit-successful:
+  - '&5&lFactions &f• &7You have successfully deposited &6{amount} &7xp into your factions bank.'
+
+xp-withdrawal-successful:
+  - '&5&lFactions &f• &7You have successfully withdrawn &6{amount} &7xp from your factions bank.'
+
+xp-query:
+  - '&5&lFactions &f• &7Your faction currently has &6{xp} &7xp banked.'
+
+upgrade-success:
+  - '&5&lFactions &f• &6{player} &7has successfully upgraded &6{type} &7to level &6{level}&7/&6{max-level}&7.'
+
+upgrade-already-max:
+  - '&5&lFactions &4(&cERROR&4) &f• &7That upgrade is already max level for your faction.'

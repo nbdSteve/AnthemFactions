@@ -3,14 +3,15 @@ package gg.steve.anthem.cmd;
 import gg.steve.anthem.cmd.admin.IdCmd;
 import gg.steve.anthem.cmd.admin.ReloadCmd;
 import gg.steve.anthem.cmd.faction.*;
-import gg.steve.anthem.cmd.relational.AllyCmd;
 import gg.steve.anthem.cmd.misc.ListCmd;
+import gg.steve.anthem.cmd.misc.TopCmd;
+import gg.steve.anthem.cmd.misc.WhoCmd;
+import gg.steve.anthem.cmd.relational.AllyCmd;
 import gg.steve.anthem.cmd.relational.EnemyCmd;
 import gg.steve.anthem.cmd.relational.NeutralCmd;
 import gg.steve.anthem.cmd.relational.UnAllyCmd;
-import gg.steve.anthem.cmd.faction.ChatCmd;
-import gg.steve.anthem.cmd.misc.WhoCmd;
-import gg.steve.anthem.cmd.misc.TopCmd;
+import gg.steve.anthem.cmd.upgrade.FChestCmd;
+import gg.steve.anthem.cmd.upgrade.UpgradeCmd;
 import gg.steve.anthem.message.CommandDebug;
 import gg.steve.anthem.message.MessageType;
 import org.bukkit.command.Command;
@@ -30,7 +31,8 @@ public class FactionsCmd implements CommandExecutor {
                 case "create":
                     CreateCmd.create(sender, args);
                     break;
-                case "home": case "h":
+                case "home":
+                case "h":
                     HomeCmd.teleportHome(sender);
                     break;
                 case "sethome":
@@ -39,6 +41,7 @@ public class FactionsCmd implements CommandExecutor {
                 case "raid":
                     break;
                 case "upgrade":
+                    UpgradeCmd.upgradeCmd(sender);
                     break;
                 case "perms":
                     break;
@@ -64,12 +67,14 @@ public class FactionsCmd implements CommandExecutor {
                     NeutralCmd.neutral(sender, args);
                     break;
                 case "who":
+                case "show":
                     WhoCmd.who(sender, args);
                     break;
                 case "list":
                     ListCmd.list(sender, args);
                     break;
-                case "invite": case "i":
+                case "invite":
+                case "i":
                     InviteCmd.invite(sender, args);
                     break;
                 case "accept":
@@ -81,23 +86,41 @@ public class FactionsCmd implements CommandExecutor {
                 case "tag":
                     TagCmd.tag(sender, args);
                     break;
-                case "leave": case "l":
+                case "leave":
+                case "l":
                     LeaveCmd.leave(sender);
                     break;
-                case "getid": case "id":
+                case "getid":
+                case "id":
                     IdCmd.getId(sender, args);
                     break;
-                case "chat": case "c":
+                case "chat":
+                case "c":
                     ChatCmd.chat(sender, args);
                     break;
-                case "reload": case "r":
+                case "reload":
+                case "r":
                     ReloadCmd.reload(sender);
                     break;
-                case "top": case "t":
+                case "top":
+                case "t":
                     TopCmd.top(sender, args);
                     break;
-                case "deposit": case "d":
+                case "deposit":
+                case "d":
                     DepositCmd.deposit(sender, args);
+                    break;
+                case "withdraw":
+                case "w":
+                    WithdrawCmd.withdraw(sender, args);
+                    break;
+                case "xp":
+                    XpCmd.xp(sender);
+                    break;
+                case "chest":
+                case "vault":
+                case "v":
+                    FChestCmd.chest(sender);
                     break;
                 default:
                     CommandDebug.INCORRECT_ARGUMENTS.message(sender);

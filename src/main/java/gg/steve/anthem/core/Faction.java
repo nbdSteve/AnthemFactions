@@ -7,6 +7,11 @@ import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.relation.RelationManager;
 import gg.steve.anthem.role.Role;
+import gg.steve.anthem.upgrade.Upgrade;
+import gg.steve.anthem.upgrade.UpgradeGui;
+import gg.steve.anthem.upgrade.UpgradeType;
+import gg.steve.anthem.upgrade.fchest.FChest;
+import gg.steve.anthem.upgrade.fchest.FChestManager;
 import gg.steve.anthem.world.FWorld;
 import gg.steve.anthem.world.FWorldGeneration;
 import org.bukkit.Bukkit;
@@ -29,7 +34,10 @@ public class Faction {
     private RelationManager relationManager;
     private String founded;
     private double wealth;
-    private double xp;
+    private int xp;
+    private Map<UpgradeType, Upgrade> upgrades;
+    private UpgradeGui upgradeGui;
+    private FChest fChest;
 
     public Faction(UUID owner, String name, UUID id) {
         this.id = id;
@@ -47,7 +55,11 @@ public class Faction {
         this.relationManager = new RelationManager(this);
         this.founded = this.data.get().getString("founded");
         this.wealth = this.data.get().getDouble("wealth");
-        this.xp = this.data.get().getDouble("xp-bank");
+        this.xp = this.data.get().getInt("xp-bank");
+        this.upgrades = new HashMap<>();
+        for (UpgradeType type : UpgradeType.values()) {
+            upgrades.put(type, new Upgrade(type, this));
+        }
     }
 
     public Faction(UUID id) {
@@ -65,6 +77,11 @@ public class Faction {
         this.relationManager = new RelationManager(this);
         this.founded = this.data.get().getString("founded");
         this.wealth = this.data.get().getDouble("wealth");
+        this.xp = this.data.get().getInt("xp-bank");
+        this.upgrades = new HashMap<>();
+        for (UpgradeType type : UpgradeType.values()) {
+            upgrades.put(type, new Upgrade(type, this));
+        }
     }
 
     public boolean isMember(FPlayer fPlayer) {
@@ -353,11 +370,11 @@ public class Faction {
         this.wealth = wealth;
     }
 
-    public double getXp() {
+    public int getXp() {
         return this.xp;
     }
 
-    public void depositXp(double amount) {
+    public void depositXp(int amount) {
         this.data.get().set("xp-bank", this.xp + amount);
         this.data.save();
         this.xp += amount;
@@ -367,5 +384,30 @@ public class Faction {
         this.data.get().set("xp-bank", this.xp - amount);
         this.data.save();
         this.xp -= amount;
+    }
+
+    public Upgrade getUpgrade(UpgradeType type) {
+        return this.upgrades.get(type);
+    }
+
+    public void openUpgradeGui(FPlayer fPlayer) {
+        if (upgradeGui == null) this.upgradeGui = new UpgradeGui(this);
+        upgradeGui.setfPlayer(fPlayer);
+        upgradeGui.open(fPlayer.getPlayer());
+    }
+
+    public UpgradeGui getUpgradeGui() {
+        if (upgradeGui == null) this.upgradeGui = new UpgradeGui(this);
+        return this.upgradeGui;
+    }
+
+    public void openfChest(FPlayer fPlayer) {
+        if (this.fChest == null) this.fChest = FChestManager.loadFChest(this);
+        fChest.open(fPlayer);
+    }
+
+    public FChest getfChest() {
+        if (this.fChest == null) this.fChest = FChestManager.loadFChest(this);
+        return this.fChest;
     }
 }

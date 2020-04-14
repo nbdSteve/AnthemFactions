@@ -2,6 +2,8 @@ package gg.steve.anthem;
 
 import gg.steve.anthem.managers.FileManager;
 import gg.steve.anthem.managers.SetupManager;
+import gg.steve.anthem.upgrade.fchest.FChest;
+import gg.steve.anthem.upgrade.fchest.FChestManager;
 import gg.steve.anthem.wealth.AsyncWealthCalculation;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -24,6 +26,7 @@ public final class AnthemFactions extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        FChestManager.saveFChests();
         Bukkit.getServer().getScheduler().cancelTasks(instance);
     }
 

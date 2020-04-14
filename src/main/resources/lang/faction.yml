@@ -87,3 +87,15 @@ upgrade-already-max:
 
 insufficient-upgrade-level:
   - '&5&lFactions &4(&cERROR&4) &f• &7In order to use that feature you need to upgrade &6{upgrade} &7to level &6{level-required}&7.'
+
+fly-enabled:
+  - '&5&lFactions &f• &7Fly has been enabled, you can now fly in your faction claim.'
+
+fly-disabled-region:
+  - '&5&lFactions &4(&cERROR&4) &f• &7You can not enable fly in this region.'
+
+fly-disabled-leave:
+  - '&5&lFactions &f• &7Fly has been disabled because you left your faction claim.'
+
+fly-disabled-raid:
+  - '&5&lFactions &f• &7That command is disabled while a raid is active.'

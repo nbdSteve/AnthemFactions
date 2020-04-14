@@ -8,6 +8,7 @@ UN_ALLY: 10
 #Cooldowns
 CREATE: 600 # 10 minute delay on creating factions
 PLANT_XP_DELAY: 500 # This is how long is should take for 1 sugarcane / cactus to grow
+FLY_FALL_DAMAGE: 10 # Seconds after fly is disabled that fall damage will be blocked
 
 #Delays
 HOME_TELEPORT: 5

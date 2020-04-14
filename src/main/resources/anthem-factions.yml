@@ -77,6 +77,7 @@ default-faction-permissions:
     - factions.player.deposit
     - factions.player.xp-query
     - factions.player.upgrade
+    - factions.player.fly
   wilderness:
     - factions.player.create
     - factions.player.accept

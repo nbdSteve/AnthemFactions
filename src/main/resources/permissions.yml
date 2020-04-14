@@ -25,6 +25,7 @@ player:
   xp-query: factions.player.xp-query
   upgrade: factions.player.upgrade
   chest: factions.player.chest
+  fly: factions.player.fly
 
 admin:
   id-cmd: factions.admin.id

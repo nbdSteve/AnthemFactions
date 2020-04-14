@@ -69,7 +69,11 @@ public enum MessageType {
     XP_QUERY("faction", "xp-query", "{xp}"),
     UPGRADE_ALREADY_MAX("faction", "upgrade-already-max"),
     UPGRADE_SUCCESS("faction", "upgrade-success", "{type}", "{level}", "{max-level}", "{player}"),
-    INSUFFICIENT_UPGRADE_LEVEL("faction", "insufficient-upgrade-level", "{upgrade}", "{required-level}");
+    INSUFFICIENT_UPGRADE_LEVEL("faction", "insufficient-upgrade-level", "{upgrade}", "{level-required}"),
+    FLY_ENABLED("faction", "fly-enabled"),
+    FLY_DISABLED_LEAVE("faction", "fly-disabled-leave"),
+    FLY_DISABLED_RAID("faction", "fly-disabled-raid"),
+    FLY_DISABLED_REGION("faction", "fly-disabled-region");
 
     // raid
 

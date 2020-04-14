@@ -11,6 +11,7 @@ import gg.steve.anthem.cmd.relational.EnemyCmd;
 import gg.steve.anthem.cmd.relational.NeutralCmd;
 import gg.steve.anthem.cmd.relational.UnAllyCmd;
 import gg.steve.anthem.cmd.upgrade.FChestCmd;
+import gg.steve.anthem.cmd.upgrade.FFlyCmd;
 import gg.steve.anthem.cmd.upgrade.UpgradeCmd;
 import gg.steve.anthem.message.CommandDebug;
 import gg.steve.anthem.message.MessageType;
@@ -121,6 +122,10 @@ public class FactionsCmd implements CommandExecutor {
                 case "vault":
                 case "v":
                     FChestCmd.chest(sender);
+                    break;
+                case "fly":
+                case "f":
+                    FFlyCmd.fly(sender);
                     break;
                 default:
                     CommandDebug.INCORRECT_ARGUMENTS.message(sender);

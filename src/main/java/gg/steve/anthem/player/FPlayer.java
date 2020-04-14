@@ -19,6 +19,7 @@ public class FPlayer {
     private Role role;
     private boolean bypassed;
     private ChatType channel;
+    private boolean flying;
 
     public FPlayer(UUID uuid) {
         this.player = Bukkit.getPlayer(uuid);
@@ -26,6 +27,7 @@ public class FPlayer {
         this.role = faction.getRole(this);
         this.bypassed = false;
         this.channel = ChatType.PUBLIC;
+        this.flying = false;
     }
 
     public Role getRole() {
@@ -126,6 +128,16 @@ public class FPlayer {
     }
 
     public boolean isBypassed() {
-        return bypassed;
+        return this.bypassed;
+    }
+
+    public boolean isFlying() {
+        return this.flying;
+    }
+
+    public void setFlying(boolean flying) {
+        this.player.setAllowFlight(flying);
+        this.player.setFlying(flying);
+        this.flying = flying;
     }
 }

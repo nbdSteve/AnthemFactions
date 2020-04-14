@@ -11,6 +11,7 @@ import gg.steve.anthem.player.DamageListener;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.player.PlayerEventListener;
 import gg.steve.anthem.upgrade.crop.CropListener;
+import gg.steve.anthem.upgrade.ffly.FFlyListener;
 import gg.steve.anthem.wealth.AsyncWealthCalculation;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
@@ -74,5 +75,6 @@ public class SetupManager {
         pm.registerEvents(new DamageListener(), instance);
         pm.registerEvents(new GuiClickListener(), instance);
         pm.registerEvents(new CropListener(), instance);
+        pm.registerEvents(new FFlyListener(), instance);
     }
 }

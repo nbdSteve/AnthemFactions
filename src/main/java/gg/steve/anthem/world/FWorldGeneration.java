@@ -1,7 +1,6 @@
 package gg.steve.anthem.world;
 
 import gg.steve.anthem.managers.FileManager;
-import gg.steve.anthem.utils.LogUtil;
 import org.bukkit.Material;
 import org.bukkit.WorldCreator;
 import org.bukkit.WorldType;
@@ -27,9 +26,9 @@ public class FWorldGeneration {
         FWorld fWorld = new FWorld(worldCreator.createWorld(), plotSize, factionArea);
         for (int x = -(plotSize + 1); x <= plotSize; x++) {
             for (int z = -(plotSize + 1); z <= plotSize; z++) {
-                fWorld.getBlockAt(x, 1, z).setType(Material.BEDROCK);
+                fWorld.getBlockAt(x, 0, z).setType(Material.BEDROCK);
                 if (x >= -(factionArea + 1) && x <= factionArea && z >= -(factionArea + 1) && z <= factionArea) {
-                    fWorld.getBlockAt(x, 2, z).setType(Material.STONE);
+                    fWorld.getBlockAt(x, 1, z).setType(Material.STONE);
                 }
             }
         }
@@ -51,10 +50,8 @@ public class FWorldGeneration {
     }
 
     private static void applyGameRules(YamlConfiguration config, String section, FWorld fWorld) {
-        LogUtil.info("runing");
         for (String rule : config.getStringList(section + "game-rules")) {
             String[] gameRule = rule.split(":");
-            LogUtil.info(gameRule[0] + " " + gameRule[1]);
             fWorld.setGameRuleValue(gameRule[0], gameRule[1]);
         }
     }

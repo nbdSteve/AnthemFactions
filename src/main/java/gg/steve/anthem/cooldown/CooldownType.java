@@ -14,7 +14,8 @@ public enum CooldownType {
     CREATE_TELEPORT(FileManager.get("cooldowns").getInt("CREATE_TELEPORT")),
     LEAVE_TELEPORT(FileManager.get("cooldowns").getInt("LEAVE_TELEPORT")),
     RAID_TELEPORT(FileManager.get("cooldowns").getInt("LEAVE_TELEPORT")),
-    KICK_TELEPORT(FileManager.get("cooldowns").getInt("KICK_TELEPORT"));
+    KICK_TELEPORT(FileManager.get("cooldowns").getInt("KICK_TELEPORT")),
+    PLANT_XP_DELAY(FileManager.get("cooldowns").getInt("PLANT_XP_DELAY"));
 
     private final int duration;
 

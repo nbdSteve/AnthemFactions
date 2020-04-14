@@ -8,6 +8,8 @@ import gg.steve.anthem.delay.DelayManager;
 import gg.steve.anthem.managers.FileManager;
 import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.player.FPlayerManager;
+import gg.steve.anthem.upgrade.crop.CropListener;
+import gg.steve.anthem.upgrade.fchest.FChestManager;
 import gg.steve.anthem.utils.PermissionQueryUtil;
 import gg.steve.anthem.wealth.AsyncWealthCalculation;
 import org.bukkit.Bukkit;
@@ -22,6 +24,7 @@ public class ReloadCmd {
             MessageType.PERMISSION_DEBUG.message(sender, PermissionQueryUtil.getNode("admin.reload"));
             return;
         }
+        FChestManager.saveFChests();
         Bukkit.getScheduler().cancelTasks(AnthemFactions.get());
         FileManager.reload();
         for (UUID uuid : FactionManager.getFactions()) {
@@ -32,6 +35,7 @@ public class ReloadCmd {
         FPlayerManager.init();
         CooldownManager.init();
         DelayManager.init();
+        CropListener.loadCropConfig();
         AsyncWealthCalculation.init();
         MessageType.RELOAD.message(sender);
     }

@@ -87,8 +87,6 @@ s
 Csrc/main/java/gg/steve/anthem/exception/NotOnCooldownException.java,4\f\4f4303455030f945c338efa374459b69d8de4ddc
 j
 :src/main/java/gg/steve/anthem/cmd/unfinished/PermsCmd.java,4\c\4c93281833788ff9a2fb859f1515186366bf0826
-l
-<src/main/java/gg/steve/anthem/cmd/unfinished/UpgradeCmd.java,f\3\f32694fc7f8ffec05b0b0f26e1f3b67ba13f4fdc
 i
 9src/main/java/gg/steve/anthem/cmd/unfinished/RaidCmd.java,6\9\69b0a898bc03a8f978a44536b0cb62292cf7a742
 m

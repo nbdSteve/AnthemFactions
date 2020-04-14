@@ -10,6 +10,7 @@ import gg.steve.anthem.gui.GuiClickListener;
 import gg.steve.anthem.player.DamageListener;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.player.PlayerEventListener;
+import gg.steve.anthem.upgrade.crop.CropListener;
 import gg.steve.anthem.wealth.AsyncWealthCalculation;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
@@ -45,11 +46,13 @@ public class SetupManager {
         // load upgrade files
         fileManager.add("upgrade-config", "upgrades" + File.separator + "config.yml");
         fileManager.add("upgrade-gui", "upgrades" + File.separator + "gui.yml");
+        fileManager.add("crop-config", "upgrades" + File.separator + "plant-xp.yml");
         // load all of the factions for the server
         FactionManager.init();
         FPlayerManager.init();
         CooldownManager.init();
         DelayManager.init();
+        CropListener.loadCropConfig();
         AsyncWealthCalculation.init();
     }
 
@@ -70,5 +73,6 @@ public class SetupManager {
         pm.registerEvents(new PlayerChatListener(), instance);
         pm.registerEvents(new DamageListener(), instance);
         pm.registerEvents(new GuiClickListener(), instance);
+        pm.registerEvents(new CropListener(), instance);
     }
 }

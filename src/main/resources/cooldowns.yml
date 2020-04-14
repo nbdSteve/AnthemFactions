@@ -6,7 +6,8 @@ DISBAND: 10
 UN_ALLY: 10
 
 #Cooldowns
-CREATE: 3600
+CREATE: 600 # 10 minute delay on creating factions
+PLANT_XP_DELAY: 500 # This is how long is should take for 1 sugarcane / cactus to grow
 
 #Delays
 HOME_TELEPORT: 5

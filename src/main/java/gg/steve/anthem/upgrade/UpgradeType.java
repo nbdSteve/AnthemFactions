@@ -47,6 +47,9 @@ public enum UpgradeType {
         }
         upgrade.getFaction().withdrawXp(upgrade.getNextLevelCost());
         upgrade.incrementLevel();
+        if (upgrade.getType().equals(UpgradeType.FARMING) && upgrade.getLevel() == 1) {
+            fPlayer.getFWorld().setGameRuleValue("randomTickSpeed", "10");
+        }
         fPlayer.getFaction().messageAllOnlinePlayers(MessageType.UPGRADE_SUCCESS, upgrade.getType().toString(), String.valueOf(upgrade.getLevel()), String.valueOf(upgrade.getType().getMaxLevel()), fPlayer.getName());
         for (HumanEntity player : fPlayer.getPlayer().getInventory().getViewers()) {
             player.closeInventory();

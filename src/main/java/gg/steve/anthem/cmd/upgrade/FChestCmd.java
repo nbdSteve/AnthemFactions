@@ -26,6 +26,7 @@ public class FChestCmd {
             return;
         }
         if (fPlayer.getFaction().getUpgrade(UpgradeType.RAIDING).getLevel() < 2) {
+            MessageType.INSUFFICIENT_UPGRADE_LEVEL.message(fPlayer, UpgradeType.RAIDING.toString(), "2");
             return;
         }
         fPlayer.getFaction().openfChest(fPlayer);

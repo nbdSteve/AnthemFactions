@@ -1,6 +1,7 @@
 package gg.steve.anthem.world;
 
 import gg.steve.anthem.managers.FileManager;
+import gg.steve.anthem.utils.LogUtil;
 import org.bukkit.Material;
 import org.bukkit.WorldCreator;
 import org.bukkit.WorldType;
@@ -33,12 +34,11 @@ public class FWorldGeneration {
             }
         }
         setupWorldBorder(config, section, fWorld);
-        setupSpawnLimits(config, section, fWorld);
-        applyGameRules(config, section, fWorld);
         setSpawnLocation(config, section, fWorld);
         if (config.getBoolean(section + "set-time.enabled")) {
             fWorld.setTime(config.getInt(section + "set-time.time"));
         }
+        applyGameRules(config, section, fWorld);
     }
 
     private static void setupWorldBorder(YamlConfiguration config, String section, FWorld fWorld) {
@@ -50,17 +50,11 @@ public class FWorldGeneration {
         fWorld.getWorldBorder().setSize(config.getInt(section + "size"));
     }
 
-    private static void setupSpawnLimits(YamlConfiguration config, String section, FWorld fWorld) {
-        section += "spawn-limits.";
-        fWorld.setMonsterSpawnLimit(config.getInt(section + "monster"));
-        fWorld.setWaterAnimalSpawnLimit(config.getInt(section + "water"));
-        fWorld.setAnimalSpawnLimit(config.getInt(section + "animal"));
-        fWorld.setAmbientSpawnLimit(config.getInt(section + "ambient"));
-    }
-
     private static void applyGameRules(YamlConfiguration config, String section, FWorld fWorld) {
+        LogUtil.info("runing");
         for (String rule : config.getStringList(section + "game-rules")) {
             String[] gameRule = rule.split(":");
+            LogUtil.info(gameRule[0] + " " + gameRule[1]);
             fWorld.setGameRuleValue(gameRule[0], gameRule[1]);
         }
     }

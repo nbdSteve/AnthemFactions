@@ -8,6 +8,7 @@ import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.relation.RelationType;
+import gg.steve.anthem.upgrade.UpgradeType;
 import gg.steve.anthem.utils.PermissionQueryUtil;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -49,6 +50,13 @@ public class WhoCmd {
                 faction.getTotalPlayers(),
                 type.getPrefix(),
                 type.toString(),
-                AnthemFactions.getNumberFormat().format(faction.getWealth()));
+                AnthemFactions.getNumberFormat().format(faction.getWealth()),
+                AnthemFactions.getNumberFormat().format(faction.getXp()),
+                String.valueOf(faction.getUpgrade(UpgradeType.RAIDING).getLevel()),
+                String.valueOf(UpgradeType.RAIDING.getMaxLevel()),
+                String.valueOf(faction.getUpgrade(UpgradeType.FARMING).getLevel()),
+                String.valueOf(UpgradeType.FARMING.getMaxLevel()),
+                String.valueOf(faction.getUpgrade(UpgradeType.WORLD).getLevel()),
+                String.valueOf(UpgradeType.WORLD.getMaxLevel()));
     }
 }

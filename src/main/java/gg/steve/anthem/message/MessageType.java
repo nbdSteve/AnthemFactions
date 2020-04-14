@@ -17,7 +17,8 @@ public enum MessageType {
     TELEPORT("misc", "teleport", "{command-type}"),
     WHO("misc", "faction-who", "{faction}", "{founded}", "{allies-number}", "{max-allies}",
             "{allies}", "{online-number}", "{online}", "{offline-number}", "{offline}", "{total-members}",
-            "{relation-color}", "{relation}", "{worth}"),
+            "{relation-color}", "{relation}", "{worth}", "{xp}", "{raiding-level}", "{raiding-max-level}",
+            "{farming-level}", "{farming-max-level}", "{world-level}", "{world-max-level}"),
     TOP_HEADER("misc", "faction-top.header", "{page}"),
     TOP_ENTRY("misc", "faction-top.entry","{faction}", "{relation-color}", "{rank}", "{wealth}"),
     TOP_FOOTER("misc", "faction-top.footer"),
@@ -67,8 +68,8 @@ public enum MessageType {
     XP_WITHDRAWAL_SUCCESSFUL("faction", "xp-withdrawal-successful", "{amount}"),
     XP_QUERY("faction", "xp-query", "{xp}"),
     UPGRADE_ALREADY_MAX("faction", "upgrade-already-max"),
-    UPGRADE_SUCCESS("faction", "upgrade-success", "{type}", "{level}", "{max-level}", "{player}")
-    ;
+    UPGRADE_SUCCESS("faction", "upgrade-success", "{type}", "{level}", "{max-level}", "{player}"),
+    INSUFFICIENT_UPGRADE_LEVEL("faction", "insufficient-upgrade-level", "{upgrade}", "{required-level}");
 
     // raid
 

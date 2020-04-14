@@ -12,13 +12,15 @@ teleport:
 
 faction-who:
   - '&7&m<----------------&r &5&l{faction} &7&m---------------->'
-  - '&fFounded: &7{founded}'
-  - '&fRelation: {relation-color}{relation}'
-  - '&fAllies &7(&e{allies-number}&7/&e{max-allies}&7)&f: {allies}'
-  - '&fValue: &6${worth}'
-  - '&fRaid Status: &6{time}' # If there is a raid active this will change to raid active
-  - '&fOnline &7(&e{online-number}&7/&e{total-members}&7)&f: &6{online}'
-  - '&fOffline &7(&e{offline-number}&7/&e{total-members}&7)&f: &6{offline}'
+  - '&fFounded&7| {founded}'
+  - '&fRelation&7| {relation-color}{relation}'
+  - '&fAllies &7(&e{allies-number}&7/&e{max-allies}&7)| {allies}'
+  - '&fValue&7| &6${worth}'
+  - '&fXP Banked&7| &6{xp}'
+  - '&fUpgrades&7| &7(&bRaiding: &e{raiding-level}&7/&e{raiding-max-level}&7) (&bFarming: &e{farming-level}&7/&e{farming-max-level}&7) (&bWorld: &e{world-level}&7/&e{world-max-level}&7)'
+  - '&fRaid Status&7| &6{time}' # If there is a raid active this will change to raid active
+  - '&fOnline &7(&e{online-number}&7/&e{total-members}&7)| &6{online}'
+  - '&fOffline &7(&e{offline-number}&7/&e{total-members}&7)| &6{offline}'
 
 faction-top:
   header:
@@ -34,6 +36,6 @@ faction-list:
     - '&7&m------------------------------------------'
     - '&5&lAnthems Factions &7#{page}'
   entry:
-    - ' &f&m-&r &b{relation-color}{faction}&7| (&fOnline: &e{online-number}&7/&e{total-members}&7) &7(&fOwner: &e{owner}&7) &7(&fRelation: {relation-color}{relation}&7)'
+    - ' &f&m-&r {relation-color}{faction}&7| (&fOnline: &e{online-number}&7/&e{total-members}&7) (&fOwner: &e{owner}&7) (&fRelation: {relation-color}{relation}&7)'
   footer:
     - '&7&m------------------------------------------'

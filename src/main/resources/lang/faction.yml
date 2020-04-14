@@ -84,3 +84,6 @@ upgrade-success:
 
 upgrade-already-max:
   - '&5&lFactions &4(&cERROR&4) &f• &7That upgrade is already max level for your faction.'
+
+insufficient-upgrade-level:
+  - '&5&lFactions &4(&cERROR&4) &f• &7In order to use that feature you need to upgrade &6{upgrade} &7to level &6{level-required}&7.'

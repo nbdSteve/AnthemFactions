@@ -13,15 +13,11 @@ faction-world-generation:
   set-time:
     enabled: true
     time: 6000 # time in ticks (this is midday)
-  gamerules:
+  game-rules:
     - doDaylightCycle:false
-  spawn-limits: # does not affect mob spawners - recommend setting these to 0
-    monster: 0
-    ambient: 0
-    animal: 0
-    water: 0
+    - doMobSpawning:false
 
-main-world-name: world # players will be teleported to this worlds spawn when they disband their faction
+main-world-name: world # players will be teleported to this worlds spawn when they disband their faction or log in
 
 max-allies: 3
 

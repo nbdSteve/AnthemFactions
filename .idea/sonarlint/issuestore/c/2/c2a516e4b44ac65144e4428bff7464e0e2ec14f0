@@ -1,23 +1,23 @@
 
-?
-java:S1643Ù"Use a StringBuilder instead.(×Êíâşÿÿÿÿ8Ğ²àï–.
-=
-java:S1640¿"Convert this Map to an EnumMap.(…ª¯¡8¸ØÜã•.
+:
+java:S1643à"Use a StringBuilder instead.(ñ¢ 8Ğ²àï–.
 d
-java:S1192)"GDefine a constant instead of duplicating this literal "config" 6 times.(‘·–¸8Ğ²àï–.
+java:S1192."GDefine a constant instead of duplicating this literal "config" 6 times.(‘·–¸8Ğ²àï–.
+=
+java:S1640Ä"Convert this Map to an EnumMap.(…ª¯¡8¸ØÜã•.
+<
+java:S1640;"Convert this Map to an EnumMap.(â¥ÏÑ8Âü½–—.
 :
-java:S1643Û"Use a StringBuilder instead.(ñ¢ 8Ğ²àï–.
+java:S1643Î"Use a StringBuilder instead.(Ã‘ª÷8Ğ²àï–.
+<
+java:S1640Q"Convert this Map to an EnumMap.(â¥ÏÑ8™ÿ¼–—.
 c
-java:S11924"GDefine a constant instead of duplicating this literal "wealth" 3 times.(é¬„m8Ğ²àï–.
+java:S11929"GDefine a constant instead of duplicating this literal "wealth" 3 times.(é¬„m8Ğ²àï–.
 s
-java:S1192f"QDefine a constant instead of duplicating this literal "faction-members." 9 times.(Ø”’Äûÿÿÿÿ8¸ØÜã•.
+java:S1192k"QDefine a constant instead of duplicating this literal "faction-members." 9 times.(Ø”’Äûÿÿÿÿ8¸ØÜã•.
 e
-java:S11925"HDefine a constant instead of duplicating this literal "xp-bank" 4 times.(ˆäç8’¦‡ñ–.
-:
-java:S1643É"Use a StringBuilder instead.(Ã‘ª÷8Ğ²àï–.
-<
-java:S16406"Convert this Map to an EnumMap.(â¥ÏÑ8Âü½–—.
+java:S1192:"HDefine a constant instead of duplicating this literal "xp-bank" 4 times.(ˆäç8’¦‡ñ–.
 ?
-java:S1643Ç"Use a StringBuilder instead.(‡´”œÿÿÿÿÿ8Ğ²àï–.
-<
-java:S1640L"Convert this Map to an EnumMap.(â¥ÏÑ8™ÿ¼–—.
+java:S1643Ì"Use a StringBuilder instead.(‡´”œÿÿÿÿÿ8Ğ²àï–.
+?
+java:S1643Ş"Use a StringBuilder instead.(×Êíâşÿÿÿÿ8Ğ²àï–.

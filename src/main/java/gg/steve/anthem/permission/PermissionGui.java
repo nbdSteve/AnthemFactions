@@ -17,8 +17,7 @@ public class PermissionGui extends AbstractGui {
      * Constructor the create a new Gui
      */
     public PermissionGui(Faction faction) {
-        super(FileManager.get("fperms-gui"), FileManager.get("fperms-gui").getString("type"), FileManager.get("fperms-gui").getInt("size"));
-
+        super(FileManager.get("fperms-gui"), FileManager.get("fperms-gui").getString("type"), faction, FileManager.get("fperms-gui").getInt("size"));
         for (int i = 1; i <= config.getInt("size"); i++) {
             int id = i;
             try {

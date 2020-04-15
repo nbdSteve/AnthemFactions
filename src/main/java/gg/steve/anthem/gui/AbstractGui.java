@@ -1,5 +1,7 @@
 package gg.steve.anthem.gui;
 
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
+import gg.steve.anthem.core.Faction;
 import gg.steve.anthem.role.Role;
 import gg.steve.anthem.utils.ColorUtil;
 import org.bukkit.Bukkit;
@@ -46,6 +48,17 @@ public class AbstractGui {
             this.inventory = Bukkit.createInventory(null, InventoryType.valueOf(type), ColorUtil.colorize(config.getString("name")));
         } else {
             this.inventory = Bukkit.createInventory(null, size[0], ColorUtil.colorize(config.getString("name").replace("{page}", role.toString())));
+        }
+        this.clickActions = new HashMap<>();
+        inventoriesByID.put(getInventoryID(), this);
+    }
+
+    public AbstractGui(YamlConfiguration config, String type, Faction faction, Integer... size) {
+        this.inventoryID = UUID.randomUUID();
+        if (!type.equalsIgnoreCase("null")) {
+            this.inventory = Bukkit.createInventory(null, InventoryType.valueOf(type), ColorUtil.colorize(config.getString("name")));
+        } else {
+            this.inventory = Bukkit.createInventory(null, size[0], ColorUtil.colorize(config.getString("name").replace("{faction}", faction.getName())));
         }
         this.clickActions = new HashMap<>();
         inventoriesByID.put(getInventoryID(), this);

@@ -52,6 +52,13 @@ public class SetupManager {
         fileManager.add("fperms-gui", "permissions" + File.separator + "fperms-gui.yml");
         fileManager.add("fperms-config", "permissions" + File.separator + "config.yml");
         fileManager.add("fperms-page-gui", "permissions" + File.separator + "page-gui.yml");
+        // load raid files
+        fileManager.add("raid-config", "raid" + File.separator + "config.yml");
+        fileManager.add("raid-gui", "raid" + File.separator + "raid-gui.yml");
+        fileManager.add("confirmation-gui", "raid" + File.separator + "confirmation-gui.yml");
+        fileManager.add("TIER_1", "raid" + File.separator + "tier-1-gui.yml");
+        fileManager.add("TIER_2", "raid" + File.separator + "tier-2-gui.yml");
+        fileManager.add("TIER_3", "raid" + File.separator + "tier-3-gui.yml");
         // load all of the factions for the server
         FactionManager.init();
         FPlayerManager.init();

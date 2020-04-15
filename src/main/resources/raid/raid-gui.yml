@@ -1,0 +1,52 @@
+name: '&5&lAnthem Raids'
+type: HOPPER
+size: 5
+1:
+  slot: 0
+  name: '&d&lTier 1 Factions'
+  page: TIER_1
+  item: diamond
+  data: 0
+  lore:
+    - '&7'
+    - '&7&o((left click to view tier 1 factions))'
+    - '&7'
+  enchantments:
+  item-flags:
+2:
+  slot: 1
+  name: '&d&lTier 2 Factions'
+  page: TIER_2
+  item: iron_ingot
+  data: 0
+  lore:
+    - '&7'
+    - '&7&o((left click to view tier 2 factions))'
+    - '&7'
+  enchantments:
+  item-flags:
+3:
+  slot: 2
+  name: '&d&lTier 3'
+  page: TIER_3
+  item: leather
+  data: 0
+  lore:
+    - '&7'
+    - '&7&o((left click to raid a random tier 3 faction))'
+    - '&7'
+  enchantments:
+  item-flags:
+4:
+  slot: 4
+  name: '&c&lExit'
+  page: NONE
+  item: barrier
+  data: 0
+  lore:
+    - '&7'
+    - '&7&o((left click to close this gui))'
+    - '&7'
+  enchantments:
+  item-flags:
+    - hide_attributes

@@ -1,31 +1,31 @@
 
-e
-java:S1192>"HDefine a constant instead of duplicating this literal "xp-bank" 4 times.(ˆäç8’¦‡ñ–.
-d
-java:S11922"GDefine a constant instead of duplicating this literal "config" 6 times.(‘·–¸8Ğ²àï–.
-:
-java:S1643İ"Use a StringBuilder instead.(Ã‘ª÷8ç¤ïâ—.
-c
-java:S1192="GDefine a constant instead of duplicating this literal "wealth" 3 times.(é¬„m8Ğ²àï–.
-<
-java:S1640?"Convert this Map to an EnumMap.(â¥ÏÑ8Âü½–—.
-<
-java:S1640V"Convert this Map to an EnumMap.(â¥ÏÑ8åïâ—.
 q
 java:S3824±"NReplace this "Map.get()" and condition with a call to "Map.computeIfAbsent()".(™´±ùûÿÿÿÿ8ç¤ïâ—.
-s
-java:S1192q"QDefine a constant instead of duplicating this literal "faction-members." 9 times.(Ø”’Äûÿÿÿÿ8ç¤ïâ—.
-?
-java:S1643Û"Use a StringBuilder instead.(‡´”œÿÿÿÿÿ8åïâ—.
-=
-java:S1640Ê"Convert this Map to an EnumMap.(…ª¯¡8ç¤ïâ—.
-q
-java:S3824§"NReplace this "Map.get()" and condition with a call to "Map.computeIfAbsent()".(™´±ùûÿÿÿÿ8ç¤ïâ—.
-B
-java:S1640¥"Convert this Map to an EnumMap.(ÍÄ¹úÿÿÿÿ8ç¤ïâ—.
+e
+java:S1192>"HDefine a constant instead of duplicating this literal "xp-bank" 4 times.(ˆäç8’¦‡ñ–.
 ?
 java:S1643í"Use a StringBuilder instead.(×Êíâşÿÿÿÿ8åïâ—.
+?
+java:S1643Û"Use a StringBuilder instead.(‡´”œÿÿÿÿÿ8åïâ—.
+<
+java:S1640V"Convert this Map to an EnumMap.(â¥ÏÑ8åïâ—.
+=
+java:S1640Ê"Convert this Map to an EnumMap.(…ª¯¡8ç¤ïâ—.
+d
+java:S11922"GDefine a constant instead of duplicating this literal "config" 6 times.(‘·–¸8Ğ²àï–.
+q
+java:S3824§"NReplace this "Map.get()" and condition with a call to "Map.computeIfAbsent()".(™´±ùûÿÿÿÿ8ç¤ïâ—.
 :
 java:S1643ï"Use a StringBuilder instead.(ñ¢ 8ç¤ïâ—.
+B
+java:S1640¥"Convert this Map to an EnumMap.(ÍÄ¹úÿÿÿÿ8ç¤ïâ—.
+<
+java:S1640?"Convert this Map to an EnumMap.(â¥ÏÑ8Âü½–—.
+s
+java:S1192q"QDefine a constant instead of duplicating this literal "faction-members." 9 times.(Ø”’Äûÿÿÿÿ8ç¤ïâ—.
+c
+java:S1192="GDefine a constant instead of duplicating this literal "wealth" 3 times.(é¬„m8Ğ²àï–.
+:
+java:S1643İ"Use a StringBuilder instead.(Ã‘ª÷8ç¤ïâ—.
 B
 java:S1640¯"Convert this Map to an EnumMap.(ÍÄ¹úÿÿÿÿ8ç¤ïâ—.

@@ -22,7 +22,7 @@ public class PermissionGui extends AbstractGui {
             int id = i;
             try {
                 setItemInSlot(config.getInt(id + ".slot"),
-                        GuiUtil.createPermissionItem(config, id), player -> {
+                        GuiUtil.createBasicItem(config, id), player -> {
                             FPlayer fPlayer = FPlayerManager.getFPlayer(player.getUniqueId());
                             switch (config.getString(id + ".page")) {
                                 case "CO_OWNER":

@@ -1,0 +1,40 @@
+tier-1:
+  start: 0
+  finish: 8
+  cost: 50000 # cost in xp
+  raid-length: 3600 # How long a raid will last in seconds
+
+tier-2:
+  start: 9
+  finish: 36
+  cost: 25000
+  raid-length: 1800
+
+tier-3:
+  start: 37
+  finish: 999
+  cost: 15000
+  raid-length: 900
+
+raid-status:
+  raidable: '&a&lRAIDABLE'
+  on-cooldown: '&c&lON COOLDOWN &7(&e{time}&7)'
+
+faction-item:
+  name: '&b&l{faction}'
+  item: skull_item # this will be the player head of the owner
+  data: 3
+  lore:
+    - '&7'
+    - '&7&o((left click to initiate a raid on this faction))'
+    - '&7'
+    - '&f&lRAID STATUS: {status}'
+    - '&7'
+    - '&f&lSTATS:'
+    - ' &7- Online| &6{online-number}&e/&6{total-members}'
+    - ' &7- Upgrades|'
+    - '     &dRaiding: &6{raiding-level}&e/&6{raiding-max-level}'
+    - '     &dFarming: &6{farming-level}&e/&6{farming-max-level}'
+    - '     &dWorld: &6{world-level}&e/&6{world-max-level}'
+    - ' &7- Wealth: &6${worth}'
+    - ' &7- Allies: &6{allies-number}&e/&6{max-allies}'

@@ -4,6 +4,7 @@
 INVITE: 60
 DISBAND: 10
 UN_ALLY: 10
+RAID_ACCEPT: 60 # Player will be set into spectator mode for this amount of time (max) before having to accept or raid being cancelled
 
 #Cooldowns
 CREATE: 600 # 10 minute delay on creating factions

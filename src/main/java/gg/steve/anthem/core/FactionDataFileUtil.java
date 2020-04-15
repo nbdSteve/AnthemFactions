@@ -92,6 +92,10 @@ public class FactionDataFileUtil {
         config.set("upgrades.farming", 0);
         config.set("upgrades.world", 0);
         config.createSection("f-chest");
+        config.set("raid.cooldown", 0);
+        config.set("raid.active-raid.active", false);
+        config.set("raid.active-raid.faction", null);
+        config.set("raid.active-raid.time-remaining", null);
         //Send a nice message
         LogUtil.info("Successfully created a new faction data file: " + fileName + ", actively creating / setting defaults.");
     }

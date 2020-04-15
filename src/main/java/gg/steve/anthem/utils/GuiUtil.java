@@ -53,7 +53,7 @@ public class GuiUtil {
         return null;
     }
 
-    public static ItemStack createPermissionItem(YamlConfiguration config, int id) {
+    public static ItemStack createBasicItem(YamlConfiguration config, int id) {
         ItemBuilderUtil builder = new ItemBuilderUtil(config.getString(id + ".item"), config.getString(id + ".data"));
         builder.addName(config.getString(id + ".name"));
         builder.addLore(config.getStringList(id + ".lore"));

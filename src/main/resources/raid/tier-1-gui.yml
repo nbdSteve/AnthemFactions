@@ -1,0 +1,16 @@
+name: '&5&lTier 1 Factions'
+type: null
+size: 18
+1:
+  slot: 13
+  name: '&c&lExit'
+  page: NONE
+  item: barrier
+  data: 0
+  lore:
+    - '&7'
+    - '&7&o((left click to close this gui))'
+    - '&7'
+  enchantments:
+  item-flags:
+    - hide_attributes

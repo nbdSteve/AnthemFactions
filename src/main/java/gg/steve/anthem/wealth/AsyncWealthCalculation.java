@@ -4,6 +4,7 @@ import gg.steve.anthem.AnthemFactions;
 import gg.steve.anthem.core.Faction;
 import gg.steve.anthem.core.FactionManager;
 import gg.steve.anthem.managers.FileManager;
+import gg.steve.anthem.raid.Tier;
 import gg.steve.anthem.utils.LogUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
@@ -30,6 +31,7 @@ public class AsyncWealthCalculation {
                 faction.setWealth(wealth);
             }
             LogUtil.info("Wealth calculation complete, all faction top data is up to date.");
+            Tier.refreshFactionsForTiers();
         }, 0L, FileManager.get("config").getLong("wealth-calculation-delay") * 20);
     }
 

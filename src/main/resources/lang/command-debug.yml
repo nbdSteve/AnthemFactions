@@ -87,3 +87,6 @@ set-home-not-in-territory:
 
 insufficient-xp:
   - '&5&lFactions &4(&cERROR&4) &f• &7You or your faction does not have sufficient xp to complete that action.'
+
+permission-same-or-higher-rank:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7You can not edit the permissions of a role that is higher or the same as yours.'

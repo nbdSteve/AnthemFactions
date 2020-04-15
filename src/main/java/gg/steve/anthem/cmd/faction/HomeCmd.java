@@ -7,9 +7,9 @@ import gg.steve.anthem.exception.DelayAlreadyActiveException;
 import gg.steve.anthem.exception.NotOnDelayException;
 import gg.steve.anthem.message.CommandDebug;
 import gg.steve.anthem.message.MessageType;
+import gg.steve.anthem.permission.PermissionNode;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
-import gg.steve.anthem.utils.PermissionQueryUtil;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -25,8 +25,8 @@ public class HomeCmd {
             CommandDebug.PLAYER_NOT_FACTION_MEMBER.message(fPlayer);
             return;
         }
-        if (!fPlayer.hasFactionPermission(PermissionQueryUtil.getNode("player.home"))) {
-            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionQueryUtil.getNode("player.home"));
+        if (!fPlayer.hasFactionPermission(PermissionNode.HOME)) {
+            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionNode.HOME.get());
             return;
         }
         if (DelayManager.onDelay(fPlayer.getUUID(), CooldownType.CREATE_TELEPORT)) {
@@ -54,8 +54,8 @@ public class HomeCmd {
             CommandDebug.PLAYER_NOT_FACTION_MEMBER.message(fPlayer);
             return;
         }
-        if (!fPlayer.hasFactionPermission(PermissionQueryUtil.getNode("player.set-home"))) {
-            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionQueryUtil.getNode("player.set-home"));
+        if (!fPlayer.hasFactionPermission(PermissionNode.SET_HOME)) {
+            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionNode.SET_HOME.get());
             return;
         }
         if (fPlayer.isInHomeWorld() && fPlayer.canBuild(fPlayer.getPlayer().getLocation())) {

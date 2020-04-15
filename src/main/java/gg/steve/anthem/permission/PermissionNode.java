@@ -2,11 +2,15 @@ package gg.steve.anthem.permission;
 
 import gg.steve.anthem.core.Faction;
 import gg.steve.anthem.managers.FileManager;
+import gg.steve.anthem.message.CommandDebug;
+import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.role.Role;
 import gg.steve.anthem.utils.LogUtil;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.HumanEntity;
+import org.bukkit.entity.Player;
 import sun.rmi.runtime.Log;
 
 import java.util.ConcurrentModificationException;
@@ -62,6 +66,10 @@ public enum PermissionNode {
 
     public boolean isEditable() {
         return !FileManager.get("fperms-config").getStringList("un-editable-nodes").contains(toString());
+    }
+
+    public boolean hasPermission(CommandSender sender) {
+        return sender.hasPermission(get());
     }
 
     public boolean isEnabled(Faction faction, Role role) {

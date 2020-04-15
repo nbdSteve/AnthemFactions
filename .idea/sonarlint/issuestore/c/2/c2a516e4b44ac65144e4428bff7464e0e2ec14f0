@@ -1,23 +1,31 @@
 
-:
-java:S1643à"Use a StringBuilder instead.(ñ¢ 8Ğ²àï–.
-d
-java:S1192."GDefine a constant instead of duplicating this literal "config" 6 times.(‘·–¸8Ğ²àï–.
 =
-java:S1640Ä"Convert this Map to an EnumMap.(…ª¯¡8¸ØÜã•.
-<
-java:S1640;"Convert this Map to an EnumMap.(â¥ÏÑ8Âü½–—.
+java:S1640«"Convert this Map to an EnumMap.(ïø¹ù8üÊ™İ—.
+k
+java:S3824­"NReplace this "Map.get()" and condition with a call to "Map.computeIfAbsent()".(ÄŒe8–œİ—.
 :
-java:S1643Î"Use a StringBuilder instead.(Ã‘ª÷8Ğ²àï–.
-<
-java:S1640Q"Convert this Map to an EnumMap.(â¥ÏÑ8™ÿ¼–—.
-c
-java:S11929"GDefine a constant instead of duplicating this literal "wealth" 3 times.(é¬„m8Ğ²àï–.
-s
-java:S1192k"QDefine a constant instead of duplicating this literal "faction-members." 9 times.(Ø”’Äûÿÿÿÿ8¸ØÜã•.
+java:S1643ë"Use a StringBuilder instead.(ñ¢ 8Ğ²àï–.
 e
-java:S1192:"HDefine a constant instead of duplicating this literal "xp-bank" 4 times.(ˆäç8’¦‡ñ–.
+java:S1192<"HDefine a constant instead of duplicating this literal "xp-bank" 4 times.(ˆäç8’¦‡ñ–.
+=
+java:S1640¡"Convert this Map to an EnumMap.(ïø¹ù8Ï—İ—.
+d
+java:S11920"GDefine a constant instead of duplicating this literal "config" 6 times.(‘·–¸8Ğ²àï–.
+k
+java:S3824£"NReplace this "Map.get()" and condition with a call to "Map.computeIfAbsent()".(ÄŒe8šù›İ—.
+<
+java:S1640S"Convert this Map to an EnumMap.(â¥ÏÑ8™ÿ¼–—.
+=
+java:S1640Æ"Convert this Map to an EnumMap.(…ª¯¡8¸ØÜã•.
 ?
-java:S1643Ì"Use a StringBuilder instead.(‡´”œÿÿÿÿÿ8Ğ²àï–.
+java:S1643é"Use a StringBuilder instead.(×Êíâşÿÿÿÿ8Ğ²àï–.
+:
+java:S1643Ù"Use a StringBuilder instead.(Ã‘ª÷8Ğ²àï–.
+c
+java:S1192;"GDefine a constant instead of duplicating this literal "wealth" 3 times.(é¬„m8Ğ²àï–.
+s
+java:S1192m"QDefine a constant instead of duplicating this literal "faction-members." 9 times.(Ø”’Äûÿÿÿÿ8¸ØÜã•.
+<
+java:S1640="Convert this Map to an EnumMap.(â¥ÏÑ8Âü½–—.
 ?
-java:S1643Ş"Use a StringBuilder instead.(×Êíâşÿÿÿÿ8Ğ²àï–.
+java:S1643×"Use a StringBuilder instead.(‡´”œÿÿÿÿÿ8Ğ²àï–.

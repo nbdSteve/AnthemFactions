@@ -2,9 +2,9 @@ package gg.steve.anthem.cmd.upgrade;
 
 import gg.steve.anthem.message.CommandDebug;
 import gg.steve.anthem.message.MessageType;
+import gg.steve.anthem.permission.PermissionNode;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
-import gg.steve.anthem.utils.PermissionQueryUtil;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -20,8 +20,8 @@ public class UpgradeCmd {
             CommandDebug.PLAYER_NOT_FACTION_MEMBER.message(fPlayer);
             return;
         }
-        if (!fPlayer.hasFactionPermission(PermissionQueryUtil.getNode("player.upgrade"))) {
-            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionQueryUtil.getNode("player.upgrade"));
+        if (!fPlayer.hasFactionPermission(PermissionNode.UPGRADE)) {
+            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionNode.UPGRADE.get());
             return;
         }
         fPlayer.getFaction().openUpgradeGui(fPlayer);

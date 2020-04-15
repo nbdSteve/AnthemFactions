@@ -3,10 +3,10 @@ package gg.steve.anthem.cmd.faction;
 import gg.steve.anthem.core.FactionManager;
 import gg.steve.anthem.message.CommandDebug;
 import gg.steve.anthem.message.MessageType;
+import gg.steve.anthem.permission.PermissionNode;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.role.Role;
-import gg.steve.anthem.utils.PermissionQueryUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -28,8 +28,8 @@ public class DemoteCmd {
             CommandDebug.PLAYER_NOT_FACTION_MEMBER.message(fPlayer);
             return;
         }
-        if (!fPlayer.hasFactionPermission(PermissionQueryUtil.getNode("player.demote"))) {
-            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionQueryUtil.getNode("player.demote"));
+        if (!fPlayer.hasFactionPermission(PermissionNode.DEMOTE)) {
+            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionNode.DEMOTE.get());
             return;
         }
         Player target = Bukkit.getPlayer(args[1]);

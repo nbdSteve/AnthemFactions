@@ -3,9 +3,9 @@ package gg.steve.anthem.cmd.faction;
 import gg.steve.anthem.AnthemFactions;
 import gg.steve.anthem.message.CommandDebug;
 import gg.steve.anthem.message.MessageType;
+import gg.steve.anthem.permission.PermissionNode;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
-import gg.steve.anthem.utils.PermissionQueryUtil;
 import gg.steve.anthem.utils.XpUtil;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -22,8 +22,8 @@ public class WithdrawCmd {
             CommandDebug.PLAYER_NOT_FACTION_MEMBER.message(fPlayer);
             return;
         }
-        if (!fPlayer.hasFactionPermission(PermissionQueryUtil.getNode("player.withdraw"))) {
-            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionQueryUtil.getNode("player.withdraw"));
+        if (!fPlayer.hasFactionPermission(PermissionNode.WITHDRAW)) {
+            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionNode.WITHDRAW.get());
             return;
         }
         int withdraw;

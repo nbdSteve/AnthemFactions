@@ -1,6 +1,5 @@
 package gg.steve.anthem.cmd.faction;
 
-import gg.steve.anthem.core.FactionManager;
 import gg.steve.anthem.message.CommandDebug;
 import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.permission.PermissionNode;
@@ -25,7 +24,6 @@ public class PermsCmd {
             MessageType.PERMISSION_DEBUG.message(fPlayer, PermissionNode.PERMS.get());
             return;
         }
-        FactionManager.getPermissionGui().setFaction(fPlayer.getFaction());
-        FactionManager.getPermissionGui().open(fPlayer.getPlayer());
+        fPlayer.getFaction().getPermsMenuGui().open(fPlayer.getPlayer());
     }
 }

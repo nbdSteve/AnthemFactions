@@ -3,6 +3,7 @@ package gg.steve.anthem.core;
 import gg.steve.anthem.disband.FactionDeletion;
 import gg.steve.anthem.managers.FileManager;
 import gg.steve.anthem.message.MessageType;
+import gg.steve.anthem.permission.PermissionGui;
 import gg.steve.anthem.permission.PermissionPageGui;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
@@ -39,7 +40,8 @@ public class Faction {
     private Map<UpgradeType, Upgrade> upgrades;
     private UpgradeGui upgradeGui;
     private FChest fChest;
-    private Map<Role, PermissionPageGui> permissionsGui;
+    private Map<Role, PermissionPageGui> permissionsPageGuiMap;
+    private PermissionGui permsMenuGui;
 
     public Faction(UUID owner, String name, UUID id) {
         this.id = id;
@@ -62,6 +64,7 @@ public class Faction {
         for (UpgradeType type : UpgradeType.values()) {
             upgrades.put(type, new Upgrade(type, this));
         }
+        this.permsMenuGui = new PermissionGui(this);
     }
 
     public Faction(UUID id) {
@@ -84,6 +87,7 @@ public class Faction {
         for (UpgradeType type : UpgradeType.values()) {
             upgrades.put(type, new Upgrade(type, this));
         }
+        this.permsMenuGui = new PermissionGui(this);
     }
 
     public boolean isMember(FPlayer fPlayer) {
@@ -413,23 +417,23 @@ public class Faction {
     }
 
     public void openPermissionGui(FPlayer fPlayer, Role role) {
-        if (permissionsGui == null) {
-            this.permissionsGui = new HashMap<>();
-            permissionsGui.put(role, new PermissionPageGui(this, role));
-        } else if (permissionsGui.get(role) == null) {
-            permissionsGui.put(role, new PermissionPageGui(this, role));
+        if (permissionsPageGuiMap == null) {
+            this.permissionsPageGuiMap = new HashMap<>();
+            permissionsPageGuiMap.put(role, new PermissionPageGui(this, role));
+        } else if (permissionsPageGuiMap.get(role) == null) {
+            permissionsPageGuiMap.put(role, new PermissionPageGui(this, role));
         }
-        permissionsGui.get(role).open(fPlayer.getPlayer());
+        permissionsPageGuiMap.get(role).open(fPlayer.getPlayer());
     }
 
     public PermissionPageGui getPermissionGui(Role role) {
-        if (permissionsGui == null) {
-            this.permissionsGui = new HashMap<>();
-            permissionsGui.put(role, new PermissionPageGui(this, role));
-        } else if (permissionsGui.get(role) == null) {
-            permissionsGui.put(role, new PermissionPageGui(this, role));
+        if (permissionsPageGuiMap == null) {
+            this.permissionsPageGuiMap = new HashMap<>();
+            permissionsPageGuiMap.put(role, new PermissionPageGui(this, role));
+        } else if (permissionsPageGuiMap.get(role) == null) {
+            permissionsPageGuiMap.put(role, new PermissionPageGui(this, role));
         }
-        return permissionsGui.get(role);
+        return permissionsPageGuiMap.get(role);
     }
 
     public void openfChest(FPlayer fPlayer) {
@@ -440,5 +444,13 @@ public class Faction {
     public FChest getfChest() {
         if (this.fChest == null) this.fChest = FChestManager.loadFChest(this);
         return this.fChest;
+    }
+
+    public PermissionGui getPermsMenuGui() {
+        return permsMenuGui;
+    }
+
+    public boolean isWilderness() {
+        return FactionManager.factionIsWilderness(this);
     }
 }

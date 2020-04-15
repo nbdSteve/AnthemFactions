@@ -3,15 +3,14 @@ package gg.steve.anthem.cmd.admin;
 import gg.steve.anthem.core.FactionManager;
 import gg.steve.anthem.message.CommandDebug;
 import gg.steve.anthem.message.MessageType;
-import gg.steve.anthem.utils.MessageUtil;
-import gg.steve.anthem.utils.PermissionQueryUtil;
+import gg.steve.anthem.permission.PermissionNode;
 import org.bukkit.command.CommandSender;
 
 public class IdCmd {
 
     public static void getId(CommandSender sender, String[] args) {
-        if (!PermissionQueryUtil.hasPermission(sender, "admin.id-cmd")) {
-            MessageType.PERMISSION_DEBUG.message(sender, PermissionQueryUtil.getNode("admin.id-cmd"));
+        if (!PermissionNode.ID.hasPermission(sender)) {
+            MessageType.PERMISSION_DEBUG.message(sender, PermissionNode.ID.get());
             return;
         }
         if (args.length != 2) {

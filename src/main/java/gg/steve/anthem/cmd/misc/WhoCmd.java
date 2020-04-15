@@ -5,11 +5,11 @@ import gg.steve.anthem.core.Faction;
 import gg.steve.anthem.core.FactionManager;
 import gg.steve.anthem.message.CommandDebug;
 import gg.steve.anthem.message.MessageType;
+import gg.steve.anthem.permission.PermissionNode;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.relation.RelationType;
 import gg.steve.anthem.upgrade.UpgradeType;
-import gg.steve.anthem.utils.PermissionQueryUtil;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -21,8 +21,8 @@ public class WhoCmd {
             return;
         }
         FPlayer fPlayer = FPlayerManager.getFPlayer(((Player) sender).getUniqueId());
-        if (!fPlayer.hasFactionPermission(PermissionQueryUtil.getNode("player.who"))) {
-            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionQueryUtil.getNode("player.who"));
+        if (!fPlayer.hasFactionPermission(PermissionNode.WHO)) {
+            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionNode.WHO.get());
             return;
         }
         if (args.length != 2) {

@@ -6,7 +6,7 @@
 
     <groupId>gg.steve.anthem</groupId>
     <artifactId>AnthemFactions</artifactId>
-    <version>0.2.5</version>
+    <version>0.2.8</version>
     <packaging>jar</packaging>
 
     <name>AnthemFactions</name>

@@ -2,6 +2,7 @@ package gg.steve.anthem.player;
 
 import gg.steve.anthem.managers.FileManager;
 import gg.steve.anthem.message.MessageType;
+import gg.steve.anthem.permission.PermissionNode;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -18,6 +19,10 @@ public class PlayerEventListener implements Listener {
     public void placeBlock(BlockPlaceEvent event) {
         FPlayer fPlayer = FPlayerManager.getFPlayer(event.getPlayer().getUniqueId());
         if (!fPlayer.inFactionWorld()) return;
+        if (fPlayer.isInHomeWorld() && fPlayer.canBuild(event.getBlock().getLocation()) && !fPlayer.hasFactionPermission(PermissionNode.BUILD)) {
+            event.setCancelled(true);
+            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionNode.BUILD.get());
+        }
         if (fPlayer.isInHomeWorld() && !fPlayer.canBuild(event.getBlock().getLocation())) {
             event.setCancelled(true);
             MessageType.BUILD_BLOCKED_RAID.message(fPlayer);
@@ -33,6 +38,10 @@ public class PlayerEventListener implements Listener {
     public void breakBlock(BlockBreakEvent event) {
         FPlayer fPlayer = FPlayerManager.getFPlayer(event.getPlayer().getUniqueId());
         if (!fPlayer.inFactionWorld()) return;
+        if (fPlayer.isInHomeWorld() && fPlayer.canBuild(event.getBlock().getLocation()) && !fPlayer.hasFactionPermission(PermissionNode.BUILD)) {
+            event.setCancelled(true);
+            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionNode.BUILD.get());
+        }
         if (fPlayer.isInHomeWorld() && !fPlayer.canBuild(event.getBlock().getLocation())) {
             event.setCancelled(true);
             MessageType.BUILD_BLOCKED_RAID.message(fPlayer);
@@ -48,6 +57,10 @@ public class PlayerEventListener implements Listener {
     public void bucketPlace(PlayerBucketEmptyEvent event) {
         FPlayer fPlayer = FPlayerManager.getFPlayer(event.getPlayer().getUniqueId());
         if (!fPlayer.inFactionWorld()) return;
+        if (fPlayer.isInHomeWorld() && fPlayer.canBuild(event.getBlock().getLocation()) && !fPlayer.hasFactionPermission(PermissionNode.BUILD)) {
+            event.setCancelled(true);
+            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionNode.BUILD.get());
+        }
         if (fPlayer.isInHomeWorld() && !fPlayer.canBuild(event.getBlockClicked().getLocation())) {
             event.setCancelled(true);
             MessageType.BUILD_BLOCKED_RAID.message(fPlayer);
@@ -63,6 +76,10 @@ public class PlayerEventListener implements Listener {
     public void bucketFill(PlayerBucketFillEvent event) {
         FPlayer fPlayer = FPlayerManager.getFPlayer(event.getPlayer().getUniqueId());
         if (!fPlayer.inFactionWorld()) return;
+        if (fPlayer.isInHomeWorld() && fPlayer.canBuild(event.getBlock().getLocation()) && !fPlayer.hasFactionPermission(PermissionNode.BUILD)) {
+            event.setCancelled(true);
+            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionNode.BUILD.get());
+        }
         if (fPlayer.isInHomeWorld() && !fPlayer.canBuild(event.getBlockClicked().getLocation())) {
             event.setCancelled(true);
             MessageType.BUILD_BLOCKED_RAID.message(fPlayer);
@@ -79,6 +96,10 @@ public class PlayerEventListener implements Listener {
         if (event.getPlayer() == null) return;
         FPlayer fPlayer = FPlayerManager.getFPlayer(event.getPlayer().getUniqueId());
         if (!fPlayer.inFactionWorld()) return;
+        if (fPlayer.isInHomeWorld() && fPlayer.canBuild(event.getBlock().getLocation()) && !fPlayer.hasFactionPermission(PermissionNode.BUILD)) {
+            event.setCancelled(true);
+            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionNode.BUILD.get());
+        }
         if (fPlayer.isInHomeWorld() && !fPlayer.canBuild(event.getBlock().getLocation())) {
             event.setCancelled(true);
             MessageType.BUILD_BLOCKED_RAID.message(fPlayer);

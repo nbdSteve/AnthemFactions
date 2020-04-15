@@ -12,9 +12,9 @@ import gg.steve.anthem.exception.NotOnDelayException;
 import gg.steve.anthem.managers.FileManager;
 import gg.steve.anthem.message.CommandDebug;
 import gg.steve.anthem.message.MessageType;
+import gg.steve.anthem.permission.PermissionNode;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
-import gg.steve.anthem.utils.PermissionQueryUtil;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -29,8 +29,8 @@ public class CreateCmd {
         }
         FPlayer fPlayer = FPlayerManager.getFPlayer(((Player) sender).getUniqueId());
         UUID uuid = fPlayer.getUUID();
-        if (!fPlayer.hasFactionPermission(PermissionQueryUtil.getNode("player.create"))) {
-            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionQueryUtil.getNode("player.create"));
+        if (!fPlayer.hasFactionPermission(PermissionNode.CREATE)) {
+            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionNode.CREATE.get());
             return;
         }
         if (DelayManager.onDelay(uuid, CooldownType.CREATE_TELEPORT)) {

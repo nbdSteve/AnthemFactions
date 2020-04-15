@@ -3,9 +3,9 @@ package gg.steve.anthem.cmd.faction;
 import gg.steve.anthem.chat.ChatType;
 import gg.steve.anthem.message.CommandDebug;
 import gg.steve.anthem.message.MessageType;
+import gg.steve.anthem.permission.PermissionNode;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
-import gg.steve.anthem.utils.PermissionQueryUtil;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -31,8 +31,9 @@ public class ChatCmd {
             CommandDebug.CHAT_NO_FACTION.message(fPlayer);
             return;
         }
-        if (!fPlayer.hasFactionPermission(PermissionQueryUtil.getNode("player.chat-" + args[1]))) {
-            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionQueryUtil.getNode("player.chat-" + args[1]));
+        PermissionNode node = PermissionNode.valueOf("CHAT_" + args[1].toUpperCase());
+        if (!fPlayer.hasFactionPermission(node)) {
+            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, node.get());
             return;
         }
         fPlayer.setChatChannel(ChatType.valueOf(args[1].toUpperCase()));

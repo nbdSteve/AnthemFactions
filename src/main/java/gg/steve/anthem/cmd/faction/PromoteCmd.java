@@ -1,12 +1,11 @@
 package gg.steve.anthem.cmd.faction;
 
-import gg.steve.anthem.core.FactionManager;
 import gg.steve.anthem.message.CommandDebug;
 import gg.steve.anthem.message.MessageType;
+import gg.steve.anthem.permission.PermissionNode;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.role.Role;
-import gg.steve.anthem.utils.PermissionQueryUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -23,12 +22,12 @@ public class PromoteCmd {
             CommandDebug.INCORRECT_ARGUMENTS.message(fPlayer);
             return;
         }
-        if (fPlayer.getFaction().getId().equals(FactionManager.getWildernessId())) {
+        if (!fPlayer.hasFaction()) {
             CommandDebug.PLAYER_NOT_FACTION_MEMBER.message(fPlayer);
             return;
         }
-        if (!fPlayer.hasFactionPermission(PermissionQueryUtil.getNode("player.promote"))) {
-            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionQueryUtil.getNode("player.promote"));
+        if (!fPlayer.hasFactionPermission(PermissionNode.PROMOTE)) {
+            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionNode.PROMOTE.get());
             return;
         }
         Player target = Bukkit.getPlayer(args[1]);

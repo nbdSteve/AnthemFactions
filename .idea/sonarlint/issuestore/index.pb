@@ -85,8 +85,6 @@ k
 ;src/main/java/gg/steve/anthem/cooldown/CooldownManager.java,9\6\96789b9b35c029e908b66f410ce910842bd18946
 s
 Csrc/main/java/gg/steve/anthem/exception/NotOnCooldownException.java,4\f\4f4303455030f945c338efa374459b69d8de4ddc
-j
-:src/main/java/gg/steve/anthem/cmd/unfinished/PermsCmd.java,4\c\4c93281833788ff9a2fb859f1515186366bf0826
 i
 9src/main/java/gg/steve/anthem/cmd/unfinished/RaidCmd.java,6\9\69b0a898bc03a8f978a44536b0cb62292cf7a742
 m
@@ -191,3 +189,11 @@ l
 <src/main/java/gg/steve/anthem/upgrade/ffly/FFlyListener.java,5\b\5bc56335ab7aa4ae0852a7e04d648bbed1e31862
 f
 6src/main/java/gg/steve/anthem/cmd/upgrade/FFlyCmd.java,b\f\bf8e3231510f23452880ffdcf65538e32816d628
+k
+;src/main/java/gg/steve/anthem/permission/PermissionGui.java,9\1\918ebd023ac8663c018843bb4aa4c39a5b075c8d
+l
+<src/main/java/gg/steve/anthem/permission/PermissionNode.java,7\b\7bcd20c75879ef04239a85ab9a4afc76809066fb
+o
+?src/main/java/gg/steve/anthem/permission/PermissionPageGui.java,f\a\fac6b9a5eb34ffe715d2a4540ef338f4241ee736
+g
+7src/main/java/gg/steve/anthem/cmd/faction/PermsCmd.java,a\e\ae62908bc306af02f56fb577154c4dce54185240

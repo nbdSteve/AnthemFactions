@@ -2,10 +2,10 @@ package gg.steve.anthem.cmd.faction;
 
 import gg.steve.anthem.message.CommandDebug;
 import gg.steve.anthem.message.MessageType;
+import gg.steve.anthem.permission.PermissionNode;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.role.Role;
-import gg.steve.anthem.utils.PermissionQueryUtil;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -17,8 +17,8 @@ public class LeaveCmd {
             return;
         }
         FPlayer fPlayer = FPlayerManager.getFPlayer(((Player) sender).getUniqueId());
-        if (!fPlayer.hasFactionPermission(PermissionQueryUtil.getNode("player.leave"))) {
-            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionQueryUtil.getNode("player.leave"));
+        if (!fPlayer.hasFactionPermission(PermissionNode.LEAVE)) {
+            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionNode.LEAVE.get());
             return;
         }
         if (!fPlayer.hasFaction()) {

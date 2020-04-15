@@ -7,10 +7,10 @@ import gg.steve.anthem.core.FactionManager;
 import gg.steve.anthem.exception.NotOnCooldownException;
 import gg.steve.anthem.message.CommandDebug;
 import gg.steve.anthem.message.MessageType;
+import gg.steve.anthem.permission.PermissionNode;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.role.Role;
-import gg.steve.anthem.utils.PermissionQueryUtil;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -30,8 +30,8 @@ public class AcceptCmd {
             CommandDebug.CAN_NOT_ACCEPT_INVITE.message(fPlayer);
             return;
         }
-        if (!fPlayer.hasFactionPermission(PermissionQueryUtil.getNode("player.accept"))) {
-            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionQueryUtil.getNode("player.accept"));
+        if (!fPlayer.hasFactionPermission(PermissionNode.ACCEPT)) {
+            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionNode.ACCEPT.get());
             return;
         }
         if (!CooldownManager.isOnCooldown(uuid, CooldownType.INVITE)) {

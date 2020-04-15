@@ -41,7 +41,8 @@ public enum CommandDebug {
     UN_ALLY_REQUIRED("un-ally-required"),
     NOT_ALLIES("not-allies"),
     SET_HOME_NOT_IN_TERRITORY("set-home-not-in-territory"),
-    INSUFFICIENT_XP("insufficient-xp");
+    INSUFFICIENT_XP("insufficient-xp"),
+    PERMISSION_SAME_OR_HIGHER_RANK("permission-same-or-higher-rank");
 
     private final String path;
     private List<String> placeholders;

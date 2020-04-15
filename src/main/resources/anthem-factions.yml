@@ -4,7 +4,7 @@ faction-world-generation:
   plot-size: 128 # this is 128 * 128 big
   faction-area: 64 # this is 64 * 64
   seed: 0
-  spawn: 0:3:0 # spawn location in this format x:y:z
+  spawn: 0:2:0 # spawn location in this format x:y:z
   world-border:
     enabled: true
     center: 0.0:0.0

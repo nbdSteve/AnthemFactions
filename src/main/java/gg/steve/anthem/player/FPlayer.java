@@ -3,6 +3,7 @@ package gg.steve.anthem.player;
 import gg.steve.anthem.chat.ChatType;
 import gg.steve.anthem.core.Faction;
 import gg.steve.anthem.core.FactionManager;
+import gg.steve.anthem.permission.PermissionNode;
 import gg.steve.anthem.role.Role;
 import gg.steve.anthem.world.FWorld;
 import org.bukkit.Bukkit;
@@ -74,6 +75,10 @@ public class FPlayer {
 
     public boolean hasFactionPermission(String node) {
         return this.faction.roleHasPermission(this.role, node);
+    }
+
+    public boolean hasFactionPermission(PermissionNode node) {
+        return this.faction.roleHasPermission(this.role, node.get());
     }
 
     public ChatType getChatChannel() {

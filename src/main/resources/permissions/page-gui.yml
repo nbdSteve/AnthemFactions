@@ -1,0 +1,28 @@
+name: '&5&l{page} Permissions'
+type: 'null'
+size: 36
+node-enabled:
+  item: stained_glass_pane
+  data: 5
+  lore:
+    - '&7'
+    - '&7&o((left click to &cREMOVE &7&opermission to &f{page}&7&o)).'
+    - '&7'
+node-disabled:
+  item: stained_glass_pane
+  data: 14
+  lore:
+    - '&7'
+    - '&7&o((left click to &aGRANT &7&opermission to &f{page}&7&o)).'
+    - '&7'
+node-un-editable:
+  item: stained_glass_pane
+  data: 15
+  lore:
+    - '&7'
+    - '&7&o((permission can not be edited&7&o)).'
+    - '&7'
+node-config:
+  name: '&b&l{node-type}'
+  enchantments:
+  item-flags:

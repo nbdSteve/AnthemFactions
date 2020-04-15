@@ -3,6 +3,7 @@ package gg.steve.anthem.core;
 import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.create.FactionCreation;
 import gg.steve.anthem.managers.FileManager;
+import gg.steve.anthem.permission.PermissionGui;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.utils.LogUtil;
@@ -15,6 +16,7 @@ import java.util.*;
 public class FactionManager {
     private static Map<UUID, Faction> factions;
     private static Wilderness wilderness;
+    private static PermissionGui permissionGui;
 
     public static void init() {
         factions = new HashMap<>();
@@ -27,6 +29,7 @@ public class FactionManager {
                 factions.put(id, new Faction(id));
             }
         }
+        permissionGui = new PermissionGui();
     }
 
     public static void createFaction(String name, Player owner, UUID id) {
@@ -113,5 +116,9 @@ public class FactionManager {
 
     public static FWorld getFWorld(UUID factionUUID) {
         return factions.get(factionUUID).getFWorld();
+    }
+
+    public static PermissionGui getPermissionGui() {
+        return permissionGui;
     }
 }

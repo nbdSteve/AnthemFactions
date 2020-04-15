@@ -45,11 +45,27 @@ chat-prefix:
   ally: '&3&l[&b&lAC&3&l] &b{role}{faction}&r {player}&7| &f'
   faction: '&2&l[&a&lFC&2&l] &a{role}&r{player}&7| &f'
 
-default-faction-permissions:
+default-faction-permissions: # sorry this is a bit aids
   owner:
     - factions.player.disband
     - factions.player.tag
-  co_owner:
+    - factions.player.home
+    - factions.player.who
+    - factions.player.list
+    - factions.player.build
+    - factions.player.raid.join
+    - factions.chat.faction
+    - factions.chat.ally
+    - factions.chat.public
+    - factions.player.leave
+    - factions.player.top
+    - factions.player.deposit
+    - factions.player.xp-query
+    - factions.player.upgrade
+    - factions.player.fly
+    - factions.player.kick
+    - factions.player.invite
+    - factions.player.chest
     - factions.player.set-home
     - factions.player.promote
     - factions.player.demote
@@ -59,7 +75,50 @@ default-faction-permissions:
     - factions.player.neutral
     - factions.player.un-ally
     - factions.player.withdraw
+    - factions.player.perms
+  co_owner:
+    - factions.player.home
+    - factions.player.who
+    - factions.player.list
+    - factions.player.build
+    - factions.player.raid.join
+    - factions.chat.faction
+    - factions.chat.ally
+    - factions.chat.public
+    - factions.player.leave
+    - factions.player.top
+    - factions.player.deposit
+    - factions.player.xp-query
+    - factions.player.upgrade
+    - factions.player.fly
+    - factions.player.kick
+    - factions.player.invite
+    - factions.player.chest
+    - factions.player.set-home
+    - factions.player.promote
+    - factions.player.demote
+    - factions.player.raid
+    - factions.player.ally
+    - factions.player.enemy
+    - factions.player.neutral
+    - factions.player.un-ally
+    - factions.player.withdraw
+    - factions.player.perms
   moderator:
+    - factions.player.home
+    - factions.player.who
+    - factions.player.list
+    - factions.player.build
+    - factions.player.raid.join
+    - factions.chat.faction
+    - factions.chat.ally
+    - factions.chat.public
+    - factions.player.leave
+    - factions.player.top
+    - factions.player.deposit
+    - factions.player.xp-query
+    - factions.player.upgrade
+    - factions.player.fly
     - factions.player.kick
     - factions.player.invite
     - factions.player.chest
@@ -81,7 +140,6 @@ default-faction-permissions:
   wilderness:
     - factions.player.create
     - factions.player.accept
-    - factions.player.leave
     - factions.player.who
     - factions.player.list
     - factions.chat.public

@@ -17,13 +17,13 @@ public class UpgradeGui extends AbstractGui {
      * Constructor the create a new Gui
      */
     public UpgradeGui(Faction faction) {
-        super(FileManager.get("upgrade-gui"), InventoryType.valueOf(FileManager.get("upgrade-gui").getString("type")), FileManager.get("upgrade-gui").getInt("size"));
+        super(FileManager.get("upgrade-gui"), FileManager.get("upgrade-gui").getString("type"), FileManager.get("upgrade-gui").getInt("size"));
         this.faction = faction;
         for (int i = 1; i <= config.getInt("size"); i++) {
             int id = i;
             try {
                 setItemInSlot(config.getInt(id + ".slot"),
-                        GuiUtil.createItem(config, id, faction), player -> {
+                        GuiUtil.createUpgradeItem(config, id, faction), player -> {
                             switch (config.getString(id + ".upgrade")) {
                                 case "WORLD":
                                     UpgradeType.WORLD.onClick(faction.getUpgrade(UpgradeType.WORLD), fPlayer);
@@ -35,7 +35,7 @@ public class UpgradeGui extends AbstractGui {
                                     UpgradeType.RAIDING.onClick(faction.getUpgrade(UpgradeType.RAIDING), fPlayer);
                                     break;
                                 default:
-                                    fPlayer.getPlayer().closeInventory();
+                                    player.closeInventory();
                                     break;
                             }
                         });
@@ -54,7 +54,7 @@ public class UpgradeGui extends AbstractGui {
             int id = i;
             try {
                 setItemInSlot(config.getInt(id + ".slot"),
-                        GuiUtil.createItem(config, id, faction), player -> {
+                        GuiUtil.createUpgradeItem(config, id, faction), player -> {
                             switch (config.getString(id + ".upgrade")) {
                                 case "WORLD":
                                     UpgradeType.WORLD.onClick(faction.getUpgrade(UpgradeType.WORLD), fPlayer);
@@ -66,7 +66,7 @@ public class UpgradeGui extends AbstractGui {
                                     UpgradeType.RAIDING.onClick(faction.getUpgrade(UpgradeType.RAIDING), fPlayer);
                                     break;
                                 default:
-                                    fPlayer.getPlayer().closeInventory();
+                                    player.closeInventory();
                                     break;
                             }
                         });

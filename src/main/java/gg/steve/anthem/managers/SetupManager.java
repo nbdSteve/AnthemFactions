@@ -36,7 +36,6 @@ public class SetupManager {
         // general files
         fileManager.add("config", "anthem-factions.yml");
         fileManager.add("lang", "lang.yml");
-        fileManager.add("permissions", "permissions.yml");
         fileManager.add("cooldowns", "cooldowns.yml");
         fileManager.add("worth", "worth.yml");
         // load lang files
@@ -48,6 +47,11 @@ public class SetupManager {
         fileManager.add("upgrade-config", "upgrades" + File.separator + "config.yml");
         fileManager.add("upgrade-gui", "upgrades" + File.separator + "gui.yml");
         fileManager.add("crop-config", "upgrades" + File.separator + "plant-xp.yml");
+        // load permissions files
+        fileManager.add("permissions", "permissions" + File.separator + "permissions.yml");
+        fileManager.add("fperms-gui", "permissions" + File.separator + "fperms-gui.yml");
+        fileManager.add("fperms-config", "permissions" + File.separator + "config.yml");
+        fileManager.add("fperms-page-gui", "permissions" + File.separator + "page-gui.yml");
         // load all of the factions for the server
         FactionManager.init();
         FPlayerManager.init();

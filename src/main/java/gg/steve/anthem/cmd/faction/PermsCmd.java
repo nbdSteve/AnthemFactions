@@ -1,18 +1,17 @@
-package gg.steve.anthem.cmd.upgrade;
+package gg.steve.anthem.cmd.faction;
 
+import gg.steve.anthem.core.FactionManager;
 import gg.steve.anthem.message.CommandDebug;
 import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.permission.PermissionNode;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
-import gg.steve.anthem.upgrade.UpgradeType;
-import gg.steve.anthem.utils.PermissionQueryUtil;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class FChestCmd {
+public class PermsCmd {
 
-    public static void chest(CommandSender sender) {
+    public static void perms(CommandSender sender) {
         if (!(sender instanceof Player)) {
             CommandDebug.ONLY_PLAYERS_CAN_RUN_COMMAND.message(sender);
             return;
@@ -22,14 +21,11 @@ public class FChestCmd {
             CommandDebug.PLAYER_NOT_FACTION_MEMBER.message(fPlayer);
             return;
         }
-        if (fPlayer.getFaction().getUpgrade(UpgradeType.RAIDING).getLevel() < 2) {
-            MessageType.INSUFFICIENT_UPGRADE_LEVEL.message(fPlayer, UpgradeType.RAIDING.toString(), "2");
+        if (!fPlayer.hasFactionPermission(PermissionNode.PERMS)) {
+            MessageType.PERMISSION_DEBUG.message(fPlayer, PermissionNode.PERMS.get());
             return;
         }
-        if (!fPlayer.hasFactionPermission(PermissionNode.CHEST)) {
-            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionNode.CHEST.get());
-            return;
-        }
-        fPlayer.getFaction().openfChest(fPlayer);
+        FactionManager.getPermissionGui().setFaction(fPlayer.getFaction());
+        FactionManager.getPermissionGui().open(fPlayer.getPlayer());
     }
 }

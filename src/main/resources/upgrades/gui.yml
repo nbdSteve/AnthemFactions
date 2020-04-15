@@ -71,4 +71,3 @@ size: 5
   enchantments:
   item-flags:
     - hide_attributes
-  close: true

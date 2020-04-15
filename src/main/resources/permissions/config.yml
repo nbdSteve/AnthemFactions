@@ -1,0 +1,39 @@
+nodes-in-gui: # Put all of the nodes that are configurable here, do not put wilderness nodes here.
+  - DISBAND
+  - TAG
+  - PROMOTE
+  - DEMOTE
+  - ALLY
+  - ENEMY
+  - NEUTRAL
+  - UN_ALLY
+  - UPGRADE
+  - CHEST
+  - RAID
+  - RAID_JOIN
+  - FLY
+  - WITHDRAW
+  - DEPOSIT
+  - SET_HOME
+  - HOME
+  - KICK
+  - INVITE
+  - BUILD
+  - LEAVE
+  - XP_QUERY
+  - CHAT_ALLY
+  - CHAT_FACTION
+  - WHO
+  - LIST
+  - CHAT_PUBLIC
+  - TOP
+  - ACCEPT
+  - CREATE
+
+un-editable-nodes: # nodes that will always be set to true regardless of faction
+  - WHO
+  - LIST
+  - CHAT_PUBLIC
+  - TOP
+  - ACCEPT
+  - CREATE

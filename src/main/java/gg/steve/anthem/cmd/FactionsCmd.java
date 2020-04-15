@@ -10,6 +10,7 @@ import gg.steve.anthem.cmd.relational.AllyCmd;
 import gg.steve.anthem.cmd.relational.EnemyCmd;
 import gg.steve.anthem.cmd.relational.NeutralCmd;
 import gg.steve.anthem.cmd.relational.UnAllyCmd;
+import gg.steve.anthem.cmd.faction.PermsCmd;
 import gg.steve.anthem.cmd.upgrade.FChestCmd;
 import gg.steve.anthem.cmd.upgrade.FFlyCmd;
 import gg.steve.anthem.cmd.upgrade.UpgradeCmd;
@@ -45,6 +46,7 @@ public class FactionsCmd implements CommandExecutor {
                     UpgradeCmd.upgradeCmd(sender);
                     break;
                 case "perms":
+                    PermsCmd.perms(sender);
                     break;
                 case "disband":
                     DisbandCmd.disband(sender);

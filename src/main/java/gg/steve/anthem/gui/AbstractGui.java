@@ -1,5 +1,6 @@
 package gg.steve.anthem.gui;
 
+import gg.steve.anthem.role.Role;
 import gg.steve.anthem.utils.ColorUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -28,12 +29,23 @@ public class AbstractGui {
     /**
      * Constructor the create a new Gui
      */
-    public AbstractGui(YamlConfiguration config, InventoryType type, Integer... size) {
+    public AbstractGui(YamlConfiguration config, String type, Integer... size) {
         this.inventoryID = UUID.randomUUID();
-        if (type != null) {
-            this.inventory = Bukkit.createInventory(null, type, ColorUtil.colorize(config.getString("name")));
+        if (!type.equalsIgnoreCase("null")) {
+            this.inventory = Bukkit.createInventory(null, InventoryType.valueOf(type), ColorUtil.colorize(config.getString("name")));
         } else {
             this.inventory = Bukkit.createInventory(null, size[0], ColorUtil.colorize(config.getString("name")));
+        }
+        this.clickActions = new HashMap<>();
+        inventoriesByID.put(getInventoryID(), this);
+    }
+
+    public AbstractGui(YamlConfiguration config, String type, Role role, Integer... size) {
+        this.inventoryID = UUID.randomUUID();
+        if (!type.equalsIgnoreCase("null")) {
+            this.inventory = Bukkit.createInventory(null, InventoryType.valueOf(type), ColorUtil.colorize(config.getString("name")));
+        } else {
+            this.inventory = Bukkit.createInventory(null, size[0], ColorUtil.colorize(config.getString("name").replace("{page}", role.toString())));
         }
         this.clickActions = new HashMap<>();
         inventoriesByID.put(getInventoryID(), this);

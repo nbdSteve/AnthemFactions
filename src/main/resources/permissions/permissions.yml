@@ -26,6 +26,10 @@ player:
   upgrade: factions.player.upgrade
   chest: factions.player.chest
   fly: factions.player.fly
+  tag: factions.player.tag
+  raid: factions.player.raid
+  raid-join: factions.player.raid-join
+  perms: factions.player.perms
 
 admin:
   id-cmd: factions.admin.id

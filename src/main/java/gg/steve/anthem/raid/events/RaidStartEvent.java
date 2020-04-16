@@ -1,7 +1,8 @@
 package gg.steve.anthem.raid.events;
 
-import com.sun.webkit.dom.EventImpl;
 import gg.steve.anthem.core.Faction;
+import gg.steve.anthem.player.FPlayer;
+import gg.steve.anthem.raid.FRaid;
 import gg.steve.anthem.raid.Tier;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
@@ -10,15 +11,19 @@ import org.bukkit.event.HandlerList;
 public class RaidStartEvent extends Event implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
 
+    private FRaid raid;
     private Faction defendingFaction;
     private Faction raidingFaction;
     private Tier tier;
     private boolean cancel;
+    private FPlayer starter;
 
-    public RaidStartEvent(Faction defendingFaction, Faction raidingFaction, Tier tier) {
+    public RaidStartEvent(FRaid raid, Faction defendingFaction, Faction raidingFaction, Tier tier, FPlayer starter) {
+        this.raid = raid;
         this.defendingFaction = defendingFaction;
         this.raidingFaction = raidingFaction;
         this.tier = tier;
+        this.starter = starter;
     }
 
     public static HandlerList getHandlerList() {
@@ -27,7 +32,7 @@ public class RaidStartEvent extends Event implements Cancellable {
 
     @Override
     public HandlerList getHandlers() {
-        return null;
+        return handlers;
     }
 
     @Override
@@ -50,5 +55,13 @@ public class RaidStartEvent extends Event implements Cancellable {
 
     public Tier getTier() {
         return tier;
+    }
+
+    public FPlayer getStarter() {
+        return starter;
+    }
+
+    public FRaid getRaid() {
+        return raid;
     }
 }

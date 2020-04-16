@@ -1,6 +1,7 @@
 package gg.steve.anthem.raid.events;
 
 import gg.steve.anthem.core.Faction;
+import gg.steve.anthem.raid.FRaid;
 import gg.steve.anthem.raid.Tier;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
@@ -14,8 +15,10 @@ public class RaidCompletionEvent extends Event implements Cancellable {
     private Tier tier;
     private boolean cancel;
     private RaidCompletionType reason;
+    private FRaid raid;
 
-    public RaidCompletionEvent(Faction defendingFaction, Faction raidingFaction, Tier tier, RaidCompletionType reason) {
+    public RaidCompletionEvent(FRaid raid, Faction defendingFaction, Faction raidingFaction, Tier tier, RaidCompletionType reason) {
+        this.raid = raid;
         this.defendingFaction = defendingFaction;
         this.raidingFaction = raidingFaction;
         this.tier = tier;
@@ -28,7 +31,7 @@ public class RaidCompletionEvent extends Event implements Cancellable {
 
     @Override
     public HandlerList getHandlers() {
-        return null;
+        return handlers;
     }
 
     @Override
@@ -55,5 +58,9 @@ public class RaidCompletionEvent extends Event implements Cancellable {
 
     public RaidCompletionType getReason() {
         return reason;
+    }
+
+    public FRaid getRaid() {
+        return raid;
     }
 }

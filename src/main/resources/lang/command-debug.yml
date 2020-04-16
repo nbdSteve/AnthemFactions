@@ -99,3 +99,21 @@ already-teleported-to-raid:
 
 disband-during-raid:
   - '&5&lFactions &4(&c&lERROR&4) &f• &7You can not disband your faction during while you are raiding / being raided.'
+
+attempt-raid-own:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7You can not raid your own faction.'
+
+attempt-raid-ally:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7You can not raid an ally faction.'
+
+attempt-raid-on-cooldown:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7That faction is on cooldown and can not be raided.'
+
+attempt-raid-on-raiding:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7That faction already has an active raid.'
+
+no-tier-3-factions:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7Could not assign random TIER_3 faction since there are none.'
+
+already-flying:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7Fly has already been enabled.'

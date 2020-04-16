@@ -1,0 +1,7 @@
+
+C
+java:S1172"&Remove these unused method parameters.(‚ƒ£×8ÛÜî•.
+
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Òİ±ª8û¼Õî•.
+V
+java:S1118":Add a private constructor to hide the implicit public one.(×ñÒP8û¼Õî•.

@@ -5,11 +5,12 @@ import gg.steve.anthem.gui.AbstractGui;
 import gg.steve.anthem.managers.FileManager;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.utils.GuiUtil;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.inventory.InventoryType;
 
 public class UpgradeGui extends AbstractGui {
-    private YamlConfiguration config = FileManager.get("upgrade-gui");
+    private ConfigurationSection section = FileManager.get("upgrade-gui").getConfigurationSection("gui");
     private FPlayer fPlayer;
     private Faction faction;
 
@@ -19,30 +20,7 @@ public class UpgradeGui extends AbstractGui {
     public UpgradeGui(Faction faction) {
         super(FileManager.get("upgrade-gui"), FileManager.get("upgrade-gui").getString("type"), FileManager.get("upgrade-gui").getInt("size"));
         this.faction = faction;
-        for (int i = 1; i <= config.getInt("size"); i++) {
-            int id = i;
-            try {
-                setItemInSlot(config.getInt(id + ".slot"),
-                        GuiUtil.createUpgradeItem(config, id, faction), player -> {
-                            switch (config.getString(id + ".upgrade")) {
-                                case "WORLD":
-                                    UpgradeType.WORLD.onClick(faction.getUpgrade(UpgradeType.WORLD), fPlayer);
-                                    break;
-                                case "FARMING":
-                                    UpgradeType.FARMING.onClick(faction.getUpgrade(UpgradeType.FARMING), fPlayer);
-                                    break;
-                                case "RAIDING":
-                                    UpgradeType.RAIDING.onClick(faction.getUpgrade(UpgradeType.RAIDING), fPlayer);
-                                    break;
-                                default:
-                                    player.closeInventory();
-                                    break;
-                            }
-                        });
-            } catch (NullPointerException e) {
-
-            }
-        }
+        refresh();
     }
 
     public void setfPlayer(FPlayer fPlayer) {
@@ -50,29 +28,24 @@ public class UpgradeGui extends AbstractGui {
     }
 
     public void refresh() {
-        for (int i = 1; i <= config.getInt("size"); i++) {
-            int id = i;
-            try {
-                setItemInSlot(config.getInt(id + ".slot"),
-                        GuiUtil.createUpgradeItem(config, id, faction), player -> {
-                            switch (config.getString(id + ".upgrade")) {
-                                case "WORLD":
-                                    UpgradeType.WORLD.onClick(faction.getUpgrade(UpgradeType.WORLD), fPlayer);
-                                    break;
-                                case "FARMING":
-                                    UpgradeType.FARMING.onClick(faction.getUpgrade(UpgradeType.FARMING), fPlayer);
-                                    break;
-                                case "RAIDING":
-                                    UpgradeType.RAIDING.onClick(faction.getUpgrade(UpgradeType.RAIDING), fPlayer);
-                                    break;
-                                default:
-                                    player.closeInventory();
-                                    break;
-                            }
-                        });
-            } catch (NullPointerException e) {
-
-            }
+        for (String entry : section.getKeys(false)) {
+            setItemInSlot(section.getInt(entry + ".slot"),
+                    GuiUtil.createUpgradeItem(section, entry, faction), player -> {
+                        switch (section.getString(entry + ".upgrade")) {
+                            case "WORLD":
+                                UpgradeType.WORLD.onClick(faction.getUpgrade(UpgradeType.WORLD), fPlayer);
+                                break;
+                            case "FARMING":
+                                UpgradeType.FARMING.onClick(faction.getUpgrade(UpgradeType.FARMING), fPlayer);
+                                break;
+                            case "RAIDING":
+                                UpgradeType.RAIDING.onClick(faction.getUpgrade(UpgradeType.RAIDING), fPlayer);
+                                break;
+                            default:
+                                player.closeInventory();
+                                break;
+                        }
+                    });
         }
     }
 }

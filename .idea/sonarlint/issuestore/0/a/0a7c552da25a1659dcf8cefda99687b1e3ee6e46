@@ -1,0 +1,9 @@
+
+Q
+java:S2864p"4Iterate over the "entrySet" instead of the "keySet".(êÚÕÌ8É…ë–.
+c
+java:S1126b"AReplace this if-then-else statement by a single return statement.(ö¿ç·ûÿÿÿÿ8ŞÄ×’–.
+h
+java:S1192?"KDefine a constant instead of duplicating this literal "relations." 4 times.(Ï™¿ä8ÁÛëò•.
+ƒ
+java:S1192"aDefine a constant instead of duplicating this literal "relations.outgoing-ally-requests" 5 times.(ªŞ–øÿÿÿÿ8ËÉãö•.

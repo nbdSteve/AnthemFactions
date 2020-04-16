@@ -4,30 +4,27 @@ import gg.steve.anthem.AnthemFactions;
 import gg.steve.anthem.core.Faction;
 import gg.steve.anthem.managers.FileManager;
 import gg.steve.anthem.permission.PermissionNode;
+import gg.steve.anthem.raid.Tier;
 import gg.steve.anthem.relation.RelationType;
 import gg.steve.anthem.role.Role;
 import gg.steve.anthem.upgrade.UpgradeType;
 import gg.steve.anthem.wealth.AsyncWealthCalculation;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.configuration.file.YamlConfigurationOptions;
-import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
 public class GuiUtil {
 
-    public static ItemStack createUpgradeItem(YamlConfiguration config, int id, Faction faction) {
-        ItemBuilderUtil builder = new ItemBuilderUtil(config.getString(id + ".item"), config.getString(id + ".data"));
-        builder.addName(config.getString(id + ".name"));
-        if (config.getString(id + ".upgrade").equalsIgnoreCase("none")) {
-            builder.addLore(config.getStringList(id + ".lore"));
-            builder.addEnchantments(config.getStringList(id + ".enchantments"));
-            builder.addItemFlags(config.getStringList(id + ".item-flags"));
-            return builder.getItem();
+    public static ItemStack createUpgradeItem(ConfigurationSection section, String entry, Faction faction) {
+        if (section.getString(entry + ".upgrade").equalsIgnoreCase("none")) {
+            return createBasicItem(section, entry);
         }
-        UpgradeType type = UpgradeType.valueOf(config.getString(id + ".upgrade"));
+        ItemBuilderUtil builder = new ItemBuilderUtil(section.getString(entry + ".item"), section.getString(entry + ".data"));
+        builder.addName(section.getString(entry + ".name"));
+        UpgradeType type = UpgradeType.valueOf(section.getString(entry + ".upgrade"));
         builder.setPlaceholders("{current-level}", "{max-level}", "{next-level}", "{cost}", "{xp-to-level}", "{next-level-desc}");
         String upgradeCost;
         String nextLevel;
@@ -44,31 +41,28 @@ public class GuiUtil {
             nextLevel = String.valueOf(faction.getUpgrade(type).getLevel() + 1);
             nextLevelDesc = FileManager.get("upgrade-config").getString(type.toString().toLowerCase() + ".level-" + (faction.getUpgrade(type).getLevel() + 1) + ".desc");
         }
-        builder.addLore(config.getStringList(id + ".lore"),
+        builder.addLore(section.getStringList(entry + ".lore"),
                 String.valueOf(faction.getUpgrade(type).getLevel()),
                 String.valueOf(type.getMaxLevel()),
                 nextLevel,
                 upgradeCost,
                 xpToLevel,
                 nextLevelDesc);
-        builder.addEnchantments(config.getStringList(id + ".enchantments"));
-        builder.addItemFlags(config.getStringList(id + ".item-flags"));
+        builder.addEnchantments(section.getStringList(entry + ".enchantments"));
+        builder.addItemFlags(section.getStringList(entry + ".item-flags"));
         return builder.getItem();
     }
 
-    public static ItemStack createFactionItem(YamlConfiguration config, int id) {
-        if (config.getInt(id + ".faction") == -1) {
-            return createBasicItem(config, id);
+    public static ItemStack createFactionItem(ConfigurationSection section, String entry, Faction faction, Tier tier) {
+        if (section.getInt(entry + ".faction") == -1) {
+            return createBasicItem(section, entry);
         }
-        Faction faction;
-        try {
-            LogUtil.info(config.getInt(id + ".faction") + "");
-            faction = AsyncWealthCalculation.getFactionsInWealthOrder().get(config.getInt(id + ".faction"));
-        } catch (Exception e) {
-            if (config.getInt(id + ".faction") == 1) {
-                e.printStackTrace();
+        if (faction == null) {
+            try {
+                faction = AsyncWealthCalculation.getFactionsInWealthOrder().get(section.getInt(entry + ".faction"));
+            } catch (Exception e) {
+                return new ItemStack(Material.AIR);
             }
-            return new ItemStack(Material.AIR);
         }
         YamlConfiguration itemConfig = FileManager.get("raid-config");
         ItemBuilderUtil builder = new ItemBuilderUtil(itemConfig.getString("faction-item.item"), itemConfig.getString("faction-item.data"));
@@ -78,7 +72,7 @@ public class GuiUtil {
             builder.setItemMeta(meta);
         }
         builder.addName(itemConfig.getString("faction-item.name").replace("{faction}", faction.getName()));
-        builder.setPlaceholders("{status}", "{online-number}", "{total-members}", "{raiding-level}", "{raiding-max-level}", "{farming-level}", "{farming-max-level}", "{world-level}", "{world-max-level}", "{worth}", "{allies-number}", "{max-allies}");
+        builder.setPlaceholders("{status}", "{online-number}", "{total-members}", "{raiding-level}", "{raiding-max-level}", "{farming-level}", "{farming-max-level}", "{world-level}", "{world-max-level}", "{worth}", "{allies-number}", "{max-allies}", "{cost}");
         builder.addLore(itemConfig.getStringList("faction-item.lore"),
                 faction.getRaidStatus(),
                 faction.getNumberOnline(),
@@ -91,18 +85,19 @@ public class GuiUtil {
                 String.valueOf(UpgradeType.WORLD.getMaxLevel()),
                 AnthemFactions.getNumberFormat().format(faction.getWealth()),
                 String.valueOf(faction.getRelationManager().getRelationCount(RelationType.ALLY)),
-                String.valueOf(RelationType.ALLY.getMaxAmount()));
+                String.valueOf(RelationType.ALLY.getMaxAmount()),
+                String.valueOf(tier.getCost()));
         builder.addEnchantments(itemConfig.getStringList("faction-item.enchantments"));
         builder.addEnchantments(itemConfig.getStringList("faction-item.item-flags"));
         return builder.getItem();
     }
 
-    public static ItemStack createBasicItem(YamlConfiguration config, int id) {
-        ItemBuilderUtil builder = new ItemBuilderUtil(config.getString(id + ".item"), config.getString(id + ".data"));
-        builder.addName(config.getString(id + ".name"));
-        builder.addLore(config.getStringList(id + ".lore"));
-        builder.addEnchantments(config.getStringList(id + ".enchantments"));
-        builder.addItemFlags(config.getStringList(id + ".item-flags"));
+    public static ItemStack createBasicItem(ConfigurationSection section, String entry) {
+        ItemBuilderUtil builder = new ItemBuilderUtil(section.getString(entry + ".item"), section.getString(entry + ".data"));
+        builder.addName(section.getString(entry + ".name"));
+        builder.addLore(section.getStringList(entry + ".lore"));
+        builder.addEnchantments(section.getStringList(entry + ".enchantments"));
+        builder.addItemFlags(section.getStringList(entry + ".item-flags"));
         return builder.getItem();
     }
 

@@ -1,15 +1,13 @@
 
-R
-java:S1874p"5Remove this use of "setDurability"; it is deprecated.(ÏÕëï8ò¡«œ—.
-S
-java:S1874K"1Remove this use of "getByName"; it is deprecated.(·éÁ˜üÿÿÿÿ8ò¡«œ—.
-Q
-java:S1874o"5Remove this use of "getDurability"; it is deprecated.(É—À68ò¡«œ—.
-S
-java:S1874M"1Remove this use of "getByName"; it is deprecated.(ÆßÀïüÿÿÿÿ8ò¡«œ—.
-c
-java:S1128"ARemove this unused import 'gg.steve.anthem.managers.FileManager'.(Ò¼ôşÿÿÿÿ8÷·Åœ—.
-W
-java:S1874 "5Remove this use of "getDurability"; it is deprecated.(“Ïışÿÿÿÿ8ò¡«œ—.
 N
-java:S1874*"1Remove this use of "ItemStack"; it is deprecated.(‚¼é«8ò¡«œ—.
+java:S1874%"1Remove this use of "ItemStack"; it is deprecated.(‚¼é«8ò¡«œ—.
+W
+java:S1874"5Remove this use of "getDurability"; it is deprecated.(“Ïışÿÿÿÿ8ò¡«œ—.
+Q
+java:S1874^"5Remove this use of "getDurability"; it is deprecated.(É—À68ò¡«œ—.
+S
+java:S1874H"1Remove this use of "getByName"; it is deprecated.(ÆßÀïüÿÿÿÿ8ò¡«œ—.
+S
+java:S1874F"1Remove this use of "getByName"; it is deprecated.(·éÁ˜üÿÿÿÿ8ò¡«œ—.
+R
+java:S1874_"5Remove this use of "setDurability"; it is deprecated.(ÏÕëï8ò¡«œ—.

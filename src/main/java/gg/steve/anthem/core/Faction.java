@@ -8,8 +8,6 @@ import gg.steve.anthem.permission.PermissionPageGui;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.raid.FRaid;
-import gg.steve.anthem.raid.FRaidManager;
-import gg.steve.anthem.raid.Tier;
 import gg.steve.anthem.relation.RelationManager;
 import gg.steve.anthem.role.Role;
 import gg.steve.anthem.upgrade.Upgrade;
@@ -74,13 +72,6 @@ public class Faction {
             upgrades.put(type, new Upgrade(type, this));
         }
         this.permsMenuGui = new PermissionGui(this);
-        if (isOnRaidCooldown()) {
-            FRaidManager.addFactionOnRaidCooldown(this.id);
-        } else if (this.raidActive) {
-            this.fRaid = new FRaid(FactionManager.getFaction(UUID.fromString(this.data.get().getString("raid.active-raid.defending-faction"))),
-                    FactionManager.getFaction(UUID.fromString(this.data.get().getString("raid.active-raid.raiding-faction"))),
-                    Tier.valueOf("raid.active-raid.tier"), this.data.get().getInt("raid.active-raid.time-remaining"));
-        }
     }
 
     public Faction(UUID id) {
@@ -106,13 +97,6 @@ public class Faction {
             upgrades.put(type, new Upgrade(type, this));
         }
         this.permsMenuGui = new PermissionGui(this);
-        if (isOnRaidCooldown()) {
-            FRaidManager.addFactionOnRaidCooldown(this.id);
-        } else if (this.raidActive) {
-            this.fRaid = new FRaid(FactionManager.getFaction(UUID.fromString(this.data.get().getString("raid.active-raid.defending-faction"))),
-                    FactionManager.getFaction(UUID.fromString(this.data.get().getString("raid.active-raid.raiding-faction"))),
-                    Tier.valueOf("raid.active-raid.tier"), this.data.get().getInt("raid.active-raid.time-remaining"));
-        }
     }
 
     public boolean isMember(FPlayer fPlayer) {
@@ -464,6 +448,10 @@ public class Faction {
         return this.raidActive;
     }
 
+    public void setRaidActive(boolean raidActive) {
+        this.raidActive = raidActive;
+    }
+
     public boolean isRaiding() {
         if (this.fRaid == null) return false;
         if (!this.fRaid.isActive()) return false;
@@ -493,13 +481,27 @@ public class Faction {
         this.data.save();
     }
 
+    public void setfRaid(FRaid fRaid) {
+        this.fRaid = fRaid;
+    }
+
     public String getRaidStatus() {
-        if (!isOnRaidCooldown()) return FileManager.get("raid-config").getString("raid-status.raidable");
-        TimeUtil timeUtil = new TimeUtil(this.raidCooldown);
-        return FileManager.get("raid-config").getString("raid-status.on-cooldown")
-                .replace("{days}", timeUtil.getDays())
-                .replace("{hours}", timeUtil.getHours())
-                .replace("{minutes}", timeUtil.getMinutes())
-                .replace("{seconds}", timeUtil.getSeconds());
+        if (!isOnRaidCooldown() && !isRaidActive()) {
+            return FileManager.get("raid-config").getString("raid-status.raidable");
+        } else if (!isOnRaidCooldown() && isRaidActive()) {
+            TimeUtil timeUtil = new TimeUtil(this.getfRaid().getRemaining());
+            return FileManager.get("raid-config").getString("raid-status.raid-active")
+                    .replace("{days}", timeUtil.getDays())
+                    .replace("{hours}", timeUtil.getHours())
+                    .replace("{minutes}", timeUtil.getMinutes())
+                    .replace("{seconds}", timeUtil.getSeconds());
+        } else {
+            TimeUtil timeUtil = new TimeUtil(this.raidCooldown);
+            return FileManager.get("raid-config").getString("raid-status.on-cooldown")
+                    .replace("{days}", timeUtil.getDays())
+                    .replace("{hours}", timeUtil.getHours())
+                    .replace("{minutes}", timeUtil.getMinutes())
+                    .replace("{seconds}", timeUtil.getSeconds());
+        }
     }
 }

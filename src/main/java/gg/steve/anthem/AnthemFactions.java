@@ -25,8 +25,12 @@ public final class AnthemFactions extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
-        FChestManager.saveFChests();
         FRaidManager.saveActiveRaids();
+        try {
+            FChestManager.saveFChests();
+        } catch (Exception e) {
+            // class not found exception was being thrown when no f chests where used, catch it to stop the error.
+        }
         Bukkit.getServer().getScheduler().cancelTasks(instance);
     }
 

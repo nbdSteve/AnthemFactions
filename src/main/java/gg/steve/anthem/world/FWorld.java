@@ -56,7 +56,7 @@ public class FWorld implements World {
     }
 
     public Location raiderTeleportLocation() {
-        return world.getHighestBlockAt(factionArea, factionArea).getLocation();
+        return world.getHighestBlockAt(plotSize, plotSize).getLocation();
     }
 
     @Override

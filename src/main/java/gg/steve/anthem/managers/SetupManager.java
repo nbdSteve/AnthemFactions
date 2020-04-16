@@ -10,6 +10,7 @@ import gg.steve.anthem.gui.GuiClickListener;
 import gg.steve.anthem.player.DamageListener;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.player.PlayerEventListener;
+import gg.steve.anthem.raid.FRaidEventListener;
 import gg.steve.anthem.raid.FRaidManager;
 import gg.steve.anthem.upgrade.crop.CropListener;
 import gg.steve.anthem.upgrade.ffly.FFlyListener;
@@ -36,7 +37,6 @@ public class SetupManager {
     public static void setupFiles(FileManager fileManager) {
         // general files
         fileManager.add("config", "anthem-factions.yml");
-        fileManager.add("lang", "lang.yml");
         fileManager.add("cooldowns", "cooldowns.yml");
         fileManager.add("worth", "worth.yml");
         // load lang files
@@ -61,7 +61,6 @@ public class SetupManager {
         fileManager.add("confirmation-gui", "raid" + File.separator + "confirmation-gui.yml");
         fileManager.add("TIER_1", "raid" + File.separator + "tier-1-gui.yml");
         fileManager.add("TIER_2", "raid" + File.separator + "tier-2-gui.yml");
-        fileManager.add("TIER_3", "raid" + File.separator + "tier-3-gui.yml");
         // load all of the factions for the server
         FactionManager.init();
         FPlayerManager.init();
@@ -91,5 +90,6 @@ public class SetupManager {
         pm.registerEvents(new GuiClickListener(), instance);
         pm.registerEvents(new CropListener(), instance);
         pm.registerEvents(new FFlyListener(), instance);
+        pm.registerEvents(new FRaidEventListener(), instance);
     }
 }

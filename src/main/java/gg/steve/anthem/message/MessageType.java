@@ -67,7 +67,7 @@ public enum MessageType {
 
     // raid
     JOINED_RAID("faction", "joined-raid", "{defender}", "{raider}", "{tier}"),
-    RAID_TIME_UPDATE("faciton", "raid-time-update", "{days}", "{hours}", "{minutes}", "{seconds}"),
+    RAID_TIME_UPDATE("faction", "raid-time-update", "{days}", "{hours}", "{minutes}", "{seconds}"),
 
     // faction perms
 
@@ -109,7 +109,7 @@ public enum MessageType {
             for (int i = 0; i < this.placeholders.size(); i++) {
                 line = line.replace(this.placeholders.get(i), data.get(i));
             }
-            receiver.getPlayer().sendMessage(ColorUtil.colorize(line));
+            receiver.message(ColorUtil.colorize(line));
         }
     }
 

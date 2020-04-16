@@ -104,4 +104,4 @@ joined-raid:
   - '&5&lFactions &4(&c&lRAID&4) &f• &7You have joined the &6{tier} &7raid on &6{defender} &7by &6{raider}&7.'
 
 raid-time-update:
-  - '&5&lFactions &4(&c&lRAID&4) &f• &7The active raid you are a part of has {days}&6D &e{hours}&6H &e{minutes}&6M &e{seconds}&6S remaining.'
+  - '&5&lFactions &4(&c&lRAID&4) &f• &7The active raid you are a part of has &e{days}&6D &e{hours}&6H &e{minutes}&6M &e{seconds}&6S remaining.'

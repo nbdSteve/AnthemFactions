@@ -1,0 +1,28 @@
+
+x
+java:S1104"[Make openInventories a static final constant or non-public and provide accessors if needed.(ŠÃª˜8Ùùæ›—.
+
+java:S1319Q"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(Ôƒ›şÿÿÿÿ8Ùùæ›—.
+R
+java:S1444"5Make this "public static openInventories" field final(ŠÃª˜8Ùùæ›—.
+”
+java:S1319"wThe type of the "openInventories" object should be an interface such as "Map" rather than the implementation "HashMap".(ŠÃª˜8Ùùæ›—.
+”
+java:S1319"wThe type of the "inventoriesByID" object should be an interface such as "Map" rather than the implementation "HashMap".(Ÿ”ôä8Ùùæ›—.
+Š
+java:S1319H"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(·¤ú‰8Ùùæ›—.
+n	java:S114—"QRename this interface name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(êÿØ“8Ùùæ›—.
+x
+java:S1104"[Make inventoriesByID a static final constant or non-public and provide accessors if needed.(Ÿ”ôä8Ùùæ›—.
+R
+java:S1444"5Make this "public static inventoriesByID" field final(Ÿ”ôä8Ùùæ›—.
+‹
+java:S1319"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(ûä¡²8Ùùæ›—.
+W
+java:S1191"5Use classes from the Java API instead of Sun classes.(¬Ÿê³şÿÿÿÿ8–ìã—.
+q
+java:S1128"ORemove this unused import 'com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ'.(¬Ÿê³şÿÿÿÿ8–ìã—.
+:
+java:S2386"Make this member "protected".(ŠÃª˜8Ùùæ›—.
+:
+java:S2386"Make this member "protected".(Ÿ”ôä8Ú±è›—.

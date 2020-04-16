@@ -1,0 +1,8 @@
+
+^
+java:S1128"<Remove this unused import 'gg.steve.anthem.gui.AbstractGui'.(Å¥ö©úÿÿÿÿ8ÆÜ´¶—.
+W
+java:S1128
+"5Remove this unused import 'org.bukkit.entity.Player'.(Î©Øüúÿÿÿÿ8Õ¸·¶—.
+l
+java:S1192"ODefine a constant instead of duplicating this literal "upgrade-config" 4 times.(ñç‹Ÿ8Ë·Ñ—.

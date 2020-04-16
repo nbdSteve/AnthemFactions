@@ -2,6 +2,7 @@ package gg.steve.anthem.raid;
 
 import gg.steve.anthem.core.Faction;
 import gg.steve.anthem.managers.FileManager;
+import gg.steve.anthem.raid.gui.TierGui;
 import gg.steve.anthem.wealth.AsyncWealthCalculation;
 
 import java.util.List;
@@ -60,6 +61,15 @@ public enum Tier {
 
     public void refreshFactions() {
         this.factions = AsyncWealthCalculation.getFactionsInWealthOrder().subList(this.start, this.finish);
+    }
+
+    public boolean isTier3Factions() {
+        return AsyncWealthCalculation.getFactionsInWealthOrder().size() > 54;
+    }
+
+    public Faction getRandomFaction() {
+        int index = 54 + (int)(Math.random() * AsyncWealthCalculation.getFactionsInWealthOrder().size());
+        return AsyncWealthCalculation.getFactionsInWealthOrder().get(index);
     }
 
     public List<Faction> getFactions() {

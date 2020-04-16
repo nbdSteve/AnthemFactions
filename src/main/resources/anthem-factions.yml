@@ -159,15 +159,8 @@ who-cmd:
 
 wealth-calculation-delay: 600 # In seconds
 
-blocked-commands:
-  other-faction-territory:
-    - 'tpa'
-    - 'home'
-    - 'spawn'
-    - 'sethome'
-  raid-territory:
-    - 'tpa'
-    - 'tpahere'
-    - 'home'
-    - 'spawn'
-    - 'sethome'
+allowed-cmds-while-raiding:
+  - 'raid'
+  - 'chat'
+  - 'upgrade'
+  - 'perms'

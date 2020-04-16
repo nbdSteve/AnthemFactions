@@ -31,7 +31,7 @@ public class HomeCmd {
         }
         if (DelayManager.onDelay(fPlayer.getUUID(), CooldownType.CREATE_TELEPORT)) {
             try {
-                DelayManager.getDelay(fPlayer.getUUID(), CooldownType.CREATE_TELEPORT).messageCountdown(fPlayer.getUUID());
+                DelayManager.getDelay(fPlayer.getUUID(), CooldownType.CREATE_TELEPORT).sendActionBar(fPlayer.getUUID());
             } catch (NotOnDelayException e) {
                 e.printStackTrace();
             }

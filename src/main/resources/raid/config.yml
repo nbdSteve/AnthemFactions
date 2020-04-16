@@ -21,7 +21,8 @@ tier-3:
 
 raid-status:
   raidable: '&a&lRAIDABLE'
-  on-cooldown: '&c&lON COOLDOWN &7(&e{days}&6D &e{hours}&6H &e{minutes}&6M &e{seconds}&6S&7)'
+  raid-active: '&c&lRAID ACTIVE &7(&e{days}&6D &e{hours}&6H &e{minutes}&6M &e{seconds}&6S&7)'
+  on-cooldown: '&e&lON COOLDOWN &7(&e{days}&6D &e{hours}&6H &e{minutes}&6M &e{seconds}&6S&7)'
 
 faction-item:
   name: '&b&l{faction}'
@@ -32,6 +33,8 @@ faction-item:
     - '&7&o((left click to initiate a raid on this faction))'
     - '&7'
     - '&f&lRAID STATUS: {status}'
+    - '&7'
+    - '&f&lRAID COST: &6{cost} XP'
     - '&7'
     - '&f&lSTATS:'
     - ' &7- Online| &6{online-number}&e/&6{total-members}'

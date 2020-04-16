@@ -1,13 +1,21 @@
 package gg.steve.anthem.player;
 
+import gg.steve.anthem.core.Faction;
+import gg.steve.anthem.core.FactionManager;
 import gg.steve.anthem.managers.FileManager;
 import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.permission.PermissionNode;
+import gg.steve.anthem.raid.FRaid;
+import gg.steve.anthem.raid.events.RaidCompletionEvent;
+import gg.steve.anthem.raid.events.RaidCompletionType;
+import gg.steve.anthem.utils.LogUtil;
+import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.event.player.PlayerChatEvent;
@@ -112,28 +120,33 @@ public class PlayerEventListener implements Listener {
     }
 
     @EventHandler
-    public void playerCommand(PlayerChatEvent event) {
-        if (!event.getMessage().startsWith("/")) return;
+    public void death(PlayerDeathEvent event) {
+        FPlayer fPlayer = FPlayerManager.getFPlayer(event.getEntity().getUniqueId());
+        if (!fPlayer.isRaiding()) return;
+        FRaid raid = fPlayer.getFaction().getfRaid();
+        Faction faction = fPlayer.getFaction();
+        if (!raid.getRaiders().contains(fPlayer.getUUID().toString())) {
+            raid.addRaider(fPlayer.getUUID().toString());
+        }
+        if (raid.getRaiders().size() == faction.getPlayers().size()) {
+            Bukkit.getPluginManager().callEvent(new RaidCompletionEvent(raid,
+                    FactionManager.getFaction(raid.getDefendingFaction()),
+                    FactionManager.getFaction(raid.getRaidingFaction()),
+                    raid.getTier(), RaidCompletionType.RAIDERS_DIE));
+        }
+    }
+
+    @EventHandler
+    public void playerCommand(PlayerCommandPreprocessEvent event) {
         FPlayer fPlayer = FPlayerManager.getFPlayer(event.getPlayer().getUniqueId());
-        if (!fPlayer.inFactionWorld()) return;
-        if (fPlayer.isInHomeWorld() && !fPlayer.canBuild(event.getPlayer().getLocation())) {
-            for (String cmd : FileManager.get("config").getStringList("blocked-commands.raid-territory")) {
-                if (event.getMessage().contains(cmd)) {
-                    event.setCancelled(true);
-                    break;
-                }
+        if (!fPlayer.isRaiding()) return;
+        if (!fPlayer.inRaidWorld()) return;
+        for (String cmd : FileManager.get("config").getStringList("allowed-cmds-while-raiding")) {
+            if (event.getMessage().contains(cmd)) {
+                return;
             }
-            MessageType.COMMAND_BLOCKED_RAID.message(fPlayer);
-            return;
         }
-        if (!fPlayer.canBuild(event.getPlayer().getLocation())) {
-            for (String cmd : FileManager.get("config").getStringList("blocked-commands.faction-territory")) {
-                if (event.getMessage().contains(cmd)) {
-                    event.setCancelled(true);
-                    break;
-                }
-            }
-            MessageType.COMMAND_BLOCKED_FACTION_TERRITORY.message(fPlayer, fPlayer.getFactionForCurrentFWorld().getName());
-        }
+        event.setCancelled(true);
+        MessageType.COMMAND_BLOCKED_RAID.message(fPlayer);
     }
 }

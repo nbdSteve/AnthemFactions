@@ -1,7 +1,7 @@
 package gg.steve.anthem.cooldown;
 
 import gg.steve.anthem.core.Faction;
-import gg.steve.anthem.utils.MessageUtil;
+import gg.steve.anthem.utils.actionbarapi.ActionBarType;
 import org.bukkit.Bukkit;
 
 import java.util.UUID;
@@ -41,8 +41,8 @@ public class Cooldown {
         return (end - System.currentTimeMillis()) / 1000;
     }
 
-    public void message(UUID uuid) {
-        MessageUtil.message("lang", "cooldown", Bukkit.getPlayer(uuid), "{seconds-remaining}", getRemaining().toString());
+    public void sendActionBar(UUID uuid) {
+        ActionBarType.COOLDOWN.send(Bukkit.getPlayer(uuid), getRemaining().toString());
     }
 
     public Faction getFaction() {

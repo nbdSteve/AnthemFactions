@@ -14,8 +14,8 @@ FLY_FALL_DAMAGE: 10 # Seconds after fly is disabled that fall damage will be blo
 #Delays
 HOME_TELEPORT: 5
 CREATE_TELEPORT: 5
-LEAVE_TELEPORT: 5
-KICK_TELEPORT: 5
+#LEAVE_TELEPORT: 5
+#KICK_TELEPORT: 5
 RAID_TELEPORT: 5
 
 

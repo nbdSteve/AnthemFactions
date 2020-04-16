@@ -1,52 +1,53 @@
 name: "&5&l{faction}'s Permission Setup"
 type: HOPPER
 size: 5
-1:
-  slot: 0
-  name: '&d&lCO-OWNER'
-  page: CO_OWNER
-  item: arrow
-  data: 0
-  lore:
-    - '&7'
-    - '&7&o((left click to edit co-owner permissions))'
-    - '&7'
-  enchantments:
-  item-flags:
-2:
-  slot: 1
-  name: '&d&lMODERATOR'
-  page: MODERATOR
-  item: arrow
-  data: 0
-  lore:
-    - '&7'
-    - '&7&o((left click to edit moderator permissions))'
-    - '&7'
-  enchantments:
-  item-flags:
-3:
-  slot: 2
-  name: '&d&lMEMBER'
-  page: MEMBER
-  item: arrow
-  data: 0
-  lore:
-    - '&7'
-    - '&7&o((left click to edit member permissions))'
-    - '&7'
-  enchantments:
-  item-flags:
-4:
-  slot: 4
-  name: '&c&lExit'
-  page: NONE
-  item: barrier
-  data: 0
-  lore:
-    - '&7'
-    - '&7&o((left click to close this gui))'
-    - '&7'
-  enchantments:
-  item-flags:
-    - hide_attributes
+gui:
+  1:
+    slot: 0
+    name: '&d&lCO-OWNER'
+    page: CO_OWNER
+    item: arrow
+    data: 0
+    lore:
+      - '&7'
+      - '&7&o((left click to edit co-owner permissions))'
+      - '&7'
+    enchantments:
+    item-flags:
+  2:
+    slot: 1
+    name: '&d&lMODERATOR'
+    page: MODERATOR
+    item: arrow
+    data: 0
+    lore:
+      - '&7'
+      - '&7&o((left click to edit moderator permissions))'
+      - '&7'
+    enchantments:
+    item-flags:
+  3:
+    slot: 2
+    name: '&d&lMEMBER'
+    page: MEMBER
+    item: arrow
+    data: 0
+    lore:
+      - '&7'
+      - '&7&o((left click to edit member permissions))'
+      - '&7'
+    enchantments:
+    item-flags:
+  4:
+    slot: 4
+    name: '&c&lExit'
+    page: NONE
+    item: barrier
+    data: 0
+    lore:
+      - '&7'
+      - '&7&o((left click to close this gui))'
+      - '&7'
+    enchantments:
+    item-flags:
+      - hide_attributes

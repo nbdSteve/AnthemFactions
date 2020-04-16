@@ -37,7 +37,11 @@ public class FFlyCmd {
             MessageType.FLY_DISABLED_RAID.message(fPlayer);
             return;
         }
-        fPlayer.setFlying(true);
-        MessageType.FLY_ENABLED.message(fPlayer);
+        if (fPlayer.isFlying()) {
+            CommandDebug.ALREADY_FLYING.message(fPlayer);
+        } else {
+            fPlayer.setFlying(true);
+            MessageType.FLY_ENABLED.message(fPlayer);
+        }
     }
 }

@@ -3,7 +3,8 @@ package gg.steve.anthem.delay;
 import gg.steve.anthem.AnthemFactions;
 import gg.steve.anthem.cooldown.CooldownType;
 import gg.steve.anthem.delay.exception.InvalidDelayTypeException;
-import gg.steve.anthem.utils.MessageUtil;
+import gg.steve.anthem.player.FPlayer;
+import gg.steve.anthem.utils.actionbarapi.ActionBarType;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.scheduler.BukkitTask;
@@ -18,6 +19,7 @@ public class Delay {
     private boolean complete;
     private Location destination;
     private Location starting;
+    private FPlayer fPlayer;
 
     public Delay(UUID uuid, CooldownType type, Location destination) throws InvalidDelayTypeException {
         this.uuid = uuid;
@@ -32,10 +34,29 @@ public class Delay {
         start();
     }
 
+    public Delay(UUID uuid, CooldownType type, Location destination, FPlayer fPlayer) throws InvalidDelayTypeException {
+        this.uuid = uuid;
+        if (!type.name().contains("_TELEPORT")) {
+            throw new InvalidDelayTypeException();
+        }
+        this.type = type;
+        this.remaining = type.getDuration();
+        this.complete = false;
+        this.destination = destination;
+        this.fPlayer = fPlayer;
+        this.starting = Bukkit.getPlayer(uuid).getLocation();
+        start();
+    }
+
     public void start() {
         this.task = Bukkit.getScheduler().runTaskTimer(AnthemFactions.get(), () -> {
             if (this.remaining > 0) {
-                messageCountdown(uuid);
+                if (!DelayManager.isSamePosition(Bukkit.getPlayer(this.uuid).getLocation(), this.starting)) {
+                    Bukkit.getPluginManager().callEvent(new DelayCompletionEvent(this));
+                    this.task.cancel();
+                    return;
+                }
+                sendActionBar(uuid);
                 this.remaining--;
                 return;
             }
@@ -48,12 +69,8 @@ public class Delay {
         return this.remaining;
     }
 
-    public void messageCountdown(UUID uuid) {
-        MessageUtil.message("lang", "delay-countdown", Bukkit.getPlayer(uuid), "{seconds-remaining}", String.valueOf(getRemaining()));
-    }
-
-    public void messageComplete(UUID uuid) {
-        MessageUtil.message("lang", "delay", Bukkit.getPlayer(uuid), "{seconds-remaining}", String.valueOf(getRemaining()));
+    public void sendActionBar(UUID uuid) {
+        ActionBarType.DELAY_COUNTDOWN.send(Bukkit.getPlayer(this.uuid), String.valueOf(this.remaining));
     }
 
     public BukkitTask getTask() {
@@ -82,5 +99,9 @@ public class Delay {
 
     public boolean complete() {
         return this.complete;
+    }
+
+    public FPlayer getfPlayer() {
+        return fPlayer;
     }
 }

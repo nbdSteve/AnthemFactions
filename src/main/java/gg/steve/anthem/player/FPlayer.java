@@ -8,6 +8,7 @@ import gg.steve.anthem.role.Role;
 import gg.steve.anthem.world.FWorld;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 
@@ -155,11 +156,16 @@ public class FPlayer {
         return this.faction.isBeingRaided();
     }
 
-    public boolean isOfflineRaider() {
-        return this.faction.getfRaid().isOfflineRaider(getUUID());
+    public boolean isRaider() {
+        return this.faction.getfRaid().isRaider(getUUID());
     }
 
     public void teleportToRaid() {
         this.faction.getfRaid().teleportToRaid(getUUID(), FactionManager.getFaction(this.faction.getfRaid().getDefendingFaction()));
+    }
+
+    public boolean inRaidWorld() {
+        if (!isRaiding()) return false;
+        return player.getWorld().getName().equals(FactionManager.getFaction(faction.getfRaid().getDefendingFaction()).getFWorld().getName());
     }
 }

@@ -11,7 +11,7 @@ import gg.steve.anthem.cmd.relational.EnemyCmd;
 import gg.steve.anthem.cmd.relational.NeutralCmd;
 import gg.steve.anthem.cmd.relational.UnAllyCmd;
 import gg.steve.anthem.cmd.faction.PermsCmd;
-import gg.steve.anthem.cmd.unfinished.RaidCmd;
+import gg.steve.anthem.cmd.raid.RaidCmd;
 import gg.steve.anthem.cmd.upgrade.FChestCmd;
 import gg.steve.anthem.cmd.upgrade.FFlyCmd;
 import gg.steve.anthem.cmd.upgrade.UpgradeCmd;

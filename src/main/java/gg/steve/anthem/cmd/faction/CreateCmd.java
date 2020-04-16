@@ -35,7 +35,7 @@ public class CreateCmd {
         }
         if (DelayManager.onDelay(uuid, CooldownType.CREATE_TELEPORT)) {
             try {
-                DelayManager.getDelay(uuid, CooldownType.CREATE_TELEPORT).messageCountdown(uuid);
+                DelayManager.getDelay(uuid, CooldownType.CREATE_TELEPORT).sendActionBar(uuid);
             } catch (NotOnDelayException e) {
                 e.printStackTrace();
             }
@@ -50,7 +50,7 @@ public class CreateCmd {
         }
         if (CooldownManager.isOnCooldown(uuid, CooldownType.CREATE)) {
             try {
-                CooldownManager.getCooldown(uuid, CooldownType.CREATE).message(uuid);
+                CooldownManager.getCooldown(uuid, CooldownType.CREATE).sendActionBar(uuid);
             } catch (NotOnCooldownException e) {
                 e.printStackTrace();
             }

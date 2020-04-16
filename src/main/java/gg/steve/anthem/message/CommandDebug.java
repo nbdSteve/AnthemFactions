@@ -43,9 +43,16 @@ public enum CommandDebug {
     SET_HOME_NOT_IN_TERRITORY("set-home-not-in-territory"),
     INSUFFICIENT_XP("insufficient-xp"),
     PERMISSION_SAME_OR_HIGHER_RANK("permission-same-or-higher-rank"),
+    ALREADY_FLYING("already-flying"),
+    // raid debug
     FACTION_NOT_RAIDING("faction-not-raiding"),
     ALREADY_TELEPORTED_TO_RAID("already-teleported-to-raid"),
-    DISBAND_DURING_RAID("disband-during-raid");
+    DISBAND_DURING_RAID("disband-during-raid"),
+    ATTEMPT_RAID_OWN("attempt-raid-own"),
+    ATTEMPT_RAID_ALLY("attempt-raid-ally"),
+    ATTEMPT_RAID_ON_COOLDOWN("attempt-raid-on-cooldown"),
+    ATTEMPT_RAID_ON_RAIDING("attempt-raid-on-raiding"),
+    NO_TIER_3_FACTIONS("no-tier-3-factions");
 
     private final String path;
     private List<String> placeholders;

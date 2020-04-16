@@ -1,52 +1,53 @@
 name: '&5&lTier 1 Factions'
 type: "null"
 size: 18
-1:
-  slot: 0
-  faction: 0
-  faction-item: true
-2:
-  slot: 1
-  faction: 1
-  faction-item: true
-3:
-  slot: 2
-  faction: 3
-  faction-item: true
-4:
-  slot: 3
-  faction: 4
-  faction-item: true
-5:
-  slot: 4
-  faction: 5
-  faction-item: true
-6:
-  slot: 5
-  faction: 6
-  faction-item: true
-7:
-  slot: 6
-  faction: 7
-  faction-item: true
-8:
-  slot: 7
-  faction: 8
-  faction-item: true
-9:
-  slot: 8
-  faction: 9
-  faction-item: true
-10:
-  slot: 13
-  faction: -1
-  name: '&c&lExit'
-  item: barrier
-  data: 0
-  lore:
-    - '&7'
-    - '&7&o((left click to close this gui))'
-    - '&7'
-  enchantments:
-  item-flags:
-    - hide_attributes
+gui:
+  1:
+    slot: 0
+    faction: 0
+    faction-item: true
+  2:
+    slot: 1
+    faction: 1
+    faction-item: true
+  3:
+    slot: 2
+    faction: 2
+    faction-item: true
+  4:
+    slot: 3
+    faction: 3
+    faction-item: true
+  5:
+    slot: 4
+    faction: 4
+    faction-item: true
+  6:
+    slot: 5
+    faction: 5
+    faction-item: true
+  7:
+    slot: 6
+    faction: 6
+    faction-item: true
+  8:
+    slot: 7
+    faction: 7
+    faction-item: true
+  9:
+    slot: 8
+    faction: 8
+    faction-item: true
+  10:
+    slot: 13
+    faction: -1
+    name: '&c&lExit'
+    item: barrier
+    data: 0
+    lore:
+      - '&7'
+      - '&7&o((left click to close this gui))'
+      - '&7'
+    enchantments:
+    item-flags:
+      - hide_attributes

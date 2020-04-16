@@ -1,0 +1,53 @@
+name: '&5&lTier 2 Factions'
+type: "null"
+size: 54
+gui:
+  1:
+    slot: 0
+    faction: 9
+    faction-item: true
+  2:
+    slot: 1
+    faction: 10
+    faction-item: true
+  3:
+    slot: 2
+    faction: 11
+    faction-item: true
+  4:
+    slot: 3
+    faction: 12
+    faction-item: true
+  5:
+    slot: 4
+    faction: 13
+    faction-item: true
+  6:
+    slot: 5
+    faction: 14
+    faction-item: true
+  7:
+    slot: 6
+    faction: 15
+    faction-item: true
+  8:
+    slot: 7
+    faction: 16
+    faction-item: true
+  9:
+    slot: 8
+    faction: 17
+    faction-item: true
+  10:
+    slot: 49
+    faction: -1
+    name: '&c&lExit'
+    item: barrier
+    data: 0
+    lore:
+      - '&7'
+      - '&7&o((left click to close this gui))'
+      - '&7'
+    enchantments:
+    item-flags:
+      - hide_attributes

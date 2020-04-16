@@ -52,7 +52,7 @@ public class CooldownManager {
         if (!isOnCooldown(uuid, type)) throw new NotOnCooldownException();
         for (Cooldown cooldown : cooldowns.get(uuid)) {
             if (cooldown.getType().equals(type)) {
-                cooldown.message(uuid);
+                cooldown.sendActionBar(uuid);
                 return;
             }
         }

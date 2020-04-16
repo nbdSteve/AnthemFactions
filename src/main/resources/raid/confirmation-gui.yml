@@ -1,31 +1,35 @@
 name: '&5&lConfirm Raid On {faction}'
 type: HOPPER
 size: 5
-1:
-  slot: 1
-  name: '&a&lACCEPT'
-  page: ACCEPT
-  item: stained_glass_pane
-  data: 5
-  lore:
-    - '&7'
-    - '&7&o((left click to accept the raid))'
-    - '&7'
-  enchantments:
-  item-flags:
-    - hide_attributes
-2:
-  faction-item: true
-3:
-  slot: 3
-  name: '&c&lDECLINE'
-  page: DECLINE
-  item: stained_glass_pane
-  data: 14
-  lore:
-    - '&7'
-    - '&7&o((left click to decline the raid))'
-    - '&7'
-  enchantments:
-  item-flags:
-    - hide_attributes
+gui:
+  1:
+    slot: 1
+    name: '&a&lACCEPT'
+    faction: -1
+    action: ACCEPT
+    item: stained_glass_pane
+    data: 5
+    lore:
+      - '&7'
+      - '&7&o((left click to accept the raid))'
+      - '&7'
+    enchantments:
+    item-flags:
+      - hide_attributes
+  2:
+    slot: 2
+    faction-item: true
+  3:
+    slot: 3
+    name: '&c&lDECLINE'
+    faction: -1
+    action: DECLINE
+    item: stained_glass_pane
+    data: 14
+    lore:
+      - '&7'
+      - '&7&o((left click to decline the raid))'
+      - '&7'
+    enchantments:
+    item-flags:
+      - hide_attributes

@@ -1,0 +1,5 @@
+cooldown: '&7Feature on cooldown &6{seconds-remaining} &7seconds remaining...'
+
+delay-countdown: '&7Teleporting in &6&l{seconds-remaining} &7seconds...'
+
+teleport-failed: '&7Teleportaion &c&lFAILED! &7&o(You moved)'

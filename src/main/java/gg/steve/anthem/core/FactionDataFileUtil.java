@@ -9,6 +9,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -54,6 +55,7 @@ public class FactionDataFileUtil {
         config.set("id", id);
         config.set("name", factionName);
         config.set("founded", new SimpleDateFormat(FileManager.get("config").getString("who-cmd.founded-format")).format(new Date(System.currentTimeMillis())));
+        config.set("last-active", LocalDate.now().toString());
         config.createSection("faction-members");
         config.createSection("home-location");
         String[] fWorldSpawn = FileManager.get("config").getString("faction-world-generation.spawn").split(":");

@@ -1,13 +1,7 @@
 
-n
-java:S1192"LDefine a constant instead of duplicating this literal ".item-flags" 3 times.(Åƒ¼ÿÿÿÿÿ8©‰‡Ü—.
+d
+java:S1192m"GDefine a constant instead of duplicating this literal "{page}" 3 times.(¯Æ‡º8Î†¯˜.
 W
 java:S1118":Add a private constructor to hide the implicit public one.(˜¡µ8ÕÑ×›—.
 R
-java:S1874J"0Remove this use of "setOwner"; it is deprecated.(¯¤È²üÿÿÿÿ8Î†¯˜.
-c
-java:S1192"FDefine a constant instead of duplicating this literal ".lore" 3 times.(´ÅÅ™8©‰‡Ü—.
-p
-java:S1192"NDefine a constant instead of duplicating this literal ".enchantments" 3 times.(ƒƒ¥üÿÿÿÿ8©‰‡Ü—.
-d
-java:S1192p"GDefine a constant instead of duplicating this literal "{page}" 3 times.(¯Æ‡º8Î†¯˜.
+java:S1874G"0Remove this use of "setOwner"; it is deprecated.(¯¤È²üÿÿÿÿ8Î†¯˜.

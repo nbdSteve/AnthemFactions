@@ -18,7 +18,7 @@ public enum MessageType {
     WHO("misc", "faction-who", "{faction}", "{founded}", "{allies-number}", "{max-allies}",
             "{allies}", "{online-number}", "{online}", "{offline-number}", "{offline}", "{total-members}",
             "{relation-color}", "{relation}", "{worth}", "{xp}", "{raiding-level}", "{raiding-max-level}",
-            "{farming-level}", "{farming-max-level}", "{world-level}", "{world-max-level}"),
+            "{farming-level}", "{farming-max-level}", "{world-level}", "{world-max-level}", "{time}"),
     TOP_HEADER("misc", "faction-top.header", "{page}"),
     TOP_ENTRY("misc", "faction-top.entry","{faction}", "{relation-color}", "{rank}", "{wealth}"),
     TOP_FOOTER("misc", "faction-top.footer"),
@@ -68,6 +68,7 @@ public enum MessageType {
     // raid
     JOINED_RAID("faction", "joined-raid", "{defender}", "{raider}", "{tier}"),
     RAID_TIME_UPDATE("faction", "raid-time-update", "{days}", "{hours}", "{minutes}", "{seconds}"),
+    BREAK_SPAWNER_DURING_RAID("faction", "break-spawner-during-raid"),
 
     // faction perms
 

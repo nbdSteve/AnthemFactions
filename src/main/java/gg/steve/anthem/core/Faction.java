@@ -25,6 +25,8 @@ import org.bukkit.WorldCreator;
 import org.bukkit.entity.Player;
 
 import java.io.File;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 public class Faction {
@@ -47,6 +49,7 @@ public class Faction {
     private int raidCooldown;
     private boolean raidActive;
     private FRaid fRaid;
+    private LocalDate lastActive;
 
     public Faction(UUID owner, String name, UUID id) {
         this.id = id;
@@ -67,6 +70,7 @@ public class Faction {
         this.xp = this.data.get().getInt("xp-bank");
         this.raidCooldown = this.data.get().getInt("raid.cooldown");
         this.raidActive = this.data.get().getBoolean("raid.active-raid.active");
+        this.lastActive = LocalDate.parse(this.data.get().getString("last-active"));
         this.upgrades = new HashMap<>();
         for (UpgradeType type : UpgradeType.values()) {
             upgrades.put(type, new Upgrade(type, this));
@@ -92,6 +96,7 @@ public class Faction {
         this.xp = this.data.get().getInt("xp-bank");
         this.raidCooldown = this.data.get().getInt("raid.cooldown");
         this.raidActive = this.data.get().getBoolean("raid.active-raid.active");
+        this.lastActive = LocalDate.parse(this.data.get().getString("last-active"));
         this.upgrades = new HashMap<>();
         for (UpgradeType type : UpgradeType.values()) {
             upgrades.put(type, new Upgrade(type, this));
@@ -437,6 +442,10 @@ public class Faction {
 
     public boolean isWilderness() {
         return FactionManager.factionIsWilderness(this);
+    }
+
+    public boolean isInactive() {
+        return LocalDate.now().isAfter(this.lastActive.plus(1, ChronoUnit.WEEKS));
     }
 
     // raid shit

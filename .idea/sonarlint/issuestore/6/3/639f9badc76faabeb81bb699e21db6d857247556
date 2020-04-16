@@ -2,6 +2,6 @@
 W
 java:S1118":Add a private constructor to hide the implicit public one.(…††æ8òºöê•.
 E
-java:S1148$"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8¯Èøê•.
-E
 java:S1148*"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8…œıê•.
+E
+java:S1148$"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8¯Èøê•.

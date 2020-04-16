@@ -105,3 +105,6 @@ joined-raid:
 
 raid-time-update:
   - '&5&lFactions &4(&c&lRAID&4) &f• &7The active raid you are a part of has &e{days}&6D &e{hours}&6H &e{minutes}&6M &e{seconds}&6S remaining.'
+
+break-spawner-during-raid:
+  - '&5&lFactions &4(&c&lRAID&4) &f• &7You can not mine spawners while you are being raided.'

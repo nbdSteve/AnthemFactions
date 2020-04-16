@@ -1,11 +1,5 @@
 
 I
-java:S1602",Remove useless curly braces around statement(ÿ°¤8ç…ùÜ—.
-I
-java:S1602$",Remove useless curly braces around statement(ÿ°¤8Úæ„İ—.
+java:S1602",Remove useless curly braces around statement(ÿ°¤8Úæ„İ—.
 r
-java:S1192"PDefine a constant instead of duplicating this literal "fperms-page-gui" 4 times.(ìßœüÿÿÿÿ8…­êÜ—.
-]
-java:S1128";Remove this unused import 'gg.steve.anthem.player.FPlayer'.(¯Òµıÿÿÿÿ8±“ƒŞ—.
-\
-java:S1128	":Remove this unused import 'gg.steve.anthem.utils.LogUtil'.(ÜÏäøÿÿÿÿ8ÆÂƒŞ—.
+java:S1192"PDefine a constant instead of duplicating this literal "fperms-page-gui" 4 times.(ìßœüÿÿÿÿ8…­êÜ—.

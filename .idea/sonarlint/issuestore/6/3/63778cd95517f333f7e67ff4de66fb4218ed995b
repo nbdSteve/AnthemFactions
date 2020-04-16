@@ -1,5 +1,7 @@
 
-f
-java:S1128"DRemove this unused import 'org.bukkit.event.player.PlayerChatEvent'.(ÊåÈµùÿÿÿÿ8»íÍš˜.
 \
 java:S1128":Remove this unused import 'gg.steve.anthem.utils.LogUtil'.(ÜÏäøÿÿÿÿ8®‚µ›˜.
+L
+java:S1066?"/Merge this if statement with the enclosing one.(‚¯€8“ä‘ ˜.
+f
+java:S1128"DRemove this unused import 'org.bukkit.event.player.PlayerChatEvent'.(ÊåÈµùÿÿÿÿ8»íÍš˜.

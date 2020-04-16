@@ -59,6 +59,12 @@ public class PlayerEventListener implements Listener {
             event.setCancelled(true);
             MessageType.BUILD_BLOCKED_FACTION.message(fPlayer, fPlayer.getFactionForCurrentFWorld().getName());
         }
+        if (event.getBlock().getType().toString().equalsIgnoreCase("MOB_SPAWNER")) {
+            if (fPlayer.isBeingRaided()) {
+                event.setCancelled(true);
+                MessageType.BREAK_SPAWNER_DURING_RAID.message(fPlayer);
+            }
+        }
     }
 
     @EventHandler

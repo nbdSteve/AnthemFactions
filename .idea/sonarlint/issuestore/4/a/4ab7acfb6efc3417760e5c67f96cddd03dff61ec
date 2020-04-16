@@ -1,15 +1,13 @@
 
 i
 java:S1192?"GDefine a constant instead of duplicating this literal "config" 4 times.(¿Â¾½þÿÿÿÿ8¦Âð¿–.
+P
+java:S1118":Add a private constructor to hide the implicit public one.(ÀèöÊ
 >
-java:S11487"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
->
-java:S1148J"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+java:S1148("#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
 >
 java:S1148R"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
 >
-java:S1148("#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
-P
-java:S1118":Add a private constructor to hide the implicit public one.(ÀèöÊ
-c
-java:S1128"FRemove this unused import 'gg.steve.anthem.utils.PermissionQueryUtil'.(ÄÑœß8ý“˜ã—.
+java:S1148J"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+>
+java:S11487"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ

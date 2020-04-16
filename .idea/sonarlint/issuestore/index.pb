@@ -191,3 +191,9 @@ k
 ;src/main/java/gg/steve/anthem/raid/gui/ConfirmationGui.java,a\9\a954266c217a4c2f545c64bafae1e5e4de0b2549
 c
 3src/main/java/gg/steve/anthem/raid/gui/TierGui.java,9\8\98cfc9106e6a9d55321f033bc0ca52de0c99decb
+{
+Ksrc/main/java/gg/steve/anthem/utils/actionbarapi/ActionBarMessageEvent.java,a\2\a2a2e81a388f025f3e07cf1a668ee94ae7a48e3a
+r
+Bsrc/main/java/gg/steve/anthem/utils/actionbarapi/ActionBarAPI.java,1\b\1b7c0da2fdc7f7dcf042800ab04cf74324a1a6f0
+s
+Csrc/main/java/gg/steve/anthem/utils/actionbarapi/ActionBarType.java,8\6\867eb193c0bb817fe275b3f1f00e0e0651ae9932

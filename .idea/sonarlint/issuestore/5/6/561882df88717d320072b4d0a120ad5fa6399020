@@ -1,5 +1,7 @@
 
 E
-java:S1148 "#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8‘ÑÛå•.
+java:S1148,"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ûùÏ˜.
 c
-java:S1126M"AReplace this if-then-else statement by a single return statement.(‡ÛŒıÿÿÿÿ8’­£ë•.
+java:S1126b"AReplace this if-then-else statement by a single return statement.(‡ÛŒıÿÿÿÿ8’­£ë•.
+E
+java:S1148""#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8‘ÑÛå•.

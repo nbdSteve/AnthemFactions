@@ -1,9 +1,7 @@
 
-Y
-java:S1128"7Remove this unused import 'gg.steve.anthem.raid.FRaid'.(Ó¯Ù˜üÿÿÿÿ8½¨÷’˜.
-f
-java:S11924"IDefine a constant instead of duplicating this literal "upgrades" 3 times.(—÷Â8Ùİ›Ç—.
 h
-java:S11924"KDefine a constant instead of duplicating this literal "config.yml" 3 times.(—÷Â8¬óô—.
+java:S11922"KDefine a constant instead of duplicating this literal "config.yml" 3 times.(—÷Â8¬óô—.
 n
-java:S11928"LDefine a constant instead of duplicating this literal "permissions" 5 times.(²ÙÄ€ûÿÿÿÿ8´ÁÜ—.
+java:S11926"LDefine a constant instead of duplicating this literal "permissions" 5 times.(²ÙÄ€ûÿÿÿÿ8´ÁÜ—.
+f
+java:S11922"IDefine a constant instead of duplicating this literal "upgrades" 3 times.(—÷Â8Ùİ›Ç—.

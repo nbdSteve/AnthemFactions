@@ -57,6 +57,7 @@ public class WhoCmd {
                 String.valueOf(faction.getUpgrade(UpgradeType.FARMING).getLevel()),
                 String.valueOf(UpgradeType.FARMING.getMaxLevel()),
                 String.valueOf(faction.getUpgrade(UpgradeType.WORLD).getLevel()),
-                String.valueOf(UpgradeType.WORLD.getMaxLevel()));
+                String.valueOf(UpgradeType.WORLD.getMaxLevel()),
+                faction.getRaidStatus());
     }
 }

@@ -12,6 +12,8 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -65,6 +67,8 @@ public class FPlayerManager implements Listener {
         if (fPlayer.isRaiding() && fPlayer.getFaction().getUpgrade(UpgradeType.RAIDING).getLevel() > 2) {
             fPlayer.getPlayer().removePotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
         }
+        fPlayer.getFaction().getData().get().set("last-active", LocalDate.now().toString());
+        fPlayer.getFaction().getData().save();
         removeFPlayer(event.getPlayer().getUniqueId());
     }
 }

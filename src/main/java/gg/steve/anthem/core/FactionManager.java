@@ -24,7 +24,12 @@ public class FactionManager {
             for (File faction : dataFolder.listFiles()) {
                 UUID id = UUID.fromString(faction.getName().split(".yml")[0]);
                 LogUtil.info("Loading the faction with id: " + id);
-                factions.put(id, new Faction(id));
+                Faction faction1 = new Faction(id);
+                if (faction1.isInactive()) {
+                    disbandFaction(faction1);
+                } else {
+                    factions.put(id, new Faction(id));
+                }
             }
         }
     }

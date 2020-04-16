@@ -5,6 +5,7 @@ import gg.steve.anthem.core.FactionManager;
 import gg.steve.anthem.managers.FileManager;
 import gg.steve.anthem.relation.RelationType;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import java.io.File;
@@ -13,10 +14,14 @@ import java.util.UUID;
 public class FactionDeletion {
 
     public static void disband(Faction faction) {
-//        for (UUID uuid : faction.getOnlinePlayers()) {
+        Location spawn = Bukkit.getServer().getWorld(FileManager.get("config").getString("main-world-name")).getSpawnLocation();
+//        for (UUID uuid : faction.getOfflinePlayers()) {
+//            Bukkit.getOfflinePlayer(uuid)..getLocation().setX(spawn.getX());
+//            Bukkit.getOfflinePlayer(uuid).getPlayer().getLocation().setX(spawn.getY());
+//            Bukkit.getOfflinePlayer(uuid).getPlayer().getLocation().setX(spawn.getZ());
+//        }
         for (Player player : faction.getFWorld().getPlayers()) {
-//            Bukkit.getPlayer(uuid).teleport(Bukkit.getServer().getWorld(FileManager.get("config").getString("main-world-name")).getSpawnLocation());
-            player.teleport(Bukkit.getServer().getWorld(FileManager.get("config").getString("main-world-name")).getSpawnLocation());
+            player.teleport(spawn);
         }
         for (UUID uuid : faction.getRelationManager().getRelations(RelationType.ALLY)) {
             Faction ally = FactionManager.getFaction(uuid);

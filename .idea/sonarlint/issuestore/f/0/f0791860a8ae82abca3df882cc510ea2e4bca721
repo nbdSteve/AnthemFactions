@@ -1,7 +1,10 @@
 
-E	java:S108I")Either remove or fill this block of code.(ßÈ´8ªÑ×¶—.
-n
-java:S1192"LDefine a constant instead of duplicating this literal "upgrade-gui" 4 times.(èÃóùÿÿÿÿ8¥ç§—.
+i
+java:S1192"LDefine a constant instead of duplicating this literal "upgrade-gui" 4 times.(áÚÓ¤8–ìê˜.
+s
+java:S1450"VRemove the "fPlayer" field and declare it as a local variable in the relevant methods.(‘ÕÄú8–ìê˜.
 b
-java:S1128	"ERemove this unused import 'org.bukkit.event.inventory.InventoryType'.(Ğ±„º8ü¬İ—.
-E	java:S108*")Either remove or fill this block of code.(ßÈ´8ÃĞã—.
+java:S1128
+"ERemove this unused import 'org.bukkit.event.inventory.InventoryType'.(Ğ±„º8ü¬İ—.
+n
+java:S1128	"LRemove this unused import 'org.bukkit.configuration.file.YamlConfiguration'.(ïÛö¨şÿÿÿÿ8–ìê˜.

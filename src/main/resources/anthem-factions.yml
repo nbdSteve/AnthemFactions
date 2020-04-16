@@ -53,7 +53,7 @@ default-faction-permissions: # sorry this is a bit aids
     - factions.player.who
     - factions.player.list
     - factions.player.build
-    - factions.player.raid.join
+    - factions.player.raid-join
     - factions.chat.faction
     - factions.chat.ally
     - factions.chat.public
@@ -81,7 +81,7 @@ default-faction-permissions: # sorry this is a bit aids
     - factions.player.who
     - factions.player.list
     - factions.player.build
-    - factions.player.raid.join
+    - factions.player.raid-join
     - factions.chat.faction
     - factions.chat.ally
     - factions.chat.public
@@ -109,7 +109,7 @@ default-faction-permissions: # sorry this is a bit aids
     - factions.player.who
     - factions.player.list
     - factions.player.build
-    - factions.player.raid.join
+    - factions.player.raid-join
     - factions.chat.faction
     - factions.chat.ally
     - factions.chat.public
@@ -127,7 +127,7 @@ default-faction-permissions: # sorry this is a bit aids
     - factions.player.who
     - factions.player.list
     - factions.player.build
-    - factions.player.raid.join
+    - factions.player.raid-join
     - factions.chat.faction
     - factions.chat.ally
     - factions.chat.public

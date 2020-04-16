@@ -56,7 +56,7 @@ public class AbstractGui {
     public AbstractGui(YamlConfiguration config, String type, Faction faction, Integer... size) {
         this.inventoryID = UUID.randomUUID();
         if (!type.equalsIgnoreCase("null")) {
-            this.inventory = Bukkit.createInventory(null, InventoryType.valueOf(type), ColorUtil.colorize(config.getString("name")));
+            this.inventory = Bukkit.createInventory(null, InventoryType.valueOf(type), ColorUtil.colorize(config.getString("name").replace("{faction}", faction.getName())));
         } else {
             this.inventory = Bukkit.createInventory(null, size[0], ColorUtil.colorize(config.getString("name").replace("{faction}", faction.getName())));
         }

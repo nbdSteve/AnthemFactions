@@ -55,6 +55,10 @@ public class FWorld implements World {
         return blocks;
     }
 
+    public Location raiderTeleportLocation() {
+        return world.getHighestBlockAt(factionArea, factionArea).getLocation();
+    }
+
     @Override
     public Block getBlockAt(int x, int y, int z) {
         return this.world.getBlockAt(x, y, z);

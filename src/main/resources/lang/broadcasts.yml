@@ -1,0 +1,12 @@
+faction-creation:
+  - '&5&lFactions &f• &6{player} &7created a the faction, &6{faction}&7.'
+
+raid-start:
+  - '&7'
+  - '&5&lFactions &4(&c&lRAID&4) &f• &6{raider} &7has started a &6{tier} &7raid on &6{defender}&7.'
+  - '&7'
+
+raid-completion:
+  - '&7'
+  - "&5&lFactions &4(&c&lRAID&4) &f• &6{raider}&7's &6{tier} &7raid on &6{defender} &7is complete."
+  - '&7'

@@ -90,3 +90,12 @@ insufficient-xp:
 
 permission-same-or-higher-rank:
   - '&5&lFactions &4(&c&lERROR&4) &f• &7You can not edit the permissions of a role that is higher or the same as yours.'
+
+faction-not-raiding:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7Your faction is not raiding at the moment.'
+
+already-teleported-to-raid:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7You can not teleport back to the raid.'
+
+disband-during-raid:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7You can not disband your faction during while you are raiding / being raided.'

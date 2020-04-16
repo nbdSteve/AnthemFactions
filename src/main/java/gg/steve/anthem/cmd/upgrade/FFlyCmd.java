@@ -33,6 +33,10 @@ public class FFlyCmd {
             MessageType.FLY_DISABLED_REGION.message(fPlayer);
             return;
         }
+        if (fPlayer.isBeingRaided()) {
+            MessageType.FLY_DISABLED_RAID.message(fPlayer);
+            return;
+        }
         fPlayer.setFlying(true);
         MessageType.FLY_ENABLED.message(fPlayer);
     }

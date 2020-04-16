@@ -1,13 +1,20 @@
 package gg.steve.anthem.utils;
 
+import gg.steve.anthem.AnthemFactions;
 import gg.steve.anthem.core.Faction;
 import gg.steve.anthem.managers.FileManager;
 import gg.steve.anthem.permission.PermissionNode;
+import gg.steve.anthem.relation.RelationType;
 import gg.steve.anthem.role.Role;
 import gg.steve.anthem.upgrade.UpgradeType;
+import gg.steve.anthem.wealth.AsyncWealthCalculation;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.configuration.file.YamlConfigurationOptions;
+import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.SkullMeta;
 
 public class GuiUtil {
 
@@ -49,8 +56,45 @@ public class GuiUtil {
         return builder.getItem();
     }
 
-    public static ItemStack createRaidItem() {
-        return null;
+    public static ItemStack createFactionItem(YamlConfiguration config, int id) {
+        if (config.getInt(id + ".faction") == -1) {
+            return createBasicItem(config, id);
+        }
+        Faction faction;
+        try {
+            LogUtil.info(config.getInt(id + ".faction") + "");
+            faction = AsyncWealthCalculation.getFactionsInWealthOrder().get(config.getInt(id + ".faction"));
+        } catch (Exception e) {
+            if (config.getInt(id + ".faction") == 1) {
+                e.printStackTrace();
+            }
+            return new ItemStack(Material.AIR);
+        }
+        YamlConfiguration itemConfig = FileManager.get("raid-config");
+        ItemBuilderUtil builder = new ItemBuilderUtil(itemConfig.getString("faction-item.item"), itemConfig.getString("faction-item.data"));
+        if (builder.getMaterial().toString().equalsIgnoreCase("SKULL_ITEM")) {
+            SkullMeta meta = (SkullMeta) builder.getItemMeta();
+            meta.setOwner(Bukkit.getOfflinePlayer(faction.getOwner()).getName());
+            builder.setItemMeta(meta);
+        }
+        builder.addName(itemConfig.getString("faction-item.name").replace("{faction}", faction.getName()));
+        builder.setPlaceholders("{status}", "{online-number}", "{total-members}", "{raiding-level}", "{raiding-max-level}", "{farming-level}", "{farming-max-level}", "{world-level}", "{world-max-level}", "{worth}", "{allies-number}", "{max-allies}");
+        builder.addLore(itemConfig.getStringList("faction-item.lore"),
+                faction.getRaidStatus(),
+                faction.getNumberOnline(),
+                faction.getTotalPlayers(),
+                String.valueOf(faction.getUpgrade(UpgradeType.RAIDING).getLevel()),
+                String.valueOf(UpgradeType.RAIDING.getMaxLevel()),
+                String.valueOf(faction.getUpgrade(UpgradeType.FARMING).getLevel()),
+                String.valueOf(UpgradeType.FARMING.getMaxLevel()),
+                String.valueOf(faction.getUpgrade(UpgradeType.WORLD).getLevel()),
+                String.valueOf(UpgradeType.WORLD.getMaxLevel()),
+                AnthemFactions.getNumberFormat().format(faction.getWealth()),
+                String.valueOf(faction.getRelationManager().getRelationCount(RelationType.ALLY)),
+                String.valueOf(RelationType.ALLY.getMaxAmount()));
+        builder.addEnchantments(itemConfig.getStringList("faction-item.enchantments"));
+        builder.addEnchantments(itemConfig.getStringList("faction-item.item-flags"));
+        return builder.getItem();
     }
 
     public static ItemStack createBasicItem(YamlConfiguration config, int id) {

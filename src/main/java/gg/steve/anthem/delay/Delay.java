@@ -2,7 +2,7 @@ package gg.steve.anthem.delay;
 
 import gg.steve.anthem.AnthemFactions;
 import gg.steve.anthem.cooldown.CooldownType;
-import gg.steve.anthem.exception.InvalidDelayTypeException;
+import gg.steve.anthem.delay.exception.InvalidDelayTypeException;
 import gg.steve.anthem.utils.MessageUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;

@@ -145,4 +145,21 @@ public class FPlayer {
         this.player.setFlying(flying);
         this.flying = flying;
     }
+
+    // raid shit
+    public boolean isRaiding() {
+        return this.faction.isRaiding();
+    }
+
+    public boolean isBeingRaided() {
+        return this.faction.isBeingRaided();
+    }
+
+    public boolean isOfflineRaider() {
+        return this.faction.getfRaid().isOfflineRaider(getUUID());
+    }
+
+    public void teleportToRaid() {
+        this.faction.getfRaid().teleportToRaid(getUUID(), FactionManager.getFaction(this.faction.getfRaid().getDefendingFaction()));
+    }
 }

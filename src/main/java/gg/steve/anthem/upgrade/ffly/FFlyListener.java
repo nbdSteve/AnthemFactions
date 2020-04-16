@@ -3,8 +3,8 @@ package gg.steve.anthem.upgrade.ffly;
 import gg.steve.anthem.cooldown.Cooldown;
 import gg.steve.anthem.cooldown.CooldownManager;
 import gg.steve.anthem.cooldown.CooldownType;
-import gg.steve.anthem.exception.CooldownActiveException;
-import gg.steve.anthem.exception.NotOnCooldownException;
+import gg.steve.anthem.cooldown.exception.CooldownActiveException;
+import gg.steve.anthem.cooldown.exception.NotOnCooldownException;
 import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
@@ -31,6 +31,7 @@ public class FFlyListener implements Listener {
         if (event.isCancelled()) return;
         if (event.getTo() == null) return;
         FPlayer fPlayer = FPlayerManager.getFPlayer(event.getPlayer().getUniqueId());
+        if (fPlayer.isBeingRaided()) return;
         if (!fPlayer.isInHomeWorld() || !fPlayer.getFWorld().inFactionLand(event.getTo())) {
             if (!fPlayer.isFlying()) return;
             try {

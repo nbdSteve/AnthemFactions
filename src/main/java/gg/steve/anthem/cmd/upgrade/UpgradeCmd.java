@@ -24,6 +24,7 @@ public class UpgradeCmd {
             MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionNode.UPGRADE.get());
             return;
         }
+        fPlayer.getFaction().getUpgradeGui().refresh();
         fPlayer.getFaction().openUpgradeGui(fPlayer);
     }
 }

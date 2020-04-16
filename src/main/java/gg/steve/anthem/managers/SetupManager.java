@@ -10,6 +10,7 @@ import gg.steve.anthem.gui.GuiClickListener;
 import gg.steve.anthem.player.DamageListener;
 import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.player.PlayerEventListener;
+import gg.steve.anthem.raid.FRaidManager;
 import gg.steve.anthem.upgrade.crop.CropListener;
 import gg.steve.anthem.upgrade.ffly.FFlyListener;
 import gg.steve.anthem.wealth.AsyncWealthCalculation;
@@ -43,6 +44,8 @@ public class SetupManager {
         fileManager.add("faction", "lang" + File.separator + "faction.yml");
         fileManager.add("debug", "lang" + File.separator + "command-debug.yml");
         fileManager.add("misc", "lang" + File.separator + "misc.yml");
+        fileManager.add("broadcasts", "lang" + File.separator + "broadcasts.yml");
+        fileManager.add("action-bars", "lang" + File.separator + "action-bars.yml");
         // load upgrade files
         fileManager.add("upgrade-config", "upgrades" + File.separator + "config.yml");
         fileManager.add("upgrade-gui", "upgrades" + File.separator + "gui.yml");
@@ -66,6 +69,7 @@ public class SetupManager {
         DelayManager.init();
         CropListener.loadCropConfig();
         AsyncWealthCalculation.init();
+        FRaidManager.init();
     }
 
     public static void registerCommands(AnthemFactions instance) {

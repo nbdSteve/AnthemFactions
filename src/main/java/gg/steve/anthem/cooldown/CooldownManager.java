@@ -1,7 +1,7 @@
 package gg.steve.anthem.cooldown;
 
-import gg.steve.anthem.exception.CooldownActiveException;
-import gg.steve.anthem.exception.NotOnCooldownException;
+import gg.steve.anthem.cooldown.exception.CooldownActiveException;
+import gg.steve.anthem.cooldown.exception.NotOnCooldownException;
 
 import java.util.ArrayList;
 import java.util.HashMap;

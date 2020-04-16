@@ -42,7 +42,10 @@ public enum CommandDebug {
     NOT_ALLIES("not-allies"),
     SET_HOME_NOT_IN_TERRITORY("set-home-not-in-territory"),
     INSUFFICIENT_XP("insufficient-xp"),
-    PERMISSION_SAME_OR_HIGHER_RANK("permission-same-or-higher-rank");
+    PERMISSION_SAME_OR_HIGHER_RANK("permission-same-or-higher-rank"),
+    FACTION_NOT_RAIDING("faction-not-raiding"),
+    ALREADY_TELEPORTED_TO_RAID("already-teleported-to-raid"),
+    DISBAND_DURING_RAID("disband-during-raid");
 
     private final String path;
     private List<String> placeholders;

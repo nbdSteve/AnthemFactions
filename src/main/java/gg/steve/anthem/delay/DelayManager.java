@@ -1,9 +1,9 @@
 package gg.steve.anthem.delay;
 
 import gg.steve.anthem.cooldown.CooldownType;
-import gg.steve.anthem.exception.DelayAlreadyActiveException;
-import gg.steve.anthem.exception.InvalidDelayTypeException;
-import gg.steve.anthem.exception.NotOnDelayException;
+import gg.steve.anthem.delay.exception.DelayAlreadyActiveException;
+import gg.steve.anthem.delay.exception.InvalidDelayTypeException;
+import gg.steve.anthem.delay.exception.NotOnDelayException;
 import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.utils.MessageUtil;
 import org.bukkit.Bukkit;

@@ -1,4 +1,4 @@
-package gg.steve.anthem.exception;
+package gg.steve.anthem.core.exception;
 
 public class PlayerAlreadyModeratorException extends Exception {
 

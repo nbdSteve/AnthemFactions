@@ -3,22 +3,25 @@ tier-1:
   finish: 8
   cost: 50000 # cost in xp
   raid-length: 3600 # How long a raid will last in seconds
+  raid-cooldown: 43200 # How long between raids in seconds
 
 tier-2:
   start: 9
   finish: 36
   cost: 25000
   raid-length: 1800
+  raid-cooldown: 21600
 
 tier-3:
   start: 37
   finish: 999
   cost: 15000
   raid-length: 900
+  raid-cooldown: 10800
 
 raid-status:
   raidable: '&a&lRAIDABLE'
-  on-cooldown: '&c&lON COOLDOWN &7(&e{time}&7)'
+  on-cooldown: '&c&lON COOLDOWN &7(&e{days}&6D &e{hours}&6H &e{minutes}&6M &e{seconds}&6S&7)'
 
 faction-item:
   name: '&b&l{faction}'

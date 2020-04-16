@@ -7,10 +7,10 @@ import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.utils.GuiUtil;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-public class RaidGui extends AbstractGui {
+public class FRaidGui extends AbstractGui {
     private YamlConfiguration config = FileManager.get("raid-gui");
 
-    public RaidGui() {
+    public FRaidGui() {
         super(FileManager.get("raid-gui"), FileManager.get("raid-gui").getString("type"), FileManager.get("raid-gui").getInt("size"));
         for (int i = 1; i <= config.getInt("size"); i++) {
             int id = i;
@@ -20,8 +20,10 @@ public class RaidGui extends AbstractGui {
                             FPlayer fPlayer = FPlayerManager.getFPlayer(player.getUniqueId());
                             switch (config.getString(id + ".page")) {
                                 case "TIER_1":
+                                    Tier.TIER_1.getTierGui().open(player);
                                     break;
                                 case "TIER_2":
+                                    Tier.TIER_2.getTierGui().open(player);
                                     break;
                                 case "TIER_3":
                                     break;

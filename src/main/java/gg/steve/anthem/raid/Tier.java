@@ -7,21 +7,39 @@ import gg.steve.anthem.wealth.AsyncWealthCalculation;
 import java.util.List;
 
 public enum Tier {
-    TIER_1(FileManager.get("raid-config").getInt("tier-1.cost"), FileManager.get("raid-config").getInt("tier-1.start"), FileManager.get("raid-config").getInt("tier-1.finish")),
-    TIER_2(FileManager.get("raid-config").getInt("tier-2.cost"), FileManager.get("raid-config").getInt("tier-2.start"), FileManager.get("raid-config").getInt("tier-2.finish")),
-    TIER_3(FileManager.get("raid-config").getInt("tier-3.cost"), FileManager.get("raid-config").getInt("tier-3.start"), FileManager.get("raid-config").getInt("tier-3.finish"));
+    TIER_1(FileManager.get("raid-config").getInt("tier-1.cost"),
+            FileManager.get("raid-config").getInt("tier-1.start"),
+            FileManager.get("raid-config").getInt("tier-1.finish"),
+            FileManager.get("raid-config").getInt("tier-1.raid-length"),
+            FileManager.get("raid-config").getInt("tier-1.raid-cooldown")),
+    TIER_2(FileManager.get("raid-config").getInt("tier-2.cost"),
+            FileManager.get("raid-config").getInt("tier-2.start"),
+            FileManager.get("raid-config").getInt("tier-2.finish"),
+            FileManager.get("raid-config").getInt("tier-2.raid-length"),
+            FileManager.get("raid-config").getInt("tier-2.raid-cooldown")),
+    TIER_3(FileManager.get("raid-config").getInt("tier-3.cost"),
+            FileManager.get("raid-config").getInt("tier-3.start"),
+            FileManager.get("raid-config").getInt("tier-3.finish"),
+            FileManager.get("raid-config").getInt("tier-3.raid-length"),
+            FileManager.get("raid-config").getInt("tier-3.raid-cooldown"));
 
     private int cost;
     private int start;
     private int finish;
+    private int length;
+    private int cooldown;
     private List<Faction> factions;
+    private TierGui tierGui;
 
-    Tier(int cost, int start, int finish) {
+    Tier(int cost, int start, int finish, int length, int cooldown) {
         this.cost = cost;
         this.start = start;
         this.finish = finish;
-        if (finish == 999) finish = AsyncWealthCalculation.getFactionsInWealthOrder().size() - 1;
-        this.factions = AsyncWealthCalculation.getFactionsInWealthOrder().subList(start, finish);
+        this.length = length;
+        this.cooldown = cooldown;
+        if (start > AsyncWealthCalculation.getFactionsInWealthOrder().size()) this.start = AsyncWealthCalculation.getFactionsInWealthOrder().size();
+        if (finish > AsyncWealthCalculation.getFactionsInWealthOrder().size()) this.finish = AsyncWealthCalculation.getFactionsInWealthOrder().size();
+        this.factions = AsyncWealthCalculation.getFactionsInWealthOrder().subList(this.start, this.finish);
     }
 
     public int getCost() {
@@ -59,5 +77,18 @@ public enum Tier {
             if (tier.getFactions().contains(faction)) return tier;
         }
         return null;
+    }
+
+    public int getDuration() {
+        return length;
+    }
+
+    public int getCooldown() {
+        return cooldown;
+    }
+
+    public TierGui getTierGui() {
+        if (tierGui == null) this.tierGui = new TierGui(Tier.valueOf(name()));
+        return this.tierGui;
     }
 }

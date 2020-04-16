@@ -4,7 +4,7 @@ import gg.steve.anthem.cooldown.Cooldown;
 import gg.steve.anthem.cooldown.CooldownManager;
 import gg.steve.anthem.cooldown.CooldownType;
 import gg.steve.anthem.core.FactionManager;
-import gg.steve.anthem.exception.CooldownActiveException;
+import gg.steve.anthem.cooldown.exception.CooldownActiveException;
 import gg.steve.anthem.message.CommandDebug;
 import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.permission.PermissionNode;
@@ -27,6 +27,10 @@ public class DisbandCmd {
         }
         if (!fPlayer.hasFactionPermission(PermissionNode.DISBAND)) {
             MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionNode.DISBAND.get());
+            return;
+        }
+        if (fPlayer.isBeingRaided() || fPlayer.isRaiding()) {
+            CommandDebug.DISBAND_DURING_RAID.message(fPlayer);
             return;
         }
         if (!CooldownManager.isOnCooldown(fPlayer.getUUID(), CooldownType.DISBAND)) {

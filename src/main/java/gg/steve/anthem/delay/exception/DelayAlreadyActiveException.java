@@ -1,4 +1,4 @@
-package gg.steve.anthem.exception;
+package gg.steve.anthem.delay.exception;
 
 public class DelayAlreadyActiveException extends Exception {
 

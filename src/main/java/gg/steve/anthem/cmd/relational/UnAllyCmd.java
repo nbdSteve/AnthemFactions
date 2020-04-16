@@ -5,7 +5,7 @@ import gg.steve.anthem.cooldown.CooldownManager;
 import gg.steve.anthem.cooldown.CooldownType;
 import gg.steve.anthem.core.Faction;
 import gg.steve.anthem.core.FactionManager;
-import gg.steve.anthem.exception.CooldownActiveException;
+import gg.steve.anthem.cooldown.exception.CooldownActiveException;
 import gg.steve.anthem.message.CommandDebug;
 import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.permission.PermissionNode;

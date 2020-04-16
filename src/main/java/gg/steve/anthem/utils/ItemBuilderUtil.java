@@ -1,11 +1,7 @@
 package gg.steve.anthem.utils;
 
-import gg.steve.anthem.managers.FileManager;
-import gg.steve.anthem.nbt.NBTItem;
 import org.bukkit.Material;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -23,7 +19,6 @@ public class ItemBuilderUtil {
     private List<String> lore = new ArrayList<>();
     private Map<Enchantment, Integer> enchantments = new HashMap<>();
     private Set<ItemFlag> flags = new HashSet<>();
-    private NBTItem nbtItem;
     private List<String> placeholders = new ArrayList<>();
 
     public ItemBuilderUtil(ItemStack item) {
@@ -66,7 +61,7 @@ public class ItemBuilderUtil {
     }
 
     public void setPlaceholders(String... placeholder) {
-         this.placeholders = Arrays.asList(placeholder);
+        this.placeholders = Arrays.asList(placeholder);
     }
 
     public void addEnchantments(List<String> enchants) {
@@ -88,18 +83,6 @@ public class ItemBuilderUtil {
         item.setItemMeta(itemMeta);
     }
 
-    public void addData(String type, YamlConfiguration config) {
-        List<String> data = new ArrayList<>();
-        if (type.equalsIgnoreCase("trench")) {
-            data.add("trench");
-            data.add(config.getString("radius"));
-        } else if (type.equalsIgnoreCase("tray")) {
-            data.add("tray");
-            data.add(config.getString("radius"));
-        }
-        nbtItem.setObject("data", data);
-    }
-
     /**
      * Void method to update the item with the new lore & meta
      *
@@ -114,8 +97,8 @@ public class ItemBuilderUtil {
         item.setItemMeta(itemMeta);
     }
 
-    public void give(Player player) {
-        player.getInventory().addItem(nbtItem.getItem());
+    public void setItemMeta(ItemMeta itemMeta) {
+        this.itemMeta = itemMeta;
     }
 
     public Material getMaterial() {

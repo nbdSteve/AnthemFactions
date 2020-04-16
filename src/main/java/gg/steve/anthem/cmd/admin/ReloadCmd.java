@@ -9,6 +9,7 @@ import gg.steve.anthem.managers.FileManager;
 import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.permission.PermissionNode;
 import gg.steve.anthem.player.FPlayerManager;
+import gg.steve.anthem.raid.FRaidManager;
 import gg.steve.anthem.upgrade.crop.CropListener;
 import gg.steve.anthem.upgrade.fchest.FChestManager;
 import gg.steve.anthem.wealth.AsyncWealthCalculation;
@@ -25,6 +26,7 @@ public class ReloadCmd {
             return;
         }
         FChestManager.saveFChests();
+        FRaidManager.saveActiveRaids();
         Bukkit.getScheduler().cancelTasks(AnthemFactions.get());
         FileManager.reload();
         for (UUID uuid : FactionManager.getFactions()) {
@@ -37,6 +39,7 @@ public class ReloadCmd {
         DelayManager.init();
         CropListener.loadCropConfig();
         AsyncWealthCalculation.init();
+        FRaidManager.init();
         MessageType.RELOAD.message(sender);
     }
 }

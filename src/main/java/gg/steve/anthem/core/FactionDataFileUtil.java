@@ -94,8 +94,10 @@ public class FactionDataFileUtil {
         config.createSection("f-chest");
         config.set("raid.cooldown", 0);
         config.set("raid.active-raid.active", false);
-        config.set("raid.active-raid.faction", null);
-        config.set("raid.active-raid.time-remaining", null);
+        config.set("raid.active-raid.raiding-faction", "null");
+        config.set("raid.active-raid.defending-faction", "null");
+        config.set("raid.active-raid.tier", "null");
+        config.set("raid.active-raid.time-remaining", 0);
         //Send a nice message
         LogUtil.info("Successfully created a new faction data file: " + fileName + ", actively creating / setting defaults.");
     }

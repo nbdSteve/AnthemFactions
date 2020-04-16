@@ -7,6 +7,9 @@ import gg.steve.anthem.permission.PermissionGui;
 import gg.steve.anthem.permission.PermissionPageGui;
 import gg.steve.anthem.player.FPlayer;
 import gg.steve.anthem.player.FPlayerManager;
+import gg.steve.anthem.raid.FRaid;
+import gg.steve.anthem.raid.FRaidManager;
+import gg.steve.anthem.raid.Tier;
 import gg.steve.anthem.relation.RelationManager;
 import gg.steve.anthem.role.Role;
 import gg.steve.anthem.upgrade.Upgrade;
@@ -14,6 +17,7 @@ import gg.steve.anthem.upgrade.UpgradeGui;
 import gg.steve.anthem.upgrade.UpgradeType;
 import gg.steve.anthem.upgrade.fchest.FChest;
 import gg.steve.anthem.upgrade.fchest.FChestManager;
+import gg.steve.anthem.utils.TimeUtil;
 import gg.steve.anthem.world.FWorld;
 import gg.steve.anthem.world.FWorldGeneration;
 import org.bukkit.Bukkit;
@@ -42,11 +46,14 @@ public class Faction {
     private FChest fChest;
     private Map<Role, PermissionPageGui> permissionsPageGuiMap;
     private PermissionGui permsMenuGui;
+    private int raidCooldown;
+    private boolean raidActive;
+    private FRaid fRaid;
 
     public Faction(UUID owner, String name, UUID id) {
         this.id = id;
         this.name = name;
-        if (id.equals(FactionManager.getWildernessId())) {
+        if (isWilderness()) {
             this.fWorld = new FWorld(Bukkit.createWorld(new WorldCreator(FileManager.get("config").getString("main-world-name"))), 0, 0);
         } else {
             FWorldGeneration.generate(String.valueOf(id));
@@ -60,16 +67,25 @@ public class Faction {
         this.founded = this.data.get().getString("founded");
         this.wealth = this.data.get().getDouble("wealth");
         this.xp = this.data.get().getInt("xp-bank");
+        this.raidCooldown = this.data.get().getInt("raid.cooldown");
+        this.raidActive = this.data.get().getBoolean("raid.active-raid.active");
         this.upgrades = new HashMap<>();
         for (UpgradeType type : UpgradeType.values()) {
             upgrades.put(type, new Upgrade(type, this));
         }
         this.permsMenuGui = new PermissionGui(this);
+        if (isOnRaidCooldown()) {
+            FRaidManager.addFactionOnRaidCooldown(this.id);
+        } else if (this.raidActive) {
+            this.fRaid = new FRaid(FactionManager.getFaction(UUID.fromString(this.data.get().getString("raid.active-raid.defending-faction"))),
+                    FactionManager.getFaction(UUID.fromString(this.data.get().getString("raid.active-raid.raiding-faction"))),
+                    Tier.valueOf("raid.active-raid.tier"), this.data.get().getInt("raid.active-raid.time-remaining"));
+        }
     }
 
     public Faction(UUID id) {
         this.id = id;
-        if (id.equals(FactionManager.getWildernessId())) {
+        if (isWilderness()) {
             this.fWorld = new FWorld(Bukkit.createWorld(new WorldCreator(FileManager.get("config").getString("main-world-name"))), 0, 0);
         } else {
             this.fWorld = new FWorld(Bukkit.createWorld(new WorldCreator("plugins" + File.separator + "AnthemFactions" + File.separator + "faction-worlds" + File.separator + id.toString())), 128, 64);
@@ -83,11 +99,20 @@ public class Faction {
         this.founded = this.data.get().getString("founded");
         this.wealth = this.data.get().getDouble("wealth");
         this.xp = this.data.get().getInt("xp-bank");
+        this.raidCooldown = this.data.get().getInt("raid.cooldown");
+        this.raidActive = this.data.get().getBoolean("raid.active-raid.active");
         this.upgrades = new HashMap<>();
         for (UpgradeType type : UpgradeType.values()) {
             upgrades.put(type, new Upgrade(type, this));
         }
         this.permsMenuGui = new PermissionGui(this);
+        if (isOnRaidCooldown()) {
+            FRaidManager.addFactionOnRaidCooldown(this.id);
+        } else if (this.raidActive) {
+            this.fRaid = new FRaid(FactionManager.getFaction(UUID.fromString(this.data.get().getString("raid.active-raid.defending-faction"))),
+                    FactionManager.getFaction(UUID.fromString(this.data.get().getString("raid.active-raid.raiding-faction"))),
+                    Tier.valueOf("raid.active-raid.tier"), this.data.get().getInt("raid.active-raid.time-remaining"));
+        }
     }
 
     public boolean isMember(FPlayer fPlayer) {
@@ -252,30 +277,6 @@ public class Faction {
 
     public OfflinePlayer getOwnerAsPlayer() {
         return Bukkit.getOfflinePlayer(getOwner());
-    }
-
-    public List<UUID> getCoOwners() {
-        List<UUID> coOwners = new ArrayList<>();
-        for (Map.Entry player : playerMap.entrySet()) {
-            if (player.getValue().equals(Role.CO_OWNER)) coOwners.add((UUID) player.getKey());
-        }
-        return coOwners;
-    }
-
-    public List<UUID> getModerators() {
-        List<UUID> moderators = new ArrayList<>();
-        for (Map.Entry player : playerMap.entrySet()) {
-            if (player.getValue().equals(Role.MODERATOR)) moderators.add((UUID) player.getKey());
-        }
-        return moderators;
-    }
-
-    public List<UUID> getMembers() {
-        List<UUID> members = new ArrayList<>();
-        for (Map.Entry player : playerMap.entrySet()) {
-            if (player.getValue().equals(Role.MEMBER)) members.add((UUID) player.getKey());
-        }
-        return members;
     }
 
     public List<UUID> getOnlinePlayers() {
@@ -452,5 +453,53 @@ public class Faction {
 
     public boolean isWilderness() {
         return FactionManager.factionIsWilderness(this);
+    }
+
+    // raid shit
+    public FRaid getfRaid() {
+        return this.fRaid;
+    }
+
+    public boolean isRaidActive() {
+        return this.raidActive;
+    }
+
+    public boolean isRaiding() {
+        if (this.fRaid == null) return false;
+        if (!this.fRaid.isActive()) return false;
+        return this.fRaid.getRaidingFaction().equals(this.id);
+    }
+
+    public boolean isBeingRaided() {
+        if (this.fRaid == null) return false;
+        if (!this.fRaid.isActive()) return false;
+        return this.fRaid.getDefendingFaction().equals(this.id);
+    }
+
+    public boolean isOnRaidCooldown() {
+        return this.raidCooldown > 0;
+    }
+
+    public int getRaidCooldown() {
+        return this.raidCooldown;
+    }
+
+    public void setRaidCooldown(int remaining) {
+        this.raidCooldown = remaining;
+    }
+
+    public void saveRaidCooldown() {
+        this.data.get().set("raid.cooldown", this.raidCooldown);
+        this.data.save();
+    }
+
+    public String getRaidStatus() {
+        if (!isOnRaidCooldown()) return FileManager.get("raid-config").getString("raid-status.raidable");
+        TimeUtil timeUtil = new TimeUtil(this.raidCooldown);
+        return FileManager.get("raid-config").getString("raid-status.on-cooldown")
+                .replace("{days}", timeUtil.getDays())
+                .replace("{hours}", timeUtil.getHours())
+                .replace("{minutes}", timeUtil.getMinutes())
+                .replace("{seconds}", timeUtil.getSeconds());
     }
 }

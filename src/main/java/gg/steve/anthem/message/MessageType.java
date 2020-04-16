@@ -39,7 +39,7 @@ public enum MessageType {
     ENEMY_ALERT_SENDER("relational", "enemy-alert-sender", "{faction}"),
     ENEMY_ALERT_RECEIVER("relational", "enemy-alert-receiver", "{faction}", "{player}"),
 
-    // faction
+    // faction misc
     TAG_CHANGE("faction", "tag-change", "{new-name}", "{player}"),
     LEAVE("faction", "leave", "{faction}"),
     LEAVE_ALERT("faction", "leave-alert", "{player}"),
@@ -64,6 +64,14 @@ public enum MessageType {
     FACTION_ID("faction", "faction-id", "{uuid}"),
     CAN_NOT_HURT_FACTION_MEMBER("faction", "can-not-hurt-faction-member", "{player}"),
     CAN_NOT_HURT_ALLY_FACTION_MEMBER("faction", "can-not-hurt-ally-faction-member", "{faction}", "{player}"),
+
+    // raid
+    JOINED_RAID("faction", "joined-raid", "{defender}", "{raider}", "{tier}"),
+    RAID_TIME_UPDATE("faciton", "raid-time-update", "{days}", "{hours}", "{minutes}", "{seconds}"),
+
+    // faction perms
+
+    // upgrades
     XP_DEPOSIT_SUCCESSFUL("faction", "xp-deposit-successful", "{amount}"),
     XP_WITHDRAWAL_SUCCESSFUL("faction", "xp-withdrawal-successful", "{amount}"),
     XP_QUERY("faction", "xp-query", "{xp}"),
@@ -74,12 +82,6 @@ public enum MessageType {
     FLY_DISABLED_LEAVE("faction", "fly-disabled-leave"),
     FLY_DISABLED_RAID("faction", "fly-disabled-raid"),
     FLY_DISABLED_REGION("faction", "fly-disabled-region");
-
-    // raid
-
-    // faction perms
-
-    // upgrades
 
     private final String directory;
     private final String path;

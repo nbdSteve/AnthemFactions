@@ -78,6 +78,7 @@ public enum PermissionNode {
     }
 
     public void onClick(Faction faction, Role role) {
+        if (!isEditable()) return;
         if (faction.roleHasPermission(role, get())) {
             faction.getRolePermissions(role).remove(get());
             faction.getData().get().set("permissions." + role.toString().toLowerCase(), faction.getRolePermissions(role));

@@ -1,5 +1,6 @@
 package gg.steve.anthem.cmd;
 
+import gg.steve.anthem.cmd.admin.BypassCmd;
 import gg.steve.anthem.cmd.admin.IdCmd;
 import gg.steve.anthem.cmd.admin.ReloadCmd;
 import gg.steve.anthem.cmd.faction.*;
@@ -130,6 +131,9 @@ public class FactionsCmd implements CommandExecutor {
                 case "fly":
                 case "f":
                     FFlyCmd.fly(sender);
+                    break;
+                case "bypass":
+                    BypassCmd.bypass(sender);
                     break;
                 default:
                     CommandDebug.INCORRECT_ARGUMENTS.message(sender);

@@ -61,6 +61,8 @@ public class SetupManager {
         fileManager.add("confirmation-gui", "raid" + File.separator + "confirmation-gui.yml");
         fileManager.add("TIER_1", "raid" + File.separator + "tier-1-gui.yml");
         fileManager.add("TIER_2", "raid" + File.separator + "tier-2-gui.yml");
+        // disband util files
+        fileManager.add("disbanded-players", "faction-data" + File.separator + "_disbanded-players.yml");
         // load all of the factions for the server
         FactionManager.init();
         FPlayerManager.init();

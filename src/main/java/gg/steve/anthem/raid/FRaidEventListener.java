@@ -53,9 +53,7 @@ public class FRaidEventListener implements Listener {
         event.getRaid().cancelCounter();
         for (UUID uuid : event.getRaidingFaction().getOnlinePlayers()) {
             FPlayer fPlayer = FPlayerManager.getFPlayer(uuid);
-            LogUtil.info("running 1");
             if (fPlayer.getFaction().getUpgrade(UpgradeType.RAIDING).getLevel() > 2) {
-                LogUtil.info("running 2");
                 fPlayer.getPlayer().removePotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
             }
             if (!fPlayer.inRaidWorld()) continue;

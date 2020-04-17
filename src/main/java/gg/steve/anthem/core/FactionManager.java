@@ -22,6 +22,7 @@ public class FactionManager {
         File dataFolder = new File("plugins" + File.separator + "AnthemFactions" + File.separator + "faction-data");
         if (dataFolder.exists()) {
             for (File faction : dataFolder.listFiles()) {
+                if (faction.getName().equalsIgnoreCase("_disbanded-players.yml")) continue;
                 UUID id = UUID.fromString(faction.getName().split(".yml")[0]);
                 LogUtil.info("Loading the faction with id: " + id);
                 Faction faction1 = new Faction(id);

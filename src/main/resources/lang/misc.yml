@@ -10,6 +10,12 @@ help:
 teleport:
   - '&5&lFactions &f• &7You have been teleported from the &6{command-type} &7command.'
 
+enable-bypass:
+  - '&5&lFactions &4(&c&lADMIN&4) &f• &7You have been enabled admin bypass mode.'
+
+disable-bypass:
+  - '&5&lFactions &4(&c&lADMIN&4) &f• &7You have been disabled admin bypass mode.'
+
 faction-who:
   - '&7&m<----------------&r &5&l{faction} &7&m---------------->'
   - '&fFounded&7| {founded}'

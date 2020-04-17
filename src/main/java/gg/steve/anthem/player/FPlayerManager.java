@@ -1,10 +1,8 @@
 package gg.steve.anthem.player;
 
-import gg.steve.anthem.core.FactionManager;
 import gg.steve.anthem.managers.FileManager;
 import gg.steve.anthem.upgrade.UpgradeType;
 import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -13,16 +11,16 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class FPlayerManager implements Listener {
-    public static Map<UUID, FPlayer> players;
+    private static Map<UUID, FPlayer> players;
+    private static List<String> disbandedPlayers;
 
     public static void init() {
         players = new HashMap<>();
+        disbandedPlayers = new ArrayList<>();
+        disbandedPlayers.addAll(FileManager.get("disbanded-players").getStringList("disbanded-players"));
     }
 
     public static FPlayer getFPlayer(UUID uuid) {
@@ -45,6 +43,19 @@ public class FPlayerManager implements Listener {
         players.put(uuid, new FPlayer(uuid));
     }
 
+    public static void addDisbandedPlayer(UUID uuid) {
+        disbandedPlayers.add(uuid.toString());
+    }
+
+    public static void removeDisbandedPlayer(UUID uuid) {
+        disbandedPlayers.remove(uuid.toString());
+    }
+
+    public static void saveDisbandedPlayersToFile() {
+        FileManager.get("disbanded-players").set("disbanded-players", disbandedPlayers);
+        FileManager.save("disbanded-players");
+    }
+
     @EventHandler
     public void playerJoin(PlayerJoinEvent event) {
         addFPlayer(event.getPlayer().getUniqueId());
@@ -55,8 +66,10 @@ public class FPlayerManager implements Listener {
             }
             return;
         }
-        if (!fPlayer.isInHomeWorld()
-                && !fPlayer.getWorld().getName().equalsIgnoreCase(FileManager.get("config").getString("main-world-name"))) {
+        if ((!fPlayer.isInHomeWorld()
+                && !fPlayer.getWorld().getName().equalsIgnoreCase(FileManager.get("config").getString("main-world-name")))
+                || disbandedPlayers.contains(fPlayer.getUUID().toString())) {
+            removeDisbandedPlayer(fPlayer.getUUID());
             event.getPlayer().teleport(Bukkit.getWorld(FileManager.get("config").getString("main-world-name")).getSpawnLocation());
         }
     }

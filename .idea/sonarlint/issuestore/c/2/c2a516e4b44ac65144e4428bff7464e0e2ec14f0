@@ -1,35 +1,35 @@
 
-?
-java:S1643ã"Use a StringBuilder instead.(×Êíâşÿÿÿÿ8êáš†˜.
-s
-java:S1192"QDefine a constant instead of duplicating this literal "faction-members." 9 times.(Ø”’Äûÿÿÿÿ8êáš†˜.
-=
-java:S1640Ø"Convert this Map to an EnumMap.(…ª¯¡8êáš†˜.
+q
+java:S3824§"NReplace this "Map.get()" and condition with a call to "Map.computeIfAbsent()".(™´±ùûÿÿÿÿ8êáš†˜.
+e
+java:S1192F"HDefine a constant instead of duplicating this literal "xp-bank" 4 times.(ˆäç8’¦‡ñ–.
 c
 java:S1192E"GDefine a constant instead of duplicating this literal "wealth" 3 times.(é¬„m8Ğ²àï–.
-p
-java:S1192G"NDefine a constant instead of duplicating this literal "raid.cooldown" 3 times.(Äò•øÿÿÿÿ8‹ÓÊ†˜.
-q
-java:S3824"NReplace this "Map.get()" and condition with a call to "Map.computeIfAbsent()".(™´±ùûÿÿÿÿ8êáš†˜.
+s
+java:S1192"QDefine a constant instead of duplicating this literal "faction-members." 9 times.(Ø”’Äûÿÿÿÿ8êáš†˜.
 :
 java:S1643Ó"Use a StringBuilder instead.(Ã‘ª÷8êáš†˜.
-?
-java:S1643Ñ"Use a StringBuilder instead.(‡´”œÿÿÿÿÿ8êáš†˜.
 :
 java:S1643å"Use a StringBuilder instead.(ñ¢ 8êáš†˜.
 <
+java:S1640J"Convert this Map to an EnumMap.(â¥ÏÑ8Âü½–—.
+<
 java:S1640d"Convert this Map to an EnumMap.(â¥ÏÑ8êáš†˜.
+=
+java:S1640Ø"Convert this Map to an EnumMap.(…ª¯¡8êáš†˜.
+p
+java:S1192G"NDefine a constant instead of duplicating this literal "raid.cooldown" 3 times.(Äò•øÿÿÿÿ8‹ÓÊ†˜.
 o
 java:S1192ó"LDefine a constant instead of duplicating this literal "raid-config" 3 times.(¯µƒàüÿÿÿÿ8Ä§Å˜.
-q
-java:S3824§"NReplace this "Map.get()" and condition with a call to "Map.computeIfAbsent()".(™´±ùûÿÿÿÿ8êáš†˜.
-d
-java:S1192:"GDefine a constant instead of duplicating this literal "config" 6 times.(‘·–¸8Ğ²àï–.
-e
-java:S1192F"HDefine a constant instead of duplicating this literal "xp-bank" 4 times.(ˆäç8’¦‡ñ–.
-B
-java:S1640¥"Convert this Map to an EnumMap.(ÍÄ¹úÿÿÿÿ8êáš†˜.
 B
 java:S1640›"Convert this Map to an EnumMap.(ÍÄ¹úÿÿÿÿ8êáš†˜.
-<
-java:S1640J"Convert this Map to an EnumMap.(â¥ÏÑ8Âü½–—.
+d
+java:S1192:"GDefine a constant instead of duplicating this literal "config" 6 times.(‘·–¸8Ğ²àï–.
+B
+java:S1640¥"Convert this Map to an EnumMap.(ÍÄ¹úÿÿÿÿ8êáš†˜.
+?
+java:S1643Ñ"Use a StringBuilder instead.(‡´”œÿÿÿÿÿ8êáš†˜.
+q
+java:S3824"NReplace this "Map.get()" and condition with a call to "Map.computeIfAbsent()".(™´±ùûÿÿÿÿ8êáš†˜.
+?
+java:S1643ã"Use a StringBuilder instead.(×Êíâşÿÿÿÿ8êáš†˜.

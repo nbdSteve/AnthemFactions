@@ -55,11 +55,11 @@ build-blocked-faction:
 build-blocked-raid:
   - '&5&lFactions &f• &7You are unable to edit terrain in the &craiding zone&7.'
 
-command-blocked-faction-territory:
-  - '&5&lFactions &f• &7Since you are not a member of &6{faction} &7you can not run that command in their territory.'
+command-blocked-faction-world:
+  - '&5&lFactions &f• &7You can not use that command in faction worlds.'
 
 command-blocked-raid:
-  - '&5&lFactions &f• &7You are unable to run that command in the &craiding zone&7.'
+  - '&5&lFactions &f• &7You can not use that command while you are raiding.'
 
 faction-id:
   - '&5&lFactions &f• &7The UUID for that faction is: &6{uuid}&7.'

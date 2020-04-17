@@ -25,6 +25,7 @@ public class ReloadCmd {
             MessageType.PERMISSION_DEBUG.message(sender, PermissionNode.RELOAD.get());
             return;
         }
+        FPlayerManager.saveDisbandedPlayersToFile();
         FChestManager.saveFChests();
         FRaidManager.saveActiveRaids();
         Bukkit.getScheduler().cancelTasks(AnthemFactions.get());

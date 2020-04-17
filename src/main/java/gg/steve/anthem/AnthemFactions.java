@@ -2,6 +2,7 @@ package gg.steve.anthem;
 
 import gg.steve.anthem.managers.FileManager;
 import gg.steve.anthem.managers.SetupManager;
+import gg.steve.anthem.player.FPlayerManager;
 import gg.steve.anthem.raid.FRaidManager;
 import gg.steve.anthem.upgrade.fchest.FChestManager;
 import org.bukkit.Bukkit;
@@ -25,6 +26,7 @@ public final class AnthemFactions extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        FPlayerManager.saveDisbandedPlayersToFile();
         FRaidManager.saveActiveRaids();
         try {
             FChestManager.saveFChests();

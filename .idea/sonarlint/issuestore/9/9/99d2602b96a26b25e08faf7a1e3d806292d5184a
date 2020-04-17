@@ -1,13 +1,3 @@
 
-H
-java:S1128"+Remove this unused import 'java.util.Date'.(¸…¼ü8Ê¹´ ˜.
-W
-java:S1128"5Remove this unused import 'org.bukkit.OfflinePlayer'.(ƒØ¤¥şÿÿÿÿ8±ˆƒ¼—.
-b
-java:S1128"@Remove this unused import 'gg.steve.anthem.core.FactionManager'.(°Í›Üıÿÿÿÿ8œ²ÿ»—.
-D
-java:S2386""Make member "players" "protected".(õåˆÁşÿÿÿÿ8ø©¬»—.
-p
-java:S1104"SMake players a static final constant or non-public and provide accessors if needed.(àâó8ø©¬»—.
-J
-java:S1444"-Make this "public static players" field final(àâó8ø©¬»—.
+t
+java:S1192"RDefine a constant instead of duplicating this literal "disbanded-players" 5 times.( ö·‘øÿÿÿÿ8€ÍÏ±˜.

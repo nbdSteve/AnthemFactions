@@ -1,18 +1,18 @@
 
-z
-java:S1192W"XDefine a constant instead of duplicating this literal "raid.active-raid.active" 4 times.(–†Æ¯ıÿÿÿÿ8àŞ˜˜.
-s
-java:S1192X"VDefine a constant instead of duplicating this literal "raid.active-raid.UUID" 4 times.(ñÈö–8Ûî¡˜˜.
-‚
-java:S1192\"`Define a constant instead of duplicating this literal "raid.active-raid.time-remaining" 4 times.(‹×ö¬şÿÿÿÿ8¯À—˜.
-€
-java:S1192Z"cDefine a constant instead of duplicating this literal "raid.active-raid.defending-faction" 4 times.(şú›Â8Â¹ö‡˜.
 v
 java:S1192e"YDefine a constant instead of duplicating this literal "raid.active-raid.raiders" 3 times.(–™œÀ8Ûœş˜˜.
 s
+java:S1192X"VDefine a constant instead of duplicating this literal "raid.active-raid.UUID" 4 times.(ñÈö–8Ûî¡˜˜.
+s
 java:S1192["VDefine a constant instead of duplicating this literal "raid.active-raid.tier" 4 times.(ĞÉË·8‘Ì˜˜.
-C	java:S131>""Add a default case to this switch.(ÎòªÃûÿÿÿÿ8‚ŸŒ’˜.
+€
+java:S1192Z"cDefine a constant instead of duplicating this literal "raid.active-raid.defending-faction" 4 times.(şú›Â8Â¹ö‡˜.
 M
 java:S1068"+Remove this unused "starter" private field.(Ø”« ùÿÿÿÿ8 Ÿ£“˜.
 ƒ
 java:S1192Y"aDefine a constant instead of duplicating this literal "raid.active-raid.raiding-faction" 4 times.(‹Ç‚ÿÿÿÿÿ8Â¹ö‡˜.
+‚
+java:S1192\"`Define a constant instead of duplicating this literal "raid.active-raid.time-remaining" 4 times.(‹×ö¬şÿÿÿÿ8¯À—˜.
+C	java:S131>""Add a default case to this switch.(ÎòªÃûÿÿÿÿ8‚ŸŒ’˜.
+z
+java:S1192W"XDefine a constant instead of duplicating this literal "raid.active-raid.active" 4 times.(–†Æ¯ıÿÿÿÿ8àŞ˜˜.

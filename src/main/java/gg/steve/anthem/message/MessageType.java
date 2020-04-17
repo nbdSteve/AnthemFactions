@@ -25,6 +25,8 @@ public enum MessageType {
     LIST_HEADER("misc", "faction-list.header", "{page}"),
     LIST_ENTRY("misc", "faction-list.entry","{faction}", "{relation-color}", "{relation}", "{online-number}", "{total-members}", "{owner}"),
     LIST_FOOTER("misc", "faction-list.footer"),
+    ENABLE_BYPASS("misc", "enable-bypass"),
+    DISABLE_BYPASS("misc", "disable-bypass"),
 
     // relational
     NEUTRAL_ALERT_SENDER("relational", "neutral-alert-sender", "{faction}"),
@@ -58,7 +60,7 @@ public enum MessageType {
     DISBAND_CONFIRMATION("faction", "disband-confirmation"),
     BUILD_BLOCKED_FACTION("faction", "build-blocked-faction", "{faction}"),
     BUILD_BLOCKED_RAID("faction", "build-blocked-raid"),
-    COMMAND_BLOCKED_FACTION_TERRITORY("faction", "command-blocked-faction-territory", "{faction}"),
+    COMMAND_BLOCKED_FACTION_WORLD("faction", "command-blocked-faction-world"),
     COMMAND_BLOCKED_RAID("faction", "command-blocked-raid"),
     CHANGE_CHANNEL("faction", "change-channel", "{channel}"),
     FACTION_ID("faction", "faction-id", "{uuid}"),

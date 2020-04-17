@@ -1,7 +1,15 @@
 
-\
-java:S1128":Remove this unused import 'gg.steve.anthem.utils.LogUtil'.(ÜÏäøÿÿÿÿ8®‚µ›˜.
+9
+java:S3626»"Remove this redundant jump.(ûÁİ…8¡îÅ°˜.
+9
+java:S3626·"Remove this redundant jump.(ûÁİ…8¡îÅ°˜.
+a
+java:S1155¯">Use isEmpty() to check whether the collection is empty or not.(ö¡Ø·úÿÿÿÿ8 õÌ°˜.
+S
+java:S1751ª"5Remove this "break" statement or make it conditional.(›ûä·8´Ôñ¯˜.
 L
-java:S1066?"/Merge this if statement with the enclosing one.(‚¯€8“ä‘ ˜.
-f
-java:S1128"DRemove this unused import 'org.bukkit.event.player.PlayerChatEvent'.(ÊåÈµùÿÿÿÿ8»íÍš˜.
+java:S1066A"/Merge this if statement with the enclosing one.(‚¯€8“ä‘ ˜.
+S
+java:S1751È"5Remove this "break" statement or make it conditional.(›ûä·8Š¿õ¯˜.
+\
+java:S1128":Remove this unused import 'gg.steve.anthem.utils.LogUtil'.(ÜÏäøÿÿÿÿ8øèí±˜.

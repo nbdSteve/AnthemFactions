@@ -52,7 +52,8 @@ public enum PermissionNode {
 
     // admin cmd nodes
     ID("admin.id-cmd"),
-    RELOAD("admin.reload");
+    RELOAD("admin.reload"),
+    BYPASS("admin.bypass");
 
     private String path;
 

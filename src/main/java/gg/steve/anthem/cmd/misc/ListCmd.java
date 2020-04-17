@@ -1,5 +1,6 @@
 package gg.steve.anthem.cmd.misc;
 
+import com.sun.org.apache.bcel.internal.generic.FADD;
 import gg.steve.anthem.core.Faction;
 import gg.steve.anthem.core.FactionManager;
 import gg.steve.anthem.message.CommandDebug;
@@ -42,9 +43,8 @@ public class ListCmd {
         for (int i = (page - 1) * 9; i <= ((page - 1) * 9 + 8); i++) {
             if (i >= FactionManager.getFactions().size()) break;
             Faction faction = FactionManager.getFactionsAsList().get(i);
-            LogUtil.info(faction.getName() + " "+ i);
             if (faction.getId().equals(FactionManager.getWildernessId())) continue;
-            RelationType type = faction.getRelationManager().getRelationType(fPlayer.getFaction());
+            RelationType type = fPlayer.getFaction().getRelationManager().getRelationType(faction);
             if (type.equals(RelationType.WILDERNESS)) {
                 type = RelationType.NEUTRAL;
             }

@@ -1,0 +1,4 @@
+# Offline players who's factions have been disbanded - this is so that they don't die when they rejoin
+# Note: if faction data files are force deleted by an admin players may spawn under the world and fall into void
+disbanded-players:
+  -

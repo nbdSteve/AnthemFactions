@@ -1,5 +1,5 @@
 
-[
-java:S3516"9Refactor this method to not always return the same value.(¼ß…ýüÿÿÿÿ8úçÙë•.
 d
 java:S1479""BReduce the number of non-empty switch cases from 31 to at most 30.(ÝóŸ¿øÿÿÿÿ8Ý¬ü°˜.
+[
+java:S3516"9Refactor this method to not always return the same value.(¼ß…ýüÿÿÿÿ8úçÙë•.

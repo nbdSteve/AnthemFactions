@@ -1,35 +1,35 @@
 
-‹
-java:S1130š"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(÷Àß˜8¥»„ì•.
-W
-java:S1874š"4Remove this use of "isChunkInUse"; it is deprecated.(çˆŒ§ùÿÿÿÿ8¥»„ì•.
-W
-java:S1874Â"4Remove this use of "refreshChunk"; it is deprecated.(íÒº´ÿÿÿÿÿ8¥»„ì•.
-\
-java:S1874ª"9Remove this use of "spawnFallingBlock"; it is deprecated.(¸Ÿ×ùüÿÿÿÿ8¥»„ì•.
-U
-java:S1874½"7Remove this use of "regenerateChunk"; it is deprecated.(ö”õş8¥»„ì•.
-‹
-java:S1130Ÿ"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(ë©Êª8¥»„ì•.
-
-java:S1130©"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(¹ıÅùÿÿÿÿ8¥»„ì•.
-N
-java:S1874×"0Remove this use of "getBiome"; it is deprecated.(Ô¨ıƒ8¥»„ì•.
-N
-java:S1874á"0Remove this use of "setBiome"; it is deprecated.(œıÖ¼8¥»„ì•.
-V
-java:S1874©"8Remove this use of "getGameRuleValue"; it is deprecated.(Ÿöê®8¥»„ì•.
-U
-java:S1874®"8Remove this use of "setGameRuleValue"; it is deprecated.(†Ì‘8¥»„ì•.
-X
-java:S1874¦":Remove this use of "getEntitiesByClass"; it is deprecated.(·ñÙã8¥»„ì•.
-
-java:S1130¤"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(ÍŒñËùÿÿÿÿ8¥»„ì•.
-Q
-java:S1874õ"3Remove this use of "getHumidity"; it is deprecated.(íˆÓ8¥»„ì•.
-T
-java:S1874ë"6Remove this use of "getTemperature"; it is deprecated.(º¸’ê8¥»„ì•.
 R
-java:S1874Ÿ"4Remove this use of "MaterialData"; it is deprecated.(ë©Êª8¥»„ì•.
+java:S1874¬"4Remove this use of "MaterialData"; it is deprecated.(ë©Êª8¥»„ì•.
+‹
+java:S1130§"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(÷Àß˜8¥»„ì•.
+N
+java:S1874î"0Remove this use of "setBiome"; it is deprecated.(œıÖ¼8¥»„ì•.
 
-java:S1130•"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(ïõ‘¨üÿÿÿÿ8¥»„ì•.
+java:S1130¶"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(¹ıÅùÿÿÿÿ8¥»„ì•.
+V
+java:S1874¶"8Remove this use of "getGameRuleValue"; it is deprecated.(Ÿöê®8¥»„ì•.
+N
+java:S1874ä"0Remove this use of "getBiome"; it is deprecated.(Ô¨ıƒ8¥»„ì•.
+U
+java:S1874»"8Remove this use of "setGameRuleValue"; it is deprecated.(†Ì‘8¥»„ì•.
+Q
+java:S1874‚"3Remove this use of "getHumidity"; it is deprecated.(íˆÓ8¥»„ì•.
+W
+java:S1874Ï"4Remove this use of "refreshChunk"; it is deprecated.(íÒº´ÿÿÿÿÿ8¥»„ì•.
+‹
+java:S1130¬"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(ë©Êª8¥»„ì•.
+U
+java:S1874Ê"7Remove this use of "regenerateChunk"; it is deprecated.(ö”õş8¥»„ì•.
+\
+java:S1874·"9Remove this use of "spawnFallingBlock"; it is deprecated.(¸Ÿ×ùüÿÿÿÿ8¥»„ì•.
+X
+java:S1874³":Remove this use of "getEntitiesByClass"; it is deprecated.(·ñÙã8¥»„ì•.
+T
+java:S1874ø"6Remove this use of "getTemperature"; it is deprecated.(º¸’ê8¥»„ì•.
+W
+java:S1874§"4Remove this use of "isChunkInUse"; it is deprecated.(çˆŒ§ùÿÿÿÿ8¥»„ì•.
+
+java:S1130¢"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(ïõ‘¨üÿÿÿÿ8¥»„ì•.
+
+java:S1130±"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(ÍŒñËùÿÿÿÿ8¥»„ì•.

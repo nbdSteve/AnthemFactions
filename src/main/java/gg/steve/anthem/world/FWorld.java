@@ -21,12 +21,25 @@ import java.io.File;
 import java.util.*;
 import java.util.function.Predicate;
 
+/**
+ * Class that handles faction world, implements main bukkit World interface so that all
+ * world methods can be accessed directly. In heinsight I probably shouldn't have done it like this
+ */
 public class FWorld implements World {
+    // store the bukkit world instance
     private World world;
+    // store the size of the plot
     private int plotSize;
+    // store the size of the faction area
     private int factionArea;
 
-
+    /**
+     * Constructor to create a new Faction world based on the plot size
+     *
+     * @param world       World, the world being created
+     * @param plotSize    int, the size of the plot area
+     * @param factionArea int, the size of the faction area
+     */
     public FWorld(World world, int plotSize, int factionArea) {
         this.world = world;
         this.plotSize = plotSize;
@@ -47,7 +60,7 @@ public class FWorld implements World {
         for (int x = -(factionArea + 1); x <= factionArea; x++) {
             for (int z = -(factionArea + 1); z <= factionArea; z++) {
                 for (int y = 1; y <= 256; y++) {
-                    if (world.getBlockAt(x,y,z).getType().equals(Material.AIR)) continue;
+                    if (world.getBlockAt(x, y, z).getType().equals(Material.AIR)) continue;
                     blocks.add(world.getBlockAt(x, y, z));
                 }
             }

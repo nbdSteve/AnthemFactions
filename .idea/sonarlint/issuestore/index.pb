@@ -197,3 +197,5 @@ s
 Csrc/main/java/gg/steve/anthem/utils/actionbarapi/ActionBarType.java,8\6\867eb193c0bb817fe275b3f1f00e0e0651ae9932
 f
 6src/main/java/gg/steve/anthem/cmd/admin/BypassCmd.java,5\a\5a0deb0a908171df099012bdcc5562707e644240
+j
+:src/main/java/gg/steve/anthem/wealth/WealthComparator.java,6\f\6feb7ea6e3eed8fb5e6354e9830f2b491a16c94a

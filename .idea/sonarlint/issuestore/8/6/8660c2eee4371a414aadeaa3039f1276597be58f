@@ -1,10 +1,10 @@
 
-\
-java:S1128":Remove this unused import 'gg.steve.anthem.utils.LogUtil'.(ÜÏäøÿÿÿÿ8Ú‰í±˜.
-u	java:S135+"YReduce the total number of break and continue statements in this loop to use at most one.(ÜıÇÍ8Ï²àï–.
-U
-java:S1118":Add a private constructor to hide the implicit public one.(‘¶‰üøÿÿÿÿ
 W
 java:S1191"5Use classes from the Java API instead of Sun classes.(Ÿ¾Õ¸ıÿÿÿÿ8’Ôñ±˜.
 l
 java:S1128"JRemove this unused import 'com.sun.org.apache.bcel.internal.generic.FADD'.(Ÿ¾Õ¸ıÿÿÿÿ8’Ôñ±˜.
+U
+java:S1118":Add a private constructor to hide the implicit public one.(‘¶‰üøÿÿÿÿ
+u	java:S135+"YReduce the total number of break and continue statements in this loop to use at most one.(ÜıÇÍ8Ï²àï–.
+\
+java:S1128":Remove this unused import 'gg.steve.anthem.utils.LogUtil'.(ÜÏäøÿÿÿÿ8Ú‰í±˜.

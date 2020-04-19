@@ -1,7 +1,7 @@
 
+L
+java:S1066"/Merge this if statement with the enclosing one.(Ÿ¹–¼8¸üÒ–™.
 P
 java:S1118":Add a private constructor to hide the implicit public one.(ô€¸Ô
-b
-java:S1128"@Remove this unused import 'gg.steve.anthem.core.FactionManager'.(°Í›Üýÿÿÿÿ8¹¬¦ã—.
-c
-java:S1128	"FRemove this unused import 'gg.steve.anthem.utils.PermissionQueryUtil'.(ÄÑœß8„°§ã—.
+o
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(‚ÅöØ8Ë¥ä–™.

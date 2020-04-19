@@ -46,6 +46,7 @@ public class SetupManager {
         fileManager.add("misc", "lang" + File.separator + "misc.yml");
         fileManager.add("broadcasts", "lang" + File.separator + "broadcasts.yml");
         fileManager.add("action-bars", "lang" + File.separator + "action-bars.yml");
+        fileManager.add("help", "lang" + File.separator + "help.yml");
         // load upgrade files
         fileManager.add("upgrade-config", "upgrades" + File.separator + "config.yml");
         fileManager.add("upgrade-gui", "upgrades" + File.separator + "gui.yml");

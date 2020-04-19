@@ -13,7 +13,7 @@ public enum MessageType {
     // misc
     PERMISSION_DEBUG("misc", "permission-debug", "{node}"),
     RELOAD("misc", "reload"),
-    HELP("misc", "help"),
+    HELP("help", "", "{page}"),
     TELEPORT("misc", "teleport", "{command-type}"),
     WHO("misc", "faction-who", "{faction}", "{founded}", "{allies-number}", "{max-allies}",
             "{allies}", "{online-number}", "{online}", "{offline-number}", "{offline}", "{total-members}",
@@ -86,14 +86,18 @@ public enum MessageType {
     FLY_DISABLED_RAID("faction", "fly-disabled-raid"),
     FLY_DISABLED_REGION("faction", "fly-disabled-region");
 
-    private final String directory;
-    private final String path;
+    private String directory;
+    private String path;
     private List<String> placeholders;
 
     MessageType(String directory, String path, String... placeholders) {
         this.directory = directory;
         this.path = path;
         this.placeholders = Arrays.asList(placeholders);
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public void message(Player receiver, String... replacements) {

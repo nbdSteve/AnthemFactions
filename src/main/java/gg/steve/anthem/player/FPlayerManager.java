@@ -39,8 +39,12 @@ public class FPlayerManager implements Listener {
     }
 
     public static void updateFPlayer(UUID uuid) {
+        boolean bypassed = getFPlayer(uuid).isBypassed();
         players.remove(uuid);
         players.put(uuid, new FPlayer(uuid));
+        if (bypassed) {
+            getFPlayer(uuid).setBypassed(true);
+        }
     }
 
     public static void addDisbandedPlayer(UUID uuid) {

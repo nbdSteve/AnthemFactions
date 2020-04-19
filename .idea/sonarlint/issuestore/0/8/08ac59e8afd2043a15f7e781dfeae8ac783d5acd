@@ -1,5 +1,7 @@
 
 \
 java:S1118":Add a private constructor to hide the implicit public one.(ëİõÿÿÿÿÿ8Œ‡îù•.
-a
-java:S1128"FRemove this unused import 'gg.steve.anthem.utils.PermissionQueryUtil'.(ÄÑœß8Ç×™ã—.
+K
+java:S1066 "/Merge this if statement with the enclosing one.(ÑæÊW8¿ÇÓ–™.
+t
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(ğ’ØÃúÿÿÿÿ8ßÊ–™.

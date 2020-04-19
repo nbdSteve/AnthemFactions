@@ -2,7 +2,7 @@ only-players-can-run-command:
   - '&5&lFactions &4(&c&lERROR&4) &f• &7Only players in game can run that command.'
 
 incorrect-arguments:
-  - '&5&lFactions &4(&c&lERROR&4) &f• &7Incorrect number of command arguments.'
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7Incorrect command arguments.'
 
 faction-does-not-exist:
   - '&5&lFactions &4(&c&lERROR&4) &f• &7That faction does not exist.'
@@ -117,3 +117,12 @@ no-tier-3-factions:
 
 already-flying:
   - '&5&lFactions &4(&c&lERROR&4) &f• &7Fly has already been enabled.'
+
+invalid-page:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7That page does not exist.'
+
+can-not-demote-self-as-owner:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7You can not demote yourself from Owner rank, please promote someone else first.'
+
+already-owner:
+  - '&5&lFactions &4(&c&lERROR&4) &f• &7That player is already the owner of the faction.'

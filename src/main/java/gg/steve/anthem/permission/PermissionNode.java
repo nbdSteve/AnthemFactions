@@ -53,7 +53,8 @@ public enum PermissionNode {
     // admin cmd nodes
     ID("admin.id-cmd"),
     RELOAD("admin.reload"),
-    BYPASS("admin.bypass");
+    BYPASS("admin.bypass"),
+    FORCE_JOIN("admin.force-join");
 
     private String path;
 

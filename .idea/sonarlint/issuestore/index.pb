@@ -199,3 +199,7 @@ f
 6src/main/java/gg/steve/anthem/cmd/admin/BypassCmd.java,5\a\5a0deb0a908171df099012bdcc5562707e644240
 j
 :src/main/java/gg/steve/anthem/wealth/WealthComparator.java,6\f\6feb7ea6e3eed8fb5e6354e9830f2b491a16c94a
+c
+3src/main/java/gg/steve/anthem/cmd/misc/HelpCmd.java,f\a\fa56cddd471080b259abcb641298484516467414
+i
+9src/main/java/gg/steve/anthem/cmd/admin/ForceJoinCmd.java,8\7\8789debdb228cfbc6462fb482a5894d687c48b08

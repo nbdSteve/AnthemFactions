@@ -35,3 +35,4 @@ admin:
   id-cmd: factions.admin.id
   reload: factions.admin.reload
   bypass: factions.admin.bypass
+  force-join: factions.admin.force-join

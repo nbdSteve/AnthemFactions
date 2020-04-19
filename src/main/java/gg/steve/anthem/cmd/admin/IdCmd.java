@@ -17,7 +17,7 @@ public class IdCmd {
             CommandDebug.INCORRECT_ARGUMENTS.message(sender);
             return;
         }
-        if (FactionManager.getId(args[1]) != null) {
+        if (!FactionManager.factionAlreadyExists(args[1])) {
             MessageType.FACTION_ID.message(sender, FactionManager.getId(args[1]).toString());
         } else {
             CommandDebug.FACTION_DOES_NOT_EXIST.message(sender);

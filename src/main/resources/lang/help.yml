@@ -1,0 +1,40 @@
+total-pages: 3
+
+1:
+  - '&7&m<------------&r &5&lAnthem Factions Help &f#{page} &7&m------------>'
+  - '&7/f create'
+  - '&7/f disband'
+  - '&7/f accept'
+  - '&7/f chat'
+  - '&7/f demote'
+  - '&7/f promote'
+  - '&7/f deposit'
+  - '&7/f home'
+  - '&7/f sethome'
+  - '&7/f invite'
+  - '&7&m<------------------------------------------>'
+
+2:
+  - '&7&m<------------&r &5&lAnthem Factions Help &f#{page} &7&m------------>'
+  - '&7/f kick'
+  - '&7/f leave'
+  - '&7/f perms'
+  - '&7/f tag'
+  - '&7/f withdraw'
+  - '&7/f xp'
+  - '&7/f list'
+  - '&7/f top'
+  - '&7/f who'
+  - '&7/f raid'
+  - '&7&m<------------------------------------------>'
+
+3:
+  - '&7&m<------------&r &5&lAnthem Factions Help &f#{page} &7&m------------>'
+  - '&7/f ally'
+  - '&7/f enemy'
+  - '&7/f neutral'
+  - '&7/f unally'
+  - '&7/f chest'
+  - '&7/f fly'
+  - '&7/f upgrade'
+  - '&7&m<------------------------------------------>'

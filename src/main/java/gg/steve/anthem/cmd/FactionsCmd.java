@@ -1,23 +1,23 @@
 package gg.steve.anthem.cmd;
 
 import gg.steve.anthem.cmd.admin.BypassCmd;
+import gg.steve.anthem.cmd.admin.ForceJoinCmd;
 import gg.steve.anthem.cmd.admin.IdCmd;
 import gg.steve.anthem.cmd.admin.ReloadCmd;
 import gg.steve.anthem.cmd.faction.*;
+import gg.steve.anthem.cmd.misc.HelpCmd;
 import gg.steve.anthem.cmd.misc.ListCmd;
 import gg.steve.anthem.cmd.misc.TopCmd;
 import gg.steve.anthem.cmd.misc.WhoCmd;
+import gg.steve.anthem.cmd.raid.RaidCmd;
 import gg.steve.anthem.cmd.relational.AllyCmd;
 import gg.steve.anthem.cmd.relational.EnemyCmd;
 import gg.steve.anthem.cmd.relational.NeutralCmd;
 import gg.steve.anthem.cmd.relational.UnAllyCmd;
-import gg.steve.anthem.cmd.faction.PermsCmd;
-import gg.steve.anthem.cmd.raid.RaidCmd;
 import gg.steve.anthem.cmd.upgrade.FChestCmd;
 import gg.steve.anthem.cmd.upgrade.FFlyCmd;
 import gg.steve.anthem.cmd.upgrade.UpgradeCmd;
 import gg.steve.anthem.message.CommandDebug;
-import gg.steve.anthem.message.MessageType;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -28,7 +28,7 @@ public class FactionsCmd implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("f")) {
             if (args.length == 0) {
-                MessageType.HELP.message(sender);
+                HelpCmd.help(sender, args);
                 return true;
             }
             switch (args[0].toLowerCase()) {
@@ -84,6 +84,7 @@ public class FactionsCmd implements CommandExecutor {
                     InviteCmd.invite(sender, args);
                     break;
                 case "accept":
+                case "join":
                     AcceptCmd.accept(sender);
                     break;
                 case "kick":
@@ -134,6 +135,12 @@ public class FactionsCmd implements CommandExecutor {
                     break;
                 case "bypass":
                     BypassCmd.bypass(sender);
+                    break;
+                case "help":
+                    HelpCmd.help(sender, args);
+                    break;
+                case "fjoin":
+                    ForceJoinCmd.join(sender, args);
                     break;
                 default:
                     CommandDebug.INCORRECT_ARGUMENTS.message(sender);

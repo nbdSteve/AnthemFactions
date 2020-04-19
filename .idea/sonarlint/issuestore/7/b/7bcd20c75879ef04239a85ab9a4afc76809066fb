@@ -1,18 +1,18 @@
 
 R
 java:S1191"5Use classes from the Java API instead of Sun classes.(ÛÖ ¢8¿«´Ş—.
-]
-java:S1128"@Remove this unused import 'gg.steve.anthem.message.MessageType'.(œêò«8›Úâ—.
-W
-java:S1128"5Remove this unused import 'org.bukkit.entity.Player'.(Î©Øüúÿÿÿÿ8ı¬Œã—.
-M
-java:S1128"0Remove this unused import 'sun.rmi.runtime.Log'.(ÛÖ ¢8¿«´Ş—.
-]
-java:S1128";Remove this unused import 'gg.steve.anthem.player.FPlayer'.(¯Òµıÿÿÿÿ8¶Âã—.
 M
 java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8ù¤»Ş—.
 c
 java:S1128"ARemove this unused import 'gg.steve.anthem.message.CommandDebug'.(Øò«ãÿÿÿÿÿ8ü´äâ—.
+W
+java:S1128"5Remove this unused import 'org.bukkit.entity.Player'.(Î©Øüúÿÿÿÿ8ı¬Œã—.
 \
 java:S1128
 ":Remove this unused import 'gg.steve.anthem.utils.LogUtil'.(ÜÏäøÿÿÿÿ8ù¤»Ş—.
+]
+java:S1128"@Remove this unused import 'gg.steve.anthem.message.MessageType'.(œêò«8›Úâ—.
+M
+java:S1128"0Remove this unused import 'sun.rmi.runtime.Log'.(ÛÖ ¢8¿«´Ş—.
+]
+java:S1128";Remove this unused import 'gg.steve.anthem.player.FPlayer'.(¯Òµıÿÿÿÿ8¶Âã—.

@@ -44,6 +44,9 @@ public enum CommandDebug {
     INSUFFICIENT_XP("insufficient-xp"),
     PERMISSION_SAME_OR_HIGHER_RANK("permission-same-or-higher-rank"),
     ALREADY_FLYING("already-flying"),
+    INVALID_PAGE("invalid-page"),
+    CAN_NOT_DEMOTE_SELF_AS_OWNER("can-not-demote-self-as-owner"),
+    ALREADY_OWNER("already-owner"),
     // raid debug
     FACTION_NOT_RAIDING("faction-not-raiding"),
     ALREADY_TELEPORTED_TO_RAID("already-teleported-to-raid"),

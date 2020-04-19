@@ -1,6 +1,5 @@
 package gg.steve.anthem.cmd.admin;
 
-import gg.steve.anthem.core.FactionManager;
 import gg.steve.anthem.message.CommandDebug;
 import gg.steve.anthem.message.MessageType;
 import gg.steve.anthem.permission.PermissionNode;

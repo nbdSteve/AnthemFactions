@@ -28,9 +28,11 @@ public class DemoteCmd {
             CommandDebug.PLAYER_NOT_FACTION_MEMBER.message(fPlayer);
             return;
         }
-        if (!fPlayer.hasFactionPermission(PermissionNode.DEMOTE)) {
-            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionNode.DEMOTE.get());
-            return;
+        if (!fPlayer.isBypassed()) {
+            if (!fPlayer.hasFactionPermission(PermissionNode.DEMOTE)) {
+                MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionNode.DEMOTE.get());
+                return;
+            }
         }
         Player target = Bukkit.getPlayer(args[1]);
         if (target == null) {
@@ -38,17 +40,24 @@ public class DemoteCmd {
             return;
         }
         FPlayer tPlayer = FPlayerManager.getFPlayer(target.getUniqueId());
-        if (target.getUniqueId().equals(player.getUniqueId())) {
-            CommandDebug.TARGET_CAN_NOT_BE_SELF.message(fPlayer);
-            return;
-        }
-        if (!fPlayer.getFaction().equals(tPlayer.getFaction())) {
-            CommandDebug.TARGET_NOT_FACTION_MEMBER.message(fPlayer);
-            return;
-        }
-        if (Role.higherRole(tPlayer.getRole(), fPlayer.getRole())) {
-            CommandDebug.DEMOTED_SAME_OR_HIGHER_RANK.message(fPlayer);
-            return;
+        if (!fPlayer.isBypassed()) {
+            if (target.getUniqueId().equals(player.getUniqueId())) {
+                CommandDebug.TARGET_CAN_NOT_BE_SELF.message(fPlayer);
+                return;
+            }
+            if (!fPlayer.getFaction().equals(tPlayer.getFaction())) {
+                CommandDebug.TARGET_NOT_FACTION_MEMBER.message(fPlayer);
+                return;
+            }
+            if (Role.higherRole(tPlayer.getRole(), fPlayer.getRole())) {
+                CommandDebug.DEMOTED_SAME_OR_HIGHER_RANK.message(fPlayer);
+                return;
+            }
+        } else {
+            if (target.getUniqueId().equals(player.getUniqueId()) && fPlayer.getRole().equals(Role.OWNER)) {
+                CommandDebug.CAN_NOT_DEMOTE_SELF_AS_OWNER.message(fPlayer);
+                return;
+            }
         }
         if (tPlayer.getRole().equals(Role.MEMBER)) {
             CommandDebug.DEMOTED_ALREADY_MEMBER.message(fPlayer);

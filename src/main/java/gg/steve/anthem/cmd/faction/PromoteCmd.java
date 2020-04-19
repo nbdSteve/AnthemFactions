@@ -26,9 +26,11 @@ public class PromoteCmd {
             CommandDebug.PLAYER_NOT_FACTION_MEMBER.message(fPlayer);
             return;
         }
-        if (!fPlayer.hasFactionPermission(PermissionNode.PROMOTE)) {
-            MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionNode.PROMOTE.get());
-            return;
+        if (!fPlayer.isBypassed()) {
+            if (!fPlayer.hasFactionPermission(PermissionNode.PROMOTE)) {
+                MessageType.INSUFFICIENT_ROLE_PERMISSION.message(fPlayer, PermissionNode.PROMOTE.get());
+                return;
+            }
         }
         Player target = Bukkit.getPlayer(args[1]);
         if (target == null) {
@@ -36,17 +38,28 @@ public class PromoteCmd {
             return;
         }
         FPlayer tPlayer = FPlayerManager.getFPlayer(target.getUniqueId());
-        if (target.getUniqueId().equals(fPlayer.getUUID())) {
-            CommandDebug.TARGET_CAN_NOT_BE_SELF.message(fPlayer);
-            return;
-        }
-        if (!fPlayer.getFaction().equals(tPlayer.getFaction())) {
-            CommandDebug.TARGET_NOT_FACTION_MEMBER.message(fPlayer);
-            return;
-        }
-        if (Role.higherRole(tPlayer.getRole(), fPlayer.getRole())) {
-            CommandDebug.PROMOTE_SAME_OR_HIGHER_RANK.message(fPlayer);
-            return;
+        if (!fPlayer.isBypassed()) {
+            if (target.getUniqueId().equals(fPlayer.getUUID())) {
+                CommandDebug.TARGET_CAN_NOT_BE_SELF.message(fPlayer);
+                return;
+            }
+            if (!fPlayer.getFaction().equals(tPlayer.getFaction())) {
+                CommandDebug.TARGET_NOT_FACTION_MEMBER.message(fPlayer);
+                return;
+            }
+            if (Role.higherRole(tPlayer.getRole(), fPlayer.getRole())) {
+                CommandDebug.PROMOTE_SAME_OR_HIGHER_RANK.message(fPlayer);
+                return;
+            }
+        } else {
+            if (fPlayer.getRole().equals(Role.OWNER) && target.getUniqueId().equals(fPlayer.getUUID())) {
+                CommandDebug.ALREADY_OWNER.message(fPlayer);
+                return;
+            }
+            if (tPlayer.getRole().equals(Role.OWNER)) {
+                CommandDebug.ALREADY_OWNER.message(fPlayer);
+                return;
+            }
         }
         fPlayer.getFaction().messageAllOnlinePlayers(MessageType.PROMOTION, fPlayer.getName(), target.getName(), Role.getRoleByWeight(tPlayer.getRole().getWeight() + 1).toString());
         fPlayer.getFaction().promote(tPlayer.getUUID());

@@ -149,6 +149,7 @@ public class PlayerEventListener implements Listener {
         if (fPlayer.isBypassed()) return;
         if (fPlayer.isRaiding()) return;
         if (!fPlayer.inFactionWorld()) return;
+        if (event.getMessage().equalsIgnoreCase("/f sethome")) return;
         for (String cmd : FileManager.get("config").getStringList("cmds-blocked-in-faction-worlds")) {
             if (event.getMessage().contains(cmd)) {
                 event.setCancelled(true);

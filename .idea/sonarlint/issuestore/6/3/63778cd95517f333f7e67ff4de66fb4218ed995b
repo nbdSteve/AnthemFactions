@@ -1,15 +1,15 @@
 
-S
-java:S1751È"5Remove this "break" statement or make it conditional.(›ûä·8Š¿õ¯˜.
-S
-java:S1751ª"5Remove this "break" statement or make it conditional.(›ûä·8´Ôñ¯˜.
-a
-java:S1155¯">Use isEmpty() to check whether the collection is empty or not.(ö¡Ø·úÿÿÿÿ8 õÌ°˜.
-9
-java:S3626»"Remove this redundant jump.(ûÁİ…8¡îÅ°˜.
-9
-java:S3626·"Remove this redundant jump.(ûÁİ…8¡îÅ°˜.
-L
-java:S1066A"/Merge this if statement with the enclosing one.(‚¯€8“ä‘ ˜.
 \
 java:S1128":Remove this unused import 'gg.steve.anthem.utils.LogUtil'.(ÜÏäøÿÿÿÿ8øèí±˜.
+a
+java:S1155°">Use isEmpty() to check whether the collection is empty or not.(ö¡Ø·úÿÿÿÿ8 õÌ°˜.
+9
+java:S3626¼"Remove this redundant jump.(ûÁİ…8¡îÅ°˜.
+9
+java:S3626¸"Remove this redundant jump.(ûÁİ…8¡îÅ°˜.
+S
+java:S1751É"5Remove this "break" statement or make it conditional.(›ûä·8Š¿õ¯˜.
+L
+java:S1066A"/Merge this if statement with the enclosing one.(‚¯€8“ä‘ ˜.
+S
+java:S1751«"5Remove this "break" statement or make it conditional.(›ûä·8´Ôñ¯˜.

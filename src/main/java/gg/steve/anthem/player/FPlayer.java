@@ -17,14 +17,14 @@ import java.util.UUID;
 
 public class FPlayer {
     private Faction faction;
-    private Player player;
+    private OfflinePlayer player;
     private Role role;
     private boolean bypassed;
     private ChatType channel;
     private boolean flying;
 
     public FPlayer(UUID uuid) {
-        this.player = Bukkit.getPlayer(uuid);
+        this.player = Bukkit.getOfflinePlayer(uuid);
         this.faction = FactionManager.getFaction(this);
         this.role = faction.getRole(this);
         this.bypassed = false;
@@ -41,7 +41,7 @@ public class FPlayer {
     }
 
     public void teleportHome() {
-        this.player.teleport(getFaction().getHome());
+        this.player.getPlayer().teleport(getFaction().getHome());
     }
 
     public UUID getUUID() {
@@ -49,15 +49,15 @@ public class FPlayer {
     }
 
     public Player getPlayer() {
-        return this.player;
+        return this.player.getPlayer();
     }
 
     public Location getLocation() {
-        return this.player.getLocation();
+        return this.player.getPlayer().getLocation();
     }
 
     public void message(String message) {
-        this.player.sendMessage(message);
+        this.player.getPlayer().sendMessage(message);
     }
 
     public boolean canBuild(Location location) {
@@ -126,7 +126,7 @@ public class FPlayer {
     }
 
     public World getWorld() {
-        return this.player.getWorld();
+        return this.player.getPlayer().getWorld();
     }
 
     public void setBypassed(boolean value) {
@@ -142,8 +142,8 @@ public class FPlayer {
     }
 
     public void setFlying(boolean flying) {
-        this.player.setAllowFlight(flying);
-        this.player.setFlying(flying);
+        this.player.getPlayer().setAllowFlight(flying);
+        this.player.getPlayer().setFlying(flying);
         this.flying = flying;
     }
 
@@ -166,6 +166,6 @@ public class FPlayer {
 
     public boolean inRaidWorld() {
         if (!isRaiding()) return false;
-        return player.getWorld().getName().equals(FactionManager.getFaction(faction.getfRaid().getDefendingFaction()).getFWorld().getName());
+        return player.getPlayer().getWorld().getName().equals(FactionManager.getFaction(faction.getfRaid().getDefendingFaction()).getFWorld().getName());
     }
 }
